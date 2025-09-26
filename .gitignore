@@ -1,0 +1,65 @@
+# ===================================================================
+# Global Ignores
+# These files and folders will be ignored everywhere in the repository.
+# ===================================================================
+
+# Dependencies
+# It's good practice to ignore node_modules globally within the project.
+node_modules/
+
+# Logs
+# Ignore log files in any directory.
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment variables
+# Crucial for security. Never commit .env files.
+.env
+.env.*
+*.local
+
+# macOS-specific files
+.DS_Store
+
+# IDE and Editor-specific folders
+.idea/
+.vscode/
+*.tsbuildinfo
+
+# Other
+*.pem
+/coverage
+
+
+# ===================================================================
+# Astro App (in /astro)
+# ===================================================================
+
+# Build output
+astro/dist/
+
+# Generated types
+astro/.astro/
+
+# Specific JSON file if it's in the astro directory
+# If this file is at the root, remove the "astro/" prefix.
+astro/faunakite-c907b0d17db7.json
+
+
+# ===================================================================
+# Sanity Studio App (in /studio-faunakite)
+# ===================================================================
+
+# Dependencies (specific to yarn PnP if used)
+studio-faunakite/.pnp
+studio-faunakite/.pnp.js
+
+# Compiled Sanity Studio
+studio-faunakite/dist
+
+# Temporary Sanity runtime
+studio-faunakite/.sanity

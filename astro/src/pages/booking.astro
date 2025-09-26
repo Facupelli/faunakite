@@ -1,0 +1,347 @@
+---
+export const prerender = false;
+
+import { actions } from "astro:actions";
+import Layout from "../layouts/Layout.astro";
+import { isInputError } from "astro:actions";
+
+const result = Astro.getActionResult(actions.book.createBooking);
+const inputErrors = isInputError(result?.error) ? result.error.fields : {};
+
+console.log({ result, inputErrors });
+---
+
+<Layout>
+  <div>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <h1 class="text-xl font-bold text-ocean-700">
+              🏄‍♂️ Ocean Winds Kitesurf School
+            </h1>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          Book Your Kitesurfing Course
+        </h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Ready to ride the waves? Book your kitesurfing adventure with our
+          certified instructors. Choose from beginner to advanced courses.
+        </p>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <form
+          id="booking-form"
+          class="space-y-8"
+          method="POST"
+          action={actions.book.createBooking}
+          enctype="multipart/form-data"
+        >
+          <!-- Personal Information -->
+          <div class="space-y-6">
+            <h2
+              class="text-2xl font-semibold text-gray-900 border-b border-gray-200 pb-2"
+            >
+              Personal Information
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="customerName"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="customerName"
+                  name="customerName"
+                  required
+                  transition:persist
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                  placeholder="Enter your full name"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="customerEmail"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="customerEmail"
+                  name="customerEmail"
+                  required
+                  transition:persist
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                  placeholder="Enter your email"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="customerPhone"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="customerPhone"
+                  name="customerPhone"
+                  transition:persist
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                  placeholder="Optional phone number"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="numberOfStudents"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Number of Students *
+                </label>
+                <select
+                  id="numberOfStudents"
+                  name="numberOfStudents"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                >
+                  <option value="">Select number of students</option>
+                  <option value="1">1 Student</option>
+                  <option value="2">2 Students</option>
+                  <option value="3">3 Students</option>
+                  <option value="4">4 Students</option>
+                  <option value="5">5+ Students (Contact us)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course Information -->
+          <div class="space-y-6">
+            <h2
+              class="text-2xl font-semibold text-gray-900 border-b border-gray-200 pb-2"
+            >
+              Course Details
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="courseType"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Course Type *
+                </label>
+                <select
+                  id="courseType"
+                  name="courseType"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                >
+                  <option value="">Select a course</option>
+                  <option value="Beginner Course"
+                    >Beginner Course (2 days) - $200</option
+                  >
+                  <option value="Intermediate Course"
+                    >Intermediate Course (2 days) - $300</option
+                  >
+                  <option value="Advanced Course"
+                    >Advanced Course (1 day) - $250</option
+                  >
+                  <option value="Private Lesson"
+                    >Private Lesson (Half day) - $150</option
+                  >
+                  <option value="Group Lesson"
+                    >Group Lesson (Half day) - $100</option
+                  >
+                </select>
+              </div>
+
+              <div>
+                <label
+                  for="startDate"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Start Date *
+                </label>
+                <input
+                  type="date"
+                  id="startDate"
+                  name="startDate"
+                  required
+                  transition:persist
+                  min=""
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="endDate"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  End Date *
+                </label>
+                <input
+                  type="date"
+                  id="endDate"
+                  name="endDate"
+                  required
+                  transition:persist
+                  min=""
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="specialRequests"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Special Requests or Notes
+              </label>
+              <textarea
+                id="specialRequests"
+                name="specialRequests"
+                rows="4"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                placeholder="Any special requirements, dietary restrictions, or questions..."
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Submit Section -->
+          <div class="border-t border-gray-200 pt-8">
+            <div
+              class="flex flex-col sm:flex-row gap-4 justify-between items-center"
+            >
+              <div class="text-sm text-gray-600">
+                <p>* Required fields</p>
+                <p>You'll receive a confirmation email after booking.</p>
+              </div>
+
+              <button
+                type="submit"
+                id="submit-btn"
+                class="w-full sm:w-auto px-8 py-4 bg-ocean-600 text-black font-semibold rounded-lg hover:bg-ocean-700 focus:ring-4 focus:ring-ocean-200 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span id="submit-text">Book Your Course</span>
+                <span id="submit-loading" class="hidden">
+                  <svg
+                    class="animate-spin -ml-1 mr-3 h-5 w-5 inline"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Processing...
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Success/Error Messages -->
+        <div class="mt-6">
+          {
+            result && !result.error && (
+              <div
+                id="success-message"
+                class="p-4 bg-green-50 border border-green-200 rounded-lg"
+              >
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <svg
+                      class="h-5 w-5 text-green-400"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-green-800">
+                      Booking Confirmed!
+                    </h3>
+                    <div
+                      class="mt-2 text-sm text-green-700"
+                      id="success-details"
+                    />
+                  </div>
+                </div>
+              </div>
+            )
+          }
+
+          {
+            result?.error && (
+              <div
+                id="error-message"
+                class="p-4 bg-red-50 border border-red-200 rounded-lg"
+              >
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <svg
+                      class="h-5 w-5 text-red-400"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">
+                      Booking Failed
+                    </h3>
+                    <div class="mt-2 text-sm text-red-700" id="error-details">
+                      {result.error.message}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </main>
+  </div>
+</Layout>
