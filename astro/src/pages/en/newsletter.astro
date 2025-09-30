@@ -2,7 +2,7 @@
 export const prerender = false;
 
 import { actions } from "astro:actions";
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 
 const result = Astro.getActionResult(actions.newsletter.subscribe);
 ---
