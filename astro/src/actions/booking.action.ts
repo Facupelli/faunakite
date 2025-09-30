@@ -1,4 +1,3 @@
-import type { APIRoute } from "astro";
 import { GoogleSheetsClient } from "../infrastructure/google-sheets/google-sheet-client";
 import { GoogleSheetsBookingRepository } from "../infrastructure/google-sheets/google-sheet-booking.repository";
 import {

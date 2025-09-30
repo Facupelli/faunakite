@@ -1,14 +1,7 @@
-# ===================================================================
-# Global Ignores
-# These files and folders will be ignored everywhere in the repository.
-# ===================================================================
-
 # Dependencies
-# It's good practice to ignore node_modules globally within the project.
 node_modules/
 
 # Logs
-# Ignore log files in any directory.
 logs/
 npm-debug.log*
 yarn-debug.log*
@@ -17,7 +10,6 @@ pnpm-debug.log*
 *.log
 
 # Environment variables
-# Crucial for security. Never commit .env files.
 .env
 .env.*
 *.local
@@ -45,8 +37,6 @@ astro/dist/
 # Generated types
 astro/.astro/
 
-# Specific JSON file if it's in the astro directory
-# If this file is at the root, remove the "astro/" prefix.
 astro/faunakite-c907b0d17db7.json
 
 
