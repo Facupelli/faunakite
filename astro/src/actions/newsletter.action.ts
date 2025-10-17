@@ -1,8 +1,6 @@
 import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
-import { subscribeNewsletterUseCase } from "../domain/use-cases/subscribe-to-newsletter";
-import { GoogleSheetsClient } from "../infrastructure/google-sheets/google-sheet-client";
-import { GoogleSheetsNewsletterRepository } from "../infrastructure/google-sheets/google-sheet-newsletter.repository";
+import { subscribeToNewsletter } from "../newsletter/use-cases/subscribe-to-newsletter";
 
 export const newsletter = {
   subscribe: defineAction({
@@ -14,10 +12,7 @@ export const newsletter = {
     }),
     handler: async (input) => {
       try {
-        const repository = createNewsletterRepository();
-        const dependencies = { newsletterRepository: repository };
-
-        const result = await subscribeNewsletterUseCase(dependencies, {
+        const result = await subscribeToNewsletter({
           email: input.email,
           name: input.name,
           source: input.source,
@@ -41,25 +36,3 @@ export const newsletter = {
     },
   }),
 };
-
-function createNewsletterRepository() {
-  const spreadsheetId = import.meta.env.GOOGLE_SHEETS_SPREADSHEET_ID;
-  const sheetName = "Newsletter";
-  const clientEmail = import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const privateKey = import.meta.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
-
-  if (!spreadsheetId || !clientEmail || !privateKey) {
-    throw new Error("Missing required Google Sheets configuration");
-  }
-
-  const client = new GoogleSheetsClient({
-    spreadsheetId,
-    sheetName,
-    credentials: {
-      client_email: clientEmail,
-      private_key: privateKey.replace(/\\n/g, "\n"),
-    },
-  });
-
-  return new GoogleSheetsNewsletterRepository(client);
-}

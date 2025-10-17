@@ -5,6 +5,23 @@ import { actions } from "astro:actions";
 import Layout from "../../layouts/Layout.astro";
 import { isInputError } from "astro:actions";
 
+async function getAvailableDates() {
+  const dates = [];
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() + 1);
+
+  for (let i = 0; i < 30; i++) {
+    const date = new Date(startDate);
+    date.setDate(date.getDate() + i);
+    if (Math.random() > 0.3) {
+      dates.push(date.toISOString().split("T")[0]);
+    }
+  }
+  return dates;
+}
+
+const availableDates = await getAvailableDates();
+
 const result = Astro.getActionResult(actions.book.createBooking);
 const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 
@@ -48,6 +65,165 @@ console.log({ result, inputErrors });
           action={actions.book.createBooking}
           enctype="multipart/form-data"
         >
+          <!-- Course Information -->
+          <div class="space-y-6">
+            <div>
+              <label class="block text-lg font-semibold text-slate-900 mb-4"
+                >Selecciona tu Curso</label
+              >
+              <div class="space-y-3">
+                <!-- CURSO -->
+                <label
+                  class="flex items-start p-4 border-2 border-slate-200 rounded-lg cursor-pointer hover:border-teal-400 hover:bg-teal-50 transition has-[:checked]:border-teal-600 has-[:checked]:bg-teal-50"
+                >
+                  <input
+                    type="radio"
+                    name="courseType"
+                    value="CURSO"
+                    required
+                    class="mt-1 w-4 h-4 text-teal-600"
+                  />
+                  <div class="ml-4 flex-1">
+                    <p class="font-semibold text-slate-900">CURSO INICIAL</p>
+                    <p class="text-sm text-slate-600">
+                      Empezando desde 0, para principiante
+                    </p>
+                    <p class="text-sm font-medium text-teal-600 mt-2">
+                      9hs total • 3 días • 3hs por día
+                    </p>
+                  </div>
+                </label>
+
+                <!-- PACK -->
+                <fieldset class="space-y-3">
+                  <label
+                    class="flex items-start p-4 border-2 border-slate-200 rounded-lg cursor-pointer hover:border-teal-400 hover:bg-teal-50 transition has-[:checked]:border-teal-600 has-[:checked]:bg-teal-50"
+                  >
+                    <input
+                      type="radio"
+                      name="courseType"
+                      value="PACK"
+                      required
+                      class="mt-1 w-4 h-4 text-teal-600"
+                    />
+                    <div class="ml-4 flex-1">
+                      <p class="font-semibold text-slate-900">PACK INTENSIVO</p>
+                      <p class="text-sm text-slate-600">
+                        Refrescante o intermedio
+                      </p>
+                      <p class="text-sm font-medium text-teal-600 mt-2">
+                        6hs total • Flexible en duración
+                      </p>
+                    </div>
+                  </label>
+
+                  <!-- Pack Duration Options -->
+                  <div
+                    class="ml-8 space-y-2 p-3 bg-slate-50 rounded-lg border border-slate-200"
+                  >
+                    <p class="text-sm font-medium text-slate-700">
+                      Distribución:
+                    </p>
+                    <label
+                      class="flex items-center p-2 cursor-pointer hover:bg-slate-100 rounded transition"
+                    >
+                      <input
+                        type="radio"
+                        name="packDuration"
+                        value="2-days"
+                        class="w-4 h-4 text-teal-600"
+                      />
+                      <span class="ml-2 text-slate-900"
+                        >2 días • 3hs por día</span
+                      >
+                    </label>
+                    <label
+                      class="flex items-center p-2 cursor-pointer hover:bg-slate-100 rounded transition"
+                    >
+                      <input
+                        type="radio"
+                        name="packDuration"
+                        value="3-days"
+                        class="w-4 h-4 text-teal-600"
+                      />
+                      <span class="ml-2 text-slate-900"
+                        >3 días • 2hs por día</span
+                      >
+                    </label>
+                  </div>
+                </fieldset>
+
+                <!-- CLASE INDIVIDUAL -->
+                <label
+                  class="flex items-start p-4 border-2 border-slate-200 rounded-lg cursor-pointer hover:border-teal-400 hover:bg-teal-50 transition has-[:checked]:border-teal-600 has-[:checked]:bg-teal-50"
+                >
+                  <input
+                    type="radio"
+                    name="courseType"
+                    value="CLASE_INDIVIDUAL"
+                    required
+                    class="mt-1 w-4 h-4 text-teal-600"
+                  />
+                  <div class="ml-4 flex-1">
+                    <p class="font-semibold text-slate-900">CLASE INDIVIDUAL</p>
+                    <p class="text-sm text-slate-600">Clase extra o refuerzo</p>
+                    <p class="text-sm font-medium text-teal-600 mt-2">
+                      2hs • 1 día
+                    </p>
+                  </div>
+                </label>
+
+                <!-- CLASE INDIVIDUAL AVANZADA -->
+                <label
+                  class="flex items-start p-4 border-2 border-slate-200 rounded-lg cursor-pointer hover:border-teal-400 hover:bg-teal-50 transition has-[:checked]:border-teal-600 has-[:checked]:bg-teal-50"
+                >
+                  <input
+                    type="radio"
+                    name="courseType"
+                    value="CLASE_INDIVIDUAL_AVANZADA"
+                    required
+                    class="mt-1 w-4 h-4 text-teal-600"
+                  />
+                  <div class="ml-4 flex-1">
+                    <p class="font-semibold text-slate-900">
+                      CLASE INDIVIDUAL AVANZADA
+                    </p>
+                    <p class="text-sm text-slate-600">
+                      Trucos y maniobras avanzadas
+                    </p>
+                    <p class="text-sm font-medium text-teal-600 mt-2">
+                      1h • 1 día
+                    </p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Date Selection -->
+          <div class="space-y-3 pt-4 border-t border-slate-200">
+            <label
+              for="startDate"
+              class="block text-lg font-semibold text-slate-900"
+              >Selecciona la Fecha de Inicio</label
+            >
+            <select id="startDate" name="startDate" required>
+              <option value="">Elige una fecha...</option>
+              {
+                availableDates.map((date) => (
+                  <option value={date}>
+                    {new Intl.DateTimeFormat("es-ES", {
+                      weekday: "short",
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    }).format(new Date(date + "T00:00:00"))}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+
           <!-- Personal Information -->
           <div class="space-y-6">
             <h2
@@ -71,7 +247,7 @@ console.log({ result, inputErrors });
                   required
                   transition:persist
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
-                  placeholder="Enter your full name"
+                  placeholder="Jhon Doe"
                 />
               </div>
 
@@ -89,7 +265,7 @@ console.log({ result, inputErrors });
                   required
                   transition:persist
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
-                  placeholder="Enter your email"
+                  placeholder="example@example.com"
                 />
               </div>
 
@@ -106,126 +282,62 @@ console.log({ result, inputErrors });
                   name="customerPhone"
                   transition:persist
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
-                  placeholder="Optional phone number"
+                  placeholder="+542647411889"
                 />
               </div>
 
               <div>
                 <label
-                  for="numberOfStudents"
+                  for="dateOfBirth"
                   class="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Number of Students *
-                </label>
-                <select
-                  id="numberOfStudents"
-                  name="numberOfStudents"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
-                >
-                  <option value="">Select number of students</option>
-                  <option value="1">1 Student</option>
-                  <option value="2">2 Students</option>
-                  <option value="3">3 Students</option>
-                  <option value="4">4 Students</option>
-                  <option value="5">5+ Students (Contact us)</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- Course Information -->
-          <div class="space-y-6">
-            <h2
-              class="text-2xl font-semibold text-gray-900 border-b border-gray-200 pb-2"
-            >
-              Course Details
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label
-                  for="courseType"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Course Type *
-                </label>
-                <select
-                  id="courseType"
-                  name="courseType"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
-                >
-                  <option value="">Select a course</option>
-                  <option value="Beginner Course"
-                    >Beginner Course (2 days) - $200</option
-                  >
-                  <option value="Intermediate Course"
-                    >Intermediate Course (2 days) - $300</option
-                  >
-                  <option value="Advanced Course"
-                    >Advanced Course (1 day) - $250</option
-                  >
-                  <option value="Private Lesson"
-                    >Private Lesson (Half day) - $150</option
-                  >
-                  <option value="Group Lesson"
-                    >Group Lesson (Half day) - $100</option
-                  >
-                </select>
-              </div>
-
-              <div>
-                <label
-                  for="startDate"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Start Date *
+                  Date of Birth
                 </label>
                 <input
                   type="date"
-                  id="startDate"
-                  name="startDate"
-                  required
+                  id="dateOfBirth"
+                  name="dateOfBirth"
                   transition:persist
-                  min=""
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
                 />
               </div>
 
               <div>
                 <label
-                  for="endDate"
+                  for="weight"
                   class="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  End Date *
+                  Weight (kg)
                 </label>
                 <input
-                  type="date"
-                  id="endDate"
-                  name="endDate"
-                  required
+                  type="tel"
+                  id="weight"
+                  name="weight"
                   transition:persist
-                  min=""
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                  placeholder="85"
                 />
               </div>
-            </div>
 
-            <div>
-              <label
-                for="specialRequests"
-                class="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Special Requests or Notes
-              </label>
-              <textarea
-                id="specialRequests"
-                name="specialRequests"
-                rows="4"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
-                placeholder="Any special requirements, dietary restrictions, or questions..."
-              ></textarea>
+              <div>
+                <label
+                  for="level"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Level
+                </label>
+                <select
+                  id="level"
+                  name="level"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
+                >
+                  <option value="">Select your experience level</option>
+                  <option value="1">Begginer</option>
+                  <option value="2">Intermediate</option>
+                  <option value="3">Advanced</option>
+                </select>
+              </div>
             </div>
           </div>
 

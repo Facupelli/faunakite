@@ -1,38 +1,27 @@
 import {
-  createBooking,
+  createBookingEntity,
   type Booking,
   type CreateBookingData,
-} from "../entities/booking";
+} from "../booking.entity";
 import {
   BookingConflictError,
   InvalidBookingDateError,
   InvalidBookingWindowError,
   InvalidCustomerDataError,
   SlotUnavailableError,
-} from "../errors/booking.errors";
-import type { BookingRepository } from "../repositories/booking.repository";
+} from "../booking.errors";
+import type { BookingRepository } from "../booking.repository";
 
-/**
- * Input data for creating a booking
- * Extends the entity creation data with validation context
- */
 export interface CreateBookingInput extends CreateBookingData {
   requestedAt?: Date; // When the booking request was made
 }
 
-/**
- * Result of a successful booking creation
- */
 export interface CreateBookingResult {
   bookingId: string;
   booking: Booking;
   message: string;
 }
 
-/**
- * Configuration for booking business rules
- * These can be adjusted without changing the use case logic
- */
 export interface BookingBusinessRules {
   maxAdvanceBookingDays?: number;
   minBookingHours?: number;
@@ -40,9 +29,6 @@ export interface BookingBusinessRules {
   allowDuplicateBookings?: boolean;
 }
 
-/**
- * Dependencies for the create booking use case
- */
 export interface CreateBookingDependencies {
   bookingRepository: BookingRepository;
   businessRules?: BookingBusinessRules;
@@ -72,7 +58,7 @@ export async function createBookingUseCase(
   await validateBusinessRules(bookingRepository, businessRules, input);
 
   // Step 3: Create and persist the booking
-  const booking = createBooking(input);
+  const booking = createBookingEntity(input);
   const bookingId = await bookingRepository.create(booking);
 
   // Step 4: Return success result
@@ -85,9 +71,13 @@ export async function createBookingUseCase(
   };
 }
 
-/**
- * Validate the basic booking data
- */
+export function createBookingUseCaseFactory(
+  dependencies: CreateBookingDependencies
+) {
+  return (input: CreateBookingInput) =>
+    createBookingUseCase(dependencies, input);
+}
+
 async function validateBookingData(input: CreateBookingInput): Promise<void> {
   // Required field validation
   if (!input.customerEmail?.trim()) {
@@ -111,14 +101,6 @@ async function validateBookingData(input: CreateBookingInput): Promise<void> {
       "courseType",
       input.courseType,
       "Course type is required"
-    );
-  }
-
-  if (!input.numberOfStudents || input.numberOfStudents < 1) {
-    throw new InvalidCustomerDataError(
-      "numberOfStudents",
-      input.numberOfStudents,
-      "Number of students must be at least 1"
     );
   }
 
@@ -162,9 +144,6 @@ async function validateBookingData(input: CreateBookingInput): Promise<void> {
   }
 }
 
-/**
- * Validate business rules and constraints
- */
 async function validateBusinessRules(
   repository: BookingRepository,
   businessRules: BookingBusinessRules,
@@ -184,9 +163,6 @@ async function validateBusinessRules(
   }
 }
 
-/**
- * Validate booking is within allowed time window
- */
 async function validateBookingWindow(
   businessRules: BookingBusinessRules,
   input: CreateBookingInput
@@ -218,9 +194,6 @@ async function validateBookingWindow(
   }
 }
 
-/**
- * Check for conflicting bookings for the same customer
- */
 async function validateNoDuplicateBookings(
   repository: BookingRepository,
   input: CreateBookingInput
@@ -241,9 +214,6 @@ async function validateNoDuplicateBookings(
   }
 }
 
-/**
- * Validate capacity constraints for the requested dates
- */
 async function validateCapacity(
   repository: BookingRepository,
   businessRules: BookingBusinessRules,
@@ -261,42 +231,16 @@ async function validateCapacity(
       (booking) =>
         booking.status === "confirmed" || booking.status === "pending"
     )
-    .reduce((sum, booking) => sum + booking.numberOfStudents, 0);
+    .reduce((sum, booking) => sum + 1, 0); // 1 student per booking
 
   const remainingCapacity =
     businessRules.maxStudentsPerDay! - totalExistingStudents;
 
-  if (input.numberOfStudents > remainingCapacity) {
+  if (1 > remainingCapacity) {
     throw new SlotUnavailableError(
       input.courseType,
       input.startDate,
-      input.numberOfStudents,
       remainingCapacity
     );
   }
 }
-
-/**
- * Helper function to create a configured use case function
- * This provides a convenient way to partially apply dependencies
- *
- * @param dependencies Repository and business rules configuration
- * @returns Configured use case function that only needs input
- */
-export function createBookingUseCaseFactory(
-  dependencies: CreateBookingDependencies
-) {
-  return (input: CreateBookingInput) =>
-    createBookingUseCase(dependencies, input);
-}
-
-/**
- * Default business rules for kitesurfing school
- * Can be customized per environment or client needs
- */
-export const defaultBookingBusinessRules: BookingBusinessRules = {
-  maxAdvanceBookingDays: 90,
-  minBookingHours: 24,
-  maxStudentsPerDay: 12,
-  allowDuplicateBookings: false,
-};

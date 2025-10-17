@@ -1,5 +1,3 @@
-import { GoogleSheetsClient } from "../infrastructure/google-sheets/google-sheet-client";
-import { GoogleSheetsBookingRepository } from "../infrastructure/google-sheets/google-sheet-booking.repository";
 import {
   BookingConflictError,
   InvalidBookingDateError,
@@ -9,14 +7,11 @@ import {
   InvalidCustomerDataError,
   SlotUnavailableError,
   type BookingDomainErrors,
-} from "../domain/errors/booking.errors";
-import {
-  createBookingUseCase,
-  defaultBookingBusinessRules,
-} from "../domain/use-cases/create-booking";
+} from "../booking/booking.errors";
 import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
 import { ActionError } from "astro:actions";
+import { createBooking } from "../booking/use-cases/create-booking";
 
 interface ErrorResponse {
   code: string;
@@ -34,18 +29,11 @@ export const book = {
       courseType: z.string(),
       startDate: z.coerce.date(),
       endDate: z.coerce.date(),
-      numberOfStudents: z.coerce.number(),
-      specialRequests: z.string().optional(),
+      packDuration: z.coerce.number(),
     }),
     handler: async (input) => {
-      const repository = createBookingRepository();
-      const dependencies = {
-        bookingRepository: repository,
-        businessRules: defaultBookingBusinessRules,
-      };
-
       try {
-        const result = await createBookingUseCase(dependencies, input);
+        const result = await createBooking(input);
 
         return {
           bookingId: result.bookingId,
@@ -54,7 +42,6 @@ export const book = {
       } catch (error) {
         console.error("Booking API Error:", error);
 
-        // Handle domain errors with user-friendly messages
         if (
           error instanceof BookingConflictError ||
           error instanceof InvalidBookingDateError ||
@@ -88,32 +75,6 @@ export const book = {
     },
   }),
 };
-
-/**
- * Initialize Google Sheets repository
- * In a real app, this could be cached or moved to a dependency container
- */
-function createBookingRepository() {
-  const spreadsheetId = import.meta.env.GOOGLE_SHEETS_SPREADSHEET_ID;
-  const sheetName = import.meta.env.GOOGLE_SHEETS_SHEET_NAME || "Bookings";
-  const clientEmail = import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const privateKey = import.meta.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
-
-  if (!spreadsheetId || !clientEmail || !privateKey) {
-    throw new Error("Missing required Google Sheets configuration");
-  }
-
-  const client = new GoogleSheetsClient({
-    spreadsheetId,
-    sheetName,
-    credentials: {
-      client_email: clientEmail,
-      private_key: privateKey.replace(/\\n/g, "\n"),
-    },
-  });
-
-  return new GoogleSheetsBookingRepository(client);
-}
 
 function handleDomainError(error: BookingDomainErrors): ErrorResponse {
   switch (error.code) {

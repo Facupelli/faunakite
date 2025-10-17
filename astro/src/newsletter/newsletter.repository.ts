@@ -1,4 +1,4 @@
-import type { NewsletterSubscription } from "../entities/newsletter";
+import type { NewsletterSubscription } from "../newsletter.entity";
 
 export interface NewsletterRepository {
   create(subscription: NewsletterSubscription): Promise<string>;

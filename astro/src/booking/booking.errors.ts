@@ -47,15 +47,13 @@ export class SlotUnavailableError extends BookingDomainError {
   constructor(
     courseType: string,
     requestedDate: Date,
-    requestedStudents: number,
     availableCapacity: number
   ) {
     super(
-      `Not enough capacity for ${courseType} on ${requestedDate.toDateString()}. Requested: ${requestedStudents}, Available: ${availableCapacity}`,
+      `Not enough capacity for ${courseType} on ${requestedDate.toDateString()}. Requested: 1, Available: ${availableCapacity}`,
       {
         courseType,
         requestedDate,
-        requestedStudents,
         availableCapacity,
       }
     );

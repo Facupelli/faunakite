@@ -2,8 +2,8 @@ import {
   createNewsletterSubscription,
   SubscriptionStatus,
   type CreateNewsletterSubscriptionData,
-} from "../entities/newsletter";
-import type { NewsletterRepository } from "../repositories/newsletter.repository";
+} from "../newsletter.entity";
+import type { NewsletterRepository } from "../newsletter.repository";
 
 export interface SubscribeNewsletterDependencies {
   newsletterRepository: NewsletterRepository;
@@ -27,4 +27,11 @@ export async function subscribeNewsletterUseCase(
     subscriptionId,
     message: "Successfully subscribed to newsletter!",
   };
+}
+
+export function createSubscribeNewsletterUseCaseFactory(
+  dependencies: SubscribeNewsletterDependencies
+) {
+  return (input: CreateNewsletterSubscriptionData) =>
+    subscribeNewsletterUseCase(dependencies, input);
 }

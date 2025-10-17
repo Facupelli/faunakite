@@ -1,6 +1,3 @@
-/**
- * Booking status throughout the booking lifecycle
- */
 export enum BookingStatus {
   PENDING = "pending", // Initial state when booking is created
   CONFIRMED = "confirmed", // Booking approved and slot reserved
@@ -8,9 +5,6 @@ export enum BookingStatus {
   COMPLETED = "completed", // Course finished
 }
 
-/**
- * Payment status for tracking financial state
- */
 export enum PaymentStatus {
   UNPAID = "unpaid", // No payment received
   DEPOSIT_PAID = "deposit_paid", // Partial payment (deposit) received
@@ -58,11 +52,6 @@ export interface Booking {
    */
   endDate: Date;
 
-  /**
-   * Number of students in this booking
-   */
-  numberOfStudents: number;
-
   // Booking Management
   /**
    * Current booking status
@@ -92,11 +81,10 @@ export interface CreateBookingData {
   courseType: string;
   startDate: Date;
   endDate: Date;
-  numberOfStudents: number;
   specialRequests?: string;
 }
 
-export function createBooking(data: CreateBookingData): Booking {
+export function createBookingEntity(data: CreateBookingData): Booking {
   return {
     ...data,
     status: BookingStatus.PENDING,

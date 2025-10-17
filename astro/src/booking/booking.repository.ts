@@ -1,16 +1,5 @@
-import type { Booking } from "../entities/booking";
+import type { Booking } from "./booking.entity";
 
-/**
- * BookingRepository interface - Pure business contract
- *
- * This interface defines the data access contract without any knowledge
- * of the underlying storage mechanism (Google Sheets, Database, etc.)
- *
- * Following clean architecture principles:
- * - Returns data or null, never throws domain errors
- * - Uses simple types (string for UUID, not value objects)
- * - Focuses purely on data access operations
- */
 export interface BookingRepository {
   /**
    * Creates a new booking record

@@ -132,29 +132,6 @@ export class GoogleSheetsClient {
   }
 
   /**
-   * Find the row number for a specific booking ID
-   * Used for updating existing bookings
-   * @param bookingId The booking ID to search for
-   * @returns Row number (1-indexed) or null if not found
-   */
-  async findRowByBookingId(bookingId: string): Promise<number | null> {
-    try {
-      const data = await this.readRange("A:A"); // Read ID column
-
-      for (let i = 1; i < data.length; i++) {
-        // Skip header row
-        if (data[i]?.[0] === bookingId) {
-          return i + 1; // Convert to 1-indexed row number
-        }
-      }
-
-      return null;
-    } catch (error) {
-      this.handleApiError("Failed to find booking row", error);
-    }
-  }
-
-  /**
    * Update a specific booking row
    * @param rowNumber 1-indexed row number
    * @param values New values for the row
@@ -189,33 +166,6 @@ export class GoogleSheetsClient {
       });
     } catch (error) {
       this.handleApiError("Failed to perform batch update", error);
-    }
-  }
-
-  /**
-   * Initialize sheet with proper headers if it's empty
-   * Call this once during setup
-   */
-  async initializeSheetHeaders(): Promise<void> {
-    const headers = [
-      "id",
-      "customerEmail",
-      "customerName",
-      "customerPhone",
-      "courseType",
-      "startDate",
-      "endDate",
-      "numberOfStudents",
-      "status",
-      "paymentStatus",
-      "createdAt",
-      "specialRequests",
-    ];
-
-    // Check if headers already exist
-    const existingHeaders = await this.readHeaders();
-    if (existingHeaders.length === 0) {
-      await this.updateRange("A1:L1", [headers]);
     }
   }
 
