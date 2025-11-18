@@ -1,0 +1,46 @@
+---
+import DataField from "./data-field.astro";
+
+interface Props {
+  studentName: string;
+  courseName: string;
+  expiryDate: string; // ISO date string
+}
+
+const { studentName, courseName, expiryDate } = Astro.props;
+
+const expiry = new Date(expiryDate);
+const isValid = expiry > new Date();
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("es-AR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<section>
+  <div class="py-10">
+    <h1 class="font-salted text-center text-4xl uppercase">Fauna Kite</h1>
+  </div>
+
+  <div class="overflow-hidden rounded-4xl bg-white max-w-2xl mx-auto font-gt">
+    <div class="border-b border-gray-200 px-4 py-5 sm:px-6 text-center">
+      <h3
+        class={`text-2xl font-bold leading-6 uppercase ${isValid ? "text-green-600" : "text-red-600"}`}
+      >
+        {isValid ? "✅ Alumno Válido" : "❌ Expirado"}
+      </h3>
+    </div>
+
+    <div class="border-b border-gray-200 px-4 py-5 sm:px-6">
+      <dl class="divide-y divide-gray-200">
+        <DataField label="Nombre" value={studentName} />
+        <DataField label="Curso" value={courseName} />
+        <DataField label="Válido Hasta" value={formatDate(expiry)} />
+      </dl>
+    </div>
+  </div>
+</section>

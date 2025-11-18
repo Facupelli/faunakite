@@ -1,0 +1,200 @@
+---
+import Palmeras from "./svg/palmeras.astro";
+import { useTranslations } from "../i18n/utils";
+import { actions } from "astro:actions";
+import { isInputError } from "astro:actions";
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+
+const result = Astro.getActionResult(actions.newsletter.subscribe);
+const inputErrors = isInputError(result?.error) ? result.error.fields : {};
+---
+
+<section>
+  <div>
+    <div class="relative bg-brand-brown-light px-4">
+      <h2
+        class="relative z-30 max-w-2xl mx-auto uppercase font-salted text-6xl pb-4 text-center"
+      >
+        {t("newsletter.title")}
+      </h2>
+
+      <div
+        class="absolute left-0 -bottom-2 w-[100%] aspect-[1.4/1] z-10 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div class="absolute w-full h-full block text-brand-green">
+          <Palmeras />
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-brand-brown-mid pb-20">
+      <div
+        class="px-4 max-w-2xl mx-auto flex gap-y-6 flex-col items-center pt-4 text-lg"
+      >
+        <p class="font-gt text-center text-pretty">
+          {t("newsletter.subtitle")}
+        </p>
+
+        <form
+          id="newsletter-form"
+          class="flex items-center gap-4 w-full font-gt"
+        >
+          <input
+            type="email"
+            placeholder="Escriba su email"
+            required
+            name="email"
+            class="w-full rounded-xl bg-white/95 border-2 border-white h-10 text-base text-brand-blue px-4 tracking-wide focus:border-brand-green focus:ring-brand-green"
+          />
+          <button
+            type="submit"
+            class="py-2 px-6 rounded-xl bg-brand-brown-light text-white"
+          >
+            {t("newsletter.button")}
+          </button>
+        </form>
+
+        <dialog
+          id="newsletter-dialog"
+          class="rounded-lg shadow-xl backdrop:bg-black backdrop:opacity-50 p-0 border-0 max-w-sm w-full fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-gt"
+        >
+          <div class="p-6">
+            <div class="flex pb-4 justify-center">
+              <span class="font-salted text-4xl">FAUNA KITE NEWSLETTER</span>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                id="dialog-icon"
+                class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+              >
+                <!-- Icon will be injected via JS -->
+              </div>
+              <div class="flex-1 flex items-center">
+                <h3
+                  id="dialog-title"
+                  class="text-lg font-semibold text-gray-900"
+                >
+                </h3>
+                <p id="dialog-message" class="text-gray-600"></p>
+              </div>
+            </div>
+            <div class="mt-4 flex justify-end">
+              <button
+                id="dialog-close"
+                class="px-6 py-2 bg-brand-blue text-[#fff] font-medium rounded-lg hover:brand-blue/80 focus:outline-none transition-colors"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </dialog>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { actions } from "astro:actions";
+
+  const form = document.getElementById("newsletter-form") as HTMLFormElement;
+  const dialog = document.getElementById(
+    "newsletter-dialog"
+  ) as HTMLDialogElement;
+  const dialogIcon = document.getElementById("dialog-icon") as HTMLDivElement;
+  const dialogTitle = document.getElementById(
+    "dialog-title"
+  ) as HTMLHeadingElement;
+  const dialogMessage = document.getElementById(
+    "dialog-message"
+  ) as HTMLParagraphElement;
+  const dialogClose = document.getElementById(
+    "dialog-close"
+  ) as HTMLButtonElement;
+
+  function showDialog(success: boolean, title: string, message: string) {
+    if (success) {
+      dialogIcon.className =
+        "flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-green-100";
+      dialogIcon.innerHTML = `
+        <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      `;
+    } else {
+      dialogIcon.className =
+        "flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-red-100";
+      dialogIcon.innerHTML = `
+        <svg class="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      `;
+    }
+
+    dialogTitle.textContent = title;
+    dialogMessage.textContent = message;
+    dialog.showModal();
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const submitButton = form.querySelector(
+      'button[type="submit"]'
+    ) as HTMLButtonElement;
+    const emailInput = form.querySelector(
+      'input[name="email"]'
+    ) as HTMLInputElement;
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+
+    try {
+      const formData = new FormData(form);
+      const { data, error } = await actions.newsletter.subscribe(formData);
+
+      if (error) {
+        showDialog(
+          false,
+          "La suscripción falló",
+          error.message || "Error al suscribir. Por favor, inténtelo de nuevo."
+        );
+      } else {
+        showDialog(
+          true,
+          "¡Suscripción exitosa!",
+          data?.message || "¡Gracias por suscribirte a nuestro boletín."
+        );
+        form.reset();
+      }
+    } catch (err) {
+      showDialog(
+        false,
+        "La suscripción falló",
+        "Ha ocurrido un error inesperado. Por favor, inténtelo de nuevo más tarde."
+      );
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Send";
+    }
+  });
+
+  dialogClose.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("click", (e) => {
+    const rect = dialog.getBoundingClientRect();
+    const clickedOutside =
+      e.clientX < rect.left ||
+      e.clientX > rect.right ||
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom;
+
+    if (clickedOutside) {
+      dialog.close();
+    }
+  });
+</script>

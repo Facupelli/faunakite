@@ -1,0 +1,101 @@
+---
+import cursos from "../assets/cursos.jpeg";
+import kiteCamp from "../assets/kite-camps.jpeg";
+import rental from "../assets/rental.jpeg";
+import { useTranslations } from "../i18n/utils";
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+---
+
+<section class="bg-brand-brown-light px-4 md:px-10">
+  <div class="grid grid-cols-2 gap-y-20 grid-rows-4 max-h-[1500px]">
+    <div class="overflow-hidden px-10">
+      <img
+        src={cursos.src}
+        alt=""
+        class="w-full h-full object-cover"
+        fetchpriority="auto"
+      />
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="flex flex-col items-center space-y-4">
+        <h2 class="uppercase font-salted text-6xl">
+          {t("services.courses.title")}
+        </h2>
+        <p class="font-gt max-w-[500px] mx-auto">
+          {t("services.courses.summary")}
+        </p>
+        <button class="font-gt px-6 py-2 bg-brand-blue rounded-4xl"
+          >VER MÁS</button
+        >
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center">
+      <div class="flex flex-col items-center space-y-4">
+        <h2 class="uppercase font-salted text-6xl">
+          {t("services.kitecamps.title")}
+        </h2>
+        <p class="font-gt max-w-[500px] mx-auto">
+          {t("services.kitecamps.summary")}
+        </p>
+        <button class="font-gt px-6 py-2 bg-brand-blue rounded-4xl"
+          >VER MÁS</button
+        >
+      </div>
+    </div>
+    <div class="overflow-hidden px-10">
+      <img
+        src={kiteCamp.src}
+        alt=""
+        class="w-full h-full object-cover"
+        fetchpriority="auto"
+      />
+    </div>
+
+    <div class="overflow-hidden px-10">
+      <img
+        src={rental.src}
+        alt=""
+        class="w-full h-full object-cover"
+        fetchpriority="auto"
+      />
+    </div>
+    <div class="flex items-center justify-center">
+      <div class="flex flex-col items-center space-y-4">
+        <h2 class="uppercase font-salted text-6xl">
+          {t("services.rental.title")}
+        </h2>
+        <p class="font-gt max-w-[500px] mx-auto">
+          {t("services.rental.summary")}
+        </p>
+        <button class="font-gt px-6 py-2 bg-brand-blue rounded-4xl"
+          >VER MÁS</button
+        >
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center">
+      <div class="flex flex-col items-center space-y-4">
+        <h2 class="uppercase font-salted text-6xl">
+          {t("services.tours.title")}
+        </h2>
+        <p class="font-gt max-w-[500px] mx-auto">
+          {t("services.tours.summary")}
+        </p>
+        <button class="font-gt px-6 py-2 bg-brand-blue rounded-4xl"
+          >VER MÁS</button
+        >
+      </div>
+    </div>
+    <div class="overflow-hidden px-10">
+      <img
+        src={kiteCamp.src}
+        alt=""
+        class="w-full h-full object-cover"
+        fetchpriority="auto"
+      />
+    </div>
+  </div>
+</section>

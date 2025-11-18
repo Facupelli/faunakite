@@ -1,1 +1,43 @@
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue-light.ttc") format("collection");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GT-America";
+  src: url("/fonts/gt-america.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Salted";
+  src: url("/fonts/salted-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: optional;
+}
+
 @import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #051d26;
+  --color-brand-green: #496807;
+  --color-brand-brown-light: #a96300;
+  --color-brand-brown-mid: #3c2005;
+  --color-brand-brown-dark: #9d3400;
+
+  --font-gt:
+    "GT-America", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-helvetica: "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-salted: "Salted", cursive, ui-serif;
+}
+
+.image-filter {
+  filter: contrast(1.15) saturate(1.2) brightness(0.98) hue-rotate(-5deg)
+    sepia(0.05);
+}

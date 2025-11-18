@@ -1,0 +1,48 @@
+---
+import type { Post } from "../news/utils";
+import { urlFor } from "../news/image.utils";
+import { formatDate } from "../news/date.utils";
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+---
+
+<article
+  class="w-full h-full text-brand-blue bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
+>
+  {
+    post.image ? (
+      <div class="relative h-40 overflow-hidden">
+        <img
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          src={urlFor(post.image).width(500).height(300).url()}
+          alt={post.image.alt || ""}
+        />
+      </div>
+    ) : (
+      <div class="w-full h-[231px] bg-black" />
+    )
+  }
+  <div class="p-4">
+    <p class="text-sm text-gray-600">
+      {formatDate(post._createdAt)}
+    </p>
+
+    <h3 class="pt-2 text-2xl md:text-3xl font-bold">
+      <a class="card__link" href={`/post/${post.slug.current}`}>
+        {post.title}
+      </a>
+    </h3>
+    <p class="text-gray-400 text-pretty text-base leading-5">{post.summary}</p>
+
+    <div class="pt-4">
+      <a
+        class="text-brand-brown-light hover:underline"
+        href={`/es/news/${post.slug.current}`}>Ver más</a
+      >
+    </div>
+  </div>
+</article>

@@ -1,214 +1,341 @@
 import {
-  BookingStatus,
-  PaymentStatus,
+  CourseType,
+  CourseTypeDict,
+  DetailedSkillLevel,
+  DetailedSkillLevelDict,
+  Gender,
+  ReferralSource,
+  ReferralSourceDict,
+  SkillLevel,
+  SkillLevelDict,
   type Booking,
 } from "../../booking.entity";
 
-/**
- * Column indices in the Google Sheets
- * This defines the spreadsheet structure and column order
- */
-const COLUMN_INDICES = {
-  ID: 0,
-  CUSTOMER_EMAIL: 1,
-  CUSTOMER_NAME: 2,
-  CUSTOMER_PHONE: 3,
-  COURSE_TYPE: 4,
-  START_DATE: 5,
-  END_DATE: 6,
-  NUMBER_OF_STUDENTS: 7,
-  STATUS: 8,
-  PAYMENT_STATUS: 9,
-  CREATED_AT: 10,
-  SPECIAL_REQUESTS: 11,
-} as const;
+export type SpreadsheetRow = (string | number | boolean)[];
 
-/**
- * Expected header row for the Google Sheets
- * Must match the column indices above
- */
 export const BOOKING_SHEET_HEADERS = [
   "id",
-  "customerEmail",
-  "customerName",
-  "customerPhone",
-  "courseType",
-  "startDate",
-  "endDate",
-  "numberOfStudents",
-  "status",
-  "paymentStatus",
   "createdAt",
-  "specialRequests",
+
+  // Section 1: Personal Data
+  "customerName",
+  "birthDate",
+  "gender",
+  "customerEmail",
+  "province",
+  "customerPhone",
+  "instagram",
+
+  // Section 2: Reservation
+  "courseType",
+  "hoursReserved",
+  "arrivalDate",
+  "arrivalTime",
+  "departureDate",
+  "departureTime",
+
+  // Section 3: Sports Profile
+  "weightKg",
+  "heightCm",
+  "currentLevel",
+
+  // Section 4: Detailed Skill
+  "detailedSkillLevel",
+
+  // Section 5: Goals
+  "mainObjective",
+  "additionalNotes",
+
+  // Section 6: Marketing
+  "referralSource",
+  "referralSourceOther",
+  "newsletterOptIn",
 ] as const;
 
-/**
- * Mapper class for Booking entity ↔ Google Sheets transformations
- */
-export const bookingMapper = {
-  /**
-   * Convert a Booking entity to a spreadsheet row array
-   * @param booking The booking entity to convert
-   * @returns Array of primitive values for Google Sheets
-   */
-  toSpreadsheetRow(booking: Booking): unknown[] {
-    const row: unknown[] = new Array(BOOKING_SHEET_HEADERS.length);
+export type BookingHeader = (typeof BOOKING_SHEET_HEADERS)[number];
 
-    // Fill array using column indices for type safety
-    row[COLUMN_INDICES.ID] = booking.id || "";
-    row[COLUMN_INDICES.CUSTOMER_EMAIL] = booking.customerEmail;
-    row[COLUMN_INDICES.CUSTOMER_NAME] = booking.customerName;
-    row[COLUMN_INDICES.CUSTOMER_PHONE] = booking.customerPhone || "";
-    row[COLUMN_INDICES.COURSE_TYPE] = booking.courseType;
-    row[COLUMN_INDICES.START_DATE] = formatDate(booking.startDate);
-    row[COLUMN_INDICES.END_DATE] = formatDate(booking.endDate);
-    row[COLUMN_INDICES.STATUS] = booking.status;
-    row[COLUMN_INDICES.PAYMENT_STATUS] = booking.paymentStatus;
-    row[COLUMN_INDICES.CREATED_AT] = formatDate(booking.createdAt);
-    row[COLUMN_INDICES.SPECIAL_REQUESTS] = booking.specialRequests || "";
+function toSpreadsheetRow(booking: Booking): SpreadsheetRow {
+  function formatDateTime(date: Date): string {
+    return date
+      .toLocaleString("es-AR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      })
+      .replace(",", "");
+  }
 
-    return row;
+  function formatDate(date: Date): string {
+    return date.toLocaleDateString("es-AR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  }
+
+  function formatNewsletterOptIn(optIn: boolean): string {
+    return optIn ? "¡Sí, Avísenme!" : "No, gracias...";
+  }
+
+  function formatReferralSource(source: ReferralSource | undefined): string {
+    if (source === ReferralSource.OTHER && booking.referralSourceOther) {
+      return booking.referralSourceOther;
+    }
+
+    return source ? ReferralSourceDict[source] : "";
+  }
+
+  return [
+    booking.id || "",
+    formatDateTime(booking.createdAt),
+
+    // Section 1: Personal Data
+    booking.customerName,
+    formatDate(booking.birthDate),
+    booking.gender || "",
+    booking.customerEmail,
+    booking.province,
+    booking.customerPhone || "",
+    "", // TODO: instagram
+
+    // Section 2: Reservation
+    booking.courseType ? CourseTypeDict[booking.courseType] : "",
+    booking.hoursReserved || "",
+    formatDate(booking.arrivalDate),
+    booking.arrivalTime,
+    formatDate(booking.departureDate),
+    booking.departureTime || "",
+
+    // Section 3: Sports Profile
+    booking.weightKg || "",
+    booking.heightCm || "",
+    booking.currentLevel ? SkillLevelDict[booking.currentLevel] : "",
+
+    // Section 4: Detailed Skill
+    booking.detailedSkillLevel
+      ? DetailedSkillLevelDict[booking.detailedSkillLevel]
+      : "",
+
+    // Section 5: Goals
+    booking.mainObjective || "",
+    booking.additionalNotes || "",
+
+    // Section 6: Marketing
+    formatReferralSource(booking.referralSource),
+    formatNewsletterOptIn(booking.newsletterOptIn),
+  ];
+}
+
+const headerIndexMap = BOOKING_SHEET_HEADERS.reduce<Record<string, number>>(
+  (acc, h, idx) => {
+    acc[h] = idx;
+    return acc;
   },
+  {}
+);
 
-  /**
-   * Convert a spreadsheet row array to a Booking entity
-   * @param row Array of cell values from Google Sheets
-   * @returns Booking entity or null if row is invalid
-   */
-  fromSpreadsheetRow(row: unknown[]): Booking | null {
-    // Validate row has minimum required data
-    if (!row || row.length < 8) {
-      return null;
+console.log({ headerIndexMap });
+
+function fromSpreadsheetRow(row: unknown[]): Booking | null {
+  console.log("MAPPER", { row });
+
+  function getCell(row: unknown[], header: BookingHeader): any {
+    const idx = headerIndexMap[header];
+    if (header === "createdAt") {
+      console.log({ idx });
+      console.log({ lol: row[idx] });
+    }
+    return idx != null ? row[idx] : undefined;
+  }
+
+  function parseStringCell(cell: unknown): string | undefined {
+    if (cell === undefined || cell === null) return undefined;
+    const s = String(cell).trim();
+    return s === "" ? undefined : s;
+  }
+
+  function parseNumberCell(cell: any): number | undefined {
+    if (cell === undefined || cell === null || cell === "") return undefined;
+    if (typeof cell === "number") return Number(cell);
+    const s = String(cell).replace(",", ".").trim();
+    if (s === "") return undefined;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : undefined;
+  }
+
+  function parseEnumCell<T extends Record<string, string>>(
+    cell: any,
+    enumObj: T
+  ): T[keyof T] | undefined {
+    const s = parseStringCell(cell);
+    if (!s) {
+      return undefined;
+    }
+    // TODO: validate enum values
+  }
+
+  function parseBooleanCell(cell: any, defaultIfMissing = false): boolean {
+    if (cell === undefined || cell === null || String(cell).trim() === "") {
+      return defaultIfMissing;
+    }
+    const s = String(cell).trim().toLowerCase();
+    if (["1", "true", "t", "yes", "y", "si", "sí"].includes(s)) return true;
+    if (["0", "false", "f", "no", "n"].includes(s)) return false;
+    // fallback: try numeric
+    const num = Number(s);
+    if (!Number.isNaN(num)) return num !== 0;
+    return defaultIfMissing;
+  }
+
+  function parseCreatedAtCell(cell: any): Date | undefined {
+    if (!cell) {
+      return undefined;
     }
 
-    // Extract and validate required fields
-    const id = extractString(row[COLUMN_INDICES.ID]);
-    const customerEmail = extractString(row[COLUMN_INDICES.CUSTOMER_EMAIL]);
-    const customerName = extractString(row[COLUMN_INDICES.CUSTOMER_NAME]);
-    const courseType = extractString(row[COLUMN_INDICES.COURSE_TYPE]);
-    const startDate = parseDate(row[COLUMN_INDICES.START_DATE]);
-    const endDate = parseDate(row[COLUMN_INDICES.END_DATE]);
-    const numberOfStudents = extractNumber(
-      row[COLUMN_INDICES.NUMBER_OF_STUDENTS]
-    );
-    const status = extractStatus(row[COLUMN_INDICES.STATUS]);
-    const paymentStatus = extractPaymentStatus(
-      row[COLUMN_INDICES.PAYMENT_STATUS]
-    );
-    const createdAt = parseDate(row[COLUMN_INDICES.CREATED_AT]);
+    console.log({ cell });
 
-    // Skip invalid rows
-    if (
-      !id ||
-      !customerEmail ||
-      !customerName ||
-      !courseType ||
-      !startDate ||
-      !endDate ||
-      numberOfStudents === null ||
-      !status ||
-      !paymentStatus ||
-      !createdAt
-    ) {
-      return null;
+    // If it's a number (Excel serial date)
+    if (typeof cell === "number") {
+      const excelEpoch = new Date(1900, 0, 1);
+      const daysOffset = cell - 2;
+      return new Date(excelEpoch.getTime() + daysOffset * 24 * 60 * 60 * 1000);
     }
 
-    // Extract optional fields
-    const customerPhone =
-      extractString(row[COLUMN_INDICES.CUSTOMER_PHONE]) || undefined;
-    const specialRequests =
-      extractString(row[COLUMN_INDICES.SPECIAL_REQUESTS]) || undefined;
+    if (typeof cell === "string") {
+      // Parse "31/10/2025 13:08:46"
+      const [datePart, timePart] = cell.split(" ");
+      const [day, month, year] = datePart.split("/").map(Number);
+      const [hours, minutes, seconds] = timePart.split(":").map(Number);
 
-    return {
-      id,
-      customerEmail,
-      customerName,
-      customerPhone,
-      courseType,
-      startDate,
-      endDate,
-      status,
-      paymentStatus,
+      return new Date(year, month - 1, day, hours, minutes, seconds);
+    }
+
+    return undefined;
+  }
+
+  function parseDateCell(cell: any): Date | undefined {
+    if (cell === undefined || cell === null || String(cell).trim() === "") {
+      return undefined;
+    }
+
+    if (cell instanceof Date && !Number.isNaN(cell.getTime())) {
+      return cell;
+    }
+
+    // If it's a number (Excel serial date)
+    if (typeof cell === "number") {
+      // Excel serial date: days since 1900-01-01
+      const excelEpoch = new Date(1900, 0, 1);
+      const daysOffset = cell - 2; // Excel bug: treats 1900 as leap year
+      return new Date(excelEpoch.getTime() + daysOffset * 24 * 60 * 60 * 1000);
+    }
+
+    const s = String(cell).trim();
+
+    const dIso = new Date(s);
+    if (!Number.isNaN(dIso.getTime())) {
+      return dIso;
+    }
+
+    return undefined;
+  }
+
+  const cellId = parseStringCell(getCell(row, "id"));
+  const createdAt = parseCreatedAtCell(getCell(row, "createdAt"));
+  const customerName = parseStringCell(getCell(row, "customerName"));
+  const birthDate = parseDateCell(getCell(row, "birthDate"));
+  const gender = parseEnumCell(getCell(row, "gender"), Gender);
+  const customerEmail = parseStringCell(getCell(row, "customerEmail"));
+  const province = parseStringCell(getCell(row, "province"));
+  const customerPhone = parseStringCell(getCell(row, "customerPhone"));
+  const courseType = parseEnumCell(getCell(row, "courseType"), CourseType);
+  const hoursReserved = parseNumberCell(getCell(row, "hoursReserved"));
+  const arrivalDate = parseDateCell(getCell(row, "arrivalDate"));
+  const arrivalTime = parseStringCell(getCell(row, "arrivalTime"));
+  const departureDate = parseDateCell(getCell(row, "departureDate"));
+  const departureTime = parseStringCell(getCell(row, "departureTime"));
+  const weightKg = parseNumberCell(getCell(row, "weightKg"));
+  const heightCm = parseNumberCell(getCell(row, "heightCm"));
+  const currentLevel = parseEnumCell(getCell(row, "currentLevel"), SkillLevel);
+  const detailedSkillLevel = parseEnumCell(
+    getCell(row, "detailedSkillLevel"),
+    DetailedSkillLevel
+  );
+  const mainObjective = parseStringCell(getCell(row, "mainObjective"));
+  const additionalNotes = parseStringCell(getCell(row, "additionalNotes"));
+  const referralSource = parseEnumCell(
+    getCell(row, "referralSource"),
+    ReferralSource
+  );
+  const referralSourceOther = parseStringCell(
+    getCell(row, "referralSourceOther")
+  );
+  const newsletterOptIn = parseBooleanCell(
+    getCell(row, "newsletterOptIn"),
+    false
+  );
+
+  if (
+    !createdAt ||
+    !customerName ||
+    !birthDate ||
+    customerEmail === undefined ||
+    province === undefined ||
+    !arrivalDate ||
+    !arrivalTime ||
+    !departureDate
+  ) {
+    console.log({
       createdAt,
-      specialRequests,
-    };
-  },
+      customerName,
+      birthDate,
+      customerEmail,
+      province,
+      arrivalDate,
+      arrivalTime,
+      departureDate,
+    });
+    return null;
+  }
 
-  /**
-   * Convert multiple spreadsheet rows to Booking entities
-   * Filters out invalid rows automatically
-   * @param rows Array of spreadsheet rows
-   * @returns Array of valid Booking entities
-   */
-  fromSpreadsheetRows(rows: unknown[][]): Booking[] {
-    return rows
-      .map((row) => this.fromSpreadsheetRow(row))
-      .filter((booking): booking is Booking => booking !== null);
-  },
+  const booking: Booking = {
+    id: cellId,
+    createdAt,
+    customerName,
+    birthDate,
+    gender: gender as Gender | undefined,
+    customerEmail,
+    province,
+    customerPhone,
+    courseType,
+    hoursReserved,
+    arrivalDate,
+    arrivalTime,
+    departureDate,
+    departureTime,
+    weightKg,
+    heightCm,
+    currentLevel: currentLevel as SkillLevel | undefined,
+    detailedSkillLevel: detailedSkillLevel as DetailedSkillLevel | undefined,
+    mainObjective,
+    additionalNotes,
+    referralSource: referralSource as ReferralSource | undefined,
+    referralSourceOther,
+    newsletterOptIn,
+  };
+
+  return booking;
+}
+
+export const bookingMapper = {
+  toSpreadsheetRow,
+  fromSpreadsheetRow,
 };
 
-/**
- * Format Date object for Google Sheets storage
- * Uses ISO string format for consistency
- */
-function formatDate(date: Date): string {
-  return date.toISOString();
-}
-
-/**
- * Parse date from Google Sheets cell value
- * Handles both ISO strings and Excel serial numbers
- */
-function parseDate(value: unknown): Date | null {
-  if (!value) return null;
-
-  // Handle ISO string format
-  if (typeof value === "string") {
-    const date = new Date(value);
-    return isNaN(date.getTime()) ? null : date;
-  }
-
-  // Handle Excel serial number (days since 1900-01-01)
-  if (typeof value === "number") {
-    // Excel serial date conversion
-    const excelEpoch = new Date(1900, 0, 1);
-    const date = new Date(
-      excelEpoch.getTime() + (value - 1) * 24 * 60 * 60 * 1000
-    );
-    return isNaN(date.getTime()) ? null : date;
-  }
-
-  return null;
-}
-
-function extractString(value: unknown): string | null {
-  if (value === null || value === undefined) return null;
-  const str = String(value).trim();
-  return str === "" ? null : str;
-}
-
-function extractNumber(value: unknown): number | null {
-  if (value === null || value === undefined || value === "") return null;
-  const num = Number(value);
-  return isNaN(num) ? null : num;
-}
-
-function extractStatus(value: unknown): BookingStatus | null {
-  const str = extractString(value);
-  if (!str) return null;
-
-  // Check if value is valid BookingStatus
-  return Object.values(BookingStatus).includes(str as BookingStatus)
-    ? (str as BookingStatus)
-    : null;
-}
-
-function extractPaymentStatus(value: unknown): PaymentStatus | null {
-  const str = extractString(value);
-  if (!str) return null;
-
-  // Check if value is valid PaymentStatus
-  return Object.values(PaymentStatus).includes(str as PaymentStatus)
-    ? (str as PaymentStatus)
-    : null;
+export function getHeaderRow(): string[] {
+  return [...BOOKING_SHEET_HEADERS];
 }

@@ -45,11 +45,7 @@ export class GoogleSheetsClient {
       );
     }
   }
-  /**
-   * Read data from a specific range in the sheet
-   * @param range A1 notation range (e.g., "A:Z", "A2:Z100")
-   * @returns Array of rows, each row is an array of cell values
-   */
+
   async readRange(range: string): Promise<unknown[][]> {
     try {
       const response = await this.sheets.spreadsheets.values.get({
@@ -65,36 +61,22 @@ export class GoogleSheetsClient {
     }
   }
 
-  /**
-   * Read all data from the sheet (excluding header row)
-   * @returns Array of data rows
-   */
   async readAllData(): Promise<unknown[][]> {
-    // Start from row 2 to skip headers
     return this.readRange("A2:Z");
   }
 
-  /**
-   * Read header row to understand sheet structure
-   * @returns Array of header names
-   */
   async readHeaders(): Promise<string[]> {
     const headers = await this.readRange("A1:Z1");
     return headers[0]?.map((h) => String(h)) || [];
   }
 
-  /**
-   * Append new rows to the end of the sheet
-   * @param values Array of rows to append
-   * @returns Information about the update
-   */
   async appendRows(
     values: unknown[][]
   ): Promise<{ updatedRows: number; updatedRange: string }> {
     try {
       const response = await this.sheets.spreadsheets.values.append({
         spreadsheetId: this.config.spreadsheetId,
-        range: `${this.config.sheetName}!A:Z`,
+        range: `${this.config.sheetName}!A2:Z`,
         valueInputOption: "USER_ENTERED",
         insertDataOption: "INSERT_ROWS",
         requestBody: {
@@ -111,71 +93,9 @@ export class GoogleSheetsClient {
     }
   }
 
-  /**
-   * Update a specific range with new values
-   * @param range A1 notation range to update
-   * @param values New values for the range
-   */
-  async updateRange(range: string, values: unknown[][]): Promise<void> {
-    try {
-      await this.sheets.spreadsheets.values.update({
-        spreadsheetId: this.config.spreadsheetId,
-        range: `${this.config.sheetName}!${range}`,
-        valueInputOption: "USER_ENTERED",
-        requestBody: {
-          values,
-        },
-      });
-    } catch (error) {
-      this.handleApiError("Failed to update range", error);
-    }
-  }
-
-  /**
-   * Update a specific booking row
-   * @param rowNumber 1-indexed row number
-   * @param values New values for the row
-   */
-  async updateRow(rowNumber: number, values: unknown[]): Promise<void> {
-    const range = `A${rowNumber}:Z${rowNumber}`;
-    await this.updateRange(range, [values]);
-  }
-
-  /**
-   * Batch multiple operations for efficiency
-   * @param operations Array of operations to perform
-   */
-  async batchUpdate(
-    operations: {
-      range: string;
-      values: unknown[][];
-    }[]
-  ): Promise<void> {
-    try {
-      const requests = operations.map((op) => ({
-        range: `${this.config.sheetName}!${op.range}`,
-        values: op.values,
-      }));
-
-      await this.sheets.spreadsheets.values.batchUpdate({
-        spreadsheetId: this.config.spreadsheetId,
-        requestBody: {
-          valueInputOption: "USER_ENTERED",
-          data: requests,
-        },
-      });
-    } catch (error) {
-      this.handleApiError("Failed to perform batch update", error);
-    }
-  }
-
-  /**
-   * Handle Google Sheets API errors and convert to infrastructure errors
-   */
   private handleApiError(message: string, error: unknown): never {
     console.error("Google Sheets API Error:", error);
 
-    // Extract useful information from Google API errors
     let statusCode: number | undefined;
     let details = "Unknown error";
 

@@ -2,13 +2,14 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
+import {projectId, dataset} from './environment'
 
 export default defineConfig({
   name: 'default',
   title: 'FaunaKite',
 
-  projectId: '9k0yi9jd',
-  dataset: 'production',
+  projectId,
+  dataset,
 
   plugins: [structureTool(), visionTool()],
 

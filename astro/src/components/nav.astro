@@ -1,0 +1,142 @@
+---
+import logo from "../assets/logos/FaunaKite_LogoBlanco-03.png";
+import { useTranslations } from "../i18n/utils";
+import LanguagePicker from "./language-picker.astro";
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+
+const links = [
+  { name: t("nav.courses"), href: "/" },
+  { name: t("nav.rental"), href: "/" },
+  { name: t("nav.kitecamps"), href: "/" },
+  { name: t("nav.allies"), href: `/${lang}/allies` },
+  { name: t("nav.store"), href: "/" },
+];
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50 h-20 bg-transparent backdrop-blur-sm border-b border-[#fff] font-gt"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-[#fff] font-gt font-bold"
+  >
+    <div class="h-20 flex justify-between">
+      <div class="flex items-center justify-between">
+        <!-- LOGO -->
+        <a href="/">
+          <div class="relative w-full max-w-[150px] aspect-[3.45/1]">
+            <img
+              decoding="async"
+              src={logo.src}
+              alt="Logo FaunaKite white icon"
+            />
+          </div>
+        </a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-12 uppercase">
+        {links.map((link) => <a href={link.href}>{link.name}</a>)}
+        <LanguagePicker />
+      </div>
+
+      <button
+        id="mobile-menu-button"
+        class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="hidden fixed inset-0 bg-brand-blue text-white z-40 md:hidden h-dvh"
+  >
+    <div class="flex flex-col h-full">
+      <!-- Mobile Menu Header -->
+      <div
+        class="flex justify-between items-center h-20 px-4 border-b border-[#fff]"
+      >
+        <a href="/">
+          <div class="relative w-full max-w-[150px] aspect-[3.45/1]">
+            <img
+              decoding="async"
+              src={logo.src}
+              alt="Logo FaunaKite white icon"
+            />
+          </div>
+        </a>
+        <button
+          id="mobile-menu-close"
+          class="p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+          aria-label="Close menu"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Links -->
+      <div class="flex flex-col px-4 py-6 space-y-4 font-bold uppercase">
+        {links.map((link) => <a href={link.href}>{link.name}</a>)}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const menuButton = document.getElementById("mobile-menu-button");
+  const menuClose = document.getElementById("mobile-menu-close");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuLinks = mobileMenu?.querySelectorAll("a");
+
+  function openMenu() {
+    mobileMenu?.classList.remove("hidden");
+    menuButton?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add("hidden");
+    menuButton?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  menuButton?.addEventListener("click", openMenu);
+  menuClose?.addEventListener("click", closeMenu);
+
+  menuLinks?.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !mobileMenu?.classList.contains("hidden")) {
+      closeMenu();
+    }
+  });
+</script>

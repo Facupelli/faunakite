@@ -1,0 +1,50 @@
+---
+import Card from "../components/news-card.astro";
+import { getPosts } from "../news/utils";
+import type { Post } from "../news/utils";
+import Pasto from "./svg/pasto.astro";
+
+// const posts: Post[] = await getPosts();
+const posts: Post[] = [];
+---
+
+<section class="pt-20 bg-brand-brown-mid">
+  <div class="flex justify-end px-4">
+    <h2 class="uppercase flex flex-col items-center font-salted px-10">
+      <span class="text-7xl">Fauna</span>
+    </h2>
+  </div>
+
+  <div class="relative bg-brand-green px-4 pb-20">
+    <div
+      class="absolute left-1/2 -top-8 md:-top-14 lg:-top-18 -translate-x-1/2 w-full max-w-sm md:max-w-xl lg:max-w-3xl aspect-[9.8/1] z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="absolute w-full h-full block text-brand-green">
+        <Pasto />
+      </div>
+    </div>
+
+    <div class="flex justify-end pb-10">
+      <h2 class="uppercase flex flex-col items-center font-salted px-10">
+        <span class="text-5xl">News</span>
+      </h2>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-4 grid-rows-2 gap-2">
+        {posts.length >= 3 && (
+          <div class="md:col-span-2 md:row-span-2">
+            <Card post={posts[0]} />
+          </div>
+          <div class="md:col-span-2 md:col-start-3">
+            <Card post={posts[1]} />
+          </div>
+          <div class="md:col-span-2 md:col-start-3 md:row-start-2">
+            <Card post={posts[2]} />
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,6 +1,6 @@
 import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
-import { subscribeToNewsletter } from "../newsletter/use-cases/subscribe-to-newsletter";
+import { createSubscriber } from "../newsletter/sender-net/utils";
 
 export const newsletter = {
   subscribe: defineAction({
@@ -12,16 +12,19 @@ export const newsletter = {
     }),
     handler: async (input) => {
       try {
-        const result = await subscribeToNewsletter({
+        const result = await createSubscriber({
           email: input.email,
-          name: input.name,
-          source: input.source,
+          firstname: input.name,
         });
+
+        if (!result.success) {
+          throw new Error(result.message);
+        }
 
         return {
           success: true,
           message: result.message,
-          subscriptionId: result.subscriptionId,
+          subscriptionId: result.data.id,
         };
       } catch (error) {
         console.error("Newsletter subscription error:", error);

@@ -1,0 +1,77 @@
+---
+import { getAllies } from "../../allies/utils";
+import Footer from "../../components/footer.astro";
+import Nav from "../../components/nav.astro";
+import Layout from "../../layouts/Layout.astro";
+import { urlFor } from "../../news/image.utils";
+
+const allies = await getAllies();
+---
+
+<Layout title="Fauna Aliados">
+  <header>
+    <Nav />
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 md:px-10 pt-20">
+    <div class="pt-10">
+      <h1 class="font-gt uppercase text-4xl">Aliados</h1>
+    </div>
+
+    <div class="py-10">
+      <div class="grid md:grid-cols-2 gap-10">
+        {
+          allies.map((ally) => (
+            <div class="relative rounded-4xl h-full w-full bg-[#fff] text-brand-blue">
+              {ally.image !== undefined && (
+                <div class="relative h-[55%] w-full">
+                  <img
+                    src={urlFor(ally.image).url()}
+                    alt={ally.image.alt}
+                    class="object-cover w-full h-full rounded-t-4xl"
+                  />
+                </div>
+              )}
+
+              {ally.link !== undefined && (
+                <div class="absolute top-[calc(55%_-_20px)] right-4 bg-brand-blue border-4 border-[#fff] size-10 rounded-full text-[#fff] flex items-center justify-center">
+                  <a href={ally.link} target="_blank" rel="noopener noreferrer">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="fill-current"
+                    >
+                      <path d="M7 7h10v10" />
+                      <path d="M7 17 17 7" />
+                    </svg>
+                  </a>
+                </div>
+              )}
+
+              <div class="p-4 space-y-4 font-gt">
+                <h2 class="text-2xl font-bold">{ally.title}</h2>
+                <p>{ally.description}</p>
+
+                {ally.phone !== undefined && (
+                  <div>
+                    <span class="pr-2">Teléfono:</span>
+                    <a href={`tel:${ally.phone}`}>{ally.phone}</a>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

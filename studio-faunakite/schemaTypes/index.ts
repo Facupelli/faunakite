@@ -1,3 +1,4 @@
-import {postType} from './post-type'
+import {allyType} from './ally-type'
+import {newsType} from './news-type'
 
-export const schemaTypes = [postType]
+export const schemaTypes = [newsType, allyType]

@@ -1,0 +1,117 @@
+---
+import { languages } from "../i18n/ui";
+
+const route = Astro.params.locale as "en" | "es"; // keep as you had
+const currentLabel = languages[route] ?? "Language";
+
+const pathname = Astro.url.pathname;
+
+function replaceLocale(path: string, targetLang: string) {
+  const localeRegex = /^\/(en|es)(\/|$)/;
+  if (localeRegex.test(path)) {
+    return path.replace(localeRegex, `/${targetLang}$2`);
+  }
+  if (path === "/") {
+    return `/${targetLang}`;
+  }
+  return `/${targetLang}${path.startsWith("/") ? path : "/" + path}`;
+}
+---
+
+<style>
+  /* hide default disclosure marker across browsers */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  details summary::marker {
+    font-size: 0;
+    color: transparent;
+  }
+
+  .lang-menu {
+    transform-origin: top right;
+    transform: scale(0.96);
+    opacity: 0;
+    transition:
+      transform 0.15s ease,
+      opacity 0.15s ease;
+    pointer-events: none; /* avoid accidental clicks when closed */
+  }
+  details[open] .lang-menu {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+
+<details class="relative">
+  <summary
+    class="flex items-center gap-2 cursor-pointer select-none
+      bg-transparent bg-opacity-90
+      px-3 py-1.5 rounded-full shadow-sm
+      ring-1 ring-slate-200
+      hover:shadow-md transition duration-150
+      focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-green
+      outline-none"
+    aria-haspopup="menu"
+    aria-label="Select language"
+  >
+    <span class="text-sm font-medium text-slate-800 dark:text-slate-100"
+      >{currentLabel}</span
+    >
+
+    <!-- chevron -->
+    <svg
+      aria-hidden="true"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      class="ml-1 transition-transform duration-150"
+      style="transform-origin:center;"
+    >
+      <path
+        d="M6 9l6 6 6-6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </summary>
+
+  <!-- Popup menu -->
+  <div
+    role="menu"
+    class="lang-menu absolute right-0 mt-2 w-20 rounded-2xl bg-brand-blue bg-opacity-95 shadow-lg ring-1 ring-slate-200 p-1.5 backdrop-blur-sm"
+  >
+    <ul class="flex flex-col">
+      {
+        Object.entries(languages).map(([lang, label]) => {
+          const href = replaceLocale(pathname, lang);
+          return (
+            <li>
+              <a
+                role="menuitem"
+                href={href}
+                class="
+                 w-full text-left px-3 py-2 text-sm rounded-lg
+                hover:bg-white/20
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500
+                transition
+                flex items-center gap-2
+              "
+                aria-current={lang === route ? "true" : undefined}
+              >
+                <span
+                  class={`inline-flex items-center justify-center w-3 h-3 rounded-full ${lang === route ? "bg-white" : "bg-transparent ring-1 ring-slate-200"}`}
+                  aria-hidden="true"
+                />
+                <span class="truncate">{label}</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</details>
