@@ -1,15 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../modules/news/date.utils";
-import { getPosts, type Post } from "../../modules/news/utils";
+import { getNews, type News } from "../../modules/news/utils";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
 }
 
 const lang = Astro.params.locale as "en" | "es";
-
-const posts: Post[] = await getPosts();
+const posts: News[] = await getNews();
 ---
 
 <Layout title="Noticias | Fauna Kite ">

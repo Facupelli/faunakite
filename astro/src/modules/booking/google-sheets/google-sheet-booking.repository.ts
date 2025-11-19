@@ -3,15 +3,17 @@ import { GoogleSheetsClient, GoogleSheetsError } from "./google-sheet-client";
 import type { BookingRepository } from "../booking.repository";
 import type { Booking } from "../booking.entity";
 import { bookingMapper } from "./mappers/booking.mapper";
+import {
+  GOOGLE_SHEETS_SPREADSHEET_ID,
+  GOOGLE_SHEETS_SHEET_NAME,
+  GOOGLE_SERVICE_ACCOUNT_EMAIL,
+  GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
+} from "astro:env/server";
 
-const spreadsheetId = import.meta.env.GOOGLE_SHEETS_SPREADSHEET_ID;
-const sheetName = import.meta.env.GOOGLE_SHEETS_SHEET_NAME;
-const clientEmail = import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const privateKey = import.meta.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
-
-if (!spreadsheetId || !clientEmail || !privateKey || !sheetName) {
-  throw new Error("Missing required Google Sheets configuration");
-}
+const spreadsheetId = GOOGLE_SHEETS_SPREADSHEET_ID;
+const sheetName = GOOGLE_SHEETS_SHEET_NAME;
+const clientEmail = GOOGLE_SERVICE_ACCOUNT_EMAIL;
+const privateKey = GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
 const client = new GoogleSheetsClient({
   spreadsheetId,

@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
 import logo from "../../../assets/logos/FaunaKite_LogoBlanco-03.png";
-
-const GOOGLE_APP_PASSWORD = import.meta.env.GOOGLE_APP_PASSWORD;
+import { GOOGLE_APP_PASSWORD } from "astro:env/server";
 
 export class NodemailerError extends Error {
   constructor(

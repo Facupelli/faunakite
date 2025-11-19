@@ -1,13 +1,68 @@
 // @ts-check
-import { defineConfig } from "astro/config";
-
+import { defineConfig, envField } from "astro/config";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
-
 import tailwindcss from "@tailwindcss/vite";
+import vercel from "@astrojs/vercel";
+import { loadEnv } from "vite";
+
+const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(
+  process.env.NODE_ENV,
+  process.cwd(),
+  ""
+);
 
 // https://astro.build/config
 export default defineConfig({
+  env: {
+    schema: {
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      GOOGLE_SHEETS_SPREADSHEET_ID: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      GOOGLE_SHEETS_SHEET_NAME: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      SANITY_STUDIO_PROJECT_ID: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      SANITY_STUDIO_DATASET: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      GOOGLE_CALENDAR_ID: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      SENDER_NET_ACCESS_TOKEN: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      GOOGLE_APP_PASSWORD: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      TIENDANUBE_ACCESS_TOKEN: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      TIENDANUBE_USER_ID: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+    },
+  },
+
   i18n: {
     locales: ["en", "es"],
     defaultLocale: "es",
@@ -15,15 +70,19 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+
   integrations: [
     sanity({
-      projectId: "9k0yi9jd",
-      dataset: "production",
+      projectId: SANITY_STUDIO_PROJECT_ID,
+      dataset: SANITY_STUDIO_DATASET,
       useCdn: false, // for static builds
     }),
     react(),
   ],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
+  adapter: vercel(),
 });

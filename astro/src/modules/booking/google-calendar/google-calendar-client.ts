@@ -1,4 +1,4 @@
-import { auth, calendar_v3, calendar } from "@googleapis/calendar";
+import { auth, type calendar_v3, calendar } from "@googleapis/calendar";
 
 export interface GoogleCalendarConfig {
   calendarId: string;

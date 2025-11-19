@@ -1,4 +1,4 @@
-import { auth, sheets_v4, sheets } from "@googleapis/sheets";
+import { auth, type sheets_v4, sheets } from "@googleapis/sheets";
 
 export interface GoogleSheetsConfig {
   spreadsheetId: string;

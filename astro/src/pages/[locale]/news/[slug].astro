@@ -1,22 +1,22 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
 import { PortableText } from "astro-portabletext";
-import { getPost, getPosts } from "../../../modules/news/utils";
+import { getSingleNews, getNews } from "../../../modules/news/utils";
 import Layout from "../../../layouts/Layout.astro";
 import { urlFor } from "../../../modules/news/image.utils";
 import { formatDate } from "../../../modules/news/date.utils";
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const posts = await getNews();
   return posts.map((post) => ({
-    params: { slug: post.slug.current },
+    params: { locale: "es", slug: post.slug.current },
   }));
 }
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 const { slug } = Astro.params as Params;
 
-const post = await getPost(slug);
+const post = await getSingleNews(slug);
 ---
 
 <Layout>

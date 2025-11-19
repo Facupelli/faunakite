@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import logo from "../assets/logos/FaunaKite_LogoBlanco-03.png";
 import { useTranslations } from "../i18n/utils";
 import LanguagePicker from "./language-picker.astro";
@@ -25,9 +26,9 @@ const links = [
         <!-- LOGO -->
         <a href="/">
           <div class="relative w-full max-w-[150px] aspect-[3.45/1]">
-            <img
+            <Image
               decoding="async"
-              src={logo.src}
+              src={logo}
               alt="Logo FaunaKite white icon"
             />
           </div>
@@ -73,9 +74,9 @@ const links = [
       >
         <a href="/">
           <div class="relative w-full max-w-[150px] aspect-[3.45/1]">
-            <img
+            <Image
               decoding="async"
-              src={logo.src}
+              src={logo}
               alt="Logo FaunaKite white icon"
             />
           </div>

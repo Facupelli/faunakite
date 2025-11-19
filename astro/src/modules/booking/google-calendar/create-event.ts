@@ -1,13 +1,14 @@
 import type { CreateBookingData } from "../booking.entity";
 import { GoogleCalendarClient } from "./google-calendar-client";
+import {
+  GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
+  GOOGLE_SERVICE_ACCOUNT_EMAIL,
+  GOOGLE_CALENDAR_ID,
+} from "astro:env/server";
 
-const calendarId = import.meta.env.GOOGLE_CALENDAR_ID;
-const clientEmail = import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const privateKey = import.meta.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
-
-if (!calendarId || !clientEmail || !privateKey) {
-  throw new Error("Missing required Google Sheets configuration");
-}
+const calendarId = GOOGLE_CALENDAR_ID;
+const clientEmail = GOOGLE_SERVICE_ACCOUNT_EMAIL;
+const privateKey = GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
 const googleCalendarClient = new GoogleCalendarClient({
   calendarId: calendarId,

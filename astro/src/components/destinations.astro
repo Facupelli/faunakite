@@ -1,14 +1,14 @@
 ---
+import { Image } from "astro:assets";
 import destinoSanJuan from "../assets/destino-san-juan.jpeg";
-import destinoSicilia from "../assets/destino-sicilia.jpg";
 ---
 
 <section class="">
   <div class="grid grid-rows-2 w-full max-h-[800px]">
     <div class="relative">
-      <img
-        src={destinoSanJuan.src}
-        alt=""
+      <Image
+        src={destinoSanJuan}
+        alt="Cuesta del Viento"
         class="w-full h-full object-cover"
         fetchpriority="auto"
       />

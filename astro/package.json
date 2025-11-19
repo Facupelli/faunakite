@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
+    "@astrojs/vercel": "^9.0.1",
     "@googleapis/calendar": "^14.0.0",
     "@googleapis/sheets": "^12.0.0",
     "@sanity/astro": "^3.2.10",

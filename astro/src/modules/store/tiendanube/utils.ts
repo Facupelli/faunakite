@@ -1,7 +1,8 @@
 import type { TiendaNubeProduct } from "./types";
+import { TIENDANUBE_ACCESS_TOKEN, TIENDANUBE_USER_ID } from "astro:env/server";
 
-const accessToken = import.meta.env.TIENDANUBE_ACCESS_TOKEN;
-const userId = import.meta.env.TIENDANUBE_USER_ID;
+const accessToken = TIENDANUBE_ACCESS_TOKEN;
+const userId = TIENDANUBE_USER_ID;
 
 export async function getProducts(): Promise<TiendaNubeProduct[] | null> {
   try {

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import cursos from "../assets/cursos.jpeg";
 import kiteCamp from "../assets/kite-camps.jpeg";
 import rental from "../assets/rental.jpeg";
@@ -11,8 +12,8 @@ const t = useTranslations(lang);
 <section class="bg-brand-brown-light px-4 md:px-10">
   <div class="grid grid-cols-2 gap-y-20 grid-rows-4 max-h-[1500px]">
     <div class="overflow-hidden px-10">
-      <img
-        src={cursos.src}
+      <Image
+        src={cursos}
         alt=""
         class="w-full h-full object-cover"
         fetchpriority="auto"
@@ -42,8 +43,8 @@ const t = useTranslations(lang);
       </div>
     </div>
     <div class="overflow-hidden px-10">
-      <img
-        src={kiteCamp.src}
+      <Image
+        src={kiteCamp}
         alt=""
         class="w-full h-full object-cover"
         fetchpriority="auto"
@@ -51,8 +52,8 @@ const t = useTranslations(lang);
     </div>
 
     <div class="overflow-hidden px-10">
-      <img
-        src={rental.src}
+      <Image
+        src={rental}
         alt=""
         class="w-full h-full object-cover"
         fetchpriority="auto"
@@ -82,8 +83,8 @@ const t = useTranslations(lang);
       </div>
     </div>
     <div class="overflow-hidden px-10">
-      <img
-        src={kiteCamp.src}
+      <Image
+        src={kiteCamp}
         alt=""
         class="w-full h-full object-cover"
         fetchpriority="auto"
