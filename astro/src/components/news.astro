@@ -1,11 +1,10 @@
 ---
 import Card from "../components/news-card.astro";
-import { getPosts } from "../modules/news/utils";
-import type { Post } from "../modules/news/utils";
+import { getNews } from "../modules/news/utils";
+import type { News } from "../modules/news/utils";
 import Pasto from "./svg/pasto.astro";
 
-// const posts: Post[] = await getPosts();
-const posts: Post[] = [];
+const posts: News[] = await getNews();
 ---
 
 <section class="pt-20 bg-brand-brown-mid">

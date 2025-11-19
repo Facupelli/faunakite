@@ -4,6 +4,7 @@ import Footer from "../../components/footer.astro";
 import Nav from "../../components/nav.astro";
 import Layout from "../../layouts/Layout.astro";
 import { urlFor } from "../../modules/news/image.utils";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -26,7 +27,7 @@ const allies = await getAllies();
       <div class="grid md:grid-cols-2 gap-10">
         {
           allies.map((ally) => (
-            <div class="relative rounded-4xl h-full w-full bg-[#fff] text-brand-blue">
+            <div class="relative rounded-4xl h-full w-full bg-white text-brand-blue">
               {ally.image !== undefined && (
                 <div class="relative h-[55%] w-full">
                   <img
@@ -38,23 +39,9 @@ const allies = await getAllies();
               )}
 
               {ally.link !== undefined && (
-                <div class="absolute top-[calc(55%_-_20px)] right-4 bg-brand-blue border-4 border-[#fff] size-10 rounded-full text-[#fff] flex items-center justify-center">
+                <div class="absolute top-[calc(55%-20px)] right-4 bg-brand-blue border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
                   <a href={ally.link} target="_blank" rel="noopener noreferrer">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="fill-current"
-                    >
-                      <path d="M7 7h10v10" />
-                      <path d="M7 17 17 7" />
-                    </svg>
+                    <Icon name="move-up-right" />
                   </a>
                 </div>
               )}

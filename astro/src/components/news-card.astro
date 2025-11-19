@@ -1,10 +1,10 @@
 ---
-import type { Post } from "../modules/news/utils";
+import type { News } from "../modules/news/utils";
 import { urlFor } from "../modules/news/image.utils";
 import { formatDate } from "../modules/news/date.utils";
 
 interface Props {
-  post: Post;
+  post: News;
 }
 
 const { post } = Astro.props;

@@ -5,6 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
 import { loadEnv } from "vite";
 
+import icon from "astro-icon";
+
 const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(
   process.env.NODE_ENV,
   process.cwd(),
@@ -70,13 +72,11 @@ export default defineConfig({
     },
   },
 
-  integrations: [
-    sanity({
-      projectId: SANITY_STUDIO_PROJECT_ID,
-      dataset: SANITY_STUDIO_DATASET,
-      useCdn: false, // for static builds
-    }),
-  ],
+  integrations: [sanity({
+    projectId: SANITY_STUDIO_PROJECT_ID,
+    dataset: SANITY_STUDIO_DATASET,
+    useCdn: false, // for static builds
+  }), icon()],
 
   vite: {
     plugins: [tailwindcss()],

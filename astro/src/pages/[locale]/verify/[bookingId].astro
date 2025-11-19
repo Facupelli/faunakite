@@ -13,12 +13,6 @@ let booking: Booking | null = null;
 if (bookingId) {
   booking = await getBookingById(bookingId);
 }
-
-console.log({ booking });
-
-if (!booking) {
-  Astro.response.status = 404;
-}
 ---
 
 <Layout title="Verificar Alumno">

@@ -1,11 +1,10 @@
 ---
-import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import type { TiendaNubeProduct } from "../modules/store/tiendanube/types";
 import { getProducts, formatPrice } from "../modules/store/tiendanube/utils";
 import NewsletterBrownMountain from "./svg/newsletter-brown-mountain.astro";
 
-// const products: TiendaNubeProduct[] = await getProducts();
-const products: TiendaNubeProduct[] = [];
+const products: TiendaNubeProduct[] | null = await getProducts();
 ---
 
 <div class="relative pt-64">
@@ -19,7 +18,7 @@ const products: TiendaNubeProduct[] = [];
         >
           {
             products?.map((product) => (
-              <article class="snap-center flex-shrink-0 reltaive z-10 w-64 md:w-auto">
+              <article class="snap-center shrink-0 reltaive z-10 w-64 md:w-auto">
                 <div class="group">
                   <div class="relative aspect-square mb-4">
                     <img
@@ -28,27 +27,13 @@ const products: TiendaNubeProduct[] = [];
                       class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300 rounded-t-xl"
                     />
 
-                    <div class="absolute z-30 bottom-[-16px] right-4 bg-brand-blue border-4 border-[#fff] size-8 rounded-full text-[#fff] flex items-center justify-center">
+                    <div class="absolute z-30 -bottom-4 right-4 bg-brand-blue border-4 border-white size-8 rounded-full text-white flex items-center justify-center">
                       <a
                         href={product.canonical_url}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="fill-current"
-                        >
-                          <path d="M7 7h10v10" />
-                          <path d="M7 17 17 7" />
-                        </svg>
+                        <Icon name="move-up-right" />
                       </a>
                     </div>
                   </div>
