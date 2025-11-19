@@ -61,23 +61,17 @@ npm run build
 │   ├── components/         # Componentes reutilizables
 │   ├── layouts/            # Layouts de Astro
 │   ├── pages/              # Páginas y rutas
-│   │   ├── [lang]/         # Rutas por idioma
+│   │   ├── [locale]/         # Rutas por idioma
 │   │   │   ├── index.astro
 │   │   │   ├── servicios.astro
 │   │   │   ├── aliados.astro
 │   │   │   └── verificar/
 │   │   │       └── [id].astro  # Página de verificación QR
-│   │   └── api/            # Endpoints API
-│   │       ├── register.ts # Registro de estudiantes
-│   │       └── verify.ts   # Verificación de membresía
 │   ├── lib/
 │   │   ├── sanity.ts       # Cliente Sanity
 │   │   ├── sender.ts       # Cliente Sender.net
 │   │   └── google.ts       # Sheets & Calendar APIs
 │   └── i18n/               # Traducciones
-├── sanity/
-│   ├── schemaTypes/        # Esquemas: noticia, aliado
-│   └── sanity.config.ts
 └── public/                 # Assets estáticos
 ```
 

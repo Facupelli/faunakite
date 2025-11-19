@@ -1,24 +1,24 @@
 import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
 import { ActionError } from "astro:actions";
-import { createBooking } from "../booking/use-cases/create-booking";
+import { createBooking } from "../modules/booking/use-cases/create-booking";
 import {
   CourseType,
   DetailedSkillLevel,
   Gender,
   ReferralSource,
   SkillLevel,
-} from "../booking/booking.entity";
-import { createUrlQr } from "../booking/qr-code";
-import { GoogleCalendarError } from "../booking/google-calendar/google-calendar-client";
-import { createCalendarEvent } from "../booking/google-calendar/create-event";
+} from "../modules/booking/booking.entity";
+import { createUrlQr } from "../modules/booking/qr-code";
+import { GoogleCalendarError } from "../modules/booking/google-calendar/google-calendar-client";
+import { createCalendarEvent } from "../modules/booking/google-calendar/create-event";
 import { useTranslations } from "../i18n/utils";
 import {
   getBookingEmailTemplate,
   NodemailerError,
   sendMail,
-} from "../booking/nodemailer/utils";
-import type { CreateBookingResult } from "../booking/use-cases/create-booking.use-case";
+} from "../modules/booking/nodemailer/utils";
+import type { CreateBookingResult } from "../modules/booking/use-cases/create-booking.use-case";
 
 // TODO: make idempotent
 export const book = {

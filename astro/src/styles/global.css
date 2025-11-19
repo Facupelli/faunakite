@@ -1,7 +1,15 @@
 @font-face {
   font-family: "Helvetica Neue";
-  src: url("/fonts/helvetica-neue-light.ttc") format("collection");
+  src: url("/fonts/helvetica-neue-light.woff2") format("woff2");
   font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/helvetica-neue-bold.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -31,8 +39,7 @@
   --color-brand-brown-mid: #3c2005;
   --color-brand-brown-dark: #9d3400;
 
-  --font-gt:
-    "GT-America", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --: "GT-America", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   --font-helvetica: "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   --font-salted: "Salted", cursive, ui-serif;
 }

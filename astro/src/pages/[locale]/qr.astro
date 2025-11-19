@@ -1,5 +1,5 @@
 ---
-import { createUrlQr } from "../../booking/qr-code";
+import { createUrlQr } from "../../modules/booking/qr-code";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -14,7 +14,7 @@ const qrDataUri = `data:image/png;base64,${qrBase64}`;
 ---
 
 <Layout>
-  <main class="font-gt">
+  <main class="">
     <div class="text-center py-10 space-y-2">
       <span class="block font-salted text-4xl text-white">FAUNA KITE</span>
       <h1 class="text-2xl">QR CODE</h1>

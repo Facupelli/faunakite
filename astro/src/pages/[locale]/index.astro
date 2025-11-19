@@ -1,5 +1,4 @@
 ---
-import { useTranslations } from "../../i18n/utils";
 import Layout from "../../layouts/Layout.astro";
 import Nav from "../../components/nav.astro";
 import Hero from "../../components/hero.astro";
@@ -17,7 +16,6 @@ import DestinationsTop from "../../components/svg/destinations-top.astro";
 import DestinationsUnder from "../../components/svg/destinations-under.astro";
 import ProductsCarousel from "../../components/products-carousel.astro";
 import Footer from "../../components/footer.astro";
-import { getProducts } from "../../tiendanube/utils";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];

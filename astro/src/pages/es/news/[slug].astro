@@ -1,10 +1,10 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
 import { PortableText } from "astro-portabletext";
-import { getPost, getPosts } from "../../../news/utils";
+import { getPost, getPosts } from "../../../modules/news/utils";
 import Layout from "../../../layouts/Layout.astro";
-import { urlFor } from "../../../news/image.utils";
-import { formatDate } from "../../../news/date.utils";
+import { urlFor } from "../../../modules/news/image.utils";
+import { formatDate } from "../../../modules/news/date.utils";
 
 export async function getStaticPaths() {
   const posts = await getPosts();

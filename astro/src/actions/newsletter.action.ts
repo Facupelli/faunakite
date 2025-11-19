@@ -1,6 +1,6 @@
 import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
-import { createSubscriber } from "../newsletter/sender-net/utils";
+import { createSubscriber } from "../modules/newsletter/sender-net/utils";
 
 export const newsletter = {
   subscribe: defineAction({

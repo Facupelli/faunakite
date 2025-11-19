@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { formatDate } from "../../modules/news/date.utils";
+import { getPosts, type Post } from "../../modules/news/utils";
+
+export async function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
+}
+
+const lang = Astro.params.locale as "en" | "es";
+
+const posts: Post[] = await getPosts();
+---
+
+<Layout title="Noticias | Fauna Kite ">
+  <main class="mx-auto max-w-2xl px-5 py-12">
+    <div class="py-10">
+      <h1 class="font-salted text-4xl">FAUNA KITE NOTICIAS</h1>
+    </div>
+
+    <div class="relative -top-[10px] flex flex-col gap-8">
+      {
+        posts.map((post) => (
+          <a
+            href={`/${lang}/news/${post.slug.current}`}
+            class="block cursor-pointer py-4 hover:scale-[1.005] will-change-transform scale-100 active:scale-100"
+          >
+            <article>
+              <h2 class="text-[28px] font-black leading-none mb-2">
+                {post.title}
+              </h2>
+              <p class="text-[13px] text-gray-700 dark:text-gray-300">
+                {formatDate(post._createdAt)}
+              </p>
+              <p class="mt-1">{post.summary}</p>
+            </article>
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</Layout>

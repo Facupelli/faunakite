@@ -34,14 +34,11 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {};
       <div
         class="px-4 max-w-2xl mx-auto flex gap-y-6 flex-col items-center pt-4 text-lg"
       >
-        <p class="font-gt text-center text-pretty">
+        <p class="text-center text-pretty">
           {t("newsletter.subtitle")}
         </p>
 
-        <form
-          id="newsletter-form"
-          class="flex items-center gap-4 w-full font-gt"
-        >
+        <form id="newsletter-form" class="flex items-center gap-4 w-full">
           <input
             type="email"
             placeholder="Escriba su email"
@@ -59,7 +56,7 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 
         <dialog
           id="newsletter-dialog"
-          class="rounded-lg shadow-xl backdrop:bg-black backdrop:opacity-50 p-0 border-0 max-w-sm w-full fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-gt"
+          class="rounded-lg shadow-xl backdrop:bg-black backdrop:opacity-50 p-0 border-0 max-w-sm w-full fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         >
           <div class="p-6">
             <div class="flex pb-4 justify-center">

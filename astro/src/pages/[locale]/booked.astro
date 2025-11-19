@@ -9,7 +9,7 @@ import {
   Gender,
   ReferralSource,
   SkillLevel,
-} from "../../booking/booking.entity";
+} from "../../modules/booking/booking.entity";
 import { useTranslations, useEnumTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
@@ -29,7 +29,7 @@ if (result && !result.error) {
 ---
 
 <Layout>
-  <main class="font-gt">
+  <main class="">
     <div class="text-center py-10 space-y-2">
       <h1 class="text-xl mb-0">{t("booked.title")}</h1>
       <span class="block font-salted text-4xl text-white">FAUNA KITE</span>

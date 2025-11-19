@@ -1,7 +1,7 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import type { Booking } from "../../../booking/booking.entity";
-import { getBookingById } from "../../../booking/use-cases/find-booking-by-id";
+import type { Booking } from "../../../modules/booking/booking.entity";
+import { getBookingById } from "../../../modules/booking/use-cases/find-booking-by-id";
 import BookingNotFound from "../../../components/verify/booking-not-found.astro";
 import VerificationCard from "../../../components/verify/verification-card.astro";
 

@@ -11,6 +11,7 @@ export const ui = {
     "nav.rental": "Rental",
     "nav.kitecamps": "Kitecamps",
     "nav.allies": "Allies",
+    "nav.news": "News",
     "nav.store": "Store",
     // HOME PAGE
     "hero.title": "MORE THAN A SCHOOL, A COMMUNITY OF WINDS",
@@ -140,6 +141,7 @@ export const ui = {
     "nav.rental": "Rental",
     "nav.kitecamps": "Kitecamps",
     "nav.allies": "Aliados",
+    "nav.news": "Noticias",
     "nav.store": "Tienda",
     // HOME PAGE
     "hero.title": "MÁS QUE UNA ESCUELA, UNA COMUNIDAD DE VIENTOS",
