@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig, envField } from "astro/config";
 import sanity from "@sanity/astro";
-import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
 import { loadEnv } from "vite";
@@ -77,7 +76,6 @@ export default defineConfig({
       dataset: SANITY_STUDIO_DATASET,
       useCdn: false, // for static builds
     }),
-    react(),
   ],
 
   vite: {
