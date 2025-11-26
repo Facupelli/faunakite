@@ -19,7 +19,7 @@ const links = [
 ---
 
 <nav
-  class="fixed top-0 left-0 right-0 z-50 h-20 bg-transparent backdrop-blur-sm border-b border-white"
+  class="fixed top-0 left-0 right-0 z-50 h-20 bg-transparent backdrop-blur-sm will-change-[backdrop-filter] transform-[translateZ(0)] border-b border-white"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white font-bold">
     <div class="h-20 flex justify-between">
@@ -27,17 +27,19 @@ const links = [
         <!-- LOGO -->
         <a href="/">
           <div class="relative w-full max-w-[150px] aspect-[3.45/1]">
-            <Image
-              decoding="async"
-              src={logo}
-              alt="Logo FaunaKite white icon"
-            />
+            <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
           </div>
         </a>
       </div>
 
       <div class="hidden md:flex items-center gap-12 uppercase">
-        {links.map((link) => <a href={link.href}>{link.name}</a>)}
+        {
+          links.map((link) => (
+            <a class="hover:text-dorado" href={link.href}>
+              {link.name}
+            </a>
+          ))
+        }
         <LanguagePicker />
       </div>
 

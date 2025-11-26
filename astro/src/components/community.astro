@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import communityBackground from "../assets/community-background.jpeg";
+---
+
+<section>
+  <div class="px-10">
+    <Image
+      src="/cuesta-del-viento.svg"
+      alt="community"
+      width={200}
+      height={400}
+    />
+  </div>
+
+  <div class="relative w-full h-[60dvh] py-6">
+    <Image
+      src={communityBackground}
+      alt="community"
+      class="w-full h-full object-cover border-2 border-white"
+    />
+
+    <div
+      class="absolute text-white z-20 font-bold left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+    >
+      <div>
+        <p>
+          En FAUNA creemos que el kite es solo la excusa para encontrarnos. Lo
+          que realmente nos mueve es la gente, los momentos compartidos y esa
+          energía única que se genera entre los que amamos el viento, el agua,
+          el deporte y la naturaleza.
+        </p>
+        <p>
+          Ser parte de la Comunidad FAUNA es mucho más que aprender a hacer
+          kite: es sumarte a un grupo de amigos que comparten la misma pasión,
+          que se ayudan y dan una mano dentro y fuera del agua, que se motivan y
+          que se reencuentran cada temporada para disfrutar juntos de este
+          estilo de vida.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <Image
+      src="/donde-siempre-sopla.svg"
+      alt="community"
+      width={550}
+      height={350}
+    />
+  </div>
+  <!-- <div class="svg-container">
+    <svg viewBox="0 0 800 800" id="spiralSVG">
+      <defs>
+        <path id="spiralPath" d=""></path>
+      </defs>
+      <use href="#spiralPath" class="spiral-path" id="pathVisual"></use>
+      <text>
+        <textPath
+          href="#spiralPath"
+          class="spiral-text"
+          id="spiralText"
+          startOffset="0%"
+        >
+        </textPath>
+      </text>
+    </svg>
+  </div> -->
+</section>

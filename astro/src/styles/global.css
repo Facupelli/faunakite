@@ -39,7 +39,13 @@
   --color-brand-brown-mid: #3c2005;
   --color-brand-brown-dark: #9d3400;
 
-  --: "GT-America", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --color-card: #030608;
+  --color-border: oklch(0.25 0.01 220);
+
+  --color-dorado: #9f7618;
+
+  --font-gt:
+    "GT-America", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   --font-helvetica: "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   --font-salted: "Salted", cursive, ui-serif;
 }

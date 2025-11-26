@@ -7,88 +7,63 @@ import { useTranslations } from "../i18n/utils";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
+
+const services = [
+  {
+    title: t("services.courses.title"),
+    summary: t("services.courses.summary"),
+    image: cursos,
+    link: "/",
+  },
+  {
+    title: t("services.kitecamps.title"),
+    summary: t("services.kitecamps.summary"),
+    image: kiteCamp,
+    link: "/",
+  },
+  {
+    title: t("services.rental.title"),
+    summary: t("services.rental.summary"),
+    image: rental,
+    link: "/",
+  },
+  {
+    title: t("services.tours.title"),
+    summary: t("services.tours.summary"),
+    image: cursos,
+    link: "/",
+  },
+];
 ---
 
-<section class="bg-brand-brown-light px-4 md:px-10">
-  <div class="grid grid-cols-2 gap-y-20 grid-rows-4 max-h-[1500px]">
-    <div class="overflow-hidden px-10">
-      <Image
-        src={cursos}
-        alt=""
-        class="w-full h-full object-cover"
-        fetchpriority="auto"
-      />
-    </div>
-    <div class="flex items-center justify-center">
-      <div class="flex flex-col items-center space-y-4">
-        <h2 class="uppercase font-salted text-6xl">
-          {t("services.courses.title")}
-        </h2>
-        <p class="max-w-[500px] mx-auto">
-          {t("services.courses.summary")}
-        </p>
-        <button class="px-6 py-2 bg-brand-blue rounded-4xl">VER MÁS</button>
-      </div>
-    </div>
+<section class="relative z-30 bg-brand-brown-mid px-4 md:px-10 py-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {
+      services.map((service, index) => (
+        <div class="group relative bg-brand-brown-mid border border-brand-brown-light rounded-xl overflow-hidden hover:border-brand-blue transition-colors duration-300">
+          <div class="relative h-48 w-full overflow-hidden">
+            <Image
+              src={service.image || "/placeholder.svg"}
+              alt={service.title}
+              class="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-brand-brown-mid to-transparent" />
+            <h3 class="text-2xl font-bold text-foreground mb-4 text-brand-brown-light absolute bottom-0 left-8">
+              {service.title}
+            </h3>
+          </div>
 
-    <div class="flex items-center justify-center">
-      <div class="flex flex-col items-center space-y-4">
-        <h2 class="uppercase font-salted text-6xl">
-          {t("services.kitecamps.title")}
-        </h2>
-        <p class="max-w-[500px] mx-auto">
-          {t("services.kitecamps.summary")}
-        </p>
-        <button class="px-6 py-2 bg-brand-blue rounded-4xl">VER MÁS</button>
-      </div>
-    </div>
-    <div class="overflow-hidden px-10">
-      <Image
-        src={kiteCamp}
-        alt=""
-        class="w-full h-full object-cover"
-        fetchpriority="auto"
-      />
-    </div>
+          <div class="p-8 pt-4">
+            <p class="text-white leading-relaxed">{service.summary}</p>
 
-    <div class="overflow-hidden px-10">
-      <Image
-        src={rental}
-        alt=""
-        class="w-full h-full object-cover"
-        fetchpriority="auto"
-      />
-    </div>
-    <div class="flex items-center justify-center">
-      <div class="flex flex-col items-center space-y-4">
-        <h2 class="uppercase font-salted text-6xl">
-          {t("services.rental.title")}
-        </h2>
-        <p class="max-w-[500px] mx-auto">
-          {t("services.rental.summary")}
-        </p>
-        <button class="px-6 py-2 bg-brand-blue rounded-4xl">VER MÁS</button>
-      </div>
-    </div>
-
-    <div class="flex items-center justify-center">
-      <div class="flex flex-col items-center space-y-4">
-        <h2 class="uppercase font-salted text-6xl">
-          {t("services.tours.title")}
-        </h2>
-        <p class="max-w-[500px] mx-auto">
-          {t("services.tours.summary")}
-        </p>
-        <button class="px-6 py-2 bg-brand-blue rounded-4xl">VER MÁS</button>
-      </div>
-    </div>
-    <div class="overflow-hidden px-10">
-      <Image
-        src={kiteCamp}
-        alt=""
-        class="w-full h-full object-cover"
-        fetchpriority="auto"
-      />
-    </div>
+            <div class="flex justify-end mt-6">
+              <button class="px-6 py-2 bg-brand-brown-light rounded-4xl">
+                VER MÁS
+              </button>
+            </div>
+          </div>
+        </div>
+      ))
+    }
   </div>
 </section>

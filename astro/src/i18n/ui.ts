@@ -31,7 +31,7 @@ export const ui = {
       "Do you already know how to navigate but still don't have your own equipment? Are you coming to Cuesta del Viento and need a smaller size?",
     "services.tours.title": "Tours",
     "services.tours.summary":
-      "During the Argentine winter, the kite season at Cuesta del Viento ends, but the Fauna community doesn't stay still: we organize unique experiences in different destinations in Argentina and the world, combining <strong>sport</strong>, <strong>nature</strong> and <strong>friendship</strong>.",
+      "During the Argentine winter, the kite season at Cuesta del Viento ends, but the Fauna community doesn't stay still: we organize unique experiences in different destinations in Argentina and the world, combining sport, nature and friendship.",
     "newsletter.title": "Join the Adventure",
     "newsletter.subtitle":
       "Get the latest news, kite tips, wind conditions and exclusive events from our community.",
@@ -161,7 +161,7 @@ export const ui = {
       "¿Ya sabés navegar pero todavía no tenés tu propio equipo? ¿Venís a Cuesta del Viento y necesitás una medida más pequeña?",
     "services.tours.title": "Viajes",
     "services.tours.summary":
-      "Durante el invierno argentino, la temporada de kite en Cuesta del Viento termina, pero la comunidad de Fauna no se queda quieta: organizamos experiencias únicas en distintos destinos de Argentina y del mundo, combinando <strong>deporte</strong>, <strong>naturaleza</strong> y <strong>amistad</strong>.",
+      "Durante el invierno argentino, la temporada de kite en Cuesta del Viento termina, pero la comunidad de Fauna no se queda quieta: organizamos experiencias únicas en distintos destinos de Argentina y del mundo, combinando deporte, naturaleza y amistad.",
     "newsletter.title": "Sumate a la Comunidad",
     "newsletter.subtitle":
       "Recibí las últimas novedades, tips de kite, condiciones del viento y eventos exclusivos de nuestra comunidad.",

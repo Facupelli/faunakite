@@ -3,8 +3,8 @@ import { Image } from "astro:assets";
 import destinoSanJuan from "../assets/destino-san-juan.jpeg";
 ---
 
-<section class="">
-  <div class="grid grid-rows-2 w-full max-h-[800px]">
+<section class="bg-brand-green py-6">
+  <div class="w-full">
     <div class="relative">
       <Image
         src={destinoSanJuan}
@@ -20,25 +20,6 @@ import destinoSanJuan from "../assets/destino-san-juan.jpeg";
             <span class="flex justify-end">San Juan</span>
           </h2>
           <span class="text-2xl md:text-4xl uppercase">Suramerica</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="relative">
-      <img
-        src="https://kitelab.info/wp-content/uploads/2024/11/Lo_stagnone_sicilia_kitesurf_spot-1.jpg"
-        alt=""
-        class="w-full h-full object-cover"
-        fetchpriority="auto"
-      />
-
-      <div class="absolute top-4 md:top-14 right-4 md:right-14 z-10">
-        <div class="flex items-start gap-14 font-salted">
-          <span class="text-2xl md:text-4xl uppercase">Europa</span>
-          <h2 class="uppercase text-lg md:text-6xl">
-            <span>Lo Stagnone,</span>
-            <span class="flex justify-end">Sicilia</span>
-          </h2>
         </div>
       </div>
     </div>
