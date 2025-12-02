@@ -1,9 +1,12 @@
 ---
 import { Image } from "astro:assets";
-import cursos from "../assets/cursos.jpeg";
-import kiteCamp from "../assets/kite-camps.jpeg";
-import rental from "../assets/rental.jpeg";
+import cursos from "../assets/courses.webp";
+import kiteCamp from "../assets/kite-camps.webp";
+import rental from "../assets/rental.webp";
+import travels from "../assets/travels.webp";
 import { useTranslations } from "../i18n/utils";
+import ServicesBackground from "./svg/services-background.astro";
+import { Icon } from "astro-icon/components";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
@@ -13,57 +16,85 @@ const services = [
     title: t("services.courses.title"),
     summary: t("services.courses.summary"),
     image: cursos,
+    icon: "courses",
     link: "/",
   },
   {
     title: t("services.kitecamps.title"),
     summary: t("services.kitecamps.summary"),
     image: kiteCamp,
+    icon: "kitecamps",
     link: "/",
   },
   {
     title: t("services.rental.title"),
     summary: t("services.rental.summary"),
     image: rental,
+    icon: "rental",
     link: "/",
   },
   {
     title: t("services.tours.title"),
     summary: t("services.tours.summary"),
-    image: cursos,
+    image: travels,
+    icon: "travel",
     link: "/",
   },
 ];
 ---
 
-<section class="relative z-30 bg-brand-brown-mid px-4 md:px-10 py-16">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {
-      services.map((service, index) => (
-        <div class="group relative bg-brand-brown-mid border border-brand-brown-light rounded-xl overflow-hidden hover:border-brand-blue transition-colors duration-300">
-          <div class="relative h-48 w-full overflow-hidden">
-            <Image
-              src={service.image || "/placeholder.svg"}
-              alt={service.title}
-              class="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div class="absolute inset-0 bg-linear-to-t from-brand-brown-mid to-transparent" />
-            <h3 class="text-2xl font-bold text-foreground mb-4 text-brand-brown-light absolute bottom-0 left-8">
-              {service.title}
-            </h3>
-          </div>
+<section class="relative bg-brand-blue py-20">
+  <div
+    class="absolute -top-[100px] left-0 w-full z-20 h-[800px]"
+    aria-hidden="true"
+  >
+    <ServicesBackground class="w-full h-full" />
+  </div>
 
-          <div class="p-8 pt-4">
-            <p class="text-white leading-relaxed">{service.summary}</p>
+  <div class="relative z-30 px-4 md:px-10">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto"
+    >
+      {
+        services.map((service) => (
+          <div class="group relative bg-brand-blue rounded-xl overflow-hidden shadow-news-card">
+            <div class="relative h-48 w-full overflow-hidden">
+              <Image
+                src={service.image || "/placeholder.svg"}
+                alt={service.title}
+                class="object-cover transition-transform duration-500 group-hover:scale-105 h-full w-full"
+              />
 
-            <div class="flex justify-end mt-6">
-              <button class="px-6 py-2 bg-brand-brown-light rounded-4xl">
-                VER MÁS
-              </button>
+              <div class="absolute inset-0 bg-linear-to-t from-3 to-transparent" />
+
+              <div class="flex justify-between items-end mb-4 absolute bottom-0 px-8 w-full">
+                <h3 class="text-2xl font-bold text-foreground ">
+                  {service.title}
+                </h3>
+
+                <div class="text-white size-12 ">
+                  <Icon name={service.icon} class="w-full h-full" />
+                </div>
+              </div>
+            </div>
+
+            <div class="p-8 pt-4">
+              <p class="text-white leading-relaxed text-pretty">
+                {service.summary}
+              </p>
             </div>
           </div>
-        </div>
-      ))
-    }
+        ))
+      }
+    </div>
+
+    <div class="flex justify-center pt-10">
+      <a
+        href={`/${lang}/services`}
+        class="px-6 py-2 bg-brand-blue font-bold rounded-4xl"
+      >
+        {t("services.button")}
+      </a>
+    </div>
   </div>
 </section>

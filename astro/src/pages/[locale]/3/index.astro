@@ -1,0 +1,107 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Nav from "../../../components/nav.astro";
+import Hero from "../../../components/hero.astro";
+import Hero2 from "../../../components/hero2.astro";
+import AboutUs from "../../../components/about-us.astro";
+import Services from "../../../components/services.astro";
+import Newsletter from "../../../components/newsletter.astro";
+import News from "../../../components/news.astro";
+import WhiteMountain from "../../../components/svg/white-mountain.astro";
+import BrownMountain from "../../../components/svg/brown-mountain.astro";
+import AboutUsBelow from "../../../components/svg/about-us-below.astro";
+import CoursesTop from "../../../components/svg/courses-top.astro";
+import CoursesUnder from "../../../components/svg/courses-under.astro";
+import DestinationsTop from "../../../components/svg/destinations-top.astro";
+import DestinationsUnder from "../../../components/svg/destinations-under.astro";
+import ProductsCarousel from "../../../components/products-carousel.astro";
+import Footer from "../../../components/footer.astro";
+import Community from "../../../components/community.astro";
+
+export async function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
+}
+---
+
+<Layout>
+  <header>
+    <Nav />
+  </header>
+
+  <main>
+    <Hero />
+    <!-- <Hero2 /> -->
+
+    <!-- <div
+      class="absolute z-20 text-white opacity-85 left-0 bottom-0 w-full aspect-[3.38/1] my-10 sm:-my-2.5 md:-my-[50px] lg:-my-[200px] overflow-hidden"
+      aria-hidden="true"
+    >
+      <WhiteMountain />
+    </div> -->
+
+    <div
+      class="relative w-full aspect-[8.38/1] -my-[50px] md:-my-[60px] z-30 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="absolute -left-4 w-full h-full block text-brand-brown-mid">
+        <BrownMountain />
+      </div>
+    </div>
+    <Services />
+    <!-- <div
+      class="relative w-full aspect-[5.43/1] z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="absolute w-full h-full block text-white opacity-85">
+        <AboutUsBelow />
+      </div>
+    </div> -->
+
+    <div class="h-[200px]"></div>
+
+    <Community />
+
+    <div
+      class="relative w-full aspect-[4.16/1] z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="absolute w-full h-full block">
+        <DestinationsTop />
+      </div>
+    </div>
+    <div
+      class="relative w-full aspect-[4.27/1] z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="absolute w-full h-full block">
+        <DestinationsUnder />
+      </div>
+    </div>
+
+    <div
+      class="relative w-full aspect-[9.27/1] z-20 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="absolute w-full h-full block text-brand-brown-light">
+        <CoursesTop />
+      </div>
+    </div>
+    <AboutUs />
+    <div
+      class="relative w-full aspect-6/1 z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="absolute w-full h-full block">
+        <CoursesUnder />
+      </div>
+    </div>
+
+    <div class="h-[200px]"></div>
+
+    <ProductsCarousel />
+    <Newsletter />
+    <News />
+  </main>
+
+  <Footer />
+</Layout>

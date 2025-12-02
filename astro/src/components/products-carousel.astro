@@ -3,28 +3,31 @@ import { Icon } from "astro-icon/components";
 import type { TiendaNubeProduct } from "../modules/store/tiendanube/types";
 import { getProducts, formatPrice } from "../modules/store/tiendanube/utils";
 import NewsletterBrownMountain from "./svg/newsletter-brown-mountain.astro";
+import Trees from "./svg/trees.astro";
 
 const products: TiendaNubeProduct[] | null = await getProducts();
 ---
 
-<div class="relative pt-64">
-  <div class="z-50 absolute bottom-1/3 left-0 w-full">
+<div class="relative z-20 py-20">
+  <div class="absolute z-0 left-0 -bottom-16 w-full">
+    <Trees />
+  </div>
+
+  <div class="">
     <div class="max-w-4xl mx-auto px4">
-      <div
-        class="overflow-x-auto scroll-container snap-x snap-mandatory bg-white rounded-4xl p-10"
-      >
+      <div class="scroll-container snap-x snap-mandatory">
         <div
           class="flex gap-6 md:gap-8 min-w-max md:min-w-0 md:grid md:grid-cols-3"
         >
           {
             products?.map((product) => (
-              <article class="snap-center shrink-0 reltaive z-10 w-64 md:w-auto">
+              <article class="snap-center shrink-0 z-10 w-64 md:w-auto bg-white p-4 shadow-news-card">
                 <div class="group">
                   <div class="relative aspect-square mb-4">
                     <img
                       src={product.images[0].src}
                       alt="Kite Completo"
-                      class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300 rounded-t-xl"
+                      class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                     />
 
                     <div class="absolute z-30 -bottom-4 right-4 bg-brand-blue border-4 border-white size-8 rounded-full text-white flex items-center justify-center">
@@ -40,10 +43,7 @@ const products: TiendaNubeProduct[] | null = await getProducts();
                   <h3 class="text-lg font-bold uppercase mb-1 text-brand-blue">
                     {product.name.es}
                   </h3>
-                  <p class="text-sm text-brand-blue/70 uppercase tracking-wide mb-2">
-                    {product.description.es}
-                  </p>
-                  <p class="text-xl font-bold text-brand-blue">
+                  <p class="text-xl text-brand-blue">
                     {formatPrice(product.variants[0].price)}
                   </p>
                 </div>
@@ -52,9 +52,9 @@ const products: TiendaNubeProduct[] | null = await getProducts();
           }
         </div>
 
-        <div class="flex justify-center pt-10">
+        <div class="relative z-20 flex justify-center pt-10">
           <a
-            class="text-brand-blue border border-brand-blue w-1/3 text-center py-2 rounded-md"
+            class="bg-brand-red text-white font-bold w-1/3 text-center py-2 rounded-md"
             href="https://faunakite.mitiendanube.com/"
             target="_blank"
             rel="noopener noreferrer">VISITA LA TIENDA</a
@@ -63,15 +63,4 @@ const products: TiendaNubeProduct[] | null = await getProducts();
       </div>
     </div>
   </div>
-
-  <div
-    class="relative w-full aspect-[6.13/1] z-10 overflow-hidden"
-    aria-hidden="true"
-  >
-    <div class="absolute w-full h-full block text-dorado">
-      <NewsletterBrownMountain />
-    </div>
-  </div>
-
-  <div class="w-full bg-dorado h-[400px]"></div>
 </div>

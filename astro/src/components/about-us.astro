@@ -1,32 +1,57 @@
 ---
 import { Image } from "astro:assets";
-import aboutUsImage from "../assets/about-us.jpeg";
+import aboutUsImage from "../assets/about-us-photo.webp";
 import { useTranslations } from "../i18n/utils";
+import Cactuses from "./svg/cactuses.astro";
+import AboutUsTopSeparator from "./svg/about-us-top-separator.astro";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
 ---
 
-<section class="relative">
-  <div class="relative z-40 bg-brand-brown-light pb-20">
-    <h2 class="relative z-40 pt-10 pl-10 uppercase text-6xl pb-10 font-salted">
-      {t("about-us.title")}
-    </h2>
+<section class="relative z-10 bg-brand-blue">
+  <div class="text-brand-red">
+    <AboutUsTopSeparator />
+  </div>
 
-    <div class="relative grid grid-cols-2 gap-10 px-4">
-      <div>
-        <Image
-          src={aboutUsImage}
-          alt="About us image"
-          class="w-full h-full object-contain"
-          fetchpriority="auto"
-        />
+  <div class="relative z-40 bg-brand-red py-20">
+    <div class="relative max-w-4xl mx-auto">
+      <div
+        class="absolute -left-[150px] bottom-0 w-[110px] h-[60px] z-30 text-white"
+      >
+        <Cactuses />
       </div>
 
-      <div class="grid gap-4">
-        <p class="mb-0">
-          {t("about-us.summary")}
-        </p>
+      <h2
+        class="text-center z-40 pt-10 pl-10 uppercase text-5xl pb-10 font-salted"
+      >
+        {t("about-us.title")}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 place-items-center gap-8">
+        <div class="space-y-4 md:col-span-2">
+          <p class="text-lg text-pretty">
+            {t("about-us.summary")}
+          </p>
+
+          <div class="flex justify-center">
+            <a
+              href={`/${lang}/about-us`}
+              class="bg-white font-bold px-6 py-2 text-brand-red rounded-4xl"
+            >
+              {t("about-us.button")}
+            </a>
+          </div>
+        </div>
+
+        <div class="md:col-span-3">
+          <Image
+            src={aboutUsImage}
+            alt="About us image"
+            class="w-full h-full object-contain"
+            fetchpriority="auto"
+          />
+        </div>
       </div>
     </div>
   </div>

@@ -44,6 +44,14 @@
 
   --color-dorado: #9f7618;
 
+  --color-1: #00252c;
+  --color-2: #475459;
+  --color-3: #5a7e8c;
+  --color-brand-light: #d7f9f9;
+  --color-brand-red: #f24535;
+
+  --shadow-news-card: 10px 10px 0px 1px rgba(0, 0, 0, 0.05);
+
   --font-gt:
     "GT-America", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   --font-helvetica: "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;

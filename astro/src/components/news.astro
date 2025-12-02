@@ -1,49 +1,91 @@
 ---
+import { Image } from "astro:assets";
 import Card from "../components/news-card.astro";
-import { getNews } from "../modules/news/utils";
+import { getLatestNews } from "../modules/news/utils";
 import type { News } from "../modules/news/utils";
-import Pasto from "./svg/pasto.astro";
 
-const posts: News[] = await getNews();
+const posts: News[] = await getLatestNews();
 ---
 
-<section class="bg-brand-brown-mid">
-  <div class="flex justify-center px-4">
-    <h2 class="uppercase flex flex-col items-center font-salted px-10">
-      <span class="text-9xl">Fauna</span>
-    </h2>
-  </div>
+<section class="pb-20">
+  <div class="relative max-w-7xl mx-auto space-y-8 py-10">
+    <div class="absolute left-10 top-0 z-20">
+      <svg
+        class="w-full max-w-2xl mx-auto"
+        viewBox="50 -200 250 100"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- Define the invisible path -->
+        <defs>
+          <path id="arcPath" d="M 1 -1 Q 214 -327 341 -2"></path>
+        </defs>
 
-  <div class="relative bg-brand-green px-4 pb-20">
-    <div
-      class="absolute left-1/2 -top-8 md:-top-14 lg:-top-18 -translate-x-1/2 w-full max-w-sm md:max-w-xl lg:max-w-3xl aspect-[9.8/1] z-10 overflow-hidden"
-      aria-hidden="true"
-    >
-      <div class="absolute w-full h-full block text-brand-green">
-        <Pasto />
-      </div>
+        <!-- Text that follows the path -->
+        <text
+          font-size="24"
+          fill="currentColor"
+          font-weight="600"
+          letter-spacing="2"
+        >
+          <textPath
+            href="#arcPath"
+            startOffset="50%"
+            text-anchor="middle"
+            class="font-salted text-brand-blue"
+          >
+            CUESTA DEL VIENTO
+          </textPath>
+        </text>
+      </svg>
     </div>
 
-    <div class="flex justify-center pb-10">
-      <h2 class="uppercase flex flex-col items-center font-salted px-10">
-        <span class="text-6xl">News</span>
+    <div class="flex justify-end pr-20">
+      <h2
+        class="uppercase flex flex-col items-center font-salted px-10 text-brand-red"
+      >
+        <span class="text-6xl">Fauna News</span>
       </h2>
     </div>
 
-    <div class="max-w-4xl mx-auto">
-      <div class="grid md:grid-cols-4 grid-rows-2 gap-2">
-        {posts.length >= 3 && (
-          <div class="md:col-span-2 md:row-span-2">
-            <Card post={posts[0]} />
-          </div>
-          <div class="md:col-span-2 md:col-start-3">
-            <Card post={posts[1]} />
-          </div>
-          <div class="md:col-span-2 md:col-start-3 md:row-start-2">
-            <Card post={posts[2]} />
-          </div>
-        )}
-      </div>
+    <div class="grid md:grid-cols-3 grid-rows-1 gap-10">
+      {
+        posts.length >= 3 &&
+          posts.map((post) => (
+            <div>
+              <Card post={post} />
+            </div>
+          ))
+      }
+    </div>
+
+    <div class="absolute -right-30 -bottom-10 z-20">
+      <svg
+        class="w-full max-w-2xl mx-auto"
+        viewBox="200 -100 350 300"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- Define the invisible path -->
+        <defs>
+          <path id="arcDondeSiempreSopla" d="M 1 -1 Q 510 474 564 -357"></path>
+        </defs>
+
+        <!-- Text that follows the path -->
+        <text
+          font-size="32"
+          fill="currentColor"
+          font-weight="600"
+          letter-spacing="3"
+        >
+          <textPath
+            href="#arcDondeSiempreSopla"
+            startOffset="50%"
+            text-anchor="middle"
+            class="font-salted text-brand-blue"
+          >
+            DONDE SIEMPRE SOPLAAA
+          </textPath>
+        </text>
+      </svg>
     </div>
   </div>
 </section>

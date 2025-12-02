@@ -20,18 +20,24 @@ export const ui = {
     "about-us.title": "About Us",
     "about-us.summary":
       "FAUNA is born first from the friendship between Lucca and Facu, who met at 14 years old and since then share two great passions: outdoor sports and music (they even formed a rock duo in their teens).",
+    "about-us.button": "Who We Are",
+    "the-spot.title": "El Spot: Cuesta Del Viento ",
+    "the-spot.summary":
+      "Donde siempre sopla: El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta del Viento sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
+    "the-spot.button": "Know Cuesta Del Viento",
+    "services.button": "SEE MORE",
     "services.courses.title": "Classes & Courses",
     "services.courses.summary":
-      "Learning with FAUNA is much more than learning Kite or WingFoil: it's living a complete experience, in contact with nature and surrounded by good energy.",
+      "Live the complete experience, in contact with nature and surrounded by good energy.",
     "services.kitecamps.title": "Kite Camps",
     "services.kitecamps.summary":
       "A KiteCamp is a unique opportunity to progress, enjoy and meet new people who vibe just like you.",
     "services.rental.title": "Rental",
     "services.rental.summary":
-      "Do you already know how to navigate but still don't have your own equipment? Are you coming to Cuesta del Viento and need a smaller size?",
+      "Do you already know how to navigate but still don't have your own equipment?",
     "services.tours.title": "Tours",
     "services.tours.summary":
-      "During the Argentine winter, the kite season at Cuesta del Viento ends, but the Fauna community doesn't stay still: we organize unique experiences in different destinations in Argentina and the world, combining sport, nature and friendship.",
+      "We organize unique experiences in different destinations in Argentina and the world, combining sport, nature and friendship.",
     "newsletter.title": "Join the Adventure",
     "newsletter.subtitle":
       "Get the latest news, kite tips, wind conditions and exclusive events from our community.",
@@ -149,19 +155,25 @@ export const ui = {
       "En FAUNA creemos que el kite es solo la excusa para encontrarnos. Lo que realmente nos mueve es la gente, los momentos compartidos y esa energía única que se genera entre los que amamos el viento, el agua y la naturaleza.",
     "about-us.title": "Sobre Nosotros",
     "about-us.summary":
-      "FAUNA nace primero de la amistad entre Lucca y Facu, que se conocieron con 14 años y desde entonces comparten dos grandes pasiones: el deporte al aire libre y la música (hasta armaron un dúo de rock en la adolescencia).",
+      "Somos una comunidad de vientos. Porque el kite es solo la excusa perfecta para encontrarnos, compartir y disfrutar de lo que nos gusta: el deporte y la naturaleza. FAUNA es más que una escuela: un lugar de encuentro donde el kite es una experiencia compartida, el aprendizaje un camino divertido y cada persona que llega, un nuevo amigo.",
+    "about-us.button": "Quienes Somos",
+    "the-spot.title": "El Spot: Cuesta Del Viento ",
+    "the-spot.summary":
+      "Donde siempre sopla: El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta del Viento sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
+    "the-spot.button": "Conoce Cuesta del Viento",
+    "services.button": "VER MÁS",
     "services.courses.title": "Cursos & Clases",
     "services.courses.summary":
-      "Aprender con FAUNA es mucho más que aprender Kite o WingFoil: es vivir una experiencia completa, en contacto con la naturaleza y rodeado de buena energía.",
+      "Viví una experiencia completa, en contacto con la naturaleza y rodeado de buena energía.",
     "services.kitecamps.title": "Kite Camps",
     "services.kitecamps.summary":
       "Un KiteCamp es una oportunidad única para progresar, disfrutar y conocer gente nueva que vibra igual que vos.",
-    "services.rental.title": "Alquiler",
+    "services.rental.title": "Rental",
     "services.rental.summary":
-      "¿Ya sabés navegar pero todavía no tenés tu propio equipo? ¿Venís a Cuesta del Viento y necesitás una medida más pequeña?",
+      "¿Ya sabés navegar pero todavía no tenés tu propio equipo?",
     "services.tours.title": "Viajes",
     "services.tours.summary":
-      "Durante el invierno argentino, la temporada de kite en Cuesta del Viento termina, pero la comunidad de Fauna no se queda quieta: organizamos experiencias únicas en distintos destinos de Argentina y del mundo, combinando deporte, naturaleza y amistad.",
+      "Organizamos experiencias únicas en distintos destinos de Argentina y del mundo, combinando deporte, naturaleza y amistad.",
     "newsletter.title": "Sumate a la Comunidad",
     "newsletter.subtitle":
       "Recibí las últimas novedades, tips de kite, condiciones del viento y eventos exclusivos de nuestra comunidad.",

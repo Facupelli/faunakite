@@ -9,6 +9,12 @@ export async function getNews(): Promise<News[]> {
   );
 }
 
+export async function getLatestNews(): Promise<News[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "news" && defined(slug.current)] | order(_createdAt desc) [0...3]`
+  );
+}
+
 export async function getSingleNews(slug: string): Promise<News> {
   return await sanityClient.fetch(
     groq`*[_type == "news" && slug.current == $slug][0]`,

@@ -1,5 +1,5 @@
 ---
-import Palmeras from "./svg/palmeras.astro";
+import BrushStain from "../components/svg/newsletter-background.astro";
 import { useTranslations } from "../i18n/utils";
 import { actions } from "astro:actions";
 import { isInputError } from "astro:actions";
@@ -11,26 +11,17 @@ const result = Astro.getActionResult(actions.newsletter.subscribe);
 const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 ---
 
-<section>
-  <div>
-    <div class="relative bg-dorado px-4">
-      <h2
-        class="relative z-30 max-w-2xl mx-auto uppercase font-salted text-6xl pb-4 text-center"
-      >
+<div class="py-10">
+  <section class="relative z-10 max-w-5xl mx-auto py-10">
+    <div class="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
+      <BrushStain class="w-full h-full text-2" />
+    </div>
+
+    <div class="relative z-10 max-w-2xl mx-auto">
+      <h2 class="uppercase font-salted text-5xl text-center">
         {t("newsletter.title")}
       </h2>
 
-      <div
-        class="absolute left-0 -bottom-2 w-full aspect-[1.4/1] z-10 overflow-hidden"
-        aria-hidden="true"
-      >
-        <div class="absolute w-full h-full block text-brand-green">
-          <Palmeras />
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-brand-brown-mid pb-20">
       <div
         class="px-4 max-w-2xl mx-auto flex gap-y-6 flex-col items-center pt-4 text-lg"
       >
@@ -44,11 +35,11 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {};
             placeholder="Escriba su email"
             required
             name="email"
-            class="w-full rounded-xl bg-white/95 border-2 border-white h-10 text-base text-brand-blue px-4 tracking-wide focus:border-brand-green focus:ring-brand-green"
+            class="w-full rounded-xl bg-white/95 border-white h-10 text-base text-brand-blue px-4 tracking-wide focus:border-brand-green focus:ring-brand-green"
           />
           <button
             type="submit"
-            class="py-2 px-6 rounded-xl bg-brand-brown-light text-white"
+            class="py-2 px-6 rounded-xl bg-brand-blue font-bold text-white"
           >
             {t("newsletter.button")}
           </button>
@@ -90,8 +81,8 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {};
         </dialog>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
 <script>
   import { actions } from "astro:actions";

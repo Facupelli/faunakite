@@ -5,10 +5,8 @@ const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
 ---
 
-<section
-  class="relative h-[calc(100dvh-5rem)] w-full flex items-center bg-brand-blue"
->
-  <div class="absolute h-dvh inset-0 z-20 flex justify-end">
+<section class="relative h-dvh w-full flex items-center bg-brand-blue">
+  <!-- <div class="absolute h-dvh inset-0 z-20 flex justify-end">
     <div class="relative w-full md:w-1/2 h-full">
       <video
         poster="/logos/logo-blanco-square.png"
@@ -27,30 +25,57 @@ const t = useTranslations(lang);
       >
       </div>
     </div>
-    {/* Solid color background on left side for desktop */}
-    <div
-      class="hidden md:block absolute left-0 top-0 bottom-0 w-1/2 bg-primary"
-    >
-    </div>
-  </div>
+  </div> -->
 
-  <div class="relative z-30 w-full px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex justify-center">
+  <div
+    class="relative min-h-screen flex items-center justify-center gap-20 w-full"
+  >
+    <div class="space-y-4 flex flex-col justify-center items-center">
+      <div class="max-w-2xl mx-auto">
         <h1
           class="font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight text-balance font-helvetica"
         >
           <!-- {t("hero.title")} -->
-          <span class="block text-center"> MÁS QUE UNA ESCUELA </span>
-          <span class="text-brand-brown-light block">
-            UNA COMUNIDAD DE VIENTOS</span
-          >
+          <span class="block"> MÁS QUE UNA ESCUELA </span>
+          <span class="text-brand-red block"> UNA COMUNIDAD DE VIENTOS</span>
         </h1>
-        <!-- <p
-              class="text-lg sm:text-xl text-white/95 max-w-2xl text-pretty leading-relaxed"
-            >
-              {t("hero.subtitle")}
-            </p> -->
+      </div>
+
+      <p
+        class="text-lg sm:text-xl text-white/95 max-w-2xl text-pretty leading-relaxed"
+      >
+        {t("hero.subtitle")}
+      </p>
+    </div>
+
+    <div
+      class="relative flex items-center justify-center py-24 lg:py-0 order-1 lg:order-2"
+    >
+      {/* Background Glow */}
+      <div
+        class="absolute inset-0 flex items-center justify-center pointer-events-none"
+      >
+        <div
+          class="w-[400px] h-[600px] bg-brand-red/20 blur-[100px] rounded-full"
+        >
+        </div>
+      </div>
+
+      {/* Video Container */}
+      <div
+        class="relative w-[280px] sm:w-[320px] md:w-[360px] aspect-9/16 rounded-2xl overflow-hidden ring-[6px] ring-brand-red/10"
+      >
+        <video
+          poster="/logos/logo-blanco-square.png"
+          autoplay
+          loop
+          muted
+          playsinline
+          class="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/about.webm" type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </div>

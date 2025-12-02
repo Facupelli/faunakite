@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import theSpotPhoto from "../assets/the-spot-photo.svg";
+import SunAndMountain from "./svg/sun-and-mountain.astro";
+import AboutUsUnderSeparator from "./svg/about-us-under-separator.astro";
+import { useTranslations } from "../i18n/utils";
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+---
+
+<section>
+  <div class="bg-brand-red py-20">
+    <div class="relative max-w-6xl mx-auto">
+      <div
+        class="absolute -right-[50px] top-24 w-[150px] h-[150px] z-30 text-white"
+      >
+        <SunAndMountain />
+      </div>
+
+      <div class="py-10">
+        <h2 class="uppercase font-salted text-5xl text-center">
+          {t("the-spot.title")}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 place-items-center gap-8">
+        <div class="md:col-span-3 w-full h-full">
+          <Image
+            src={theSpotPhoto}
+            alt="Cuesta del Viento"
+            class="w-full object-cover"
+            fetchpriority="auto"
+          />
+        </div>
+
+        <div class="md:col-span-2 space-y-4">
+          <p class="text-lg text-pretty">
+            {t("the-spot.summary")}
+          </p>
+
+          <div class="flex justify-center">
+            <a
+              href={`/${lang}/the-spot`}
+              class="bg-white font-bold px-6 py-2 text-brand-red rounded-4xl"
+            >
+              {t("the-spot.button")}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-brand-red">
+    <AboutUsUnderSeparator />
+  </div>
+</section>
