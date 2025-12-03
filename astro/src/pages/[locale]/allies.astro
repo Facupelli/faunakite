@@ -4,62 +4,141 @@ import Footer from "../../components/footer.astro";
 import Nav from "../../components/nav.astro";
 import Layout from "../../layouts/Layout.astro";
 import { urlFor } from "../../modules/news/image.utils";
-import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
 }
 
 const allies = await getAllies();
+
+// Helper function to generate optimized image URLs
+function getOptimizedImageUrl(
+  image: any,
+  width: number,
+  format: "webp" = "webp"
+) {
+  return urlFor(image).width(width).format(format).quality(85).url();
+}
+
+// Generate srcset for responsive images
+function generateSrcSet(image: any, format: "webp" = "webp") {
+  const sizes = [400, 600, 800, 1000];
+  return sizes
+    .map((size) => `${getOptimizedImageUrl(image, size, format)} ${size}w`)
+    .join(", ");
+}
 ---
 
 <Layout title="Fauna Aliados">
+  <Fragment slot="head">
+    {
+      allies[0]?.image && (
+        <>
+          <link
+            rel="preload"
+            as="image"
+            href={getOptimizedImageUrl(allies[0].image, 800, "webp")}
+            type="image/webp"
+            imagesrcset={generateSrcSet(allies[0].image, "webp")}
+            imagesizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </>
+      )
+    }
+  </Fragment>
+
   <header>
     <Nav />
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 md:px-10 pt-20">
-    <div class="pt-10">
-      <h1 class="uppercase text-4xl">Aliados</h1>
-    </div>
+  <main class="min-h-dvh bg-brand-blue">
+    <div class="max-w-7xl mx-auto px-4 md:px-10 pt-20">
+      <div class="pt-10">
+        <h1 class="uppercase text-4xl">Aliados</h1>
+      </div>
 
-    <div class="py-10">
-      <div class="grid md:grid-cols-2 gap-10">
-        {
-          allies.map((ally) => (
-            <div class="relative rounded-4xl h-full w-full bg-white text-brand-blue">
-              {ally.image !== undefined && (
-                <div class="relative h-[55%] w-full">
-                  <img
-                    src={urlFor(ally.image).url()}
-                    alt={ally.image.alt}
-                    class="object-cover w-full h-full rounded-t-4xl"
-                  />
-                </div>
-              )}
-
-              {ally.link !== undefined && (
-                <div class="absolute top-[calc(55%-20px)] right-4 bg-brand-blue border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
-                  <a href={ally.link} target="_blank" rel="noopener noreferrer">
-                    <Icon name="move-up-right" />
-                  </a>
-                </div>
-              )}
-
-              <div class="p-4 space-y-4 ">
-                <h2 class="text-2xl font-bold">{ally.title}</h2>
-                <p>{ally.description}</p>
-
-                {ally.phone !== undefined && (
-                  <div>
-                    <span class="pr-2">Teléfono:</span>
-                    <a href={`tel:${ally.phone}`}>{ally.phone}</a>
+      <div class="py-10">
+        <div class="grid md:grid-cols-2 gap-10">
+          {
+            allies.map((ally, index) => (
+              <div class="relative rounded-4xl h-full w-full bg-white text-brand-blue">
+                {ally.image !== undefined && (
+                  <div class="relative h-[55%] w-full">
+                    <picture>
+                      {/* AVIF - best compression */}
+                      <source
+                        type="image/avif"
+                        srcset={generateSrcSet(ally.image, "webp")}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      {/* WebP - good compression with broad support */}
+                      <source
+                        type="image/webp"
+                        srcset={generateSrcSet(ally.image, "webp")}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      {/* Fallback */}
+                      <img
+                        src={getOptimizedImageUrl(ally.image, 800)}
+                        srcset={generateSrcSet(ally.image)}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt={ally.image.alt || ally.title}
+                        width="800"
+                        height="800"
+                        loading={index < 2 ? "eager" : "lazy"}
+                        fetchpriority={index === 0 ? "high" : "auto"}
+                        decoding={index < 2 ? "sync" : "async"}
+                        class="object-cover w-full h-full rounded-t-4xl"
+                      />
+                    </picture>
                   </div>
                 )}
+
+                {ally.link !== undefined && (
+                  <div class="absolute top-[calc(55%-20px)] right-4 bg-brand-blue border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
+                    <a
+                      href={ally.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visitar sitio web de ${ally.title}`}
+                    >
+                      {/* Inline SVG - replaces astro-icon dependency */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 7h10v10" />
+                        <path d="M7 17 17 7" />
+                      </svg>
+                    </a>
+                  </div>
+                )}
+
+                <div class="p-4 space-y-4">
+                  <h2 class="text-2xl font-bold">{ally.title}</h2>
+                  <p>{ally.description}</p>
+
+                  {ally.phone !== undefined && (
+                    <div>
+                      <span class="pr-2">Teléfono:</span>
+                      <a href={`tel:${ally.phone}`} class="hover:underline">
+                        {ally.phone}
+                      </a>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))
-        }
+            ))
+          }
+        </div>
       </div>
     </div>
   </main>
