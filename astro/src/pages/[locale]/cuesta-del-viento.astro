@@ -1,0 +1,20 @@
+---
+import Nav from "../../components/nav.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
+}
+---
+
+<Layout title="Cuesta del Viento | Fauna Kite ">
+  <header>
+    <Nav />
+  </header>
+
+  <main class="min-h-dvh bg-brand-blue">
+    <div class="pt-20">
+      <h1>El Spot: Cuesta Del Viento</h1>
+    </div>
+  </main>
+</Layout>

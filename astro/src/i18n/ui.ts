@@ -7,9 +7,9 @@ export const defaultLang = "es";
 
 export const ui = {
   en: {
-    "nav.courses": "Courses",
-    "nav.rental": "Rental",
-    "nav.kitecamps": "Kitecamps",
+    "nav.services": "Services",
+    "nav.about": "About",
+    "nav.spot": "The Spot",
     "nav.allies": "Allies",
     "nav.news": "News",
     "nav.store": "Store",
@@ -149,9 +149,9 @@ export const ui = {
       "We couldn't find a booking with the ID you provided.",
   },
   es: {
-    "nav.courses": "Cursos",
-    "nav.rental": "Rental",
-    "nav.kitecamps": "Kitecamps",
+    "nav.services": "Servicios",
+    "nav.about": "Nosotros",
+    "nav.spot": "El Spot",
     "nav.allies": "Aliados",
     "nav.news": "Noticias",
     "nav.store": "Tienda",

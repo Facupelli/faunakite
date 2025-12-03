@@ -1,0 +1,20 @@
+---
+import Nav from "../../components/nav.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
+}
+---
+
+<Layout title="Quienes Somos | Fauna Kite ">
+  <header>
+    <Nav />
+  </header>
+
+  <main class="min-h-dvh bg-brand-blue">
+    <div class="pt-20">
+      <h1>QUIENES SOMOS</h1>
+    </div>
+  </main>
+</Layout>

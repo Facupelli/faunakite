@@ -4,9 +4,9 @@ import type { TiendaNubeProduct } from "../modules/store/tiendanube/types";
 import { getProducts, formatPrice } from "../modules/store/tiendanube/utils";
 import Trees from "./svg/trees.astro";
 import { useTranslations } from "../i18n/utils";
+import { storeUrl } from "../modules/store/constants";
 
 const products: TiendaNubeProduct[] | null = await getProducts();
-const storeUrl = "https://faunakite.mitiendanube.com";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
