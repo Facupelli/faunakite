@@ -62,6 +62,8 @@ const services = [
               <Image
                 src={service.image || "/placeholder.svg"}
                 alt={service.title}
+                widths={[400, 665, 800, 1200]}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 665px"
                 class="object-cover transition-transform duration-500 group-hover:scale-105 h-full w-full"
               />
 
