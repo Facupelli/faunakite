@@ -17,14 +17,6 @@ export const ui = {
     "hero.title": "MORE THAN A SCHOOL, A COMMUNITY OF WINDS",
     "hero.subtitle":
       "At FAUNA we believe that kite is just an excuse to meet. What really moves us is the people, the shared moments and that unique energy generated among those of us who love the wind, water and nature.",
-    "about-us.title": "About Us",
-    "about-us.summary":
-      "FAUNA is born first from the friendship between Lucca and Facu, who met at 14 years old and since then share two great passions: outdoor sports and music (they even formed a rock duo in their teens).",
-    "about-us.button": "Who We Are",
-    "the-spot.title": "El Spot: Cuesta Del Viento ",
-    "the-spot.summary":
-      "Donde siempre sopla: El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta del Viento sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
-    "the-spot.button": "Know Cuesta Del Viento",
     "services.button": "SEE MORE",
     "services.courses.title": "Classes & Courses",
     "services.courses.summary":
@@ -38,6 +30,20 @@ export const ui = {
     "services.tours.title": "Tours",
     "services.tours.summary":
       "We organize unique experiences in different destinations in Argentina and the world, combining sport, nature and friendship.",
+    "about-us.title": "About Us",
+    "about-us.summary":
+      "FAUNA is born first from the friendship between Lucca and Facu, who met at 14 years old and since then share two great passions: outdoor sports and music (they even formed a rock duo in their teens).",
+    "about-us.button": "Who We Are",
+    "the-spot.title": "El Spot: Cuesta Del Viento ",
+    "the-spot.summary":
+      "Donde siempre sopla: El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta del Viento sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
+    "the-spot.button": "Know Cuesta Del Viento",
+    "testimonials.title": "What Our Riders Say",
+    "testimonials.subtitle":
+      "Experiencias reales de estudiantes que confiaron en nosotros para comenzar su aventura en el kitesurf",
+    "products.title": "Our Collection",
+    "products.subtitle":
+      "Ropa diseñada para riders que buscan estilo, comodidad y protección en el agua",
     "newsletter.title": "Join the Adventure",
     "newsletter.subtitle":
       "Get the latest news, kite tips, wind conditions and exclusive events from our community.",
@@ -153,14 +159,6 @@ export const ui = {
     "hero.title": "MÁS QUE UNA ESCUELA, UNA COMUNIDAD DE VIENTOS",
     "hero.subtitle":
       "En FAUNA creemos que el kite es solo la excusa para encontrarnos. Lo que realmente nos mueve es la gente, los momentos compartidos y esa energía única que se genera entre los que amamos el viento, el agua y la naturaleza.",
-    "about-us.title": "Sobre Nosotros",
-    "about-us.summary":
-      "Somos una comunidad de vientos. Porque el kite es solo la excusa perfecta para encontrarnos, compartir y disfrutar de lo que nos gusta: el deporte y la naturaleza. FAUNA es más que una escuela: un lugar de encuentro donde el kite es una experiencia compartida, el aprendizaje un camino divertido y cada persona que llega, un nuevo amigo.",
-    "about-us.button": "Quienes Somos",
-    "the-spot.title": "El Spot: Cuesta Del Viento ",
-    "the-spot.summary":
-      "Donde siempre sopla: El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta del Viento sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
-    "the-spot.button": "Conoce Cuesta del Viento",
     "services.button": "VER MÁS",
     "services.courses.title": "Cursos & Clases",
     "services.courses.summary":
@@ -174,6 +172,20 @@ export const ui = {
     "services.tours.title": "Viajes",
     "services.tours.summary":
       "Organizamos experiencias únicas en distintos destinos de Argentina y del mundo, combinando deporte, naturaleza y amistad.",
+    "about-us.title": "Sobre Nosotros",
+    "about-us.summary":
+      "Somos una comunidad de vientos. Porque el kite es solo la excusa perfecta para encontrarnos, compartir y disfrutar de lo que nos gusta: el deporte y la naturaleza. FAUNA es más que una escuela: un lugar de encuentro donde el kite es una experiencia compartida, el aprendizaje un camino divertido y cada persona que llega, un nuevo amigo.",
+    "about-us.button": "Quienes Somos",
+    "the-spot.title": "El Spot: Cuesta Del Viento ",
+    "the-spot.summary":
+      "Donde siempre sopla: El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta del Viento sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
+    "the-spot.button": "Conoce Cuesta del Viento",
+    "testimonials.title": "Lo Que Dicen Nuestros Riders",
+    "testimonials.subtitle":
+      "Experiencias reales de estudiantes que confiaron en nosotros para comenzar su aventura en el kitesurf",
+    "products.title": "Nuestra Colección",
+    "products.subtitle":
+      "Ropa diseñada para riders que buscan estilo, comodidad y protección en el agua",
     "newsletter.title": "Sumate a la Comunidad",
     "newsletter.subtitle":
       "Recibí las últimas novedades, tips de kite, condiciones del viento y eventos exclusivos de nuestra comunidad.",

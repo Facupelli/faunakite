@@ -11,6 +11,7 @@ import ProductsCarousel from "../../components/products-carousel.astro";
 import Newsletter from "../../components/newsletter.astro";
 import TheSpot from "../../components/the-spot.astro";
 import Community from "../../components/community.astro";
+import Testimonials from "../../components/testimonials.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -27,6 +28,7 @@ export async function getStaticPaths() {
     <Services />
     <AboutUs />
     <TheSpot />
+    <Testimonials />
     <ProductsCarousel />
     <Newsletter />
     <News />

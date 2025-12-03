@@ -1,0 +1,78 @@
+---
+import { useTranslations } from "../i18n/utils";
+
+const testimonials = [
+  {
+    name: "Marina López",
+    country: "Argentina",
+    age: 29,
+    description:
+      "Nunca había probado el kitesurf y en Rodeo me sentí segura desde el primer día. Los instructores explican todo con paciencia y el lago es perfecto para aprender. Terminé levantando la cometa sola en mi tercera clase.",
+  },
+  {
+    name: "Tom Becker",
+    country: "Germany",
+    age: 34,
+    description:
+      "Viajé por recomendación y superó mis expectativas. Viento constante, agua tranquila y un ambiente muy amigable. Hice el curso intensivo de tres días y pude hacer mis primeros rides por mi cuenta.",
+  },
+  {
+    name: "Camila Rivas",
+    country: "Chile",
+    age: 22,
+    description:
+      "La escuela es súper profesional y el lugar es increíble. Me encantó que las clases sean personalizadas y siempre prioricen la seguridad. Ahora quiero volver en verano para seguir progresando.",
+  },
+];
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+---
+
+<section class="relative w-full py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2
+        class="text-4xl md:text-5xl font-bold text-brand-blue font-salted mb-4"
+      >
+        {t("testimonials.title")}
+      </h2>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        {t("testimonials.subtitle")}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        testimonials.map((testimonial) => (
+          <article class="group relative z-30 bg-white rounded-3xl p-8 shadow-news-card transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+            <div>
+              <h3 class="text-2xl font-bold text-slate-900 mb-2">
+                {testimonial.name}
+              </h3>
+
+              <div class="flex items-center gap-2 mb-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-linear-to-r from-cyan-100 to-blue-100 text-cyan-700">
+                  {testimonial.country}
+                </span>
+                <span class="text-sm text-slate-500">
+                  · {testimonial.age} años
+                </span>
+              </div>
+
+              <p class="text-slate-600 leading-relaxed">
+                {testimonial.description}
+              </p>
+            </div>
+
+            <div class="absolute bottom-0 right-0 size-24 opacity-10 group-hover:opacity-20 transition-opacity">
+              <svg viewBox="0 0 100 100" class="text-3" fill="currentColor">
+                <path d="M0,50 Q25,30 50,50 T100,50 L100,100 L0,100 Z" />
+              </svg>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
