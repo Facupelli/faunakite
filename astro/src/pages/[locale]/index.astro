@@ -19,6 +19,10 @@ export async function getStaticPaths() {
 ---
 
 <Layout>
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
+  </Fragment>
+
   <header>
     <Nav />
   </header>

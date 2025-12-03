@@ -19,12 +19,18 @@ const enumT = useEnumTranslations(lang);
 const result = Astro.getActionResult(actions.book.createBooking);
 const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 
+const TURNSTILE_BOOKED_SITE_KEY = "0x4AAAAAACEmkC__Q9DUyDof";
+
 if (result && !result.error) {
   return Astro.redirect(`/${lang}/booked-success`);
 }
 ---
 
 <Layout>
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
+  </Fragment>
+
   <main class="bg-brand-blue min-h-dvh">
     <div class="text-center py-10 space-y-2">
       <h1 class="text-xl mb-0">{t("booked.title")}</h1>
@@ -743,6 +749,15 @@ if (result && !result.error) {
         <p class="text-lg mb-4">
           {t("booked.footer.message")}
         </p>
+
+        <div
+          class="cf-turnstile"
+          data-sitekey={TURNSTILE_BOOKED_SITE_KEY}
+          data-theme="light"
+          data-size="normal"
+        >
+        </div>
+
         <button
           type="submit"
           class="bg-white cursor-pointer text-brand-blue font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-md"
@@ -753,3 +768,6 @@ if (result && !result.error) {
     </form>
   </main>
 </Layout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
+></script>

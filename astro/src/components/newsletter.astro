@@ -9,6 +9,8 @@ const t = useTranslations(lang);
 
 const result = Astro.getActionResult(actions.newsletter.subscribe);
 const inputErrors = isInputError(result?.error) ? result.error.fields : {};
+
+const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
 ---
 
 <div class="py-10">
@@ -37,6 +39,13 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {};
             name="email"
             class="w-full rounded-xl bg-white/95 border-white h-10 text-base text-brand-blue px-4 tracking-wide focus:border-brand-green focus:ring-brand-green"
           />
+
+          <div
+            class="cf-turnstile"
+            data-sitekey={TURNSTILE_NEWSLETTER_SITE_KEY}
+          >
+          </div>
+
           <button
             type="submit"
             class="py-2 px-6 cursor-pointer rounded-xl bg-brand-blue font-bold text-white"
@@ -83,6 +92,9 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {};
     </div>
   </section>
 </div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
+></script>
 
 <script>
   import { actions } from "astro:actions";

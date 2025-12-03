@@ -19,6 +19,7 @@ import {
   sendMail,
 } from "../modules/booking/nodemailer/utils";
 import type { CreateBookingResult } from "../modules/booking/use-cases/create-booking.use-case";
+import { TURNSTILE_BOOKED_SECRET_KEY } from "astro:env/server";
 
 // TODO: make idempotent
 export const book = {
@@ -26,6 +27,9 @@ export const book = {
     accept: "form",
     input: z
       .object({
+        "cf-turnstile-response": z
+          .string()
+          .min(1, "Captcha verification required"),
         // SECTION 1: Personal Data
         customerName: z.string().min(1, "El nombre es requerido"),
         birthDate: z.coerce.date(),
@@ -81,6 +85,38 @@ export const book = {
         path: ["departureDate"],
       }),
     handler: async (input, context) => {
+      const turnstileToken = input["cf-turnstile-response"];
+
+      console.log({ turnstileToken });
+
+      try {
+        const verificationResponse = await fetch(
+          "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              secret: TURNSTILE_BOOKED_SECRET_KEY,
+              response: turnstileToken,
+            }),
+          }
+        );
+
+        const verification = await verificationResponse.json();
+
+        console.log({ verification });
+
+        if (!verification.success) {
+          throw new Error("Captcha verification failed");
+        }
+      } catch (error) {
+        console.error("Turnstile validation error:", error);
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Captcha Error",
+        });
+      }
+
       let bookingResult: CreateBookingResult | undefined;
 
       try {

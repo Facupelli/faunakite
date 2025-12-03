@@ -61,6 +61,14 @@ export default defineConfig({
         context: "server",
         access: "secret",
       }),
+      TURNSTILE_BOOKED_SECRET_KEY: envField.string({
+        context: "server",
+        access: "public",
+      }),
+      TURNSTILE_NEWSLETTER_SECRET_KEY: envField.string({
+        context: "server",
+        access: "public",
+      }),
     },
   },
 
@@ -72,11 +80,14 @@ export default defineConfig({
     },
   },
 
-  integrations: [sanity({
-    projectId: SANITY_STUDIO_PROJECT_ID,
-    dataset: SANITY_STUDIO_DATASET,
-    useCdn: false, // for static builds
-  }), icon()],
+  integrations: [
+    sanity({
+      projectId: SANITY_STUDIO_PROJECT_ID,
+      dataset: SANITY_STUDIO_DATASET,
+      useCdn: false, // for static builds
+    }),
+    icon(),
+  ],
 
   vite: {
     plugins: [tailwindcss()],
