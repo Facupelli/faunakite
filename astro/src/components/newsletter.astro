@@ -56,20 +56,24 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
 
         <dialog
           id="newsletter-dialog"
-          class="rounded-lg shadow-xl backdrop:bg-black backdrop:opacity-50 p-0 border-0 max-w-sm w-full fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          class="rounded-lg shadow-xl backdrop:bg-black backdrop:opacity-50 p-0 border-0 max-w-lg w-full fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         >
           <div class="p-6">
-            <div class="flex pb-4 justify-center">
-              <span class="font-salted text-4xl">FAUNA KITE NEWSLETTER</span>
+            <div class="flex justify-center text-2xl">
+              <span class="font-salted pr-2"> FAUNA KITE</span>
             </div>
-            <div class="flex items-start gap-4">
+            <div class="flex pb-4 justify-center text-4xl">
+              <span class="font-bold">NEWSLETTER</span>
+            </div>
+
+            <div class="flex items-center gap-4">
               <div
                 id="dialog-icon"
                 class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
               >
                 <!-- Icon will be injected via JS -->
               </div>
-              <div class="flex-1 flex items-center">
+              <div class="space-y-2">
                 <h3
                   id="dialog-title"
                   class="text-lg font-semibold text-gray-900"
@@ -149,7 +153,7 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
     ) as HTMLInputElement;
 
     submitButton.disabled = true;
-    submitButton.textContent = "Sending...";
+    submitButton.textContent = "Enviando...";
 
     try {
       const formData = new FormData(form);
@@ -165,7 +169,7 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
         showDialog(
           true,
           "¡Suscripción exitosa!",
-          data?.message || "¡Gracias por suscribirte a nuestro boletín."
+          data?.message || "Gracias por suscribirte a nuestro boletín"
         );
         form.reset();
       }
