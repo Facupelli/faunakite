@@ -15,20 +15,22 @@ const t = useTranslations(lang);
   </div>
 
   <div class="relative z-40 bg-brand-red py-20">
-    <div class="relative max-w-6xl mx-auto">
+    <div class="relative max-w-6xl mx-auto px-4">
       <div
-        class="absolute -left-[100px] bottom-0 w-[110px] h-[60px] z-30 text-white"
+        class="hidden md:block absolute -left-[100px] bottom-0 w-[110px] h-[60px] z-30 text-white"
       >
         <Cactuses />
       </div>
 
       <h2
-        class="text-center z-40 pt-10 pl-10 uppercase text-5xl pb-10 font-salted"
+        class="text-center z-40 pt-10 md:pl-10 uppercase text-5xl pb-10 font-salted"
       >
         {t("about-us.title")}
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-5 place-items-center gap-8">
+      <div
+        class="flex flex-col-reverse md:grid md:grid-cols-5 place-items-center gap-8"
+      >
         <div class="space-y-4 md:col-span-2">
           <p class="text-lg text-pretty">
             {t("about-us.summary")}

@@ -9,7 +9,7 @@ const posts: News[] = await getLatestNews();
 
 <section class="py-20">
   <div class="relative max-w-7xl mx-auto space-y-8 py-10">
-    <div class="absolute left-10 top-0 z-20">
+    <div class="hidden md:block absolute left-10 top-0 z-20">
       <svg
         class="w-full max-w-2xl mx-auto"
         viewBox="50 -200 250 100"
@@ -39,15 +39,15 @@ const posts: News[] = await getLatestNews();
       </svg>
     </div>
 
-    <div class="flex justify-end pr-20">
+    <div class="flex justify-center md:justify-end md:pr-20">
       <h2
         class="uppercase flex flex-col items-center font-salted px-10 text-brand-red"
       >
-        <span class="text-6xl">Fauna News</span>
+        <span class="text-5xl lg:text-6xl">Fauna News</span>
       </h2>
     </div>
 
-    <div class="grid md:grid-cols-3 grid-rows-1 gap-10">
+    <div class="grid md:grid-cols-3 grid-rows-1 gap-10 px-4">
       {
         posts.length >= 3 &&
           posts.map((post) => (
@@ -58,7 +58,7 @@ const posts: News[] = await getLatestNews();
       }
     </div>
 
-    <div class="absolute -right-30 -bottom-10 z-20">
+    <div class="hidden md:block absolute -right-30 -bottom-10 z-20">
       <svg
         class="w-full max-w-2xl mx-auto"
         viewBox="200 -100 350 300"

@@ -13,7 +13,7 @@ const t = useTranslations(lang);
 ---
 
 <section class="relative z-20 py-20">
-  <div class="absolute z-10 left-0 -top-[250px] w-full">
+  <div class="absolute z-10 left-0 -top-[50px] md:-top-[250px] w-full">
     <Trees />
   </div>
 
@@ -32,7 +32,7 @@ const t = useTranslations(lang);
 
       <div class="scroll-container snap-x snap-mandatory">
         <div
-          class="flex gap-6 md:gap-8 min-w-max md:min-w-0 md:grid md:grid-cols-3"
+          class="gap-6 md:gap-8 min-w-max md:min-w-0 grid grid-cols-1 place-items-center md:grid-cols-3"
         >
           {
             products?.map((product) => (
@@ -69,7 +69,7 @@ const t = useTranslations(lang);
 
         <div class="relative z-20 flex justify-center pt-10">
           <a
-            class="bg-brand-red text-white font-bold w-1/3 text-center py-2 rounded-md"
+            class="bg-brand-red text-white font-bold md:w-1/3 px-6 text-center py-2 rounded-md"
             href={storeUrl}
             target="_blank"
             rel="noopener noreferrer">VISITA LA TIENDA</a
