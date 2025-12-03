@@ -16,17 +16,19 @@ if (bookingId) {
 ---
 
 <Layout title="Verificar Alumno">
-  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-    {
-      booking ? (
-        <VerificationCard
-          studentName={booking.customerName}
-          courseName={booking.courseType}
-          expiryDate={booking.departureDate.toISOString()}
-        />
-      ) : (
-        <BookingNotFound bookingId={bookingId} />
-      )
-    }
+  <div class="bg-brand-blue min-h-dvh">
+    <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+      {
+        booking ? (
+          <VerificationCard
+            studentName={booking.customerName}
+            courseName={booking.courseType}
+            expiryDate={booking.departureDate.toISOString()}
+          />
+        ) : (
+          <BookingNotFound bookingId={bookingId} />
+        )
+      }
+    </div>
   </div>
 </Layout>

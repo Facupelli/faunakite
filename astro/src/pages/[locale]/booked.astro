@@ -25,7 +25,7 @@ if (result && !result.error) {
 ---
 
 <Layout>
-  <main class="">
+  <main class="bg-brand-blue min-h-dvh">
     <div class="text-center py-10 space-y-2">
       <h1 class="text-xl mb-0">{t("booked.title")}</h1>
       <span class="block font-salted text-4xl text-white">FAUNA KITE</span>
@@ -738,14 +738,14 @@ if (result && !result.error) {
       </section>
 
       <div
-        class="bg-linear-to-r from-brand-green to-brand-green/50 rounded-lg shadow-lg p-8 text-center text-white"
+        class="bg-linear-to-r from-celeste-3 to-celeste-2 rounded-lg shadow-lg p-8 text-center text-white"
       >
         <p class="text-lg mb-4">
           {t("booked.footer.message")}
         </p>
         <button
           type="submit"
-          class="bg-white text-brand-blue font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-md"
+          class="bg-white cursor-pointer text-brand-blue font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-md"
         >
           {t("booked.footer.submit")}
         </button>
