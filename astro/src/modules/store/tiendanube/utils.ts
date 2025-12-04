@@ -22,15 +22,3 @@ export async function getProducts(): Promise<TiendaNubeProduct[] | null> {
     return null;
   }
 }
-
-export function formatPrice(value: string): string {
-  const price = parseFloat(value);
-  const formattedPrice = new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: "ARS",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  }).format(price);
-
-  return formattedPrice;
-}

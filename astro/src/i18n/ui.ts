@@ -41,7 +41,7 @@ export const ui = {
     "testimonials.title": "What Our Riders Say",
     "testimonials.subtitle":
       "Experiencias reales de estudiantes que confiaron en nosotros para comenzar su aventura en el kitesurf",
-    "products.title": "Our Collection",
+    "products.title": "Fauna Store",
     "products.subtitle":
       "Ropa diseñada para riders que buscan estilo, comodidad y protección en el agua",
     "newsletter.title": "Join the Adventure",
@@ -165,13 +165,13 @@ export const ui = {
       "Viví una experiencia completa, en contacto con la naturaleza y rodeado de buena energía.",
     "services.kitecamps.title": "Kite Camps",
     "services.kitecamps.summary":
-      "Un KiteCamp es una oportunidad única para progresar, disfrutar y conocer gente nueva que vibra igual que vos.",
+      "Una oportunidad única para progresar, disfrutar y conocer gente que vibra igual que vos.",
     "services.rental.title": "Rental",
     "services.rental.summary":
       "¿Ya sabés navegar pero todavía no tenés tu propio equipo?",
     "services.tours.title": "Viajes",
     "services.tours.summary":
-      "Organizamos experiencias únicas en distintos destinos de Argentina y del mundo, combinando deporte, naturaleza y amistad.",
+      "Organizamos experiencias únicas en distintos destinos combinando deporte, naturaleza y amistad.",
     "about-us.title": "Sobre Nosotros",
     "about-us.summary":
       "Somos una comunidad de vientos. Porque el kite es solo la excusa perfecta para encontrarnos, compartir y disfrutar de lo que nos gusta: el deporte y la naturaleza. FAUNA es más que una escuela: un lugar de encuentro donde el kite es una experiencia compartida, el aprendizaje un camino divertido y cada persona que llega, un nuevo amigo.",
@@ -183,7 +183,7 @@ export const ui = {
     "testimonials.title": "Lo Que Dicen Nuestros Riders",
     "testimonials.subtitle":
       "Experiencias reales de estudiantes que confiaron en nosotros para comenzar su aventura en el kitesurf",
-    "products.title": "Nuestra Colección",
+    "products.title": "Fauna Store",
     "products.subtitle":
       "Ropa diseñada para riders que buscan estilo, comodidad y protección en el agua",
     "newsletter.title": "Sumate a la Comunidad",

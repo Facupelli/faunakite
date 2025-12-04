@@ -43,22 +43,24 @@ const services = [
 ];
 ---
 
-<section class="relative bg-brand-blue py-20">
+<section class="relative py-20">
+  <div class="absolute top-0 w-full h-[200px] bg-brand-blue z-10"></div>
+
   <div
-    class="absolute -top-[100px] left-0 w-full z-20 h-[800px]"
+    class="hidden lg:block absolute -top-[100px] left-0 w-full z-20 h-[800px]"
     aria-hidden="true"
   >
     <ServicesBackground class="w-full h-full" />
   </div>
 
-  <div class="relative z-30 px-4 md:px-10">
+  <div class="relative z-30 px-4 md:px-10 bg-brand-blue lg:bg-transparent">
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto"
     >
       {
         services.map((service) => (
-          <div class="group relative bg-brand-blue rounded-xl overflow-hidden shadow-news-card">
-            <div class="relative h-48 w-full overflow-hidden">
+          <div class="group relative bg-celeste-3  lg:bg-brand-blue rounded-xl overflow-hidden shadow-news-card">
+            <div class="relative h-60 w-full overflow-hidden">
               <Image
                 src={service.image || "/placeholder.svg"}
                 alt={service.title}
@@ -67,7 +69,7 @@ const services = [
                 class="object-cover transition-transform duration-500 group-hover:scale-105 h-full w-full"
               />
 
-              <div class="absolute inset-0 bg-linear-to-t from-3 to-transparent" />
+              <div class="absolute inset-0 bg-linear-to-t from-celeste-3 to-transparent" />
 
               <div class="flex justify-between items-end mb-4 absolute bottom-0 px-8 w-full">
                 <h2 class="text-2xl font-bold text-foreground ">
@@ -81,7 +83,7 @@ const services = [
             </div>
 
             <div class="p-8 pt-4">
-              <p class="text-white leading-relaxed text-pretty">
+              <p class="text-white leading-relaxed text-pretty text-lg lg:text-base">
                 {service.summary}
               </p>
             </div>
@@ -90,10 +92,10 @@ const services = [
       }
     </div>
 
-    <div class="flex justify-center pt-10">
+    <div class="flex justify-center py-10">
       <a
         href={`/${lang}/services`}
-        class="px-6 py-2 bg-brand-blue font-bold rounded-4xl"
+        class="px-6 py-2 lg:bg-brand-blue lg:text-white text-brand-blue bg-white font-bold rounded-4xl"
       >
         {t("services.button")}
       </a>

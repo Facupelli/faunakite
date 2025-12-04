@@ -2,58 +2,51 @@
 import { Image } from "astro:assets";
 import aboutUsImage from "../assets/about-us-photo.webp";
 import { useTranslations } from "../i18n/utils";
-import Cactuses from "./svg/cactuses.astro";
-import AboutUsTopSeparator from "./svg/about-us-top-separator.astro";
+import Trees from "./svg/trees.astro";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
 ---
 
-<section class="relative z-10 bg-brand-blue">
-  <div class="text-brand-red">
-    <AboutUsTopSeparator />
+<section class="relative z-10">
+  <div class="hidden md:block absolute z-10 -left-10 -bottom-[100px] w-full">
+    <Trees />
   </div>
 
-  <div class="relative z-40 bg-brand-red py-20">
-    <div class="relative max-w-6xl mx-auto px-4">
-      <div
-        class="hidden md:block absolute -left-[100px] bottom-0 w-[110px] h-[60px] z-30 text-white"
-      >
-        <Cactuses />
-      </div>
-
+  <div class="relative z-20 py-20">
+    <div class="relative max-w-6xl mx-auto px-4 lg:px-10">
       <h2
-        class="text-center z-40 pt-10 md:pl-10 uppercase text-5xl pb-10 font-salted"
+        class="text-left z-40 pt-10 md:pl-10 uppercase text-brand-red text-5xl pb-10 font-salted"
       >
         {t("about-us.title")}
       </h2>
 
-      <div
-        class="flex flex-col-reverse md:grid md:grid-cols-5 place-items-center gap-8"
-      >
-        <div class="space-y-4 md:col-span-2">
-          <p class="text-lg text-pretty">
-            {t("about-us.summary")}
-          </p>
-
-          <div class="flex justify-center">
-            <a
-              href={`/${lang}/about-us`}
-              class="bg-white font-bold px-6 py-2 text-brand-red rounded-4xl"
-            >
-              {t("about-us.button")}
-            </a>
-          </div>
-        </div>
-
-        <div class="md:col-span-3">
+      <div class="grid md:grid-cols-2 place-items-center gap-8">
+        <div class="">
           <Image
             src={aboutUsImage}
             alt="About us image"
-            class="w-full h-full object-contain"
+            class="w-full h-full object-contain relative z-40"
             fetchpriority="auto"
           />
         </div>
+
+        <div class="space-y-4">
+          <p
+            class="text-lg md:text-xl leading-relaxed text-pretty text-brand-blue bg-white p-4 rounded-2xl shadow-news-card"
+          >
+            {t("about-us.summary")}
+          </p>
+        </div>
+      </div>
+
+      <div class="flex justify-center pt-10">
+        <a
+          href={`/${lang}/about-us`}
+          class="text-white font-bold px-6 py-2 bg-brand-red rounded-4xl"
+        >
+          {t("about-us.button")}
+        </a>
       </div>
     </div>
   </div>

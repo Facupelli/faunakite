@@ -6,13 +6,29 @@ const t = useTranslations(lang);
 ---
 
 <section class="relative h-dvh w-full flex items-center bg-brand-blue">
+  <!-- Mobile Background Image (hidden on md and up) -->
   <div
-    class="relative min-h-screen flex items-center justify-center gap-20 w-full px-4"
+    class="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
+    style="background-image: url('/mobile-hero.webp');"
   >
-    <div class="space-y-4 flex flex-col justify-center items-center">
+  </div>
+
+  <!-- Mobile Overlay (hidden on md and up) -->
+  <div class="absolute inset-0 md:hidden bg-brand-blue/50"></div>
+  <div
+    class="absolute bottom-0 w-full h-[100px] md:hidden bg-linear-to-b from-transparent to-brand-blue"
+  >
+  </div>
+
+  <div
+    class="relative min-h-screen flex items-center justify-center gap-20 w-full px-4 md:px-10"
+  >
+    <div
+      class="space-y-8 md:space-y-4 flex flex-col justify-center items-center"
+    >
       <div class="max-w-2xl mx-auto">
         <h1
-          class="font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight text-balance font-helvetica"
+          class="font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-balance font-helvetica"
         >
           <!-- {t("hero.title")} -->
           <span class="block"> MÁS QUE UNA ESCUELA </span>
@@ -20,9 +36,7 @@ const t = useTranslations(lang);
         </h1>
       </div>
 
-      <p
-        class="text-lg sm:text-xl text-white/95 max-w-2xl text-pretty leading-relaxed"
-      >
+      <p class="text-xl text-white/95 max-w-2xl text-pretty leading-relaxed">
         {t("hero.subtitle")}
       </p>
     </div>
@@ -30,7 +44,7 @@ const t = useTranslations(lang);
     <div
       class="hidden md:flex relative items-center justify-center py-24 lg:py-0 order-1 lg:order-2"
     >
-      {/* Background Glow */}
+      {/* Background Glow - Desktop Only */}
       <div
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
@@ -40,9 +54,9 @@ const t = useTranslations(lang);
         </div>
       </div>
 
-      {/* Video Container */}
+      {/* Video Container - Desktop Only */}
       <div
-        class="relative w-[280px] sm:w-[320px] md:w-[400px] aspect-9/16 rounded-2xl overflow-hidden shadow-news-card"
+        class="relative w-[280px] sm:w-[320px] lg:w-[400px] aspect-9/16 rounded-2xl overflow-hidden shadow-news-card"
       >
         <video
           poster="/logos/logo-blanco-square.png"

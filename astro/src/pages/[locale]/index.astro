@@ -6,11 +6,13 @@ import Layout from "../../layouts/Layout.astro";
 import News from "../../components/news.astro";
 import Footer from "../../components/footer.astro";
 import FooterSeparator from "../../components/svg/footer-separator.astro";
+import FooterTopSeparator from "../../components/svg/footer-top-separator.astro";
 import AboutUs from "../../components/about-us.astro";
-import ProductsCarousel from "../../components/products-carousel.astro";
+import Store from "../../components/store.astro";
 import Newsletter from "../../components/newsletter.astro";
 import TheSpot from "../../components/the-spot.astro";
 import Testimonials from "../../components/testimonials.astro";
+import Community from "../../components/community.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -27,16 +29,15 @@ export async function getStaticPaths() {
     <Services />
     <AboutUs />
     <TheSpot />
-    <Testimonials />
-    <ProductsCarousel />
-    <Newsletter />
     <News />
-
-    <!-- <Community /> -->
+    <Testimonials />
+    <Newsletter />
+    <Store />
+    <Community />
   </main>
 
-  <div class="text-brand-blue">
-    <FooterSeparator />
+  <div class="relative z-10 text-brand-blue bg-celeste-2">
+    <FooterTopSeparator />
   </div>
   <Footer />
 </Layout>

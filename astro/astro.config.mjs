@@ -7,6 +7,8 @@ import { loadEnv } from "vite";
 
 import icon from "astro-icon";
 
+import react from "@astrojs/react";
+
 const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(
   process.env.NODE_ENV,
   process.cwd(),
@@ -80,14 +82,11 @@ export default defineConfig({
     },
   },
 
-  integrations: [
-    sanity({
-      projectId: SANITY_STUDIO_PROJECT_ID,
-      dataset: SANITY_STUDIO_DATASET,
-      useCdn: false, // for static builds
-    }),
-    icon(),
-  ],
+  integrations: [sanity({
+    projectId: SANITY_STUDIO_PROJECT_ID,
+    dataset: SANITY_STUDIO_DATASET,
+    useCdn: false, // for static builds
+  }), icon(), react()],
 
   vite: {
     plugins: [tailwindcss()],

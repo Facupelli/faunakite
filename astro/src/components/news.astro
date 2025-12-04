@@ -1,91 +1,44 @@
 ---
-import { Image } from "astro:assets";
 import Card from "../components/news-card.astro";
 import { getLatestNews } from "../modules/news/utils";
 import type { News } from "../modules/news/utils";
+import Cactuses from "./svg/cactuses.astro";
+import AboutUsUnderSeparator from "./svg/about-us-under-separator.astro";
 
 const posts: News[] = await getLatestNews();
 ---
 
-<section class="py-20">
-  <div class="relative max-w-7xl mx-auto space-y-8 py-10">
-    <div class="hidden md:block absolute left-10 top-0 z-20">
-      <svg
-        class="w-full max-w-2xl mx-auto"
-        viewBox="50 -200 250 100"
-        xmlns="http://www.w3.org/2000/svg"
+<section>
+  <div class="bg-brand-red pb-10">
+    <div class="relative max-w-7xl mx-auto space-y-8 py-10 lg:px-10 px-4">
+      <div
+        class="hidden md:block absolute lg:right-4 xl:-right-10 -bottom-10 w-[110px] h-[60px] z-30 text-white"
       >
-        <!-- Define the invisible path -->
-        <defs>
-          <path id="arcPath" d="M 1 -1 Q 214 -327 341 -2"></path>
-        </defs>
+        <Cactuses />
+      </div>
 
-        <!-- Text that follows the path -->
-        <text
-          font-size="24"
-          fill="currentColor"
-          font-weight="600"
-          letter-spacing="2"
+      <div class="flex justify-center md:justify-end md:pr-20">
+        <h2
+          class="uppercase flex flex-col items-center font-salted px-10 text-WHITE"
         >
-          <textPath
-            href="#arcPath"
-            startOffset="50%"
-            text-anchor="middle"
-            class="font-salted text-brand-blue"
-          >
-            CUESTA DEL VIENTO
-          </textPath>
-        </text>
-      </svg>
-    </div>
+          <span class="text-5xl lg:text-6xl">Fauna News</span>
+        </h2>
+      </div>
 
-    <div class="flex justify-center md:justify-end md:pr-20">
-      <h2
-        class="uppercase flex flex-col items-center font-salted px-10 text-brand-red"
-      >
-        <span class="text-5xl lg:text-6xl">Fauna News</span>
-      </h2>
+      <div class="grid md:grid-cols-3 grid-rows-1 gap-10 px-4">
+        {
+          posts.length >= 3 &&
+            posts.map((post) => (
+              <div>
+                <Card post={post} />
+              </div>
+            ))
+        }
+      </div>
     </div>
+  </div>
 
-    <div class="grid md:grid-cols-3 grid-rows-1 gap-10 px-4">
-      {
-        posts.length >= 3 &&
-          posts.map((post) => (
-            <div>
-              <Card post={post} />
-            </div>
-          ))
-      }
-    </div>
-
-    <div class="hidden md:block absolute -right-30 -bottom-10 z-20">
-      <svg
-        class="w-full max-w-2xl mx-auto"
-        viewBox="200 -100 350 300"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <!-- Define the invisible path -->
-        <defs>
-          <path id="arcDondeSiempreSopla" d="M 1 -1 Q 510 474 564 -357"></path>
-        </defs>
-
-        <!-- Text that follows the path -->
-        <text
-          font-size="32"
-          fill="currentColor"
-          font-weight="600"
-          letter-spacing="3"
-        >
-          <textPath
-            href="#arcDondeSiempreSopla"
-            startOffset="50%"
-            text-anchor="middle"
-            class="font-salted text-brand-blue"
-          >
-            DONDE SIEMPRE SOPLAAA
-          </textPath>
-        </text>
-      </svg>
-    </div>
+  <div class="text-brand-red">
+    <AboutUsUnderSeparator />
   </div>
 </section>

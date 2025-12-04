@@ -1,0 +1,103 @@
+---
+import type { TiendaNubeProduct } from "../modules/store/tiendanube/types";
+import { getProducts } from "../modules/store/tiendanube/utils";
+import { useTranslations } from "../i18n/utils";
+import { storeUrl } from "../modules/store/constants";
+import ProductCarousel from "./products-carrousel";
+
+const products: TiendaNubeProduct[] | null = await getProducts();
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+---
+
+<section class="relative z-20 py-20">
+  <div class="relative max-w-5xl mx-auto px-4 lg:px-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-salted text-brand-red mb-4">
+        {t("products.title")}
+      </h2>
+      <!-- <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        {t("products.subtitle")}
+      </p> -->
+    </div>
+
+    <div class="relative scroll-container snap-x snap-mandatory">
+      <!-- SVG PATH 1 -->
+      <div class="hidden md:block absolute -left-10 -top-32 z-20">
+        <svg
+          class="w-full max-w-2xl mx-auto"
+          viewBox="50 -200 250 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Define the invisible path -->
+          <defs>
+            <path id="arcPath" d="M 1 -1 Q 214 -327 341 -2"></path>
+          </defs>
+
+          <!-- Text that follows the path -->
+          <text
+            font-size="24"
+            fill="currentColor"
+            font-weight="600"
+            letter-spacing="2"
+          >
+            <textPath
+              href="#arcPath"
+              startOffset="50%"
+              text-anchor="middle"
+              class="font-salted text-brand-blue"
+            >
+              CUESTA DEL VIENTO
+            </textPath>
+          </text>
+        </svg>
+      </div>
+
+      <ProductCarousel products={products} client:load />
+
+      <!-- SVG PATH 2 -->
+      <div
+        class="hidden md:block absolute lg:-right-8 xl:-right-30 -bottom-10 z-10"
+      >
+        <svg
+          class="w-full max-w-2xl mx-auto"
+          viewBox="200 -100 350 300"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Define the invisible path -->
+          <defs>
+            <path id="arcDondeSiempreSopla" d="M 1 -1 Q 510 474 564 -357"
+            ></path>
+          </defs>
+
+          <!-- Text that follows the path -->
+          <text
+            font-size="32"
+            fill="currentColor"
+            font-weight="600"
+            letter-spacing="3"
+          >
+            <textPath
+              href="#arcDondeSiempreSopla"
+              startOffset="50%"
+              text-anchor="middle"
+              class="font-salted text-brand-blue"
+            >
+              DONDE SIEMPRE SOPLAAA
+            </textPath>
+          </text>
+        </svg>
+      </div>
+
+      <div class="relative z-20 flex justify-center pt-10">
+        <a
+          class="bg-brand-red text-white font-bold md:w-1/3 px-6 text-center py-2 rounded-md"
+          href={storeUrl}
+          target="_blank"
+          rel="noopener noreferrer">VISITA LA TIENDA</a
+        >
+      </div>
+    </div>
+  </div>
+</section>

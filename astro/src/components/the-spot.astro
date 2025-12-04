@@ -4,16 +4,21 @@ import theSpotPhoto from "../assets/the-spot-photo.svg";
 import SunAndMountain from "./svg/sun-and-mountain.astro";
 import AboutUsUnderSeparator from "./svg/about-us-under-separator.astro";
 import { useTranslations } from "../i18n/utils";
+import TheSpotTopSeparator from "./svg/the-spot-top-separator.astro";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
 ---
 
 <section>
+  <div class="text-brand-red">
+    <TheSpotTopSeparator />
+  </div>
+
   <div class="bg-brand-red py-20">
-    <div class="relative max-w-6xl mx-auto px-4">
+    <div class="relative max-w-6xl mx-auto px-4 lg:px-10">
       <div
-        class="hidden md:block absolute -right-[50px] top-24 w-[150px] h-[150px] z-30 text-white"
+        class="hidden md:block absolute lg:right-4 xl:-right-[50px] bottom-2 w-[150px] h-[150px] z-30 text-white"
       >
         <SunAndMountain />
       </div>
@@ -50,9 +55,5 @@ const t = useTranslations(lang);
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="text-brand-red">
-    <AboutUsUnderSeparator />
   </div>
 </section>

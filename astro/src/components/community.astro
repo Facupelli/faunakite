@@ -1,22 +1,35 @@
 ---
 import { Image } from "astro:assets";
-import communityBackground from "../assets/community-photo.svg";
+import communityPhoto from "../assets/community-photo.webp";
+import FooterSeparator from "./svg/footer-separator.astro";
 ---
 
 <section>
-  <div class="relative w-full h-[60dvh] py-6">
-    <div class="size-[300px]">
-      <Image
-        src={communityBackground}
-        alt="community"
-        class="w-full h-full object-cover"
-      />
+  <div class="text-celeste-2">
+    <FooterSeparator />
+  </div>
+
+  <div class="relative w-full bg-celeste-2">
+    <div class="hidden md:absolute left-0 z-10 -bottom-[50px]">
+      <div class="size-[600px]">
+        <Image
+          src={communityPhoto}
+          alt="community"
+          class="w-full h-full object-cover"
+        />
+      </div>
     </div>
 
-    <div
-      class="absolute text-white z-20 font-bold left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-    >
-      <div>
+    <div class="flex md:justify-end max-w-5xl mx-auto pt-10">
+      <h2 class="font-salted text-white text-4xl md:text-5xl px-10">
+        COMUNIDAD DE VIENTOS
+      </h2>
+    </div>
+
+    <div class="w-full grid md:grid-cols-3 place-items-center py-10">
+      <div
+        class="text-lg md:text-xl text-white px-4 lg:px-10 col-start-2 max-w-3xl col-span-2 space-y-4"
+      >
         <p>
           En FAUNA creemos que el kite es solo la excusa para encontrarnos. Lo
           que realmente nos mueve es la gente, los momentos compartidos y esa
@@ -31,6 +44,8 @@ import communityBackground from "../assets/community-photo.svg";
           estilo de vida.
         </p>
       </div>
+      <div></div>
+      <div></div>
     </div>
   </div>
 </section>
