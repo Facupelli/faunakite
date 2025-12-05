@@ -27,7 +27,7 @@ if (bookingId) {
         booking ? (
           <VerificationCard
             studentName={booking.customerName}
-            courseType={booking.courseType}
+            startDate={booking.arrivalDate.toISOString()}
             expiryDate={booking.departureDate.toISOString()}
           />
         ) : (

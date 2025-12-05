@@ -1,19 +1,46 @@
 ---
 import { Image } from "astro:assets";
-import type { CourseType } from "../../modules/booking/booking.entity";
 import DataField from "./data-field.astro";
 import logo from "../../assets/logos/logo-blanco-03.png";
 
 interface Props {
   studentName: string;
+  startDate: string; // ISO date string
   expiryDate: string; // ISO date string
-  courseType: CourseType | undefined;
 }
 
-const { studentName, courseType, expiryDate } = Astro.props;
+const { studentName, expiryDate, startDate } = Astro.props;
 
-const expiry = new Date(expiryDate);
-const isValid = expiry > new Date();
+const now = new Date();
+now.setHours(0, 0, 0, 0);
+
+const start = new Date(startDate);
+const end = new Date(expiryDate);
+
+const validFrom = new Date(start);
+validFrom.setDate(validFrom.getDate() - 1);
+validFrom.setHours(0, 0, 0, 0);
+
+const validUntil = new Date(end);
+validUntil.setDate(validUntil.getDate() + 3);
+validUntil.setHours(23, 59, 59, 999);
+
+const isBefore = now < validFrom;
+const isExpired = now > validUntil;
+
+let statusLabel = "";
+let statusColor = "";
+
+if (isBefore) {
+  statusLabel = "⏳ Aún no activo";
+  statusColor = "text-yellow-600";
+} else if (isExpired) {
+  statusLabel = "❌ Expirado";
+  statusColor = "text-red-600";
+} else {
+  statusLabel = "✅ Alumno Válido";
+  statusColor = "text-green-600";
+}
 
 function formatDate(date: Date) {
   return date.toLocaleDateString("es-AR", {
@@ -35,22 +62,16 @@ function formatDate(date: Date) {
 
   <div class="overflow-hidden rounded-4xl bg-white max-w-2xl mx-auto">
     <div class="border-b border-gray-200 px-4 py-5 sm:px-6 text-center">
-      <h1
-        class={`text-2xl font-bold leading-6 uppercase ${isValid ? "text-green-600" : "text-red-600"}`}
-      >
-        {isValid ? "✅ Alumno Válido" : "❌ Expirado"}
+      <h1 class={`text-2xl font-bold leading-6 uppercase ${statusColor}`}>
+        {statusLabel}
       </h1>
     </div>
 
     <div class="border-b border-gray-200 px-4 py-5 sm:px-6">
       <dl class="divide-y divide-gray-200">
         <DataField label="Nombre" value={studentName} />
-        {
-          courseType !== undefined && (
-            <DataField label="Curso" value={courseType} />
-          )
-        }
-        <DataField label="Válido Hasta" value={formatDate(expiry)} />
+        <DataField label="Valido Desde" value={formatDate(start)} />
+        <DataField label="Valido Hasta" value={formatDate(end)} />
       </dl>
     </div>
   </div>

@@ -143,10 +143,6 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
 
   function getCell(row: unknown[], header: BookingHeader): any {
     const idx = headerIndexMap[header];
-    if (header === "courseType") {
-      console.log({ idx });
-      console.log({ lol: row[idx] });
-    }
     return idx != null ? row[idx] : undefined;
   }
 

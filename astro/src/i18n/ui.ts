@@ -150,7 +150,7 @@ export const ui = {
       "We couldn't find a booking with the ID you provided.",
   },
   es: {
-    "nav.services": "Servicios",
+    "nav.services": "Lo Que Hacemos",
     "nav.about": "Nosotros",
     "nav.spot": "El Spot",
     "nav.allies": "Aliados",
