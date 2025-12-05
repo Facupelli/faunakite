@@ -126,6 +126,7 @@ export const ui = {
     "booked.footer.message":
       "Pack your bag, we'll see you very soon at Cuesta del Viento!",
     "booked.footer.submit": "Submit Form",
+    "booked.footer.submitting": "Submitting...",
 
     // Required field indicator
     "booked.required": "*",
@@ -269,6 +270,7 @@ export const ui = {
     "booked.footer.message":
       "Prepará esa mochila que nos vemos muy pronto en Cuesta del Viento!",
     "booked.footer.submit": "Enviar Formulario",
+    "booked.footer.submitting": "Enviando...",
 
     // Required field indicator
     "booked.required": "*",
