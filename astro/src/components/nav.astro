@@ -53,14 +53,18 @@ const links = [
         <LanguagePicker />
       </div>
 
-      <button
-        id="mobile-menu-button"
-        class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white"
-        aria-label="Open menu"
-        aria-expanded="false"
-      >
-        <Icon name="hamburger" class="size-8" />
-      </button>
+      <div class="flex items-center gap-4 md:hidden">
+        <LanguagePicker />
+
+        <button
+          id="mobile-menu-button"
+          class="inline-flex items-center justify-center p-2 rounded-md text-white"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <Icon name="hamburger" class="size-8" />
+        </button>
+      </div>
     </div>
   </div>
 
@@ -72,7 +76,7 @@ const links = [
     <div class="flex flex-col h-full">
       <!-- Mobile Menu Header -->
       <div
-        class="flex justify-between items-center h-20 px-4 border-b border-white"
+        class="flex justify-between items-center h-20 shrink-0 px-4 border-b border-white"
       >
         <a href="/">
           <div

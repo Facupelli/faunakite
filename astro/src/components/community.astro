@@ -2,6 +2,10 @@
 import { Image } from "astro:assets";
 import communityPhoto from "../assets/community-photo.webp";
 import FooterSeparator from "./svg/footer-separator.astro";
+import { useTranslations } from "../i18n/utils";
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
 ---
 
 <section>
@@ -21,8 +25,8 @@ import FooterSeparator from "./svg/footer-separator.astro";
     </div>
 
     <div class="flex md:justify-end max-w-5xl mx-auto pt-10">
-      <h2 class="font-salted text-white text-4xl md:text-5xl px-10">
-        COMUNIDAD DE VIENTOS
+      <h2 class="font-salted text-white uppercase text-4xl md:text-5xl px-10">
+        {t("community.title")}
       </h2>
     </div>
 
@@ -31,17 +35,10 @@ import FooterSeparator from "./svg/footer-separator.astro";
         class="text-lg md:text-xl text-white px-4 lg:px-10 col-start-2 max-w-3xl col-span-2 space-y-4"
       >
         <p>
-          En FAUNA creemos que el kite es solo la excusa para encontrarnos. Lo
-          que realmente nos mueve es la gente, los momentos compartidos y esa
-          energía única que se genera entre los que amamos el viento, el agua,
-          el deporte y la naturaleza.
+          {t("community.paragraph.1")}
         </p>
         <p>
-          Ser parte de la Comunidad FAUNA es mucho más que aprender a hacer
-          kite: es sumarte a un grupo de amigos que comparten la misma pasión,
-          que se ayudan y dan una mano dentro y fuera del agua, que se motivan y
-          que se reencuentran cada temporada para disfrutar juntos de este
-          estilo de vida.
+          {t("community.paragraph.2")}
         </p>
       </div>
       <div></div>
