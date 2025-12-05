@@ -1,0 +1,53 @@
+---
+import { useTranslations } from "../../i18n/utils";
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+---
+
+<section class="relative h-dvh w-full flex items-center px-20 bg-brand-blue">
+  <!-- Mobile Background Image (hidden on md and up) -->
+  <div
+    class="absolute inset-0 md:hidden bg-no-repeat bg-position-[center_right_20%] bg-cover"
+    style="background-image: url('/hero-mobile-2.webp');"
+  >
+  </div>
+
+  <!-- Mobile Overlay (hidden on md and up) -->
+  <div class="absolute inset-0 md:hidden bg-brand-blue/50"></div>
+  <div
+    class="absolute bottom-0 w-full h-[100px] md:hidden bg-linear-to-b from-transparent to-brand-blue"
+  >
+  </div>
+
+  <div
+    class="relative z-10 space-y-8 md:space-y-4 flex flex-col justify-between px-4"
+  >
+    <div class="max-w-4xl mx-auto">
+      <h1
+        class="font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-balance font-helvetica"
+      >
+        <!-- {t("hero.title")} -->
+        <span class="block"> MÁS QUE UNA ESCUELA </span>
+        <span
+          class="text-brand-red block text-shadow-2xs text-shadow-brand-blue"
+        >
+          UNA COMUNIDAD DE VIENTOS</span
+        >
+      </h1>
+    </div>
+
+    <p
+      class="lg:text-xl text-white/95 text-shadow-2xs text-shadow-brand-blue max-w-2xl text-pretty pb-14 leading-relaxed md:pb-0"
+    >
+      {t("hero.subtitle")}
+    </p>
+  </div>
+
+  <!-- DESKTOP Background Image  -->
+  <div
+    class="absolute inset-0 z-0 md:block hidden bg-no-repeat bg-right bg-cover"
+    style="background-image: url('/hero-desktop-2.jpeg');"
+  >
+  </div>
+</section>
