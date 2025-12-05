@@ -69,7 +69,7 @@ export function getBookingEmailTemplate() {
                     <!-- Header with Logo -->
                     <tr>
                         <td style="background-color: #051d26; padding: 30px 40px; text-align: center;">
-                            <img src="${SITE_URL}/logo-blanco-horizontal.png" alt="Fauna Kite Logo" style="max-width: 200px; height: auto; display: block; margin: 0 auto;" />
+                            <img src="${SITE_URL}/logos/logo-blanco-horizontal.png" alt="Fauna Kite Logo" style="max-width: 200px; height: auto; display: block; margin: 0 auto;" />
                         </td>
                     </tr>
                     
