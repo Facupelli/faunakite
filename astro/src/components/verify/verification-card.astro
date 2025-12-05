@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import type { CourseType } from "../../modules/booking/booking.entity";
 import DataField from "./data-field.astro";
+import logo from "../../assets/logos/logo-blanco-03.png";
 
 interface Props {
   studentName: string;
@@ -23,17 +25,21 @@ function formatDate(date: Date) {
 ---
 
 <section>
-  <div class="py-10">
-    <h1 class="font-salted text-center text-4xl uppercase">Fauna Kite</h1>
+  <div class="py-10 flex justify-center">
+    <div
+      class="relative w-full max-w-[150px] aspect-[3.45/1] flex items-center justify-center"
+    >
+      <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
+    </div>
   </div>
 
   <div class="overflow-hidden rounded-4xl bg-white max-w-2xl mx-auto">
     <div class="border-b border-gray-200 px-4 py-5 sm:px-6 text-center">
-      <h3
+      <h1
         class={`text-2xl font-bold leading-6 uppercase ${isValid ? "text-green-600" : "text-red-600"}`}
       >
         {isValid ? "✅ Alumno Válido" : "❌ Expirado"}
-      </h3>
+      </h1>
     </div>
 
     <div class="border-b border-gray-200 px-4 py-5 sm:px-6">

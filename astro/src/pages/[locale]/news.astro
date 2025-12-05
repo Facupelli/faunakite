@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../modules/news/date.utils";
 import { getNews, type News } from "../../modules/news/utils";
+import logo from "../../assets/logos/logo-blanco-03.png";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -15,7 +17,13 @@ const posts: News[] = await getNews();
   <main class="min-h-dvh bg-brand-blue">
     <div class="mx-auto max-w-2xl px-5 py-12">
       <div class="py-10">
-        <h1 class="font-salted text-4xl">FAUNA KITE NOTICIAS</h1>
+        <div class="flex justify-center">
+          <div
+            class="relative w-full max-w-[150px] aspect-[3.45/1] flex items-center justify-center"
+          >
+            <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
+          </div>
+        </div>
       </div>
 
       <div class="relative -top-2.5 flex flex-col gap-8">

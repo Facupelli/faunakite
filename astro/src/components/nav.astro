@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../assets/logos/FaunaKite_LogoBlanco-03.png";
+import logo from "../assets/logos/logo-blanco-03.png";
 import { useTranslations } from "../i18n/utils";
 import LanguagePicker from "./language-picker.astro";
 import { Icon } from "astro-icon/components";
@@ -29,9 +29,10 @@ const links = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white font-bold">
     <div class="h-20 flex justify-between">
       <div class="flex items-center justify-between">
-        <!-- LOGO -->
         <a href="/">
-          <div class="relative w-full max-w-[150px] aspect-[3.45/1]">
+          <div
+            class="relative w-full max-w-[100px] aspect-[3.45/1] flex items-center justify-center"
+          >
             <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
           </div>
         </a>
@@ -97,36 +98,36 @@ const links = [
       </div>
     </div>
   </div>
-</nav>
 
-<script is:inline>
-  const menuButton = document.getElementById("mobile-menu-button");
-  const menuClose = document.getElementById("mobile-menu-close");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuLinks = mobileMenu?.querySelectorAll("a");
+  <script is:inline>
+    const menuButton = document.getElementById("mobile-menu-button");
+    const menuClose = document.getElementById("mobile-menu-close");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuLinks = mobileMenu?.querySelectorAll("a");
 
-  function openMenu() {
-    mobileMenu?.classList.remove("hidden");
-    menuButton?.setAttribute("aria-expanded", "true");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeMenu() {
-    mobileMenu?.classList.add("hidden");
-    menuButton?.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = "";
-  }
-
-  menuButton?.addEventListener("click", openMenu);
-  menuClose?.addEventListener("click", closeMenu);
-
-  menuLinks?.forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !mobileMenu?.classList.contains("hidden")) {
-      closeMenu();
+    function openMenu() {
+      mobileMenu?.classList.remove("hidden");
+      menuButton?.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
     }
-  });
-</script>
+
+    function closeMenu() {
+      mobileMenu?.classList.add("hidden");
+      menuButton?.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    }
+
+    menuButton?.addEventListener("click", openMenu);
+    menuClose?.addEventListener("click", closeMenu);
+
+    menuLinks?.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !mobileMenu?.classList.contains("hidden")) {
+        closeMenu();
+      }
+    });
+  </script>
+</nav>

@@ -1,6 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
 import { useTranslations } from "../../i18n/utils";
+import { Image } from "astro:assets";
+import logo from "../../assets/logos/logo-blanco-03.png";
 
 interface Props {
   bookingId?: string;
@@ -13,8 +15,12 @@ const t = useTranslations(lang);
 ---
 
 <div>
-  <div class="flex justify-center pb-10">
-    <span class="font-salted text-4xl text-white">FAUNA KITE</span>
+  <div class="py-10 flex justify-center">
+    <div
+      class="relative w-full max-w-[150px] aspect-[3.45/1] flex items-center justify-center"
+    >
+      <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
+    </div>
   </div>
   <div
     class="flex flex-col items-center justify-center rounded-4xl bg-white p-12 text-center shadow-sm"

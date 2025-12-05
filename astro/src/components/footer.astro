@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import { useTranslations } from "../i18n/utils";
+import logo from "../assets/logos/logo-blanco-03.png";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
@@ -20,9 +22,12 @@ const links = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       {/* Brand Section */}
       <div class="space-y-4">
-        <h3 class="text-2xl font-bold tracking-tight uppercase font-salted">
-          <span class="text-fauna-sun">FAUNA</span> KITE
-        </h3>
+        <a href="/">
+          <div class="relative w-full max-w-[100px] aspect-[3.45/1]">
+            <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
+          </div>
+        </a>
+
         <p class="text-white/80 text-sm leading-relaxed">
           {t("footer.slogan")}
         </p>

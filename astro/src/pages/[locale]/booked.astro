@@ -11,6 +11,8 @@ import {
   SkillLevel,
 } from "../../modules/booking/booking.entity";
 import { useTranslations, useEnumTranslations } from "../../i18n/utils";
+import { Image } from "astro:assets";
+import logo from "../../assets/logos/logo-blanco-03.png";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
@@ -34,7 +36,13 @@ if (result && !result.error) {
   <main class="bg-brand-blue min-h-dvh">
     <div class="text-center py-10 space-y-2">
       <h1 class="text-xl mb-0">{t("booked.title")}</h1>
-      <span class="block font-salted text-4xl text-white">FAUNA KITE</span>
+      <div class="flex justify-center">
+        <div
+          class="relative w-full max-w-[150px] aspect-[3.45/1] flex items-center justify-center"
+        >
+          <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
+        </div>
+      </div>
     </div>
 
     <div class="max-w-3xl mx-auto px-4">
