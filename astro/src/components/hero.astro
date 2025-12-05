@@ -8,8 +8,8 @@ const t = useTranslations(lang);
 <section class="relative h-dvh w-full flex items-center bg-brand-blue">
   <!-- Mobile Background Image (hidden on md and up) -->
   <div
-    class="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
-    style="background-image: url('/mobile-hero.webp');"
+    class="absolute inset-0 md:hidden bg-no-repeat bg-position-[center_right_20%] bg-cover"
+    style="background-image: url('/hero-mobile-2.webp');"
   >
   </div>
 
@@ -21,10 +21,10 @@ const t = useTranslations(lang);
   </div>
 
   <div
-    class="relative min-h-screen flex items-center justify-center gap-20 w-full px-4 md:px-10"
+    class="relative min-h-screen flex pt-28 md:pt-0 md:items-center justify-center gap-20 w-full px-4 md:px-10"
   >
     <div
-      class="space-y-8 md:space-y-4 flex flex-col justify-center items-center"
+      class="space-y-8 md:space-y-4 flex flex-col justify-between md:justify-center items-center"
     >
       <div class="max-w-2xl mx-auto">
         <h1
@@ -36,7 +36,9 @@ const t = useTranslations(lang);
         </h1>
       </div>
 
-      <p class="text-xl text-white/95 max-w-2xl text-pretty leading-relaxed">
+      <p
+        class="lg:text-xl text-white/95 max-w-2xl text-pretty pb-14 leading-relaxed md:pb-0"
+      >
         {t("hero.subtitle")}
       </p>
     </div>
