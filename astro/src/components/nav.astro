@@ -67,7 +67,7 @@ const links = [
   <!-- Mobile Menu Overlay -->
   <div
     id="mobile-menu"
-    class="hidden fixed inset-0 bg-brand-blue text-white z-40 md:hidden h-dvh"
+    class="invisible opacity-0 fixed inset-0 bg-brand-blue text-white z-40 md:hidden h-dvh transition-opacity duration-300 ease-out"
   >
     <div class="flex flex-col h-full">
       <!-- Mobile Menu Header -->
@@ -75,7 +75,9 @@ const links = [
         class="flex justify-between items-center h-20 px-4 border-b border-white"
       >
         <a href="/">
-          <div class="relative w-full max-w-[150px] aspect-[3.45/1]">
+          <div
+            class="relative w-full max-w-[100px] aspect-[3.45/1] flex items-center justify-center"
+          >
             <Image
               decoding="async"
               src={logo}
@@ -93,7 +95,10 @@ const links = [
       </div>
 
       <!-- Mobile Menu Links -->
-      <div class="flex flex-col px-6 py-6 space-y-8 font-bold uppercase">
+      <div
+        id="mobile-menu-links"
+        class="flex flex-col px-6 py-6 space-y-8 font-bold uppercase opacity-0 scale-95 transition-all duration-300 ease-out"
+      >
         {links.map((link) => <a href={link.href}>{link.name}</a>)}
       </div>
     </div>
@@ -103,16 +108,33 @@ const links = [
     const menuButton = document.getElementById("mobile-menu-button");
     const menuClose = document.getElementById("mobile-menu-close");
     const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuLinks = document.getElementById("mobile-menu-links");
     const menuLinks = mobileMenu?.querySelectorAll("a");
 
     function openMenu() {
-      mobileMenu?.classList.remove("hidden");
+      mobileMenu?.classList.remove("invisible", "opacity-0");
+      mobileMenu?.classList.add("visible", "opacity-100");
+
+      // Slight delay for links animation to feel more polished
+      setTimeout(() => {
+        mobileMenuLinks?.classList.remove("opacity-0", "scale-95");
+        mobileMenuLinks?.classList.add("opacity-100", "scale-100");
+      }, 50);
+
       menuButton?.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
     }
 
     function closeMenu() {
-      mobileMenu?.classList.add("hidden");
+      mobileMenuLinks?.classList.remove("opacity-100", "scale-100");
+      mobileMenuLinks?.classList.add("opacity-0", "scale-95");
+
+      // Wait for links animation to finish before hiding overlay
+      setTimeout(() => {
+        mobileMenu?.classList.remove("visible", "opacity-100");
+        mobileMenu?.classList.add("invisible", "opacity-0");
+      }, 300);
+
       menuButton?.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
     }
@@ -125,7 +147,7 @@ const links = [
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !mobileMenu?.classList.contains("hidden")) {
+      if (e.key === "Escape" && mobileMenu?.classList.contains("visible")) {
         closeMenu();
       }
     });
