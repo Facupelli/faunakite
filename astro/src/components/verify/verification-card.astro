@@ -1,13 +1,14 @@
 ---
+import type { CourseType } from "../../modules/booking/booking.entity";
 import DataField from "./data-field.astro";
 
 interface Props {
   studentName: string;
-  courseName: string;
   expiryDate: string; // ISO date string
+  courseType: CourseType | undefined;
 }
 
-const { studentName, courseName, expiryDate } = Astro.props;
+const { studentName, courseType, expiryDate } = Astro.props;
 
 const expiry = new Date(expiryDate);
 const isValid = expiry > new Date();
@@ -38,7 +39,11 @@ function formatDate(date: Date) {
     <div class="border-b border-gray-200 px-4 py-5 sm:px-6">
       <dl class="divide-y divide-gray-200">
         <DataField label="Nombre" value={studentName} />
-        <DataField label="Curso" value={courseName} />
+        {
+          courseType !== undefined && (
+            <DataField label="Curso" value={courseType} />
+          )
+        }
         <DataField label="Válido Hasta" value={formatDate(expiry)} />
       </dl>
     </div>

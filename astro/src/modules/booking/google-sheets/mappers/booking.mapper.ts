@@ -139,11 +139,11 @@ const headerIndexMap = BOOKING_SHEET_HEADERS.reduce<Record<string, number>>(
 );
 
 function fromSpreadsheetRow(row: unknown[]): Booking | null {
-  console.log("MAPPER", { row });
+  // console.log("MAPPER", { row });
 
   function getCell(row: unknown[], header: BookingHeader): any {
     const idx = headerIndexMap[header];
-    if (header === "createdAt") {
+    if (header === "courseType") {
       console.log({ idx });
       console.log({ lol: row[idx] });
     }
@@ -165,16 +165,17 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
     return Number.isFinite(n) ? n : undefined;
   }
 
-  function parseEnumCell<T extends Record<string, string>>(
-    cell: any,
-    enumObj: T
-  ): T[keyof T] | undefined {
-    const s = parseStringCell(cell);
-    if (!s) {
-      return undefined;
-    }
-    // TODO: validate enum values
-  }
+  // TODO: implement
+  // function parseEnumCell<T extends Record<string, string>>(
+  //   cell: any,
+  //   enumObj: T
+  // ): T[keyof T] | undefined {
+  //   const s = parseStringCell(cell);
+  //   if (!s) {
+  //     return undefined;
+  //   }
+  //   // TODO: validate enum values
+  // }
 
   function parseBooleanCell(cell: any, defaultIfMissing = false): boolean {
     if (cell === undefined || cell === null || String(cell).trim() === "") {
@@ -193,8 +194,6 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
     if (!cell) {
       return undefined;
     }
-
-    console.log({ cell });
 
     // If it's a number (Excel serial date)
     if (typeof cell === "number") {
@@ -246,11 +245,11 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
   const createdAt = parseCreatedAtCell(getCell(row, "createdAt"));
   const customerName = parseStringCell(getCell(row, "customerName"));
   const birthDate = parseDateCell(getCell(row, "birthDate"));
-  const gender = parseEnumCell(getCell(row, "gender"), Gender);
+  const gender = parseStringCell(getCell(row, "gender"));
   const customerEmail = parseStringCell(getCell(row, "customerEmail"));
   const province = parseStringCell(getCell(row, "province"));
   const customerPhone = parseStringCell(getCell(row, "customerPhone"));
-  const courseType = parseEnumCell(getCell(row, "courseType"), CourseType);
+  const courseType = parseStringCell(getCell(row, "courseType"));
   const hoursReserved = parseNumberCell(getCell(row, "hoursReserved"));
   const arrivalDate = parseDateCell(getCell(row, "arrivalDate"));
   const arrivalTime = parseStringCell(getCell(row, "arrivalTime"));
@@ -258,17 +257,13 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
   const departureTime = parseStringCell(getCell(row, "departureTime"));
   const weightKg = parseNumberCell(getCell(row, "weightKg"));
   const heightCm = parseNumberCell(getCell(row, "heightCm"));
-  const currentLevel = parseEnumCell(getCell(row, "currentLevel"), SkillLevel);
-  const detailedSkillLevel = parseEnumCell(
-    getCell(row, "detailedSkillLevel"),
-    DetailedSkillLevel
+  const currentLevel = parseStringCell(getCell(row, "currentLevel"));
+  const detailedSkillLevel = parseStringCell(
+    getCell(row, "detailedSkillLevel")
   );
   const mainObjective = parseStringCell(getCell(row, "mainObjective"));
   const additionalNotes = parseStringCell(getCell(row, "additionalNotes"));
-  const referralSource = parseEnumCell(
-    getCell(row, "referralSource"),
-    ReferralSource
-  );
+  const referralSource = parseStringCell(getCell(row, "referralSource"));
   const referralSourceOther = parseStringCell(
     getCell(row, "referralSourceOther")
   );
@@ -309,7 +304,7 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
     customerEmail,
     province,
     customerPhone,
-    courseType,
+    courseType: courseType as CourseType | undefined,
     hoursReserved,
     arrivalDate,
     arrivalTime,

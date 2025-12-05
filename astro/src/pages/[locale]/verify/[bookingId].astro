@@ -4,10 +4,15 @@ import type { Booking } from "../../../modules/booking/booking.entity";
 import { getBookingById } from "../../../modules/booking/use-cases/find-booking-by-id";
 import BookingNotFound from "../../../components/verify/booking-not-found.astro";
 import VerificationCard from "../../../components/verify/verification-card.astro";
+import { listAccessibleCalendars } from "../../../modules/booking/google-calendar/create-event";
 
 export const prerender = false;
 
 const { bookingId } = Astro.params;
+
+console.log("LIST");
+const lol = await listAccessibleCalendars();
+console.log({ lol });
 
 let booking: Booking | null = null;
 if (bookingId) {
@@ -22,7 +27,7 @@ if (bookingId) {
         booking ? (
           <VerificationCard
             studentName={booking.customerName}
-            courseName={booking.courseType}
+            courseType={booking.courseType}
             expiryDate={booking.departureDate.toISOString()}
           />
         ) : (

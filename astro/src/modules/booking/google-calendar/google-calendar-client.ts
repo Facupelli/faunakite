@@ -70,6 +70,12 @@ export class GoogleCalendarClient {
     }
   }
 
+  async listCalendars() {
+    const response = await this.calendar.calendarList.list();
+
+    return response.data.items;
+  }
+
   async createEvent(event: CalendarEvent): Promise<{
     success: boolean;
     eventId?: string;

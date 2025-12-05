@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
-import logo from "../../../assets/logos/FaunaKite_LogoBlanco-03.png";
 import { GOOGLE_APP_PASSWORD } from "astro:env/server";
+import { SITE_URL } from "astro:env/client";
 
 export class NodemailerError extends Error {
   constructor(
@@ -69,7 +69,7 @@ export function getBookingEmailTemplate() {
                     <!-- Header with Logo -->
                     <tr>
                         <td style="background-color: #051d26; padding: 30px 40px; text-align: center;">
-                            <img src="${logo.src}" alt="Fauna Kite Logo" style="max-width: 200px; height: auto; display: block; margin: 0 auto;" />
+                            <img src="${SITE_URL}/logo-blanco-horizontal.png" alt="Fauna Kite Logo" style="max-width: 200px; height: auto; display: block; margin: 0 auto;" />
                         </td>
                     </tr>
                     

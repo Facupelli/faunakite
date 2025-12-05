@@ -20,6 +20,7 @@ import {
 } from "../modules/booking/nodemailer/utils";
 import type { CreateBookingResult } from "../modules/booking/use-cases/create-booking.use-case";
 import { TURNSTILE_BOOKED_SECRET_KEY } from "astro:env/server";
+import { SITE_URL } from "astro:env/client";
 
 // TODO: make idempotent
 export const book = {
@@ -145,14 +146,14 @@ export const book = {
         console.error("[BOOKING FORM ERROR] create calendar event:", error);
 
         if (error instanceof GoogleCalendarError) {
-          console.log("GOOGLE CALENDAR EVENT NOT CREATED");
+          console.log("GOOGLE CALENDAR EVENT NOT CREATED", error.message);
           // TODO: send email to admin
         }
       }
 
       try {
         const qrBuffer = await createUrlQr(
-          `http://localhost:4321/es/verify/${bookingResult.bookingId}`
+          `${SITE_URL}/es/verify/${bookingResult.bookingId}`
         );
 
         const template = getBookingEmailTemplate();

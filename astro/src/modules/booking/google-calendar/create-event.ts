@@ -47,3 +47,14 @@ Notas: ${input.additionalNotes}
 
   return response;
 }
+
+export async function listAccessibleCalendars() {
+  try {
+    const response = await googleCalendarClient.listCalendars();
+    console.log("Accessible calendars:", response);
+    return response;
+  } catch (error) {
+    console.error("Failed to list calendars:", error);
+    throw error;
+  }
+}

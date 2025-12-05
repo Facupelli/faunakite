@@ -19,6 +19,10 @@ const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(
 export default defineConfig({
   env: {
     schema: {
+      SITE_URL: envField.string({
+        context: "client",
+        access: "public",
+      }),
       GOOGLE_SERVICE_ACCOUNT_EMAIL: envField.string({
         context: "server",
         access: "secret",
@@ -82,11 +86,15 @@ export default defineConfig({
     },
   },
 
-  integrations: [sanity({
-    projectId: SANITY_STUDIO_PROJECT_ID,
-    dataset: SANITY_STUDIO_DATASET,
-    useCdn: false, // for static builds
-  }), icon(), react()],
+  integrations: [
+    sanity({
+      projectId: SANITY_STUDIO_PROJECT_ID,
+      dataset: SANITY_STUDIO_DATASET,
+      useCdn: false, // for static builds
+    }),
+    icon(),
+    react(),
+  ],
 
   vite: {
     plugins: [tailwindcss()],
