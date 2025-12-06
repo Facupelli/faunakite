@@ -19,13 +19,20 @@ const googleCalendarClient = new GoogleCalendarClient({
 });
 
 export async function createCalendarEvent(input: CreateBookingData) {
+  const formatDate = (date: Date) => {
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   const descriptionLines = [
     `Alumno: ${input.customerName}`,
     input.customerPhone && `Teléfono: ${input.customerPhone}`,
     input.courseType && `Tipo de clase: ${input.courseType}`,
     input.hoursReserved && `Horas reservadas: ${input.hoursReserved}`,
     input.arrivalDate &&
-      `Estadía: ${input.arrivalDate.toISOString()} → ${input.departureDate.toISOString()}`,
+      `Estadía: ${formatDate(input.arrivalDate)} → ${formatDate(input.departureDate)}`,
     input.arrivalTime && `Hora de llegada: ${input.arrivalTime} hs`,
     input.departureTime && `Hora de partida: ${input.departureTime} hs`,
     input.weightKg && `Peso (kg): ${input.weightKg}`,

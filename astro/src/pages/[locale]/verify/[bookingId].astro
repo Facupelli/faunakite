@@ -10,10 +10,6 @@ export const prerender = false;
 
 const { bookingId } = Astro.params;
 
-console.log("LIST");
-const lol = await listAccessibleCalendars();
-console.log({ lol });
-
 let booking: Booking | null = null;
 if (bookingId) {
   booking = await getBookingById(bookingId);
