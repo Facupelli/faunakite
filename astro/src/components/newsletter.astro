@@ -13,6 +13,38 @@ const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
 ---
 
+<style>
+  dialog[open] {
+    animation: float-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  dialog::backdrop {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    animation: fade-in 0.3s ease-out forwards;
+  }
+
+  @keyframes float-up {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
 <div class="py-10">
   <section class="relative z-10 max-w-7xl mx-auto py-10">
     <div class="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
@@ -58,41 +90,74 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
         </form>
 
         <dialog
-          id="newsletter-dialog"
-          class="rounded-lg shadow-xl backdrop:bg-black backdrop:opacity-50 p-0 border-0 max-w-lg w-full fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          id="newsletterDialog"
+          class="p-0 rounded-3xl shadow-2xl bg-white/95 ring-1 ring-white/50 max-w-md w-full backdrop:bg-slate-900/30 backdrop:backdrop-blur-md open:shadow-xl fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          data-success-title={t("newsletter.dialog.success.title")}
+          data-success-message={t("newsletter.dialog.success.message")}
+          data-success-button={t("newsletter.dialog.success.button")}
+          data-error-title={t("newsletter.dialog.error.title")}
+          data-error-message={t("newsletter.dialog.error.message")}
+          data-error-button={t("newsletter.dialog.error.button")}
         >
-          <div class="p-6">
-            <div class="flex justify-center text-2xl">
-              <span class="font-salted pr-2"> FAUNA KITE</span>
-            </div>
-            <div class="flex pb-4 justify-center text-4xl">
-              <span class="font-bold">NEWSLETTER</span>
+          <div class="relative p-8 text-center">
+            <div
+              id="statusBg"
+              class="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-teal-50/80 to-transparent rounded-t-3xl -z-10 transition-colors duration-300"
+            >
             </div>
 
-            <div class="flex items-center gap-4">
-              <div
-                id="dialog-icon"
-                class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+            <div
+              id="iconContainer"
+              class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-light mb-6 transition-colors duration-300"
+            >
+              <svg
+                id="iconSuccess"
+                class="h-8 w-8 text-brand-blue"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
               >
-                <!-- Icon will be injected via JS -->
-              </div>
-              <div class="space-y-2">
-                <h3
-                  id="dialog-title"
-                  class="text-lg font-semibold text-gray-900"
-                >
-                </h3>
-                <p id="dialog-message" class="text-gray-600"></p>
-              </div>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4.5 12.75l6 6 9-13.5"></path>
+              </svg>
+              <svg
+                id="iconError"
+                class="h-8 w-8 text-orange-500 hidden"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                ></path>
+              </svg>
             </div>
-            <div class="mt-4 flex justify-end">
+
+            <h3
+              id="dialogTitle"
+              class="text-2xl font-bold text-brand-blue mb-2"
+            >
+              You're Hooked In!
+            </h3>
+            <p id="dialogMessage" class="text-slate-500 mb-8 leading-relaxed">
+              Welcome to the tribe. Check your inbox for the latest wind
+              forecasts and gear drops.
+            </p>
+
+            <form method="dialog" class="w-full">
               <button
-                id="dialog-close"
-                class="px-6 py-2 bg-brand-blue text-white font-bold rounded-lg hover:brand-blue/80 focus:outline-none transition-colors"
+                id="actionBtn"
+                class="w-full bg-celeste-3 hover:bg-celeste-2 cursor-pointer text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 focus:ring-4 focus:ring-brand-light outline-none"
               >
-                Cerrar
+                Let's Ride
               </button>
-            </div>
+            </form>
           </div>
         </dialog>
       </div>
@@ -106,48 +171,78 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
 <script>
   import { actions } from "astro:actions";
 
-  // Inlined form handler to eliminate dynamic import chain
   function initNewsletter() {
     const form = document.getElementById("newsletter-form") as HTMLFormElement;
     const dialog = document.getElementById(
-      "newsletter-dialog"
+      "newsletterDialog"
     ) as HTMLDialogElement;
-    const dialogIcon = document.getElementById("dialog-icon") as HTMLDivElement;
-    const dialogTitle = document.getElementById(
-      "dialog-title"
-    ) as HTMLHeadingElement;
-    const dialogMessage = document.getElementById(
-      "dialog-message"
+    const title = document.getElementById("dialogTitle") as HTMLHeadingElement;
+    const message = document.getElementById(
+      "dialogMessage"
     ) as HTMLParagraphElement;
-    const dialogClose = document.getElementById(
-      "dialog-close"
-    ) as HTMLButtonElement;
+    const iconContainer = document.getElementById(
+      "iconContainer"
+    ) as HTMLDivElement;
+    const iconSuccess = document.getElementById("iconSuccess") as HTMLElement;
+    const iconError = document.getElementById("iconError") as HTMLElement;
+    const statusBg = document.getElementById("statusBg") as HTMLDivElement;
+    const actionBtn = document.getElementById("actionBtn") as HTMLDivElement;
 
-    if (!form || !dialog) return;
+    if (!form || !dialog) {
+      console.error("Newsletter form: Required elements not found");
+      return;
+    }
 
-    function showDialog(success: boolean, title: string, message: string) {
-      if (success) {
-        dialogIcon.className =
-          "flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-green-100";
-        dialogIcon.innerHTML = `
-          <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-        `;
+    const translations = {
+      success: {
+        title: dialog.dataset.successTitle || "You're Hooked In!",
+        message:
+          dialog.dataset.successMessage ||
+          "Welcome to the tribe. Check your inbox for the latest wind forecasts and gear drops.",
+        button: dialog.dataset.successButton || "Let's Ride",
+      },
+      error: {
+        title: dialog.dataset.errorTitle || "Wipeout!",
+        message:
+          dialog.dataset.errorMessage ||
+          "Something went wrong. Please try again.",
+        button: dialog.dataset.errorButton || "Untangle & Retry",
+      },
+    };
+
+    function showDialog(state: "success" | "error") {
+      const config = translations[state];
+
+      title.textContent = config.title;
+      message.textContent = config.message;
+      actionBtn.textContent = config.button;
+
+      if (state === "success") {
+        iconContainer.className =
+          "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-light mb-6 transition-colors duration-300";
+        statusBg.className =
+          "absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-teal-50/80 to-transparent rounded-t-3xl -z-10";
+        actionBtn.className =
+          "w-full bg-celeste-3 hover:bg-celeste-2 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 focus:ring-4 focus:ring-brand-light outline-none";
+
+        iconSuccess.classList.remove("hidden");
+        iconError.classList.add("hidden");
       } else {
-        dialogIcon.className =
-          "flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-red-100";
-        dialogIcon.innerHTML = `
-          <svg class="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        `;
+        iconContainer.className =
+          "mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 mb-6 transition-colors duration-300";
+        statusBg.className =
+          "absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-orange-50/80 to-transparent rounded-t-3xl -z-10";
+        actionBtn.className =
+          "w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 focus:ring-4 focus:ring-orange-200 outline-none";
+
+        iconSuccess.classList.add("hidden");
+        iconError.classList.remove("hidden");
       }
 
-      dialogTitle.textContent = title;
-      dialogMessage.textContent = message;
       dialog.showModal();
     }
+
+    showDialog("success");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -167,34 +262,17 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
         const { data, error } = await actions.newsletter.subscribe(formData);
 
         if (error) {
-          showDialog(
-            false,
-            "La suscripción falló",
-            error.message ||
-              "Error al suscribir. Por favor, inténtelo de nuevo."
-          );
+          showDialog("error");
         } else {
-          showDialog(
-            true,
-            "¡Suscripción exitosa!",
-            data?.message || "Gracias por suscribirte a nuestro boletín"
-          );
+          showDialog("success");
           form.reset();
         }
       } catch (err) {
-        showDialog(
-          false,
-          "La suscripción falló",
-          "Ha ocurrido un error inesperado. Por favor, inténtelo de nuevo más tarde."
-        );
+        showDialog("error");
       } finally {
         submitButton.disabled = false;
         submitButton.textContent = "Send";
       }
-    });
-
-    dialogClose.addEventListener("click", () => {
-      dialog.close();
     });
 
     dialog.addEventListener("click", (e) => {
@@ -211,7 +289,6 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
     });
   }
 
-  // Initialize when DOM is ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initNewsletter);
   } else {

@@ -19,6 +19,22 @@ const googleCalendarClient = new GoogleCalendarClient({
 });
 
 export async function createCalendarEvent(input: CreateBookingData) {
+  const descriptionLines = [
+    `Alumno: ${input.customerName}`,
+    input.customerPhone && `Teléfono: ${input.customerPhone}`,
+    input.courseType && `Tipo de clase: ${input.courseType}`,
+    input.hoursReserved && `Horas reservadas: ${input.hoursReserved}`,
+    input.arrivalDate &&
+      `Estadía: ${input.arrivalDate.toISOString()} → ${input.departureDate.toISOString()}`,
+    input.arrivalTime && `Hora de llegada: ${input.arrivalTime} hs`,
+    input.departureTime && `Hora de partida: ${input.departureTime} hs`,
+    input.weightKg && `Peso (kg): ${input.weightKg}`,
+    input.heightCm && `Altura (cm): ${input.heightCm}`,
+    input.currentLevel && `Nivel actual: ${input.currentLevel}`,
+    input.mainObjective && `Objetivo principal: ${input.mainObjective}`,
+    input.additionalNotes && `Notas: ${input.additionalNotes}`,
+  ].filter(Boolean);
+
   const response = await googleCalendarClient.createEvent({
     summary: `${input.customerName} - ${input.courseType ?? ""} ${input.hoursReserved ?? ""}`,
     start: {
@@ -29,20 +45,7 @@ export async function createCalendarEvent(input: CreateBookingData) {
       dateTime: input.departureDate.toISOString(),
       timeZone: "America/Argentina/Buenos_Aires",
     },
-    description: `
-Alumno: ${input.customerName}
-Teléfono: ${input.customerPhone}
-Tipo de clase: ${input.courseType}
-Horas reservadas: ${input.hoursReserved}
-Estadía: ${input.arrivalDate.toISOString()} → ${input.departureDate.toISOString()}
-Hora de llegada: ${input.arrivalTime}
-Hora de partida: ${input.departureTime}
-Peso (kg): ${input.weightKg}
-Altura (cm): ${input.heightCm}
-Nivel actual: ${input.currentLevel}
-Objetivo principal: ${input.mainObjective}
-Notas: ${input.additionalNotes}
-            `,
+    description: descriptionLines.join("\n"),
   });
 
   return response;

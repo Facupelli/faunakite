@@ -56,6 +56,15 @@ export const ui = {
     "newsletter.subtitle":
       "Get the latest news, kite tips, wind conditions and exclusive events from our community.",
     "newsletter.button": "Send",
+    "newsletter.dialog.title": "You're Hooked In!",
+    "newsletter.dialog.message":
+      "Welcome to the tribe. Check your inbox for the latest wind forecasts and gear drops.",
+    "newsletter.dialog.success.button": "Let's Ride!",
+    "newsletter.dialog.error.title": "Tangled Lines",
+    "newsletter.dialog.error.message":
+      "We couldn't catch that email. The wind might be gusty. Give it another try?",
+    "newsletter.dialog.error.button": "Untangle & Retry",
+
     "store.button": "VISIT THE STORE",
     "community.title": "COMMUNITY OF WINDS",
     "community.paragraph.1":
@@ -210,6 +219,14 @@ export const ui = {
     "newsletter.subtitle":
       "Recibí las últimas novedades, tips de kite, condiciones del viento y eventos exclusivos de nuestra comunidad.",
     "newsletter.button": "Enviar",
+    "newsletter.dialog.success.title": "Ya Estás Dentro!",
+    "newsletter.dialog.success.message":
+      "Bienvenido a la comunidad. Chequea tu correo para las últimas novedades de Fauna y el viento.",
+    "newsletter.dialog.success.button": "Todo Listo!",
+    "newsletter.dialog.error.title": "Hubo Un Error",
+    "newsletter.dialog.error.message":
+      "No pudimos guardar tu correo. El viento puede estar fuerte. ¿Intenta de nuevo?",
+    "newsletter.dialog.error.button": "Reintentar",
     "store.button": "VISITA LA TIENDA",
     "community.title": "COMUNIDAD DE VIENTOS",
     "community.paragraph.1":
