@@ -11,7 +11,7 @@ import Newsletter from "../../../components/newsletter.astro";
 import TheSpot from "../../../components/the-spot.astro";
 import Testimonials from "../../../components/testimonials.astro";
 import Community from "../../../components/community.astro";
-import Hero1 from "../../../components/heros/hero-1.astro";
+import HeroFifty from "../../../components/heros/hero-fifty.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -24,14 +24,14 @@ export async function getStaticPaths() {
   </header>
 
   <main>
-    <Hero1 />
+    <HeroFifty />
     <Services />
     <AboutUs />
     <TheSpot />
-    <News />
+    <!-- <News /> -->
     <Testimonials />
     <Newsletter />
-    <Store />
+    <!-- <Store /> -->
     <Community />
   </main>
 

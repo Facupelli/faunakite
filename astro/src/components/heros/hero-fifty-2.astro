@@ -21,10 +21,10 @@ const t = useTranslations(lang);
   </div>
 
   <div
-    class="relative min-h-screen flex md:grid md:grid-cols-2 pt-28 md:pt-20 md:items-center justify-center gap-10 w-full"
+    class="relative min-h-screen flex pt-28 md:pt-20 md:items-center md:grid md:grid-cols-5 md:max-w-7xl md:mx-auto justify-center gap-10 md:gap-20 w-full"
   >
     <div
-      class="space-y-8 md:space-y-4 flex flex-col justify-between md:justify-center items-center px-4"
+      class="space-y-8 md:space-y-4 flex flex-col justify-between md:justify-center items-center px-4 md:col-span-3"
     >
       <div class="max-w-2xl mx-auto">
         <h1
@@ -43,14 +43,19 @@ const t = useTranslations(lang);
       </p>
     </div>
 
-    <!-- <div
-      class="absolute w-10 left-[calc(50%+40px)] z-20 -translate-x-1/2 h-full bg-linear-to-r from-brand-blue to-transparent"
-    >
-    </div> -->
-
     <div
-      class="hidden md:flex w-full h-full relative items-center justify-center"
+      class="hidden md:relative md:flex w-full h-[90%] relative items-center justify-center md:col-span-2"
     >
+      <div
+        class="absolute w-full z-20 top-0 bg-linear-to-b from-brand-blue to-transparent h-[50px]"
+      >
+      </div>
+
+      <div
+        class="absolute w-full z-20 bottom-0 bg-linear-to-t from-brand-blue to-transparent h-[50px]"
+      >
+      </div>
+
       <video
         poster="/logos/logo-blanco-square.png"
         autoplay

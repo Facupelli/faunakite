@@ -11,7 +11,7 @@ import Newsletter from "../../../components/newsletter.astro";
 import TheSpot from "../../../components/the-spot.astro";
 import Testimonials from "../../../components/testimonials.astro";
 import Community from "../../../components/community.astro";
-import HeroImage from "../../../components/heros/hero-image.astro";
+import Hero6040 from "../../../components/heros/hero-60-40.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
   </header>
 
   <main>
-    <HeroImage />
+    <Hero6040 />
     <Services />
     <AboutUs />
     <TheSpot />
