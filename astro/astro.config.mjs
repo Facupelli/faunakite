@@ -4,10 +4,9 @@ import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
 import { loadEnv } from "vite";
-
 import icon from "astro-icon";
-
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
 const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(
   process.env.NODE_ENV,
@@ -17,6 +16,8 @@ const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://faunakite.com",
+
   env: {
     schema: {
       SITE_URL: envField.string({
@@ -94,6 +95,15 @@ export default defineConfig({
     }),
     icon(),
     react(),
+    sitemap({
+      i18n: {
+        defaultLocale: "es",
+        locales: {
+          en: "en-US",
+          es: "es-ES",
+        },
+      },
+    }),
   ],
 
   vite: {

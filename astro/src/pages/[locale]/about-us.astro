@@ -1,20 +1,302 @@
 ---
+import { Image } from "astro:assets";
 import Nav from "../../components/nav.astro";
 import Layout from "../../layouts/Layout.astro";
+import aboutUsPhoto from "../../assets/about-us-photo.webp";
+import AboutUsUnderSeparator from "../../components/svg/about-us-under-separator.astro";
+import Footer from "../../components/footer.astro";
+import CommunityTopSeparator from "../../components/svg/community-top-separator.astro";
+import aboutUsPhoto1 from "../../assets/about-us/camioneta.webp";
+import aboutUsPhoto2 from "../../assets/about-us/playa-3.webp";
+import aboutUsPhoto3 from "../../assets/about-us/playa-4.webp";
+import aboutUsPhoto4 from "../../assets/about-us/protector.webp";
+import aboutUsPhotoFacu from "../../assets/about-us/about-us-facu.jpeg";
+import aboutUsPhotoLucca from "../../assets/about-us/about-us-lucca.jpeg";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
 }
+
+const historyImages = [
+  {
+    src: aboutUsPhoto1,
+    alt: "Camioneta",
+  },
+  {
+    src: aboutUsPhoto2,
+    alt: "Playa 3",
+  },
+];
+
+const philosofyImages = [
+  {
+    src: aboutUsPhoto3,
+    alt: "Playa 4",
+  },
+  {
+    src: aboutUsPhoto4,
+    alt: "Protector",
+  },
+];
+
+const team = [
+  {
+    name: "Lucca",
+    image: aboutUsPhotoLucca,
+    position: "Co-fundador & Instructor",
+    description:
+      "El primero en descubrir el kite en 2016 y enamorarse de Cuesta del Viento. Su pasión por enseñar y compartir lo que ama es lo que dio origen a FAUNA.",
+  },
+  {
+    name: "Facu",
+    image: aboutUsPhotoFacu,
+    position: "Co-fundador & Instructor",
+    description:
+      "Se sumó al kite tras la invitación de Lucca y juntos comenzaron esta aventura. Su vocación por la enseñanza hace que cada alumno se sienta parte de la familia.",
+  },
+];
 ---
 
 <Layout title="Quienes Somos | Fauna Kite ">
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content="Conocé la historia de FAUNA Kite: una escuela nacida de la amistad, el viento y la pasión por la naturaleza. Nuestra filosofía, valores y comunidad en Cuesta del Viento."
+    />
+  </Fragment>
+
   <header>
     <Nav />
   </header>
 
-  <main class="min-h-dvh bg-brand-blue">
-    <div class="pt-20">
-      <h1>QUIENES SOMOS</h1>
+  <main class="min-h-dvh bg-brand-light">
+    <div class="relative w-full h-[380px]">
+      <div
+        class="absolute inset-0 bg-no-repeat bg-position-[bottom_25%_right_20%] bg-cover bg-red-200"
+        style="background-image: url('/hero-desktop-2.jpeg');"
+      >
+      </div>
+
+      <div
+        class="flex justify-end max-w-4xl mx-auto relative z-20 h-full items-end pb-10"
+      >
+        <h1 class="font-salted text-8xl">NOSOTROS</h1>
+      </div>
     </div>
+
+    <div class="bg-brand-red">
+      <div class="max-w-6xl mx-auto pb-20">
+        <div class="flex items-start gap-10">
+          <div class="size-[500px] shrink-0">
+            <Image
+              src={aboutUsPhoto}
+              alt="community"
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          <div class="max-w-5xl mx-auto px-6 py-16 text-brand-blue">
+            <div class="max-w-prose mx-auto mt-12 space-y-4 text-white">
+              <p class="text-lg">
+                Somos una comunidad de vientos. Porque el kite es solo la excusa
+                perfecta para encontrarnos, compartir y disfrutar de lo que nos
+                gusta: el deporte y la naturaleza.
+              </p>
+
+              <p class="text-lg">
+                FAUNA es más que una escuela: un lugar de encuentro donde el
+                kite es una experiencia compartida, el aprendizaje un camino
+                divertido y cada persona que llega, un nuevo amigo.
+              </p>
+
+              <p class="text-lg">
+                Vení a vivir el kite como una forma de vida. Aprendé, conectá,
+                disfrutá, cuidá y compartí.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-brand-red">
+      <AboutUsUnderSeparator />
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="font-salted text-6xl text-brand-blue pb-10">Nuestro Equipo</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        {
+          team.map((member) => (
+            <div class="group">
+              <div class="bg-white shadow-news-card rounded-2xl overflow-hidden text-brand-blue">
+                <div class="aspect-4/5 relative overflow-hidden">
+                  <Image
+                    src={member.image}
+                    alt="Lucca Instructor y Fundador"
+                    class="w-full h-full object-cover"
+                  />
+                  <div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
+                  <div class="absolute bottom-6 left-6 right-6">
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white mb-2">
+                      {member.name}
+                    </h3>
+                    <p class="text-white/90 text-sm sm:text-base">
+                      {member.position}
+                    </p>
+                  </div>
+                </div>
+                <div class="p-6 sm:p-8">
+                  <p class="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
+                    {member.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+      <h3 class="font-salted text-6xl text-brand-blue pb-10">
+        Nuestra Historia
+      </h3>
+
+      <div class="grid md:grid-cols-5 place-content-center">
+        <article
+          class="md:col-span-3 bg-white text-brand-blue p-10 shadow-news-card rounded-2xl"
+        >
+          <!-- Section: Historia y misión -->
+          <section aria-labelledby="historia-mision">
+            <div class="space-y-4 text-lg leading-7">
+              <p>
+                FAUNA nace primero de la amistad entre Lucca y Facu, que se
+                conocieron con 14 años y desde entonces comparten dos grandes
+                pasiones: el deporte al aire libre y la música. Con los deportes
+                todo empezó mucho antes del kite: en 2013, un viaje de ski
+                encendió una chispa —el gusto por enseñar y compartir lo que se
+                ama— y eso terminó transformándose en una forma de vida.
+              </p>
+
+              <p>
+                El kite llegó en 2016. Lucca lo aprendió en un viaje y, la
+                primera vez que navegó en Cuesta del Viento, no lo podía creer:
+                el paraíso del viento estaba mucho más cerca de casa de lo que
+                imaginaba. Pensó inmediatamente en compartirlo con Facu; él tomó
+                el curso, se enamoró del deporte, y así nació la pasión
+                compartida.
+              </p>
+
+              <p>
+                Ambos se certificaron como instructores y comenzaron a enseñar
+                en escuelas locales. Debido a la estacionalidad del deporte,
+                empezaron a viajar en busca de viento —Maui, Sicilia, Australia,
+                Valencia— donde dictaron cursos y organizaron camps. Aquellas
+                experiencias dejaron algo claro: el kite es la excusa perfecta
+                para encontrarse, compartir y conectar también fuera del agua.
+              </p>
+
+              <p>
+                Lo que pasó en esos viajes no podía quedarse solo en Sicilia. En
+                casa, entre montañas y viento constante, encontraron el lugar
+                donde todo tenía sentido: Cuesta del Viento. Allí nació FAUNA
+                —una escuela, sí, pero sobre todo un punto de encuentro para
+                quienes buscan vivir experiencias reales, al aire libre y en
+                buena compañía.
+              </p>
+            </div>
+          </section>
+        </article>
+
+        <aside class="md:col-span-2 px-10 grid gap-y-4">
+          {
+            historyImages.map((image) => (
+              <div class="">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  class="w-full h-full object-cover rounded-md"
+                />
+              </div>
+            ))
+          }
+        </aside>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+      <h3 class="font-salted text-6xl text-brand-blue pb-10">
+        Nuestra Filosofía
+      </h3>
+
+      <div class="grid md:grid-cols-5 place-content-center">
+        <article
+          class="md:col-span-3 bg-white text-brand-blue p-10 shadow-news-card rounded-2xl"
+        >
+          <!-- Section: Filosofía / Llamado -->
+          <section aria-labelledby="filosofia">
+            <div class="space-y-4 text-lg leading-7">
+              <p>
+                FAUNA es una comunidad de vientos: aprendemos juntos, nos
+                cuidamos entre todos y celebramos la vida al aire libre. El kite
+                es la excusa; la comunidad y la conexión con la naturaleza, el
+                objetivo.
+              </p>
+
+              <p class="font-semibold">
+                Vení a vivir el kite como una forma de vida: aprendé, conectá,
+                disfrutá, cuidá y compartí.
+              </p>
+            </div>
+          </section>
+
+          <!-- Section: Cierre / Invitación -->
+          <section aria-labelledby="cierre" class="mt-12">
+            <h3 id="cierre" class="text-lg font-semibold">
+              Un lugar para encontrarse
+            </h3>
+
+            <div class="mt-4 space-y-4 text-lg leading-7">
+              <p>
+                En FAUNA la enseñanza va de la mano con la amistad: mates,
+                música, risas, charlas, comidas, viajes y, por supuesto, mucho
+                kite. Si buscás aprender en compañía, explorar nuevos vientos y
+                sumar amigos, este es tu lugar.
+              </p>
+
+              <p>
+                Una escuela, pero sobre todo un espacio donde la experiencia
+                compartida es el motor. Te esperamos para navegar, aprender y
+                ser parte de la comunidad.
+              </p>
+            </div>
+          </section>
+        </article>
+
+        <aside class="md:col-span-2 px-10 grid gap-y-4">
+          {
+            philosofyImages.map((image) => (
+              <div class="">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  class="w-full h-full object-cover rounded-md"
+                />
+              </div>
+            ))
+          }
+        </aside>
+      </div>
+    </div>
+
+    <div class="text-celeste-2">
+      <CommunityTopSeparator />
+    </div>
+
+    <div class="h-[150px] bg-celeste-2"></div>
   </main>
+
+  <Footer />
 </Layout>

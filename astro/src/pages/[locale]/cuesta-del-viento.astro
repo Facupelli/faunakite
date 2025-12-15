@@ -1,20 +1,587 @@
 ---
+import Footer from "../../components/footer.astro";
 import Nav from "../../components/nav.astro";
+import CommunityTopSeparator from "../../components/svg/community-top-separator.astro";
 import Layout from "../../layouts/Layout.astro";
+import { TheSpotCarousel } from "../../components/spot/spot-carousel";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
 }
+
+const images = [
+  {
+    src: "/cuesta-del-viento/cuesta-del-viento-1.webp",
+    alt: "Cuesta del Viento",
+  },
+  {
+    src: "/cuesta-del-viento/cuesta-del-viento-2.jpg",
+    alt: "Cuesta del Viento",
+  },
+  {
+    src: "/cuesta-del-viento/cuesta-del-viento-3.jpg",
+    alt: "Cuesta del Viento",
+  },
+  {
+    src: "/cuesta-del-viento/cuesta-del-viento-4.jpg",
+    alt: "Cuesta del Viento",
+  },
+  {
+    src: "/cuesta-del-viento/cuesta-del-viento-5.jpg",
+    alt: "Cuesta del Viento",
+  },
+];
 ---
 
 <Layout title="Cuesta del Viento | Fauna Kite ">
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content="Cuesta del Viento, San Juan: uno de los mejores spots de kitesurf del mundo. Más de 300 días de viento al año, paisajes únicos entre montañas y una comunidad que vive el kite con pasión."
+    />
+  </Fragment>
+
   <header>
     <Nav />
   </header>
 
-  <main class="min-h-dvh bg-brand-blue">
-    <div class="pt-20">
-      <h1>El Spot: Cuesta Del Viento</h1>
+  <main class="min-h-dvh bg-brand-light">
+    <div class="relative w-full h-[380px]">
+      <div
+        class="absolute inset-0 bg-no-repeat bg-position-[bottom_25%_right_20%] bg-cover bg-red-200"
+        style="background-image: url('/hero-desktop-2.jpeg');"
+      >
+      </div>
+
+      <div
+        class="flex justify-end max-w-4xl mx-auto relative z-20 h-full items-end pb-10"
+      >
+        <h1 class="font-salted text-8xl">EL SPOT</h1>
+      </div>
     </div>
+
+    <section class="bg-brand-light pt-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="shadow-news-card rounded-2xl bg-white p-6 text-brand-blue">
+          <div class="grid grid-cols-2 gap-2">
+            <div class="w-full h-full">
+              <TheSpotCarousel images={images} client:load />
+            </div>
+
+            <div class="max-w-prose p-4">
+              <div class="pb-4">
+                <h2 class="font-bold text-3xl">Cuesta del Viento</h2>
+                <h3 class="text-lg">Un lugar distinto a todo.</h3>
+              </div>
+
+              <div class="space-y-4">
+                <p>
+                  En el corazón de la precordillera, a 2 horas de la Ciudad de
+                  San Juan, entre montañas áridas que parecen no tener fin, se
+                  encuentra Cuesta del Viento: Un lago rodeado de cerros rojizos
+                  donde el viento tiene una presencia imponente. Para muchos,
+                  uno de los mejores spots del mundo para hacer kite.
+                </p>
+                <p>
+                  Quienes lo visitan por primera vez lo dicen siempre: “Siento
+                  que estoy en otro planeta”. Y algo de eso hay. Las montañas
+                  cambian de color con el pasar del día, las noches se cubren de
+                  estrellas que parecen estar al alcance de las manos, y el
+                  viento, el principal protagonista llega casi cada día,
+                  puntual, y junto con él navegantes y viajeros de todas partes.
+                  Este escenario mágico, la energía del lugar y una comunidad
+                  que te recibe con los brazos abiertos, son difíciles de
+                  explicar si no las vivís.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="py-10">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d84800.34322469351!2d-69.14646300205962!3d-30.19226462691117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9684a365dda86b77%3A0xc85819117eac932!2sEmbalse%20Cuesta%20del%20Viento!5e0!3m2!1ses-419!2sar!4v1765305545164!5m2!1ses-419!2sar"
+              width="100%"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <div class="space-y-4 max-w-prose mx-auto">
+            <p>
+              El viento donde siempre sopla: El dique cuesta el viento reporta
+              <strong>más de 300 días de viento al año</strong> y durante los meses
+              de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta
+              del Viento sea uno de los lugares más confiables de Sudamérica a la
+              hora de aprender, progresar o simplemente disfrutar de largas sesiones
+              en el agua.
+            </p>
+
+            <p>
+              Los vientos térmicos llegan casi todos los días. En un día
+              promedio, se levanta sobre el mediodía, iniciando suave y amigable
+              durante algunas horas, ideal para quienes están aprendiendo o
+              quieran disfrutar una sesión de viento más amigable.
+            </p>
+
+            <p>
+              Con el pasar de las horas, el viento va aumentando su fuerza:
+              llega el momento de disfrute para aquellos que ya tienen un poco
+              más experiencia. En condiciones regulares, varía entre 20 y 35
+              nudos.
+            </p>
+
+            <p>
+              Llegado el atardecer, que en diciembre y enero sucede luego de las
+              21hs, el viento aún sopla creando un escenario de velas y colores
+              increíbles sobre las montañas.
+            </p>
+
+            <p>
+              Es el sueño de todo kiter: viento asegurado, un paisaje único que
+              te deja sin palabras y una comunidad amigable que vive el kitesurf
+              con mucha pasión y siempre dispuesta a algún plan después de
+              navegar.
+            </p>
+          </div>
+
+          <!-- Más que kite / Cómo llegar / Qué llevar -->
+          <div id="mas-que-kite-como-llegar" class="pt-10">
+            <div class="space-y-8">
+              <!-- Más que kite -->
+              <div id="mas-que-kite" class="max-w-prose mx-auto">
+                <h2 class="font-bold text-3xl pb-2">Más que kite</h2>
+                <p class="mb-4">
+                  Rodeo y sus alrededores ofrecen experiencias para todos los
+                  gustos.
+                </p>
+
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <li class="flex items-start gap-3">
+                    <!-- Icon: Mirador -->
+                    <svg
+                      class="w-6 h-6 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        d="M12 2L15 8l6 .5-4.5 3 1.5 6L12 15l-6 3 1.5-6L3 8.5 9 8l3-6z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                    <span>
+                      Caminatas por los cerros y miradores con vistas al dique
+                    </span>
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <!-- Icon: Escalada / Montaña -->
+                    <svg
+                      class="w-6 h-6 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M3 20h18L12 4 3 20z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                      <path
+                        d="M9.5 14.5l2-3 1.5 2"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                    <span> Escalada, mountain bike y senderismo </span>
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <!-- Icon: Paddle -->
+                    <svg
+                      class="w-6 h-6 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M21 6s-3 1-6 1-6-1-6-1 3 4 6 4 6-4 6-4z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                      <path
+                        d="M3 18s3-1 6-1 6 1 6 1-3-4-6-4-6 4-6 4z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                      <path
+                        d="M8 12l8 0"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                    <span> Stand Up Paddle o kayak por las mañanas </span>
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <!-- Icon: Restaurante -->
+                    <svg
+                      class="w-6 h-6 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M8 2v7"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                      <path
+                        d="M12 2v7"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                      <path
+                        d="M16 2v7"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                      <path
+                        d="M3 21h18"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                    <span> Restaurantes de gastronomía local </span>
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <!-- Icon: Estrellas -->
+                    <svg
+                      class="w-6 h-6 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 2l1.9 4.2L18 8l-4 2 1 4-4-2-4 2 1-4-4-2 4.1-1.8L12 2z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                    <span>
+                      Experiencias guiadas de observación de estrellas y
+                      fenómenos astrológicos
+                    </span>
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <!-- Icon: Música / Barra -->
+                    <svg
+                      class="w-6 h-6 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M9 17V5l10-2v12"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                      <path
+                        d="M9 17a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                    <span>
+                      Bares con noches de música y shows de entretenimiento
+                    </span>
+                  </li>
+                </ul>
+
+                <p class="mt-4">
+                  La zona combina naturaleza, tranquilidad y buena energía —todo
+                  lo necesario para vivir unos días de conexión total.
+                </p>
+              </div>
+
+              <!-- Cómo llegar -->
+              <div id="como-llegar" class="max-w-prose mx-auto">
+                <h2 class="font-bold text-3xl pb-2">Cómo llegar</h2>
+                <p class="mb-4">
+                  Cuesta del Viento se encuentra en el departamento de Iglesia,
+                  provincia de San Juan, a unos <strong>180 km</strong> al noroeste
+                  de la ciudad capital.
+                </p>
+
+                <div class="space-y-4">
+                  <div>
+                    <h3 class="font-semibold">Desde San Juan</h3>
+                    <p>
+                      Unas 2 horas en auto o 4 en bus hacia el norte por la Ruta
+                      40 y luego la Ruta 149 por Iglesia. También podés seguir
+                      por Ruta 150 pasando por Jáchal.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 class="font-semibold">Desde Mendoza</h3>
+                    <p>
+                      Unas 4 horas en auto o 6–7 hs en bus (no hay uno directo;
+                      deberías conectar en San Juan).
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 class="font-semibold">Desde Córdoba</h3>
+                    <p>
+                      Unas 8 horas en auto, pasando por Villa Dolores y Jáchal
+                      hasta Rodeo. Todo el camino está asfaltado y ofrece vistas
+                      increíbles.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 class="font-semibold">
+                      Desde Buenos Aires u otras provincias
+                    </h3>
+                    <p>
+                      Podés volar a San Juan Capital o a Mendoza y desde ahí
+                      continuar en auto o bus. Si preferís manejar, el viaje
+                      completo son unos <strong
+                        >1.200 km —aprox. 15 horas</strong
+                      > por Ruta 7 y luego Ruta 150.
+                    </p>
+                  </div>
+
+                  <div>
+                    <p>
+                      <strong>Tip:</strong> Si viajás solo, los fines de semana suele
+                      haber kiters viajando a Rodeo con lugar disponible y ganas de
+                      compartir el viaje —<a
+                        class="underline"
+                        href="https://wa.me/542646600588"
+                        target="_blank"
+                        rel="noopener noreferrer">escribinos por WhatsApp</a
+                      > y te damos una mano.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mt-4">
+                  <h3 class="font-semibold">Recomendación</h3>
+                  <p>
+                    Te recomendamos tener algún tipo de movilidad en el lugar.
+                    Algunos alojamientos ofrecen traslado al dique o bicicletas.
+                    Si no vas a tener movilidad, lo ideal es hospedarte cerca
+                    del spot.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Qué llevar -->
+              <div id="que-llevar" class="max-w-prose mx-auto">
+                <h2 class="font-bold text-3xl pb-2">Qué llevar</h2>
+
+                <p class="mb-3">
+                  Durante las clases te damos todo el equipo necesario —traje de
+                  neoprene, chaleco y casco— así que solo necesitás traer lo
+                  básico:
+                </p>
+
+                <ul class="list-inside space-y-2">
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 shrink-0 mt-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="1.2"></circle>
+                      <path
+                        d="M8 12l2 2 6-6"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                    <span>Ropa cómoda</span>
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 shrink-0 mt-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <rect
+                        x="3"
+                        y="3"
+                        width="18"
+                        height="14"
+                        rx="2"
+                        stroke="currentColor"
+                        stroke-width="1.2"></rect>
+                      <path
+                        d="M8 21h8"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"></path>
+                    </svg>
+                    <span>Toalla, traje de baño y sandalias</span>
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 shrink-0 mt-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1 12h22"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"></path>
+                      <path
+                        d="M12 2v20"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"></path>
+                    </svg>
+                    <span>Protector solar, lentes de sol y gorra</span>
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 shrink-0 mt-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M3 3h18v12H3z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                      <path
+                        d="M7 21h10"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"></path>
+                    </svg>
+                    <span
+                      >Abrigo para las noches (aunque sea verano puede
+                      refrescar)</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 shrink-0 mt-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 2l2 7h7l-5.5 4 2 7L12 16l-7.5 4 2-7L1 9h7l2-7z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                    <span
+                      >Zapas cómodas por si querés hacer caminatas o salir a
+                      correr</span
+                    >
+                  </li>
+
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 shrink-0 mt-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M4 4h16v16H4z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                      <path
+                        d="M8 8h8v8H8z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    </svg>
+                    <span>Mate, agua y buena onda 🌬️</span>
+                  </li>
+                </ul>
+
+                <p class="mt-4">
+                  Si tenés tu traje de neoprene propio, un <strong
+                    >4/3 largo</strong
+                  > es ideal; si venís en diciembre o enero, con un <strong
+                    >3/2</strong
+                  > vas a estar cómodo.
+                </p>
+              </div>
+
+              <!-- Contacto rápido -->
+              <div class="max-w-prose mx-auto pt-2">
+                <p class="text-sm">
+                  ¿Consultas o querés coordinar un viaje compartido? <a
+                    class="font-semibold underline"
+                    href="https://wa.me/542646600588"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Abrir WhatsApp a +54 9 2646 600588"
+                    >Escribinos por WhatsApp +54 9 2646 600588</a
+                  > — también disponible vía <a
+                    class="underline"
+                    href="tel:+542646600588">llamada</a
+                  >.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="text-celeste-2">
+      <CommunityTopSeparator />
+    </div>
+
+    <div class="h-[150px] bg-celeste-2"></div>
   </main>
+
+  <Footer />
 </Layout>

@@ -3,7 +3,7 @@ import type { TiendaNubeProduct } from "../modules/store/tiendanube/types";
 import { getProducts } from "../modules/store/tiendanube/utils";
 import { useTranslations } from "../i18n/utils";
 import { storeUrl } from "../modules/store/constants";
-import ProductCarousel from "./products-carrousel";
+import TiendaNubeCarousel from "./store/tienda-nube-carousel";
 
 const products: TiendaNubeProduct[] | null = await getProducts();
 
@@ -56,7 +56,7 @@ const t = useTranslations(lang);
       </svg>
     </div>
 
-    <ProductCarousel products={products} client:load />
+    <TiendaNubeCarousel client:load products={products} />
 
     <!-- SVG PATH 2 -->
     <div

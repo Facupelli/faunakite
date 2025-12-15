@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import communityPhoto from "../assets/community-photo.webp";
-import FooterSeparator from "./svg/footer-separator.astro";
+import CommunityTopSeparator from "./svg/community-top-separator.astro";
 import { useTranslations } from "../i18n/utils";
 
 const lang = Astro.params.locale as "en" | "es";
@@ -10,7 +10,7 @@ const t = useTranslations(lang);
 
 <section>
   <div class="text-celeste-2">
-    <FooterSeparator />
+    <CommunityTopSeparator />
   </div>
 
   <div class="relative w-full bg-celeste-2">

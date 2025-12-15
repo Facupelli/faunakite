@@ -18,7 +18,56 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout>
+<Layout title="Fauna Kite Escuela de Kitesurf">
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content="Fauna Kite es más que una escuela de kitesurf en Cuesta del Viento: una comunidad unida por el viento, el deporte y la naturaleza. Aprendé kite, conectá con personas reales y viví el kite como una forma de vida."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FAUNA Kite" />
+    <meta property="og:title" content="FAUNA Kite – Comunidad de Vientos" />
+    <meta
+      property="og:description"
+      content="Más que una escuela de kitesurf en Cuesta del Viento. Aprendé, conectá y viví el kite como una forma de vida."
+    />
+    <meta property="og:url" content="https://faunakite.com/" />
+    <meta
+      property="og:image"
+      content="https://faunakite.com/og/fauna-home.jpg"
+    />
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FAUNA Kite – Comunidad de vientos" />
+    <meta
+      name="twitter:description"
+      content="Escuela y comunidad de kitesurf en Cuesta del Viento. Naturaleza, aprendizaje y buena energía."
+    />
+    <meta
+      name="twitter:image"
+      content="https://faunakite.com/og/fauna-home.jpg"
+    />
+    <!-- SCHEMA MARKUP -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsActivityLocation",
+        "name": "FAUNA Kite",
+        "description": "Escuela y comunidad de kitesurf y wingfoil en Cuesta del Viento, San Juan.",
+        "url": "https://faunakite.com",
+        "logo": "https://faunakite.com/logo/logo-blanco-horizontal.png",
+        "image": "https://faunakite.com/og/fauna-home.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "San Juan",
+          "addressCountry": "AR"
+        },
+        "sport": ["Kitesurfing", "Wing Foiling"],
+        "sameAs": ["https://www.instagram.com/fauna.kite"]
+      }
+    </script>
+  </Fragment>
+
   <header>
     <Nav />
   </header>
@@ -35,8 +84,5 @@ export async function getStaticPaths() {
     <Community />
   </main>
 
-  <div class="relative z-10 text-brand-blue bg-celeste-2">
-    <FooterTopSeparator />
-  </div>
   <Footer />
 </Layout>

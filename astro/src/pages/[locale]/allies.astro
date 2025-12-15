@@ -4,6 +4,7 @@ import Footer from "../../components/footer.astro";
 import Nav from "../../components/nav.astro";
 import Layout from "../../layouts/Layout.astro";
 import { urlFor } from "../../modules/news/image.utils";
+import CommunityTopSeparator from "../../components/svg/community-top-separator.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -31,6 +32,11 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
 
 <Layout title="Fauna Aliados">
   <Fragment slot="head">
+    <meta
+      name="description"
+      content="Aliados Fauna: hoteles, restaurantes y experiencias recomendadas en Cuesta del Viento y alrededores. Beneficios exclusivos para alumnos FAUNA y una red de amigos que comparten el espíritu del kite y la buena energía."
+    />
+
     {
       allies[0]?.image && (
         <>
@@ -51,19 +57,29 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
     <Nav />
   </header>
 
-  <main class="min-h-dvh bg-brand-blue">
-    <div class="max-w-7xl mx-auto px-4 md:px-10 pt-20">
-      <div class="pt-10">
-        <h1 class="uppercase text-4xl">Aliados</h1>
+  <main class="min-h-dvh bg-brand-light">
+    <div class="relative w-full h-[380px]">
+      <div
+        class="absolute inset-0 bg-no-repeat bg-position-[bottom_25%_right_20%] bg-cover bg-red-200"
+        style="background-image: url('/hero-desktop-2.jpeg');"
+      >
       </div>
 
+      <div
+        class="flex justify-end max-w-4xl mx-auto relative z-20 h-full items-end pb-10"
+      >
+        <h1 class="font-salted text-8xl">ALIADOS</h1>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-10 pt-20">
       <div class="py-10">
-        <div class="grid md:grid-cols-2 gap-10">
+        <div class="grid md:grid-cols-2 items-start gap-10">
           {
             allies.map((ally, index) => (
-              <div class="relative rounded-4xl h-full w-full bg-white text-brand-blue">
+              <article class="relative rounded-2xl  bg-white text-brand-blue shadow-news-card">
                 {ally.image !== undefined && (
-                  <div class="relative h-[55%] w-full">
+                  <div class="relative h-80 w-full">
                     <picture>
                       {/* WebP - good compression with broad support */}
                       <source
@@ -82,7 +98,7 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
                         loading={index < 2 ? "eager" : "lazy"}
                         fetchpriority={index === 0 ? "high" : "auto"}
                         decoding={index < 2 ? "sync" : "async"}
-                        class="object-cover w-full h-full rounded-t-4xl"
+                        class="object-cover w-full h-full rounded-t-2xl"
                       />
                     </picture>
                   </div>
@@ -129,12 +145,18 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
                     </div>
                   )}
                 </div>
-              </div>
+              </article>
             ))
           }
         </div>
       </div>
     </div>
+
+    <div class="text-celeste-2">
+      <CommunityTopSeparator />
+    </div>
+
+    <div class="h-[150px] bg-celeste-2"></div>
   </main>
 
   <Footer />

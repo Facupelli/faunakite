@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import { useTranslations } from "../i18n/utils";
 import logo from "../assets/logos/logo-blanco-03.png";
+import FooterTopSeparator from "./svg/footer-top-separator.astro";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
@@ -16,131 +17,137 @@ const links = [
 ];
 ---
 
-<footer class="bg-brand-blue text-white">
-  {/* Main Footer Content */}
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-      {/* Brand Section */}
-      <div class="space-y-4">
-        <a href="/">
-          <div class="relative w-full max-w-[100px] aspect-[3.45/1]">
-            <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
+<div>
+  <div class="relative z-10 text-brand-blue bg-celeste-2">
+    <FooterTopSeparator />
+  </div>
+
+  <footer class="bg-brand-blue text-white">
+    {/* Main Footer Content */}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        {/* Brand Section */}
+        <div class="space-y-4">
+          <a href="/">
+            <div class="relative w-full max-w-[100px] aspect-[3.45/1]">
+              <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
+            </div>
+          </a>
+
+          <p class="text-white/80 text-sm leading-relaxed">
+            {t("footer.slogan")}
+          </p>
+          {/* Social Media */}
+          <div class="flex gap-4 pt-2">
+            <a
+              href="https://www.instagram.com/fauna.kite/"
+              target="_blank"
+              class="w-10 h-10 rounded-full bg-white/10 hover:bg-fauna-sun flex items-center justify-center transition-colors"
+              aria-label="Instagram"
+            >
+              <Icon name="instagram" />
+            </a>
+            <a
+              href="#"
+              class="w-10 h-10 rounded-full bg-white/10 hover:bg-fauna-sun flex items-center justify-center transition-colors"
+              aria-label="WhatsApp"
+            >
+              <Icon name="whatsapp" />
+            </a>
           </div>
-        </a>
-
-        <p class="text-white/80 text-sm leading-relaxed">
-          {t("footer.slogan")}
-        </p>
-        {/* Social Media */}
-        <div class="flex gap-4 pt-2">
-          <a
-            href="https://www.instagram.com/fauna.kite/"
-            target="_blank"
-            class="w-10 h-10 rounded-full bg-white/10 hover:bg-fauna-sun flex items-center justify-center transition-colors"
-            aria-label="Instagram"
-          >
-            <Icon name="instagram" />
-          </a>
-          <a
-            href="#"
-            class="w-10 h-10 rounded-full bg-white/10 hover:bg-fauna-sun flex items-center justify-center transition-colors"
-            aria-label="WhatsApp"
-          >
-            <Icon name="whatsapp" />
-          </a>
         </div>
-      </div>
 
-      {/* Navigation */}
-      <div>
-        <h4 class="font-bold tracking-wide uppercase mb-4 text-fauna-sun">
-          {t("footer.navigation.title")}
-        </h4>
-        <ul class="space-y-3">
-          {
-            links.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  class="text-white/80 hover:text-fauna-sun transition-colors text-sm"
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+        {/* Navigation */}
+        <div>
+          <h4 class="font-bold tracking-wide uppercase mb-4 text-fauna-sun">
+            {t("footer.navigation.title")}
+          </h4>
+          <ul class="space-y-3">
+            {
+              links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-white/80 hover:text-fauna-sun transition-colors text-sm"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
 
-      {/* Contact */}
-      <div>
-        <h4 class="font-bold tracking-wide uppercase mb-4 text-fauna-sun">
-          {t("footer.contact.title")}
-        </h4>
-        <ul class="space-y-3 text-sm">
-          <li class="text-white/80">
-            <a
-              href="tel:+5491112345678"
-              class="hover:text-fauna-sun transition-colors"
+        {/* Contact */}
+        <div>
+          <h4 class="font-bold tracking-wide uppercase mb-4 text-fauna-sun">
+            {t("footer.contact.title")}
+          </h4>
+          <ul class="space-y-3 text-sm">
+            <li class="text-white/80">
+              <a
+                href="tel:+5491112345678"
+                class="hover:text-fauna-sun transition-colors"
+              >
+                +54 9 264 46600588
+              </a>
+            </li>
+            <li class="text-white/80">
+              <a
+                href="mailto:hola@faunakite.com"
+                class="hover:text-fauna-sun transition-colors"
+              >
+                faunacomunidad@gmail.com
+              </a>
+            </li>
+            <li class="text-white/80">San Juan, Argentina</li>
+          </ul>
+        </div>
+
+        {/* Newsletter */}
+        <div>
+          <h4 class="font-bold tracking-wide uppercase mb-4 text-fauna-sun">
+            {t("footer.newsletter.title")}
+          </h4>
+          <p class="text-white/80 text-sm mb-4">
+            {t("footer.newsletter.subtitle")}
+          </p>
+          <form class="flex flex-col gap-2">
+            <input
+              type="email"
+              placeholder="Tu email"
+              class="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-fauna-sun focus:bg-white/15 transition-colors text-sm"
+            />
+            <button
+              type="submit"
+              class="px-4 py-2 bg-fauna-sun text-primary font-bold tracking-wide uppercase text-sm rounded-lg hover:bg-fauna-sun/90 transition-colors"
             >
-              +54 9 264 46600588
-            </a>
-          </li>
-          <li class="text-white/80">
-            <a
-              href="mailto:hola@faunakite.com"
-              class="hover:text-fauna-sun transition-colors"
-            >
-              faunacomunidad@gmail.com
-            </a>
-          </li>
-          <li class="text-white/80">San Juan, Argentina</li>
-        </ul>
-      </div>
-
-      {/* Newsletter */}
-      <div>
-        <h4 class="font-bold tracking-wide uppercase mb-4 text-fauna-sun">
-          {t("footer.newsletter.title")}
-        </h4>
-        <p class="text-white/80 text-sm mb-4">
-          {t("footer.newsletter.subtitle")}
-        </p>
-        <form class="flex flex-col gap-2">
-          <input
-            type="email"
-            placeholder="Tu email"
-            class="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-fauna-sun focus:bg-white/15 transition-colors text-sm"
-          />
-          <button
-            type="submit"
-            class="px-4 py-2 bg-fauna-sun text-primary font-bold tracking-wide uppercase text-sm rounded-lg hover:bg-fauna-sun/90 transition-colors"
-          >
-            {t("footer.newsletter.button")}
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  {/* Bottom Bar */}
-  <div class="border-t border-brand-green/50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div
-        class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60"
-      >
-        <p>
-          © {new Date().getFullYear()} Fauna Kite. Todos los derechos reservados.
-        </p>
-        <div class="flex gap-6">
-          <a href="/privacy" class="hover:text-fauna-sun transition-colors">
-            Privacidad
-          </a>
-          <a href="/terms" class="hover:text-fauna-sun transition-colors">
-            Términos
-          </a>
+              {t("footer.newsletter.button")}
+            </button>
+          </form>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+
+    {/* Bottom Bar */}
+    <div class="border-t border-brand-green/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60"
+        >
+          <p>
+            © {new Date().getFullYear()} Fauna Kite. Todos los derechos reservados.
+          </p>
+          <div class="flex gap-6">
+            <a href="/privacy" class="hover:text-fauna-sun transition-colors">
+              Privacidad
+            </a>
+            <a href="/terms" class="hover:text-fauna-sun transition-colors">
+              Términos
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
