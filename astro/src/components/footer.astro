@@ -15,10 +15,20 @@ const links = [
   { name: t("footer.navigation.allies"), href: "/" },
   { name: t("footer.navigation.store"), href: "/" },
 ];
+
+interface Props {
+  fill?: boolean;
+}
+
+const { fill } = Astro.props;
+
+const className = fill
+  ? "relative z-10 text-brand-blue bg-celeste-2"
+  : "relative z-10 text-brand-blue bg-transparent";
 ---
 
 <div>
-  <div class="relative z-10 text-brand-blue bg-celeste-2">
+  <div class={className}>
     <FooterTopSeparator />
   </div>
 
