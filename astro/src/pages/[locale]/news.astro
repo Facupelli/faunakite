@@ -4,6 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../modules/news/date.utils";
 import { getNews, type News } from "../../modules/news/utils";
 import logo from "../../assets/logos/logo-blanco-03.png";
+import Nav from "../../components/nav.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -14,18 +15,26 @@ const posts: News[] = await getNews();
 ---
 
 <Layout title="Noticias | Fauna Kite ">
+  <header>
+    <Nav />
+  </header>
+
   <main class="min-h-dvh bg-brand-blue">
-    <div class="mx-auto max-w-2xl px-5 py-12">
-      <div class="py-10">
-        <div class="flex justify-center">
-          <div
-            class="relative w-full max-w-[150px] aspect-[3.45/1] flex items-center justify-center"
-          >
-            <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
-          </div>
-        </div>
+    <div class="relative w-full h-[380px]">
+      <div
+        class="absolute inset-0 bg-no-repeat bg-position-[bottom_25%_right_20%] bg-cover bg-red-200"
+        style="background-image: url('/hero-desktop-2.jpeg');"
+      >
       </div>
 
+      <div
+        class="flex justify-end max-w-4xl mx-auto relative z-20 h-full items-end pb-10"
+      >
+        <h1 class="font-salted text-8xl">NEWS</h1>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-2xl px-5 py-12">
       <div class="relative -top-2.5 flex flex-col gap-8">
         {
           posts.map((post) => (
