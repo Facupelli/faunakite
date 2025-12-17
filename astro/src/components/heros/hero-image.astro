@@ -1,5 +1,6 @@
 ---
 import { useTranslations } from "../../i18n/utils";
+import BrushStain from "../../components/svg/newsletter-background.astro";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
@@ -21,20 +22,27 @@ const t = useTranslations(lang);
   </div>
 
   <div
-    class="relative z-10 space-y-8 md:space-y-4 flex flex-col justify-between px-4"
+    class="relative z-20 space-y-8 md:space-y-4 flex flex-col justify-between px-4"
   >
     <div class="max-w-4xl mx-auto">
-      <h1
+      <div
         class="font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-balance font-helvetica"
       >
         <!-- {t("hero.title")} -->
         <span class="block"> MÁS QUE UNA ESCUELA </span>
-        <span
-          class="text-brand-red block text-shadow-2xs text-shadow-brand-blue"
+        <div
+          class="relative text-brand-red block text-shadow-2xs text-shadow-brand-blue"
         >
-          UNA COMUNIDAD DE VIENTOS</span
-        >
-      </h1>
+          <div
+            class="absolute inset-0 pointer-events-none z-0"
+            aria-hidden="true"
+          >
+            <BrushStain class="w-full h-full text-celeste-2" />
+          </div>
+
+          <span class="relative z-10"> UNA COMUNIDAD DE VIENTOS </span>
+        </div>
+      </div>
     </div>
 
     <p
@@ -45,6 +53,10 @@ const t = useTranslations(lang);
   </div>
 
   <!-- DESKTOP Background Image  -->
+  <div
+    class="absolute inset-0 z-10 bg-linear-to-r from-brand-blue/50 to to-transparent"
+  >
+  </div>
   <div
     class="absolute inset-0 z-0 md:block hidden bg-no-repeat bg-right bg-cover"
     style="background-image: url('/hero-desktop-2.jpeg');"
