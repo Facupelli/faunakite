@@ -1,0 +1,169 @@
+---
+import { useTranslations } from "../../../i18n/utils";
+import ServicesLayout from "../../../layouts/services-layout.astro";
+import SicilyPhoto from "../../../assets/destino-sicilia.jpg";
+import { Image } from "astro:assets";
+import { TheSpotCarousel } from "../../../components/spot/spot-carousel";
+
+export async function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
+}
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+
+const carouselImages = [
+  {
+    src: SicilyPhoto.src,
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: "https://cdn.prod.website-files.com/61b694c59f46238057609302/665df4f13b65f87aa7d5df78_6%20Sicile%20Cefalu.jpg",
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: "https://jaywaytravel.com/wp-content/smush-webp/2025/09/ancient-ruins-taormina-sicily-italy.jpg.webp",
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: "https://www.iroamly.com/images/sicily.webp",
+    alt: "Lo Stagnone, Sicilia",
+  },
+];
+
+const activities = [
+  {
+    image:
+      "https://www.muchoviento.com/wp-content/uploads/2023/03/home-page-module-video-scaled.jpg",
+
+    title: "Kite",
+    description:
+      "Navegá aguas planas con viento constante en una de las mejores lagunas del Mediterráneo.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1670667105463-5b29d841cfe9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title: "Playas",
+    description:
+      "Playas de arena clara, mar turquesa y atardeceres que parecen pintados.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1662197480393-2a82030b7b83?q=80&w=988&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title: "Pasta",
+    description:
+      "Cocina siciliana auténtica: pastas caseras, sabores intensos y tradición en cada plato.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1650553448920-9432f8086905?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title: "Helado",
+    description:
+      "Gelato artesanal italiano, cremoso y fresco, perfecto después de un día al sol.",
+  },
+];
+---
+
+<ServicesLayout>
+  <Fragment slot="header">
+    <div class="max-w-4xl mx-auto pb-20 space-y-4 text-xl">
+      <p>
+        Durante el invierno argentino, la temporada de kite en Cuesta del Viento
+        termina, pero <strong>la comunidad de Fauna no se queda quieta:</strong> organizamos
+        experiencias únicas en distintos destinos de Argentina y del mundo, combinando
+        deporte, naturaleza y amistad. No son viajes tradicionales: son aventuras
+        compartidas donde el kite, el surf y la nieve, son solo la excusa para vivir
+        algo mucho más grande.
+      </p>
+      <p>
+        Nuestro objetivo es que cada viaje sea una celebración del movimiento,
+        la naturaleza y la vida en comunidad. Podés venir solo o acompañado; vas
+        a volver con amigos nuevos y muchas historias para contar.
+      </p>
+      <p>
+        Viajamos para compartir. Para explorar. Para sentirnos parte de algo
+        más.
+      </p>
+    </div>
+  </Fragment>
+
+  <div>
+    <div class="flex gap-10 max-w-7xl mx-auto pt-20">
+      <div class="basis-[33%]">
+        <h2 class="font-salted text-6xl text-brand-blue">
+          Lo Stagnone, Sicilia
+        </h2>
+      </div>
+      <div class="basis-[66%]">
+        <div class="text-brand-blue max-w-7xl mx-auto text-lg space-y-4">
+          <p>
+            En el corazón del Mediterráneo se encuentra uno de los destinos más
+            mágicos para el kitesurf: Lo Stagnone.
+          </p>
+          <p>
+            Una laguna de de mar, con agua poco profunda y viento constante que
+            hace que el aprendizaje sea muy amigable.
+          </p>
+          <p>
+            Y no solo se trata del kite: Sicilia es un paraíso natural con
+            pueblos e islas increíbles para visitar, cargados de historia muy
+            antigua y atardeceres inolvidables.
+          </p>
+          <p>
+            La Dolce Vita: Kite, excursiones, playas y las mejores pastas,
+            pizzas y helados que vas a probar en la vida.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-20 h-[800px]">
+      <TheSpotCarousel client:load images={carouselImages} />
+    </div>
+
+    <div class="space-y-8 max-w-7xl mx-auto text-brand-blue pt-30 pb-10">
+      <h2 class="text-[90px] text-center text-pretty font-salted leading-tight">
+        Experiencias de un Kite Trip en Sicilia
+      </h2>
+      <p
+        class="text-center text-lg text-brand-blue/80 max-w-lg mx-auto text-pretty"
+      >
+        Viajamos para navegar en los mejores spots del Mediterráneo y descubrir
+        la isla desde adentro, combinando viento, cultura y comunidad.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-10 py-20">
+      {
+        activities.map((activity) => (
+          <div class="shadow-news-card rounded-2xl w-[300px] text-brand-blue">
+            <div>
+              <img
+                src={activity.image}
+                alt="Kitesurf, Sicilia"
+                class="object-cover size-[300px] rounded-t-2xl"
+              />
+            </div>
+            <div class="p-8 bg-white rounded-b-2xl space-y-4">
+              <p class="text-lg font-bold">{activity.title}</p>
+              <p>{activity.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-brand-blue max-w-7xl mx-auto text-lg py-20">
+      <p class="pb-4">
+        Durante los Kite Trips FAUNA en Sicilia, compartimos días de navegación,
+        aprendizaje y convivencia:
+      </p>
+      <ul class="space-y-2 pl-4">
+        <li>🏡 Alojamiento con desayuno cerca del spot.</li>
+        <li>🪁 Clases personalizadas o rental con instructores FAUNA.</li>
+        <li>🎥 Análisis de video, yoga y actividades fuera del agua.</li>
+        <li>🍷 Cenas grupales, música, paseos y atardeceres épicos.</li>
+      </ul>
+    </div>
+  </div>
+</ServicesLayout>

@@ -1,0 +1,107 @@
+---
+import Carousel from "../../../components/embla-carousel";
+import { ImageCard } from "../../../components/spot/carousel-image-card";
+import { useTranslations } from "../../../i18n/utils";
+import ServicesLayout from "../../../layouts/services-layout.astro";
+import KitecampPhoto1 from "../../../assets/kitecamp/kitecamp-1.webp";
+import KitecampPhoto2 from "../../../assets/kitecamp/kitecamp-2.webp";
+import KitecampPhoto3 from "../../../assets/kitecamp/kitecamp-3.webp";
+import KitecampPhoto4 from "../../../assets/kitecamp/kitecamp-4.webp";
+import KitecampPhoto5 from "../../../assets/kitecamp/kitecamp-5.webp";
+import KitecampPhoto6 from "../../../assets/kitecamp/kitecamp-6.webp";
+import KitecampPhoto7 from "../../../assets/kitecamp/kitecamp-7.webp";
+import KitecampPhoto8 from "../../../assets/kitecamp/kitecamp-8.webp";
+import KitecampPhoto9 from "../../../assets/kitecamp/kitecamp-9.webp";
+import KitecampPhoto10 from "../../../assets/kitecamp/kitecamp-10.webp";
+import KitecampPhoto11 from "../../../assets/kitecamp/kitecamp-11.webp";
+import { TheSpotCarousel } from "../../../components/spot/spot-carousel";
+
+export async function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
+}
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+
+const images = [
+  {
+    src: KitecampPhoto1.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto2.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto3.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto4.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto5.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto6.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto7.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto8.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto9.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto10.src,
+    alt: "KiteCamp",
+  },
+  {
+    src: KitecampPhoto11.src,
+    alt: "KiteCamp",
+  },
+];
+---
+
+<ServicesLayout>
+  <div class="grid grid-cols-2 gap-10 py-20 max-w-6xl mx-auto">
+    <div class="text-brand-blue max-w-prose text-lg space-y-4">
+      <h1 class="font-bold text-4xl">KITE CAMP</h1>
+      <p>
+        Un KiteCamp es una oportunidad única para progresar, disfrutar y conocer
+        gente nueva que vibra igual que vos.
+      </p>
+      <p>
+        No importa si venís solo o acompañado, durante varios días vas a ser
+        parte de una comunidad y vivir una experiencia completa de kite,
+        diversión y nuevos amigos.
+      </p>
+      <p>
+        <strong> Cada edición incluye: </strong>
+      </p>
+      <ul class="flex flex-col gap-2">
+        <li>
+          🪁 Clases personalizadas, individuales o grupales o rental, según tu
+          nivel.
+        </li>
+        <li>🎥 Análisis de video para acelerar tu progreso.</li>
+        <li>🧘 Sesiones de yoga o estiramiento.</li>
+        <li>🍽️ Desayunos y cenas grupales</li>
+        <li>🎸 Música en la casa FAUNA y shows OpenMic.</li>
+        <li>🎁 Kits de bienvenida y sorpresas durante.</li>
+      </ul>
+    </div>
+
+    <div class="w-[500px] justify-self-center">
+      <TheSpotCarousel client:load images={images} />
+    </div>
+  </div>
+</ServicesLayout>

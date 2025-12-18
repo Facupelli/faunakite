@@ -1,0 +1,51 @@
+---
+import { useTranslations } from "../i18n/utils";
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+
+const navLinks = [
+  {
+    name: "Clases & Cursos",
+    href: `/${lang}/services/clases`,
+  },
+  {
+    name: "Rental",
+    href: `/${lang}/services/rental`,
+  },
+  {
+    name: "Kite Camps",
+    href: `/${lang}/services/kitecamps`,
+  },
+  {
+    name: "Kite Trips",
+    href: `/${lang}/services/kitetrips`,
+  },
+];
+
+const activeLinkClass =
+  "px-6 py-2 rounded-4xl bg-brand-light border-2 text-brand-blue border-brand-blue";
+const linkClass =
+  "px-6 py-2 rounded-4xl border-2 border-brand-light text-brand-light";
+---
+
+<nav>
+  <ul class="flex justify-center gap-10 text-white font-bold uppercase">
+    {
+      navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class={
+              Astro.url.pathname.startsWith(link.href)
+                ? activeLinkClass
+                : linkClass
+            }
+          >
+            {link.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

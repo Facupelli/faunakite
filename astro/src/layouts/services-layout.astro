@@ -1,0 +1,92 @@
+---
+import Footer from "../components/footer.astro";
+import Nav from "../components/nav.astro";
+import ServicesNav from "../components/services-nav.astro";
+import AboutUsUnderSeparator from "../components/svg/about-us-under-separator.astro";
+import { useTranslations } from "../i18n/utils";
+import Layout from "./Layout.astro";
+
+export async function getStaticPaths() {
+  return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
+}
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+
+const navLinks = [
+  {
+    name: "Clases & Cursos",
+    href: `/${lang}/services/clases`,
+  },
+  {
+    name: "Rental",
+    href: `/${lang}/services/rental`,
+  },
+  {
+    name: "Kite Camps",
+    href: `/${lang}/services/kitecamps`,
+  },
+  {
+    name: "Kite Trips",
+    href: `/${lang}/services/kitetrips`,
+  },
+];
+
+const activeLinkClass =
+  "px-6 py-2 rounded-4xl bg-brand-blue border-2 border-brand-blue";
+const linkClass =
+  "px-6 py-2 rounded-4xl border-2 border-brand-blue text-brand-blue";
+---
+
+<Layout title="Lo Que Hacemos | Fauna Kite ">
+  <Fragment slot="head">
+    <meta
+      name="description"
+      content="Clases y cursos de kitesurf y wingfoil en Cuesta del Viento. Cursos iniciales, intensivos, clases avanzadas, rental, kite camps y viajes. Aprendé con seguridad, buena energía y sé parte de la comunidad FAUNA."
+    />
+  </Fragment>
+
+  <header>
+    <Nav />
+  </header>
+
+  <main class="min-h-dvh bg-brand-light">
+    <div class="relative w-full h-[380px]">
+      <div
+        class="absolute inset-0 bg-no-repeat bg-position-[bottom_25%_right_20%] bg-cover"
+        style="background-image: url('/hero-desktop-2.jpeg');"
+      >
+      </div>
+
+      <div
+        class="flex justify-end max-w-4xl mx-auto relative z-20 h-full items-end pb-10"
+      >
+        <h1 class="font-salted text-6xl">LO QUE HACEMOS</h1>
+      </div>
+    </div>
+
+    <section class="bg-brand-blue">
+      <div class="py-20">
+        <ServicesNav />
+      </div>
+
+      <slot name="header" />
+    </section>
+
+    <section class="relative">
+      <div
+        class="bg-brand-light bg-[url('/cuesta-del-viento/white-wave.png')] bg-size-[42px_auto]"
+      >
+        <div class="text-brand-blue drop-shadow-xs drop-shadow-brand-blue">
+          <AboutUsUnderSeparator />
+        </div>
+
+        <div class="pt-10 pb-20">
+          <slot />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

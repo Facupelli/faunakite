@@ -113,8 +113,8 @@ export default function Carousel({
   return (
     <>
       {/* Mobile/Carousel View */}
-      <div className={clsx("relative", getHideCarouselClass())}>
-        <div className="overflow-hidden" ref={emblaRef}>
+      <div className={clsx("relative h-full", getHideCarouselClass())}>
+        <div className="overflow-hidden h-full" ref={emblaRef}>
           <div className="flex">
             {childrenArray.map((child, index) => (
               <div key={index} className="flex-[0_0_100%] min-w-0 px-4 py-4">
