@@ -4,6 +4,13 @@ import Nav from "../../components/nav.astro";
 import CommunityTopSeparator from "../../components/svg/community-top-separator.astro";
 import Layout from "../../layouts/Layout.astro";
 import { TheSpotCarousel } from "../../components/spot/spot-carousel";
+import CuestaDelVientoLocation from "../../components/svg/cuesta-del-viento-location.astro";
+import Star from "../../components/svg/the-spot-icons/star.astro";
+import Food from "../../components/svg/the-spot-icons/food.astro";
+import Telescope from "../../components/svg/the-spot-icons/telescope.astro";
+import Drink from "../../components/svg/the-spot-icons/drink.astro";
+import Mountain from "../../components/svg/the-spot-icons/mountain.astro";
+import Tennis from "../../components/svg/the-spot-icons/tennis.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -147,7 +154,10 @@ const images = [
             </div>
 
             <ul class="flex justify-between gap-10 items-center pt-20">
-              <li class="text-center flex-1">
+              <li class="text-center flex-1 flex flex-col items-center gap-2">
+                <div class="size-24">
+                  <Star />
+                </div>
                 <span>
                   Caminatas por los cerros y miradores con vistas al dique
                 </span>
@@ -155,25 +165,37 @@ const images = [
 
               <div class="bg-brand-blue w-px h-[100px]"></div>
 
-              <li class="text-center flex-1">
+              <li class="text-center flex-1 flex flex-col items-center gap-2">
+                <div class="h-24 w-32">
+                  <Mountain />
+                </div>
                 <span> Escalada, mountain bike y senderismo </span>
               </li>
 
               <div class="bg-brand-blue w-px h-[100px]"></div>
 
-              <li class="text-center flex-1">
+              <li class="text-center flex-1 flex flex-col items-center gap-2">
+                <div class="size-24">
+                  <Tennis />
+                </div>
                 <span> Stand Up Paddle o kayak por las mañanas </span>
               </li>
             </ul>
 
             <ul class="flex justify-between gap-10 items-center pt-10">
-              <li class="text-center flex-1">
+              <li class="text-center flex-1 flex flex-col items-center gap-2">
+                <div class="size-24">
+                  <Food />
+                </div>
                 <span> Restaurantes de gastronomía local </span>
               </li>
 
               <div class="bg-brand-blue w-px h-[100px]"></div>
 
-              <li class="text-center flex-1">
+              <li class="text-center flex-1 flex flex-col items-center gap-2">
+                <div class="size-24">
+                  <Telescope />
+                </div>
                 <span>
                   Experiencias guiadas de observación de estrellas y fenómenos
                   astrológicos
@@ -182,7 +204,10 @@ const images = [
 
               <div class="bg-brand-blue w-px h-[100px]"></div>
 
-              <li class="text-center flex-1">
+              <li class="text-center flex-1 flex flex-col items-center gap-2">
+                <div class="h-24 w-12">
+                  <Drink />
+                </div>
                 <span>
                   Bares con noches de música y shows de entretenimiento
                 </span>
@@ -196,21 +221,27 @@ const images = [
           </div>
         </div>
 
-        <div class="py-20">
+        <div class="relative py-30">
           <img
-            src="/cuesta-del-viento/lucca-volando.jpeg"
-            class="object-cover w-full h-[500px]"
-            alt="Lucca Kiteando en Cuesta del Viento"
+            src="/cuesta-del-viento/facu-volando.jpg"
+            class="object-cover w-full h-dvh"
+            alt="Facu Kiteando en Cuesta del Viento"
           />
         </div>
 
         <div class="max-w-7xl mx-auto">
           <div
-            class="grid grid-cols-5 gap-x-10"
+            class="grid grid-cols-2 gap-x-10"
             style="grid-template-rows: auto;"
           >
+            <div class="relative flex overflow-hidden">
+              <div class="absolute inset-0 w-[75%] h-full object-contain">
+                <CuestaDelVientoLocation />
+              </div>
+            </div>
+
             <div
-              class="col-span-2 space-y-6 max-w-prose text-brand-blue row-span-1"
+              class="space-y-10 text-lg max-w-prose text-brand-blue row-span-1"
             >
               <h4 class="text-2xl font-bold text-brand-blue">
                 EL VIENTO DONDE SIEMPRE SOPLA
@@ -255,7 +286,7 @@ const images = [
               </p>
             </div>
 
-            <div class="col-span-3 flex flex-col gap-4 row-span-1 h-full">
+            <!-- <div class="col-span-3 flex flex-col gap-4 row-span-1 h-full">
               {
                 images.map((image) => (
                   <div class="flex-1 min-h-0">
@@ -267,14 +298,14 @@ const images = [
                   </div>
                 ))
               }
-            </div>
+            </div> -->
           </div>
         </div>
 
-        <div class="py-20">
+        <div class="relative py-20">
           <img
-            src="/cuesta-del-viento/facu-volando.jpg"
-            class="object-cover w-full h-[500px]"
+            src="/cuesta-del-viento/lucca-volando.jpeg"
+            class="object-cover w-full h-dvh"
             alt="Facu Kiteando en Cuesta del Viento"
           />
         </div>
@@ -346,12 +377,12 @@ const images = [
               </div>
             </div>
 
-            <div class="max-w-7xl mx-auto">
+            <div class="max-w-7xl mx-auto py-20">
               <div
                 id="como-llegar"
-                class="max-w-prose text-brand-blue space-y-4"
+                class="grid grid-cols-5 text-brand-blue gap-10"
               >
-                <p>
+                <p class="col-span-2 py-8">
                   <strong>Tip:</strong> Si viajás solo, los fines de semana suele
                   haber kiters viajando a Rodeo con lugar disponible y ganas de compartir
                   el viaje —<a
@@ -361,7 +392,9 @@ const images = [
                     rel="noopener noreferrer">escribinos por WhatsApp</a
                   > y te damos una mano.
                 </p>
-                <p class="bg-white/80 rounded-2xl shadow-news-card p-4">
+                <p
+                  class="col-span-3 bg-white/80 rounded-2xl shadow-news-card p-8 max-w-md"
+                >
                   Te recomendamos tener algún tipo de movilidad en el lugar.
                   Algunos alojamientos ofrecen traslado al dique o bicicletas.
                   Si no vas a tener movilidad, lo ideal es hospedarte cerca del
