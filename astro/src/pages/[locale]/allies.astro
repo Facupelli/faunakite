@@ -5,6 +5,7 @@ import Nav from "../../components/nav.astro";
 import Layout from "../../layouts/Layout.astro";
 import { urlFor } from "../../modules/news/image.utils";
 import CommunityTopSeparator from "../../components/svg/community-top-separator.astro";
+import TheSpotTopSeparator from "../../components/svg/the-spot-top-separator.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -68,7 +69,11 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
       <div
         class="flex justify-end max-w-4xl mx-auto relative z-20 h-full items-end pb-10"
       >
-        <h1 class="font-salted text-8xl">ALIADOS</h1>
+        <h1 class="font-salted text-6xl md:text-8xl pr-4 md:pr-0">ALIADOS</h1>
+      </div>
+
+      <div class="absolute bottom-0 left-0 w-full text-brand-light">
+        <TheSpotTopSeparator />
       </div>
     </div>
 

@@ -6,6 +6,7 @@ import Rental2Photo from "../../../assets/rental/rental-2.webp";
 import Rental3Photo from "../../../assets/rental/rental-3.webp";
 import Rental4Photo from "../../../assets/rental/rental-4.webp";
 import { Image } from "astro:assets";
+import { CarouselWithBreakpoints } from "../../../components/spot/spot-carousel";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -22,12 +23,33 @@ const brands = [
       "https://slingshotsports.com/cdn/shop/files/ss-logo-white.png?v=1652123243&width=360",
   },
 ];
+
+const images = [
+  {
+    src: Rental1Photo.src,
+    alt: "Fauna Kite Kitesurf Equipment",
+  },
+  {
+    src: Rental2Photo.src,
+    alt: "Fauna Kite Kitesurf Equipment",
+  },
+  {
+    src: Rental3Photo.src,
+    alt: "Fauna Kite Kitesurf Equipment",
+  },
+  {
+    src: Rental4Photo.src,
+    alt: "Fauna Kite Kitesurf Equipment",
+  },
+];
 ---
 
 <ServicesLayout>
-  <div class="max-w-7xl mx-auto py-20">
-    <div class="flex items-start text-brand-blue text-xl gap-20 py-10">
-      <div class="basis-[60%] space-y-4">
+  <div class="max-w-7xl mx-auto py-10 md:py-20">
+    <div
+      class="flex flex-col md:flex-row items-start text-brand-blue text-xl gap-20 py-10 px-4"
+    >
+      <div class="md:basis-[60%] space-y-4">
         <p>
           ¿Ya sabés navegar pero todavía no tenés tu propio equipo? ¿Venís a
           Cuesta del Viento y necesitás una medida más pequeña?
@@ -40,7 +62,7 @@ const brands = [
         <p>Podés alquilar equipo completo o solo kite y barra (o wing).</p>
         <p>Ofrecemos rental diario o packs de varios días.</p>
 
-        <div class="flex items-center justify-center gap-10 py-10">
+        <div class="flex items-center flex-wrap justify-center gap-10 py-10">
           {
             brands.map((brand) => (
               <img src={brand.image} alt="" class="max-h-14" />
@@ -49,7 +71,7 @@ const brands = [
         </div>
       </div>
 
-      <div class="basis-[40%]">
+      <div class="md:basis-[40%]">
         <p>
           <strong>Requisitos:</strong> Ser independiente, ceñir y mantenerse upwind
           con facilidad, y saber hacer una maniobra de auto-rescate. (Si no es tu
@@ -59,27 +81,10 @@ const brands = [
       </div>
     </div>
 
-    <div class="flex items-center justify-between py-10">
-      <Image
-        src={Rental1Photo}
-        alt="Fauna Kite Kitesurf Equipment"
-        class="object-cover w-[300px] h-[450px] rounded-md filter-bluish-dark"
-      />
-      <Image
-        src={Rental2Photo}
-        alt="Fauna Kite Kitesurf Equipment"
-        class="object-cover w-[300px] h-[450px] rounded-md filter-bluish-dark"
-      />
-      <Image
-        src={Rental3Photo}
-        alt="Fauna Kite Kitesurf Equipment"
-        class="object-cover w-[300px] h-[450px] rounded-md filter-bluish-dark"
-      />
-      <Image
-        src={Rental4Photo}
-        alt="Fauna Kite Kitesurf Equipment"
-        class="object-cover w-[300px] h-[450px] rounded-md filter-bluish-dark"
-      />
+    <div
+      class="flex flex-col gap-10 md:flex-row items-center justify-between py-10 px-4"
+    >
+      <CarouselWithBreakpoints client:load images={images} />
     </div>
   </div>
 </ServicesLayout>

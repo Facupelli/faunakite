@@ -12,6 +12,7 @@ import aboutUsPhoto3 from "../../assets/about-us/playa-4.webp";
 import aboutUsPhoto4 from "../../assets/about-us/protector.webp";
 import aboutUsPhotoFacu from "../../assets/about-us/about-us-facu.jpeg";
 import aboutUsPhotoLucca from "../../assets/about-us/about-us-lucca.jpeg";
+import TheSpotTopSeparator from "../../components/svg/the-spot-top-separator.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -80,13 +81,17 @@ const team = [
       <div
         class="flex justify-end max-w-4xl mx-auto relative z-20 h-full items-end pb-10"
       >
-        <h1 class="font-salted text-8xl">NOSOTROS</h1>
+        <h1 class="font-salted text-6xl md:text-8xl pr-4 md:pr-0">NOSOTROS</h1>
+      </div>
+
+      <div class="absolute bottom-0 left-0 w-full text-brand-blue">
+        <TheSpotTopSeparator />
       </div>
     </div>
 
     <div class="bg-brand-blue">
-      <div class="max-w-6xl mx-auto py-30">
-        <div class="space-y-8 text-white text-2xl">
+      <div class="max-w-6xl mx-auto py-20 md:py-30">
+        <div class="space-y-8 text-white text-xl md:text-2xl px-4">
           <p>
             Somos una comunidad de vientos. Porque el kite es solo la excusa
             perfecta para encontrarnos, compartir y disfrutar de lo que nos
@@ -117,9 +122,11 @@ const team = [
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div class="pb-10 text-brand-blue space-y-4">
-            <h3 class="font-bold uppercase text-6xl">Nuestro Equipo</h3>
+            <h3 class="font-bold uppercase text-4xl md:text-6xl">
+              Nuestro Equipo
+            </h3>
 
-            <p class="text-lg">
+            <p class="md:text-lg">
               We love what we do and we do what we love. Its an honour to be
               able to be in the water as much as possible and to show you a part
               of our lives.
@@ -131,7 +138,7 @@ const team = [
               team.map((member) => (
                 <div class="group">
                   <div class="bg-white shadow-news-card rounded-2xl overflow-hidden text-brand-blue">
-                    <div class="h-[600px] relative overflow-hidden">
+                    <div class="h-[450px] md:h-[600px] relative overflow-hidden">
                       <Image
                         src={member.image}
                         alt="Lucca Instructor y Fundador"
@@ -162,16 +169,18 @@ const team = [
         <!-- NUESTRA HISTORIA -->
         <div class="pb-20">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-            <h3 class="font-bold uppercase text-6xl text-brand-blue pb-10">
+            <h3
+              class="font-bold uppercase text-4xl md:text-6xl text-brand-blue pb-10"
+            >
               Nuestra Historia
             </h3>
           </div>
 
-          <div class="border-t border-brand-blue">
+          <div class="border-t border-brand-blue/40">
             <div
-              class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
+              class="max-w-7xl mx-auto grid md:grid-cols-12 md:grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
             >
-              <div class="col-span-4 border-r border-brand-blue p-4">
+              <div class="md:col-span-4 md:border-r border-brand-blue/40 p-4">
                 <div class="px-4 sm:px-6 lg:px-8 space-y-4">
                   <div class="font-bold text-2xl">2013</div>
 
@@ -186,7 +195,7 @@ const team = [
                   </p>
                 </div>
               </div>
-              <div class="relative col-span-8 py-4 px-12">
+              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-8">
                 <img
                   src={aboutUsPhoto1.src}
                   alt="About Us Photo 1"
@@ -196,11 +205,11 @@ const team = [
             </div>
           </div>
 
-          <div class="border-t border-brand-blue">
+          <div class="border-t border-brand-blue/40">
             <div
-              class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
+              class="max-w-7xl mx-auto grid md:grid-cols-12 md:grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
             >
-              <div class="col-span-4 border-r border-brand-blue p-4">
+              <div class="md:col-span-4 md:border-r border-brand-blue/40 p-4">
                 <div class="px-4 sm:px-6 lg:px-8 space-y-4">
                   <div class="font-bold text-2xl">2016</div>
 
@@ -214,7 +223,7 @@ const team = [
                   </p>
                 </div>
               </div>
-              <div class="relative col-span-8 py-4 px-12">
+              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-8">
                 <img
                   src={aboutUsPhoto2.src}
                   alt="About Us Photo 1"
@@ -224,11 +233,11 @@ const team = [
             </div>
           </div>
 
-          <div class="border-t border-brand-blue">
+          <div class="border-t border-brand-blue/40">
             <div
-              class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
+              class="max-w-7xl mx-auto grid md:grid-cols-12 md:grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
             >
-              <div class="col-span-4 border-r border-brand-blue p-4">
+              <div class="md:col-span-4 md:border-r border-brand-blue/40 p-4">
                 <div class="px-4 sm:px-6 lg:px-8 space-y-4">
                   <div class="font-bold text-2xl">2018</div>
 
@@ -243,7 +252,7 @@ const team = [
                   </p>
                 </div>
               </div>
-              <div class="relative col-span-8 py-4 px-12">
+              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-8">
                 <img
                   src="/about-us/historia-3.jpg"
                   alt="About Us Photo 1"
@@ -253,11 +262,11 @@ const team = [
             </div>
           </div>
 
-          <div class="border-t border-brand-blue border-b">
+          <div class="border-t border-brand-blue/40 border-b">
             <div
-              class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
+              class="max-w-7xl mx-auto grid md:grid-cols-12 md:grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
             >
-              <div class="col-span-4 border-r border-brand-blue p-4">
+              <div class="md:col-span-4 md:border-r border-brand-blue/40 p-4">
                 <div class="px-4 sm:px-6 lg:px-8 space-y-4">
                   <div class="font-bold text-2xl">2022</div>
 
@@ -271,7 +280,7 @@ const team = [
                   </p>
                 </div>
               </div>
-              <div class="relative col-span-8 py-4 px-12">
+              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-8">
                 <img
                   src="/about-us/historia-4.jpeg"
                   alt="About Us Photo 1"
@@ -289,7 +298,9 @@ const team = [
         <div class="bg-celeste-2 pb-20">
           <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
             <div class="grid place-content-center py-10">
-              <div class="space-y-8 text-2xl leading-relaxed tracking-wide">
+              <div
+                class="space-y-8 text-xl md:text-2xl leading-relaxed tracking-wide"
+              >
                 <p>
                   FAUNA es una comunidad de vientos, aprendemos juntos, nos
                   cuidamos entre todos y celebramos la vida al aire libre. El

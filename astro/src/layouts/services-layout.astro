@@ -3,6 +3,7 @@ import Footer from "../components/footer.astro";
 import Nav from "../components/nav.astro";
 import ServicesNav from "../components/services-nav.astro";
 import AboutUsUnderSeparator from "../components/svg/about-us-under-separator.astro";
+import TheSpotTopSeparator from "../components/svg/the-spot-top-separator.astro";
 import { useTranslations } from "../i18n/utils";
 import Layout from "./Layout.astro";
 
@@ -12,30 +13,6 @@ export async function getStaticPaths() {
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
-
-const navLinks = [
-  {
-    name: "Clases & Cursos",
-    href: `/${lang}/services/clases`,
-  },
-  {
-    name: "Rental",
-    href: `/${lang}/services/rental`,
-  },
-  {
-    name: "Kite Camps",
-    href: `/${lang}/services/kitecamps`,
-  },
-  {
-    name: "Kite Trips",
-    href: `/${lang}/services/kitetrips`,
-  },
-];
-
-const activeLinkClass =
-  "px-6 py-2 rounded-4xl bg-brand-blue border-2 border-brand-blue";
-const linkClass =
-  "px-6 py-2 rounded-4xl border-2 border-brand-blue text-brand-blue";
 ---
 
 <Layout title="Lo Que Hacemos | Fauna Kite ">
@@ -61,12 +38,18 @@ const linkClass =
       <div
         class="flex justify-end max-w-4xl mx-auto relative z-20 h-full items-end pb-10"
       >
-        <h1 class="font-salted text-8xl">LO QUE HACEMOS</h1>
+        <h1 class="font-salted text-5xl md:text-8xl pr-4 md:pr-0">
+          LO QUE HACEMOS
+        </h1>
+      </div>
+
+      <div class="absolute bottom-0 left-0 w-full text-brand-blue">
+        <TheSpotTopSeparator />
       </div>
     </div>
 
     <section class="bg-brand-blue">
-      <div class="py-20">
+      <div class="pt-10 pb-20 md:py-20">
         <ServicesNav />
       </div>
 

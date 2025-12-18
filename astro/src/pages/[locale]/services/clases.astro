@@ -13,7 +13,7 @@ const t = useTranslations(lang);
 <ServicesLayout>
   <Fragment slot="header">
     <div class="max-w-6xl mx-auto pb-30">
-      <div class="space-y-8 text-white text-2xl">
+      <div class="space-y-8 text-white text-lg md:text-2xl px-4">
         <p>
           Aprender con FAUNA es mucho más que aprender Kite o WingFoil: es vivir
           una experiencia completa, en contacto con la naturaleza y rodeado de
@@ -39,24 +39,24 @@ const t = useTranslations(lang);
     </div>
   </Fragment>
 
-  <div class="px-10 space-y-40 pt-10">
-    <div class="flex items-start">
-      <div class="basis-[33%]">
+  <div class="px-4 md:px-10 space-y-40 pt-10">
+    <div class="flex flex-col md:flex-row items-start">
+      <div class="md:basis-[33%]">
         <h2 class="text-4xl text-brand-blue font-bold">Cursos de Kite</h2>
       </div>
-      <div class="basis-[66%] px-10">
+      <div class="md:basis-[66%] md:px-10 pt-6 md:pt-0">
         <!-- CURSOS -->
         <div class="space-y-14">
           <!-- CURSO INICIAL -->
-          <div class="text-brand-blue flex gap-10">
-            <div class="relative basis-[33%] flex overflow-hidden">
+          <div class="text-brand-blue flex flex-col-reverse md:flex-row gap-10">
+            <div class="relative md:basis-[33%] flex overflow-hidden">
               <img
                 src="https://images.pexels.com/photos/10087765/pexels-photo-10087765.jpeg?_gl=1*1prvhrg*_ga*MTk3MDY0MTc3NS4xNzY2MDA1OTE5*_ga_8JE65Q40S6*czE3NjYwNjUyMjkkbzIkZzEkdDE3NjYwNjUyODMkajYkbDAkaDA."
-                class="absolute inset-0 rounded-md filter-bluish-dark w-full h-full object-cover"
+                class="md:absolute md:inset-0 rounded-md filter-bluish-dark w-full h-full object-cover"
               />
             </div>
 
-            <div class="basis-[66%]">
+            <div class="md:basis-[66%]">
               <h2 class="font-bold text-2xl pb-2">Curso Inicial</h2>
               <div class="space-y-1">
                 <p><strong>Duración:</strong> 3 días - 9hs de clase</p>
@@ -94,15 +94,15 @@ const t = useTranslations(lang);
           </div>
 
           <!-- CURSO INTENSIVO -->
-          <div class="text-brand-blue flex gap-10">
-            <div class="relative basis-[33%] flex overflow-hidden">
+          <div class="text-brand-blue flex flex-col-reverse md:flex-row gap-10">
+            <div class="relative md:basis-[33%] flex overflow-hidden">
               <img
                 src="https://images.pexels.com/photos/18555969/pexels-photo-18555969.jpeg?_gl=1*erz5t8*_ga*MTk3MDY0MTc3NS4xNzY2MDA1OTE5*_ga_8JE65Q40S6*czE3NjYwNjUyMjkkbzIkZzEkdDE3NjYwNjU0NzgkajUxJGwwJGgw"
-                class="rounded-md filter-bluish-dark absolute inset-0 w-full h-full object-cover"
+                class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
               />
             </div>
 
-            <div class="basis-[66%]">
+            <div class="md:basis-[66%]">
               <h2 class="font-bold text-2xl pb-2">Curso Intensivo</h2>
               <div class="space-y-1">
                 <p><strong>Duración:</strong> 2 días - 6hs de clase</p>
@@ -137,24 +137,24 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex items-start">
-      <div class="basis-[33%]">
+    <div class="flex flex-col md:flex-row items-start">
+      <div class="md:basis-[33%]">
         <h2 class="text-4xl text-brand-blue font-bold">
           Clases de Kite & Wingfoil
         </h2>
       </div>
-      <div class="basis-[66%] px-10">
+      <div class="md:basis-[66%] md:px-10 pt-6 md:pt-0">
         <div class="space-y-14">
           <!-- CLASE INDIVIDUAL -->
-          <div class="text-brand-blue flex gap-10">
-            <div class="basis-[33%] relative flex overflow-hidden">
+          <div class="text-brand-blue flex flex-col-reverse md:flex-row gap-10">
+            <div class="md:basis-[33%] relative flex overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1578060124065-41f863eb9ebe?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                class="rounded-md filter-bluish-dark absolute inset-0 w-full h-full object-cover"
+                class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
               />
             </div>
 
-            <div class="basis-[66%]">
+            <div class="md:basis-[66%]">
               <h2 class="font-bold text-2xl pb-2">Clase Individual</h2>
               <div class="space-y-1">
                 <p><strong>Duración:</strong> 1 o 2 horas</p>
@@ -176,15 +176,15 @@ const t = useTranslations(lang);
           </div>
 
           <!-- CLASE AVANZADA -->
-          <div class="text-brand-blue flex gap-10">
-            <div class="basis-[33%] relative flex overflow-hidden">
+          <div class="text-brand-blue flex flex-col-reverse md:flex-row gap-10">
+            <div class="md:basis-[33%] relative flex overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1620152174993-40a74a7e24c2?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                class="rounded-md filter-bluish-dark absolute inset-0 w-full h-full object-cover"
+                class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
               />
             </div>
 
-            <div class="basis-[66%]">
+            <div class="md:basis-[66%]">
               <h2 class="font-bold text-2xl pb-2">Clase Avanzada</h2>
               <div class="space-y-1">
                 <p><strong>Duración:</strong> 1 o 2 horas</p>
@@ -218,15 +218,15 @@ const t = useTranslations(lang);
           </div>
 
           <!-- CLASE DE PRUEBA -->
-          <div class="text-brand-blue flex gap-10">
-            <div class="basis-[33%] relative flex overflow-hidden">
+          <div class="text-brand-blue flex flex-col-reverse md:flex-row gap-10">
+            <div class="md:basis-[33%] relative flex overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1627988114935-406dadb71002?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                class="rounded-md filter-bluish-dark absolute inset-0 w-full h-full object-cover"
+                class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
               />
             </div>
 
-            <div class="basis-[66%]">
+            <div class="md:basis-[66%]">
               <h2 class="font-bold text-2xl pb-2">Clase de Prueba</h2>
               <div class="space-y-1">
                 <p><strong>Duración:</strong> 2 horas</p>
@@ -249,15 +249,15 @@ const t = useTranslations(lang);
           </div>
 
           <!-- CLASE DE WINGFOIL -->
-          <div class="text-brand-blue flex gap-10">
-            <div class="basis-[33%] relative flex overflow-hidden">
+          <div class="text-brand-blue flex flex-col-reverse md:flex-row gap-10">
+            <div class="md:basis-[33%] relative flex overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1666175497565-1c366074f2b2?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                class="rounded-md filter-bluish-dark absolute inset-0 w-full h-full object-cover"
+                class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
               />
             </div>
 
-            <div class="basis-[66%]">
+            <div class="md:basis-[66%]">
               <h2 class="font-bold text-2xl pb-2">Clase de Wingfoil</h2>
               <div class="space-y-2">
                 <p>El wing foil es libertad pura.</p>
