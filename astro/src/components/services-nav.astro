@@ -24,14 +24,14 @@ const navLinks = [
 ];
 
 const activeLinkClass =
-  "px-6 py-2 rounded-4xl bg-brand-light border-2 text-brand-blue border-brand-blue";
+  "block w-full px-6 py-2 rounded-4xl bg-brand-light border-2 text-brand-blue border-brand-blue";
 const linkClass =
-  "px-6 py-2 rounded-4xl border-2 border-brand-light text-brand-light";
+  "block w-full px-6 py-2 rounded-4xl border-2 border-brand-light text-brand-light";
 ---
 
-<nav>
+<nav class="px-4">
   <ul
-    class="flex flex-wrap justify-center gap-8 md:gap-10 text-white font-bold uppercase"
+    class="w-full flex flex-col md:flex-row justify-center gap-4 md:gap-10 text-white font-bold uppercase"
   >
     {
       navLinks.map((link) => (

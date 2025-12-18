@@ -109,51 +109,85 @@ const links = [
   </div>
 
   <script>
-    const menuButton = document.getElementById("mobile-menu-button");
-    const menuClose = document.getElementById("mobile-menu-close");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const mobileMenuLinks = document.getElementById("mobile-menu-links");
-    const menuLinks = mobileMenu?.querySelectorAll("a");
+    function initMobileMenu() {
+      const menuButton = document.getElementById("mobile-menu-button");
+      const menuClose = document.getElementById("mobile-menu-close");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuLinks = document.getElementById("mobile-menu-links");
+      const menuLinks = mobileMenu?.querySelectorAll("a");
 
-    function openMenu() {
-      mobileMenu?.classList.remove("invisible", "opacity-0");
-      mobileMenu?.classList.add("visible", "opacity-100");
+      if (!menuButton || !mobileMenu) {
+        return;
+      }
 
-      // Slight delay for links animation to feel more polished
-      setTimeout(() => {
-        mobileMenuLinks?.classList.remove("opacity-0", "scale-95");
-        mobileMenuLinks?.classList.add("opacity-100", "scale-100");
-      }, 50);
+      // Clean up any existing listeners by cloning and replacing
+      const newMenuButton = menuButton.cloneNode(true);
+      menuButton.parentNode?.replaceChild(newMenuButton, menuButton);
 
-      menuButton?.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden";
+      const newMenuClose = menuClose?.cloneNode(true);
+      if (menuClose && newMenuClose) {
+        menuClose.parentNode?.replaceChild(newMenuClose, menuClose);
+      }
+
+      function openMenu() {
+        mobileMenu.classList.remove("invisible", "opacity-0");
+        mobileMenu.classList.add("visible", "opacity-100");
+
+        setTimeout(() => {
+          mobileMenuLinks?.classList.remove("opacity-0", "scale-95");
+          mobileMenuLinks?.classList.add("opacity-100", "scale-100");
+        }, 50);
+
+        newMenuButton.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMenu() {
+        mobileMenuLinks?.classList.remove("opacity-100", "scale-100");
+        mobileMenuLinks?.classList.add("opacity-0", "scale-95");
+
+        setTimeout(() => {
+          mobileMenu.classList.remove("visible", "opacity-100");
+          mobileMenu.classList.add("invisible", "opacity-0");
+        }, 300);
+
+        newMenuButton.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      newMenuButton.addEventListener("click", openMenu);
+      newMenuClose?.addEventListener("click", closeMenu);
+
+      menuLinks?.forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      const escapeHandler = (e: KeyboardEvent) => {
+        if (e.key === "Escape" && mobileMenu.classList.contains("visible")) {
+          closeMenu();
+        }
+      };
+
+      document.addEventListener("keydown", escapeHandler);
+
+      // Cleanup function
+      return () => {
+        document.removeEventListener("keydown", escapeHandler);
+      };
     }
 
-    function closeMenu() {
-      mobileMenuLinks?.classList.remove("opacity-100", "scale-100");
-      mobileMenuLinks?.classList.add("opacity-0", "scale-95");
+    // Initialize
+    let cleanup = initMobileMenu();
 
-      // Wait for links animation to finish before hiding overlay
-      setTimeout(() => {
-        mobileMenu?.classList.remove("visible", "opacity-100");
-        mobileMenu?.classList.add("invisible", "opacity-0");
-      }, 300);
-
-      menuButton?.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    }
-
-    menuButton?.addEventListener("click", openMenu);
-    menuClose?.addEventListener("click", closeMenu);
-
-    menuLinks?.forEach((link) => {
-      link.addEventListener("click", closeMenu);
+    // Re-initialize on page load (for View Transitions)
+    document.addEventListener("astro:page-load", () => {
+      cleanup?.();
+      cleanup = initMobileMenu();
     });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && mobileMenu?.classList.contains("visible")) {
-        closeMenu();
-      }
+    // Cleanup before navigation
+    document.addEventListener("astro:before-preparation", () => {
+      cleanup?.();
     });
   </script>
 </nav>
