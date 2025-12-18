@@ -86,20 +86,20 @@ const team = [
 
     <div class="bg-brand-blue">
       <div class="max-w-6xl mx-auto py-30">
-        <div class="space-y-4 text-white">
-          <p class="text-xl">
+        <div class="space-y-8 text-white text-2xl">
+          <p>
             Somos una comunidad de vientos. Porque el kite es solo la excusa
             perfecta para encontrarnos, compartir y disfrutar de lo que nos
             gusta: el deporte y la naturaleza.
           </p>
 
-          <p class="text-xl">
+          <p>
             FAUNA es más que una escuela, es un lugar de encuentro donde el kite
             es una experiencia compartida, el aprendizaje un camino divertido y
             cada persona que llega, un nuevo amigo.
           </p>
 
-          <p class="text-xl">
+          <p>
             Vení a vivir el kite como una forma de vida. Aprendé, conectá,
             disfrutá, cuidá y compartí.
           </p>
@@ -115,7 +115,7 @@ const team = [
           <AboutUsUnderSeparator />
         </div>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div class="pb-10 text-brand-blue space-y-4">
             <h3 class="font-bold uppercase text-6xl">Nuestro Equipo</h3>
 
@@ -126,12 +126,12 @@ const team = [
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-20">
             {
               team.map((member) => (
                 <div class="group">
                   <div class="bg-white shadow-news-card rounded-2xl overflow-hidden text-brand-blue">
-                    <div class="aspect-4/5 relative overflow-hidden">
+                    <div class="h-[600px] relative overflow-hidden">
                       <Image
                         src={member.image}
                         alt="Lucca Instructor y Fundador"
@@ -159,16 +159,22 @@ const team = [
           </div>
         </div>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-          <h3 class="font-bold uppercase text-6xl text-brand-blue pb-10">
-            Nuestra Historia
-          </h3>
+        <!-- NUESTRA HISTORIA -->
+        <div class="pb-20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+            <h3 class="font-bold uppercase text-6xl text-brand-blue pb-10">
+              Nuestra Historia
+            </h3>
+          </div>
 
-          <div class="grid md:grid-cols-5 place-content-center">
-            <article class="md:col-span-3 text-brand-blue rounded-2xl">
-              <!-- Section: Historia y misión -->
-              <section aria-labelledby="historia-mision">
-                <div class="space-y-4 text-lg leading-7">
+          <div class="border-t border-brand-blue">
+            <div
+              class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
+            >
+              <div class="col-span-4 border-r border-brand-blue p-4">
+                <div class="px-4 sm:px-6 lg:px-8 space-y-4">
+                  <div class="font-bold text-2xl">2013</div>
+
                   <p>
                     FAUNA nace primero de la amistad entre Lucca y Facu, que se
                     conocieron con 14 años y desde entonces comparten dos
@@ -178,6 +184,25 @@ const team = [
                     compartir lo que se ama— y eso terminó transformándose en
                     una forma de vida.
                   </p>
+                </div>
+              </div>
+              <div class="relative col-span-8 py-4 px-12">
+                <img
+                  src={aboutUsPhoto1.src}
+                  alt="About Us Photo 1"
+                  class="w-full h-full object-cover rounded-md"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-brand-blue">
+            <div
+              class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
+            >
+              <div class="col-span-4 border-r border-brand-blue p-4">
+                <div class="px-4 sm:px-6 lg:px-8 space-y-4">
+                  <div class="font-bold text-2xl">2016</div>
 
                   <p>
                     El kite llegó en 2016. Lucca lo aprendió en un viaje y, la
@@ -187,6 +212,25 @@ const team = [
                     Facu; él tomó el curso, se enamoró del deporte, y así nació
                     la pasión compartida.
                   </p>
+                </div>
+              </div>
+              <div class="relative col-span-8 py-4 px-12">
+                <img
+                  src={aboutUsPhoto2.src}
+                  alt="About Us Photo 1"
+                  class="w-full h-full object-cover rounded-md"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-brand-blue">
+            <div
+              class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
+            >
+              <div class="col-span-4 border-r border-brand-blue p-4">
+                <div class="px-4 sm:px-6 lg:px-8 space-y-4">
+                  <div class="font-bold text-2xl">2018</div>
 
                   <p>
                     Ambos se certificaron como instructores y comenzaron a
@@ -197,6 +241,25 @@ const team = [
                     el kite es la excusa perfecta para encontrarse, compartir y
                     conectar también fuera del agua.
                   </p>
+                </div>
+              </div>
+              <div class="relative col-span-8 py-4 px-12">
+                <img
+                  src="/about-us/historia-3.jpg"
+                  alt="About Us Photo 1"
+                  class="w-full h-full object-cover rounded-md"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-brand-blue border-b">
+            <div
+              class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
+            >
+              <div class="col-span-4 border-r border-brand-blue p-4">
+                <div class="px-4 sm:px-6 lg:px-8 space-y-4">
+                  <div class="font-bold text-2xl">2022</div>
 
                   <p>
                     Lo que pasó en esos viajes no podía quedarse solo en
@@ -207,81 +270,51 @@ const team = [
                     reales, al aire libre y en buena compañía.
                   </p>
                 </div>
-              </section>
-            </article>
-
-            <aside class="md:col-span-2 px-10 grid gap-y-4">
-              {
-                historyImages.map((image) => (
-                  <div class="">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      class="w-full h-full object-cover rounded-md"
-                    />
-                  </div>
-                ))
-              }
-            </aside>
+              </div>
+              <div class="relative col-span-8 py-4 px-12">
+                <img
+                  src="/about-us/historia-4.jpeg"
+                  alt="About Us Photo 1"
+                  class="w-full h-full object-cover rounded-md"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-          <h3 class="font-bold uppercase text-6xl text-brand-blue pb-10">
-            Nuestra Filosofía
-          </h3>
+        <div class="text-celeste-2 drop-shadow-xs drop-shadow-celeste-2">
+          <CommunityTopSeparator />
+        </div>
 
-          <div class="grid md:grid-cols-5 place-content-center">
-            <article class="md:col-span-3 text-brand-blue rounded-2xl">
-              <!-- Section: Filosofía / Llamado -->
-              <section aria-labelledby="filosofia">
-                <div class="space-y-4 text-lg leading-7">
-                  <p>
-                    FAUNA es una comunidad de vientos: aprendemos juntos, nos
-                    cuidamos entre todos y celebramos la vida al aire libre. El
-                    kite es la excusa; la comunidad y la conexión con la
-                    naturaleza, el objetivo.
-                  </p>
-                </div>
-              </section>
+        <div class="bg-celeste-2 pb-20">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+            <div class="grid place-content-center py-10">
+              <div class="space-y-8 text-2xl leading-relaxed tracking-wide">
+                <p>
+                  FAUNA es una comunidad de vientos, aprendemos juntos, nos
+                  cuidamos entre todos y celebramos la vida al aire libre. El
+                  kite es la excusa; la comunidad y la conexión con la
+                  naturaleza, el objetivo.
+                </p>
+                <p>
+                  En FAUNA la enseñanza va de la mano con la amistad: mates,
+                  música, risas, charlas, comidas, viajes y, por supuesto, mucho
+                  kite. Si buscás aprender en compañía, explorar nuevos vientos
+                  y sumar amigos, este es tu lugar.
+                </p>
 
-              <!-- Section: Cierre / Invitación -->
-              <section aria-labelledby="cierre" class="mt-12">
-                <div class="mt-4 space-y-4 text-lg leading-7">
-                  <p>
-                    En FAUNA la enseñanza va de la mano con la amistad: mates,
-                    música, risas, charlas, comidas, viajes y, por supuesto,
-                    mucho kite. Si buscás aprender en compañía, explorar nuevos
-                    vientos y sumar amigos, este es tu lugar.
-                  </p>
-
-                  <p>
-                    Una escuela, pero sobre todo un espacio donde la experiencia
-                    compartida es el motor. Te esperamos para navegar, aprender
-                    y ser parte de la comunidad.
-                  </p>
-                </div>
-              </section>
-            </article>
-
-            <aside class="md:col-span-2 px-10 grid gap-y-4">
-              {
-                philosofyImages.map((image) => (
-                  <div class="">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      class="w-full h-full object-cover rounded-md"
-                    />
-                  </div>
-                ))
-              }
-            </aside>
+                <p>
+                  Una escuela, pero sobre todo un espacio donde la experiencia
+                  compartida es el motor. Te esperamos para navegar, aprender y
+                  ser parte de la comunidad.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <Footer />
+  <Footer fill />
 </Layout>

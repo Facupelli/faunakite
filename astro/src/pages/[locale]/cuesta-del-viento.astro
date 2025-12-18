@@ -22,14 +22,14 @@ const images = [
   //   src: "/cuesta-del-viento/cuesta-del-viento-3.jpg",
   //   alt: "Cuesta del Viento",
   // },
-  {
-    src: "/cuesta-del-viento/cuesta-del-viento-4.jpg",
-    alt: "Cuesta del Viento",
-  },
   // {
-  //   src: "/cuesta-del-viento/cuesta-del-viento-5.jpg",
+  //   src: "/cuesta-del-viento/cuesta-del-viento-4.jpg",
   //   alt: "Cuesta del Viento",
   // },
+  {
+    src: "/cuesta-del-viento/cuesta-del-viento-5.jpg",
+    alt: "Cuesta del Viento",
+  },
 ];
 ---
 
@@ -205,11 +205,16 @@ const images = [
         </div>
 
         <div class="max-w-7xl mx-auto">
-          <div class="grid grid-cols-5">
+          <div
+            class="grid grid-cols-5 gap-x-10"
+            style="grid-template-rows: auto;"
+          >
             <div
-              class="col-span-3 space-y-4 max-w-prose text-brand-blue mx-auto"
+              class="col-span-2 space-y-6 max-w-prose text-brand-blue row-span-1"
             >
-              <h4 class="text-3xl font-bold">EL VIENTO DONDE SIEMPRE SOPLA</h4>
+              <h4 class="text-2xl font-bold text-brand-blue">
+                EL VIENTO DONDE SIEMPRE SOPLA
+              </h4>
               <p>
                 El dique cuesta el viento reporta
                 <strong>más de 300 días de viento al año</strong> y durante los meses
@@ -250,14 +255,14 @@ const images = [
               </p>
             </div>
 
-            <div class="col-span-2 space-y-4">
+            <div class="col-span-3 flex flex-col gap-4 row-span-1 h-full">
               {
                 images.map((image) => (
-                  <div>
+                  <div class="flex-1 min-h-0">
                     <img
                       src={image.src}
                       alt={image.alt}
-                      class="object-cover w-full h-[150px]"
+                      class="object-cover w-full h-[250px]"
                     />
                   </div>
                 ))
