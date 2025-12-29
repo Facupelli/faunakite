@@ -471,13 +471,14 @@ const t = useTranslations(lang);
 </style>
 
 <script>
-  // WhatsApp contact data
-  const instructors = {
-    lucca: "5492646600588",
-    facu: "5492645828246",
-  };
+  import { INSTRUCTORS_PHONE } from "../../../constants";
 
-  // Course messages mapping
+  function getRandomInstructor() {
+    return Math.random() < 0.5
+      ? INSTRUCTORS_PHONE.lucca
+      : INSTRUCTORS_PHONE.facu;
+  }
+
   const courseMessages = {
     "curso-inicial": encodeURIComponent(
       `¡Hola! Mi nombre es: _____
@@ -527,10 +528,6 @@ Fechas: _____
 ¿Tienen disponibilidad? ¡Gracias!`
     ),
   };
-
-  function getRandomInstructor() {
-    return Math.random() < 0.5 ? instructors.lucca : instructors.facu;
-  }
 
   function initializeWhatsAppLinks() {
     const courses = document.querySelectorAll("[data-course-type]");

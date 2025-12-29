@@ -59,8 +59,9 @@ const className = fill
             </a>
             <a
               href="#"
-              class="w-10 h-10 rounded-full bg-white/10 hover:bg-fauna-sun flex items-center justify-center transition-colors"
+              class="whatsapp-btn w-10 h-10 rounded-full bg-white/10 hover:bg-fauna-sun flex items-center justify-center transition-colors"
               aria-label="WhatsApp"
+              target="_blank"
             >
               <Icon name="whatsapp" />
             </a>
@@ -170,3 +171,25 @@ const className = fill
     </div>
   </footer>
 </div>
+
+<script>
+  import { INSTRUCTORS_PHONE } from "../constants";
+
+  function getRandomInstructor() {
+    return Math.random() < 0.5
+      ? INSTRUCTORS_PHONE.lucca
+      : INSTRUCTORS_PHONE.facu;
+  }
+
+  function initializeWhatsAppLinks() {
+    const whatsappBtn = document.querySelector(".whatsapp-btn");
+    if (whatsappBtn) {
+      const phone = getRandomInstructor();
+      whatsappBtn.href = `https://wa.me/${phone}`;
+    }
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    initializeWhatsAppLinks();
+  });
+</script>
