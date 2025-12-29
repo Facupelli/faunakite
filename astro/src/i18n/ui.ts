@@ -54,7 +54,7 @@ export const ui = {
       "Clothing designed for riders who look for style, comfort and protection on the water.",
     "newsletter.title": "Join the Community",
     "newsletter.subtitle":
-      "Get the latest news, kite tips, wind conditions and exclusive events from our community.",
+      "Get the latest updates on classes, events, trips, and exclusive promotions for our community.",
     "newsletter.button": "Send",
     "newsletter.dialog.title": "You're Hooked In!",
     "newsletter.dialog.message":
@@ -82,6 +82,12 @@ export const ui = {
     "footer.newsletter.title": "Newsletter",
     "footer.newsletter.subtitle": "",
     "footer.newsletter.button": "Subscribe",
+
+    // ALLY PAGE
+    "ally.description.p1":
+      "At Fauna Kite, we believe the experience goes far beyond the water. That’s why we partner with local allies in Cuesta del Viento and Rodeo —including accommodations, restaurants, and complementary activities such as yoga and massages— to offer exclusive benefits to our students. ",
+    "ally.description.p2":
+      "Being part of Fauna means access to special discounts, curated experiences, and unique offers that enhance your stay and connect you with the local community.",
 
     // BOOKED PAGE
     "booked.title": "Your Experience",
@@ -207,17 +213,17 @@ export const ui = {
     "testimonials.subtitle":
       "Experiencias reales de estudiantes que confiaron en nosotros para comenzar su aventura en el kitesurf",
     "testimonials.testimonial.1.description":
-      "Nunca había probado el kitesurf y en Rodeo me sentí segura desde el primer día. Los instructores explican todo con paciencia y el lago es perfecto para aprender. Terminé levantando la cometa sola en mi tercera clase.",
+      "El ambiente es increíble. Hay buena onda, gente de todos lados compartiendo mates, consejos y sonrisas. Tanto si estás empezando como si ya tenés experiencia, los chicos de Fauna te hace sentir parte de una comunidad que celebra el deporte y la naturaleza.",
     "testimonials.testimonial.2.description":
-      "Viajé por recomendación y superó mis expectativas. Viento constante, agua tranquila y un ambiente muy amigable. Hice el curso intensivo de tres días y pude hacer mis primeros rides por mi cuenta.",
+      "Unos genios totales! Creo haber sido la primer clase de Fauna Kite hace un poco mas de un año. Increible experiencia, los profes unos capos y siempre la mejor onda. Los equipos que nos dieron eran nuevos literalmente. Se disfruto! Recomiendo!!",
     "testimonials.testimonial.3.description":
-      "La escuela es súper profesional y el lugar es increíble. Me encantó que las clases sean personalizadas y siempre prioricen la seguridad. Ahora quiero volver en verano para seguir progresando.",
+      "Excelente experiencia con Fauna Kite. Lucca y Facu son excelentes personas e instructores. Aparte de las clases y alquiler de equipo, te hacen sentir en familia durante tus dias de kite. Un abrazo chicos y espero verlos pronto de nuevo. Yewww!",
     "products.title": "Fauna Store",
     "products.subtitle":
       "Ropa diseñada para riders que buscan estilo, comodidad y protección en el agua",
     "newsletter.title": "Sumate a la Comunidad",
     "newsletter.subtitle":
-      "Recibí las últimas novedades, tips de kite, condiciones del viento y eventos exclusivos de nuestra comunidad.",
+      "Recibí las últimas novedades sobre clases, eventos, viajes y promociones exclusivas para nuestra comunidad",
     "newsletter.button": "Enviar",
     "newsletter.dialog.success.title": "Ya Estás Dentro!",
     "newsletter.dialog.success.message":
@@ -244,6 +250,12 @@ export const ui = {
     "footer.newsletter.title": "Newsletter",
     "footer.newsletter.subtitle": "",
     "footer.newsletter.button": "Suscribirse",
+
+    // ALLY PAGE
+    "ally.description.p1":
+      "En Fauna Kite creemos que la experiencia va mucho más allá del agua. Por eso, trabajamos junto a aliados locales de Cuesta del Viento y Rodeo —alojamientos, restaurantes y actividades complementarias como yoga y masajes— para ofrecer beneficios exclusivos a nuestros alumnos.",
+    "ally.description.p2":
+      "Ser parte de Fauna significa acceder a descuentos, propuestas especiales y experiencias seleccionadas que enriquecen tu estadía y te conectan con la comunidad local.",
 
     // BOOKED PAGE
     "booked.title": "Tu Experiencia",
@@ -396,7 +408,7 @@ export const enumTranslations = {
     "courseType.advanced": "Clases Avanzadas / Big Air",
     "courseType.test": "Clase de Prueba",
     "courseType.guest": "Invitado",
-    "courseType.equipmentRental": "Alquile equipo",
+    "courseType.equipmentRental": "Rental/Alquiler de Equipos",
 
     // Skill Levels
     "skillLevel.beginner": "Principiante (Sin experiencia o primeras clases)",

@@ -6,21 +6,21 @@ const t = useTranslations(lang);
 
 const testimonials = [
   {
-    name: "Marina López",
-    country: "Argentina",
-    age: 29,
+    name: "Ananda Hollmann",
+    country: "Holanda",
+    age: 36,
     description: t("testimonials.testimonial.1.description"),
   },
   {
-    name: "Tom Becker",
-    country: "Germany",
-    age: 34,
+    name: "Rodrigo Altamira",
+    country: "España",
+    age: 28,
     description: t("testimonials.testimonial.2.description"),
   },
   {
-    name: "Camila Rivas",
-    country: "Chile",
-    age: 22,
+    name: "Juan Manuel Uribe",
+    country: "Argentina",
+    age: 32,
     description: t("testimonials.testimonial.3.description"),
   },
 ];
@@ -44,7 +44,7 @@ const testimonials = [
         testimonials.map((testimonial) => (
           <article class="group relative z-30 bg-white rounded-3xl p-8 shadow-news-card transition-all duration-300 hover:-translate-y-2 overflow-hidden">
             <div>
-              <h3 class="text-2xl font-bold text-slate-900 mb-2">
+              <h3 class="text-xl font-bold text-slate-900 mb-2">
                 {testimonial.name}
               </h3>
 
@@ -70,6 +70,17 @@ const testimonials = [
           </article>
         ))
       }
+    </div>
+
+    <div class="flex justify-center pt-8 text-brand-blue">
+      <a
+        href="https://www.google.com/search?q=fauna+kite+san+juan&oq=fauna+kite+san+juan&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgoIARAAGIAEGKIEMgoIAhAAGIAEGKIEMgoIAxAAGIAEGKIEMgcIBBAAGO8FMgcIBRAAGO8FMgYIBhBFGDzSAQgzMTY3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#lrd=0x9684bb8638777e6d:0x44246635a8420f27,1,,,,"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:underline"
+      >
+        Ver Más Testimonios
+      </a>
     </div>
   </div>
 </section>

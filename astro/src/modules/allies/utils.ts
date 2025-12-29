@@ -11,6 +11,7 @@ export async function getAllies(): Promise<Ally[]> {
 export interface Ally {
   _type: "ally";
   _createdAt: string;
+  category: "lodging" | "restaurant" | "other";
   title: string;
   description: string;
   link?: string;

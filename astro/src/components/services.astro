@@ -17,28 +17,28 @@ const services = [
     summary: t("services.courses.summary"),
     image: cursos,
     icon: "courses",
-    link: "/",
+    link: `/${lang}/services/clases`,
   },
   {
     title: t("services.kitecamps.title"),
     summary: t("services.kitecamps.summary"),
     image: kiteCamp,
     icon: "kitecamps",
-    link: "/",
+    link: `/${lang}/services/kitecamps`,
   },
   {
     title: t("services.rental.title"),
     summary: t("services.rental.summary"),
     image: rental,
     icon: "rental",
-    link: "/",
+    link: `/${lang}/services/rental`,
   },
   {
     title: t("services.tours.title"),
     summary: t("services.tours.summary"),
     image: travels,
     icon: "travel",
-    link: "/",
+    link: `/${lang}/services/kitetrips`,
   },
 ];
 ---
@@ -59,34 +59,42 @@ const services = [
     >
       {
         services.map((service) => (
-          <div class="group relative bg-celeste-3  lg:bg-brand-blue rounded-xl overflow-hidden shadow-news-card">
-            <div class="relative h-60 w-full overflow-hidden">
-              <Image
-                src={service.image || "/placeholder.svg"}
-                alt={service.title}
-                widths={[400, 665, 800, 1200]}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 665px"
-                class="object-cover transition-transform duration-500 group-hover:scale-105 h-full w-full"
-              />
+          <div class="group relative bg-celeste-3  lg:bg-brand-blue rounded-xl overflow-hidden shadow-news-card cursor-pointer">
+            <a href={service.link}>
+              <div class="relative h-60 w-full overflow-hidden">
+                <Image
+                  src={service.image || "/placeholder.svg"}
+                  alt={service.title}
+                  widths={[400, 665, 800, 1200]}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 665px"
+                  class="object-cover transition-transform duration-500 group-hover:scale-105 h-full w-full"
+                />
 
-              <div class="absolute w-full h-[25%] bottom-0 bg-linear-to-t from-celeste-3 to-transparent" />
+                <div class="absolute w-full h-[25%] bottom-0 bg-linear-to-t from-celeste-3 to-transparent" />
 
-              <div class="flex justify-between items-end mb-4 absolute bottom-0 px-8 w-full">
-                <h2 class="text-2xl font-bold text-foreground ">
-                  {service.title}
-                </h2>
+                <div class="flex justify-between items-end mb-4 absolute bottom-0 px-8 w-full">
+                  <h2 class="text-2xl font-bold text-foreground ">
+                    {service.title}
+                  </h2>
 
-                <div class="text-white size-12 ">
-                  <Icon name={service.icon} class="w-full h-full" />
+                  <div class="text-white size-12 ">
+                    <Icon name={service.icon} class="w-full h-full" />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="p-8 pt-4">
-              <p class="text-white leading-relaxed text-pretty text-lg lg:text-base">
-                {service.summary}
-              </p>
-            </div>
+              <div class="p-8 pt-4">
+                <p class="text-white leading-relaxed text-pretty text-lg lg:text-base">
+                  {service.summary}
+                </p>
+              </div>
+
+              {/* <div class="flex justify-center">
+                <button class="font-bold py-2 px-6 rounded-2xl bg-white text-brand-blue">
+                  VER MÁS
+                </button>
+              </div> */}
+            </a>
           </div>
         ))
       }

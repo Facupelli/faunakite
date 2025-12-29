@@ -1,10 +1,17 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
 import { PortableText } from "astro-portabletext";
-import { getSingleNews, getNews } from "../../../modules/news/utils";
+import {
+  getSingleNews,
+  getNews,
+  type News,
+  getLatestNews,
+} from "../../../modules/news/utils";
 import Layout from "../../../layouts/Layout.astro";
 import { urlFor } from "../../../modules/news/image.utils";
 import { formatDate } from "../../../modules/news/date.utils";
+import Nav from "../../../components/nav.astro";
+import NewsCard from "../../../components/news-card.astro";
 
 export async function getStaticPaths() {
   const posts = await getNews();
@@ -17,30 +24,100 @@ type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 const { slug } = Astro.params as Params;
 
 const post = await getSingleNews(slug);
+const posts: News[] = await getLatestNews();
+
+function getOptimizedImageUrl(
+  image: any,
+  width: number,
+  format: "webp" = "webp"
+) {
+  return urlFor(image).width(width).format(format).quality(85).url();
+}
+
+function generateSrcSet(image: any, format: "webp" = "webp") {
+  const sizes = [400, 600, 800, 1000];
+  return sizes
+    .map((size) => `${getOptimizedImageUrl(image, size, format)} ${size}w`)
+    .join(", ");
+}
 ---
 
 <Layout>
-  <section class="post">
+  <Fragment slot="head">
     {
-      post.image ? (
-        <img
-          class="post__cover"
-          src={urlFor(post.image).url()}
-          alt="Cover image"
-        />
-      ) : (
-        <div class="post__cover--none" />
+      post.image && (
+        <>
+          <link
+            rel="preload"
+            as="image"
+            href={getOptimizedImageUrl(post.image, 800, "webp")}
+            type="image/webp"
+            imagesrcset={generateSrcSet(post.image, "webp")}
+            imagesizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </>
       )
     }
-    <div class="post__container">
-      <h1 class="post__title">{post.title}</h1>
-      <p class="">{post.summary}</p>
-      <p class="post__date">
-        {formatDate(post._createdAt)}
-      </p>
-      <div class="post__content">
-        <PortableText value={post.body} />
+  </Fragment>
+
+  <header>
+    <Nav />
+  </header>
+
+  <div class="bg-brand-blue min-h-dvh">
+    <div class="max-w-7xl mx-auto pb-20 pt-40 px-4">
+      <div class="flex">
+        <article class="basis-[75%] max-w-prose mx-auto">
+          <h1 class="font-bold text-4xl">{post.title}</h1>
+          <p class="text-sm text-white/60">
+            {formatDate(post._createdAt)}
+          </p>
+          <p class="py-4">{post.summary}</p>
+
+          <div>
+            {
+              post.image ? (
+                <div class="relative h-80 w-full py-10">
+                  <picture>
+                    {/* WebP - good compression with broad support */}
+                    <source
+                      type="image/webp"
+                      srcset={generateSrcSet(post.image, "webp")}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    {/* Fallback */}
+                    <img
+                      src={getOptimizedImageUrl(post.image, 800)}
+                      srcset={generateSrcSet(post.image)}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      alt={post.image.alt || post.title}
+                      width="800"
+                      height="800"
+                      class="object-cover w-full h-full rounded-2xl"
+                    />
+                  </picture>
+                </div>
+              ) : (
+                <div class="post__cover--none" />
+              )
+            }
+          </div>
+
+          <PortableText value={post.body} />
+        </article>
+        <aside class="basis-[25%]">
+          <div class="grid gap-10 px-4">
+            {
+              posts.length >= 3 &&
+                posts.map((post) => (
+                  <div>
+                    <NewsCard post={post} aside />
+                  </div>
+                ))
+            }
+          </div>
+        </aside>
       </div>
     </div>
-  </section>
+  </div>
 </Layout>

@@ -4,16 +4,32 @@ import Footer from "../../components/footer.astro";
 import Nav from "../../components/nav.astro";
 import Layout from "../../layouts/Layout.astro";
 import { urlFor } from "../../modules/news/image.utils";
-import CommunityTopSeparator from "../../components/svg/community-top-separator.astro";
 import TheSpotTopSeparator from "../../components/svg/the-spot-top-separator.astro";
+import AboutUsUnderSeparator from "../../components/svg/about-us-under-separator.astro";
+import { useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
 }
 
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+
 const allies = await getAllies();
 
-// Helper function to generate optimized image URLs
+const categories = [
+  { value: "lodging", label: "Alojamientos" },
+  { value: "restaurant", label: "Restaurantes" },
+  { value: "other", label: "Otros" },
+];
+
+const alliesByCategory = categories
+  .map((cat) => ({
+    ...cat,
+    allies: allies.filter((ally) => ally.category === cat.value),
+  }))
+  .filter((cat) => cat.allies.length > 0);
+
 function getOptimizedImageUrl(
   image: any,
   width: number,
@@ -22,7 +38,6 @@ function getOptimizedImageUrl(
   return urlFor(image).width(width).format(format).quality(85).url();
 }
 
-// Generate srcset for responsive images
 function generateSrcSet(image: any, format: "webp" = "webp") {
   const sizes = [400, 600, 800, 1000];
   return sizes
@@ -59,9 +74,9 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
   </header>
 
   <main class="min-h-dvh bg-brand-light">
-    <div class="relative w-full h-[220px] md:h-[380px]">
+    <div class="relative w-full h-[220px] md:h-[300px]">
       <div
-        class="absolute inset-0 bg-no-repeat bg-position-[bottom_25%_right_20%] bg-cover bg-red-200"
+        class="absolute inset-0 bg-no-repeat bg-position-[bottom_30%_right_20%] bg-cover bg-red-200"
         style="background-image: url('/hero-desktop-2.jpeg');"
       >
       </div>
@@ -72,91 +87,115 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
         <h1 class="font-salted text-6xl md:text-8xl pr-4 md:pr-0">ALIADOS</h1>
       </div>
 
-      <div class="absolute bottom-0 left-0 w-full text-brand-light">
+      <div class="absolute bottom-0 left-0 w-full text-brand-blue">
         <TheSpotTopSeparator />
+      </div>
+    </div>
+
+    <div class="bg-brand-blue">
+      <div class="max-w-6xl mx-auto py-20">
+        <div class="space-y-8 text-white text-lg md:text-xl px-4">
+          <p>{t("ally.description.p1")}</p>
+          <p>{t("ally.description.p2")}</p>
+        </div>
       </div>
     </div>
 
     <div
       class="bg-brand-light bg-[url('/cuesta-del-viento/white-wave.png')] bg-size-[42px_auto]"
     >
-      <div class="max-w-7xl mx-auto px-4 md:px-10 py-20">
-        <div class="py-10">
-          <div class="grid md:grid-cols-2 items-start gap-10">
-            {
-              allies.map((ally, index) => (
-                <article class="relative rounded-2xl  bg-white text-brand-blue shadow-news-card">
-                  {ally.image !== undefined && (
-                    <div class="relative h-80 w-full">
-                      <picture>
-                        {/* WebP - good compression with broad support */}
-                        <source
-                          type="image/webp"
-                          srcset={generateSrcSet(ally.image, "webp")}
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        {/* Fallback */}
-                        <img
-                          src={getOptimizedImageUrl(ally.image, 800)}
-                          srcset={generateSrcSet(ally.image)}
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          alt={ally.image.alt || ally.title}
-                          width="800"
-                          height="800"
-                          loading={index < 2 ? "eager" : "lazy"}
-                          fetchpriority={index === 0 ? "high" : "auto"}
-                          decoding={index < 2 ? "sync" : "async"}
-                          class="object-cover w-full h-full rounded-t-2xl"
-                        />
-                      </picture>
-                    </div>
-                  )}
+      <div class="text-brand-blue drop-shadow-xs drop-shadow-brand-blue">
+        <AboutUsUnderSeparator />
+      </div>
 
-                  {ally.link !== undefined && (
-                    <div class="absolute top-[300px] right-4 bg-brand-blue border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
-                      <a
-                        href={ally.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Visitar sitio web de ${ally.title}`}
-                      >
-                        {/* Inline SVG - replaces astro-icon dependency */}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          aria-hidden="true"
-                        >
-                          <path d="M7 7h10v10" />
-                          <path d="M7 17 17 7" />
-                        </svg>
-                      </a>
-                    </div>
-                  )}
+      <div class="max-w-7xl mx-auto px-4 md:px-10 py-10">
+        <div class="py-10 space-y-20">
+          {
+            alliesByCategory.map((category) => (
+              <section class="space-y-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-blue">
+                  {category.label}
+                </h2>
 
-                  <div class="p-4 space-y-4">
-                    <h2 class="text-2xl font-bold">{ally.title}</h2>
-                    <p>{ally.description}</p>
+                <div class="grid md:grid-cols-2 items-start gap-10">
+                  {category.allies.map((ally, index) => (
+                    <article class="relative rounded-2xl bg-white text-brand-blue shadow-news-card">
+                      {ally.image !== undefined && (
+                        <div class="relative h-80 w-full">
+                          <picture>
+                            {/* WebP - good compression with broad support */}
+                            <source
+                              type="image/webp"
+                              srcset={generateSrcSet(ally.image, "webp")}
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                            {/* Fallback */}
+                            <img
+                              src={getOptimizedImageUrl(ally.image, 800)}
+                              srcset={generateSrcSet(ally.image)}
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                              alt={ally.image.alt || ally.title}
+                              width="800"
+                              height="800"
+                              loading={index < 2 ? "eager" : "lazy"}
+                              fetchpriority={index === 0 ? "high" : "auto"}
+                              decoding={index < 2 ? "sync" : "async"}
+                              class="object-cover w-full h-full rounded-t-2xl"
+                            />
+                          </picture>
+                        </div>
+                      )}
 
-                    {ally.phone !== undefined && (
-                      <div>
-                        <span class="pr-2">Teléfono:</span>
-                        <a href={`tel:${ally.phone}`} class="hover:underline">
-                          {ally.phone}
-                        </a>
+                      {ally.link !== undefined && (
+                        <div class="absolute top-[300px] right-4 bg-brand-blue border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
+                          <a
+                            href={ally.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Visitar sitio web de ${ally.title}`}
+                          >
+                            {/* Inline SVG - replaces astro-icon dependency */}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-hidden="true"
+                            >
+                              <path d="M7 7h10v10" />
+                              <path d="M7 17 17 7" />
+                            </svg>
+                          </a>
+                        </div>
+                      )}
+
+                      <div class="p-4 space-y-4">
+                        <h3 class="text-2xl font-bold">{ally.title}</h3>
+                        <p>{ally.description}</p>
+
+                        {ally.phone !== undefined && (
+                          <div>
+                            <span class="pr-2">Teléfono:</span>
+                            <a
+                              href={`tel:${ally.phone}`}
+                              class="hover:underline"
+                            >
+                              {ally.phone}
+                            </a>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                </article>
-              ))
-            }
-          </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ))
+          }
         </div>
       </div>
     </div>

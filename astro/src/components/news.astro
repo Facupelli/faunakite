@@ -1,5 +1,5 @@
 ---
-import Card from "../components/news-card.astro";
+import NewsCard from "../components/news-card.astro";
 import { getLatestNews } from "../modules/news/utils";
 import type { News } from "../modules/news/utils";
 import Cactuses from "./svg/cactuses.astro";
@@ -30,7 +30,7 @@ const posts: News[] = await getLatestNews();
           posts.length >= 3 &&
             posts.map((post) => (
               <div>
-                <Card post={post} />
+                <NewsCard post={post} />
               </div>
             ))
         }

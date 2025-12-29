@@ -38,17 +38,31 @@ const t = useTranslations(lang);
           />
         </div>
 
-        <div class="md:col-span-2 space-y-4">
+        <div class="md:col-span-2 space-y-6">
           <p class="text-lg text-pretty">
             {t("the-spot.summary")}
           </p>
 
-          <div class="flex justify-center">
+          <div class="flex flex-wrap gap-2 items-center justify-center">
             <a
               href={`/${lang}/cuesta-del-viento`}
               class="bg-white font-bold px-6 py-2 text-brand-red rounded-4xl"
             >
               {t("the-spot.button")}
+            </a>
+
+            <a
+              href={`/${lang}/cuesta-del-viento`}
+              class="bg-white font-bold px-6 py-2 text-brand-red rounded-4xl"
+            >
+              Como Llegar
+            </a>
+
+            <a
+              href={`/${lang}/allies`}
+              class="bg-white font-bold px-6 py-2 text-brand-red rounded-4xl"
+            >
+              Conoce los Beneficios
             </a>
           </div>
         </div>
