@@ -25,11 +25,11 @@ const t = useTranslations(lang);
     class="relative z-20 space-y-8 md:space-y-4 flex flex-col justify-between px-4"
   >
     <div class="max-w-4xl mx-auto">
-      <div
-        class="font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight text-balance font-helvetica"
-      >
+      <div class="font-bold tracking-tight text-balance font-helvetica">
         <!-- {t("hero.title")} -->
-        <span class="block"> MÁS QUE UNA ESCUELA </span>
+        <span class="block text-4xl md:text-5xl lg:text-6xl">
+          MÁS QUE UNA ESCUELA
+        </span>
         <div
           class="relative text-brand-red block text-shadow-2xs text-shadow-brand-blue"
         >
@@ -40,16 +40,29 @@ const t = useTranslations(lang);
             <BrushStain class="w-full h-full text-celeste-2" />
           </div>
 
-          <span class="relative z-10"> UNA COMUNIDAD DE VIENTOS </span>
+          <span class="relative z-10 font-salted uppercase text-7xl">
+            UNA COMUNIDAD DE VIENTOS
+          </span>
         </div>
       </div>
     </div>
 
-    <p
-      class="lg:text-xl text-white/95 text-shadow-2xs text-shadow-brand-blue max-w-2xl text-pretty pb-14 leading-relaxed md:pb-0"
-    >
-      {t("hero.subtitle")}
-    </p>
+    <div class="pb-10">
+      <p
+        class="lg:text-xl text-white/95 text-shadow-2xs text-shadow-brand-blue max-w-2xl text-pretty pb-8 leading-relaxed md:pb-6"
+      >
+        {t("hero.subtitle")}
+      </p>
+
+      <div class="flex justify-center md:justify-start w-full">
+        <a
+          href={`/${lang}/services/clases`}
+          class="px-4 md:px-6 py-3 font-bold text-sm md:text-base rounded-2xl w-full md:w-auto text-center bg-brand-blue"
+        >
+          APRENDE KITESURF EN CUESTA DEL VIENTO
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- DESKTOP Background Image  -->

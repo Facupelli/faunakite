@@ -1,17 +1,15 @@
 ---
-import Hero from "../../components/hero.astro";
 import Nav from "../../components/nav.astro";
 import Services from "../../components/services.astro";
 import Layout from "../../layouts/Layout.astro";
 import News from "../../components/news.astro";
 import Footer from "../../components/footer.astro";
-import FooterTopSeparator from "../../components/svg/footer-top-separator.astro";
 import AboutUs from "../../components/about-us.astro";
 import Store from "../../components/store.astro";
 import Newsletter from "../../components/newsletter.astro";
 import TheSpot from "../../components/the-spot.astro";
 import Testimonials from "../../components/testimonials.astro";
-import Community from "../../components/community.astro";
+import HeroImage from "../../components/heros/hero-image.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -73,7 +71,7 @@ export async function getStaticPaths() {
   </header>
 
   <main>
-    <Hero />
+    <HeroImage />
     <Services />
     <AboutUs />
     <TheSpot />
@@ -83,5 +81,5 @@ export async function getStaticPaths() {
     <Store />
   </main>
 
-  <Footer />
+  <Footer showPattern={false} />
 </Layout>
