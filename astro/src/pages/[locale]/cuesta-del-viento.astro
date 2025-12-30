@@ -12,6 +12,8 @@ import Drink from "../../components/svg/the-spot-icons/drink.astro";
 import Mountain from "../../components/svg/the-spot-icons/mountain.astro";
 import Tennis from "../../components/svg/the-spot-icons/tennis.astro";
 import TheSpotTopSeparator from "../../components/svg/the-spot-top-separator.astro";
+import AboutUsUnderSeparator from "../../components/svg/about-us-under-separator.astro";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -56,195 +58,103 @@ const images = [
   <main class="min-h-dvh bg-brand-light">
     <div class="relative w-full h-[220px] md:h-[300px]">
       <div
-        class="absolute inset-0 bg-no-repeat bg-position-[bottom_30%_right_20%] bg-cover bg-red-200"
-        style="background-image: url('/hero-desktop-2.jpeg');"
+        class="absolute inset-0 bg-no-repeat bg-position-[bottom_45%_right_20%] bg-cover"
+        style="background-image: url('/headers/header-3.jpeg');"
       >
       </div>
 
       <div
-        class="flex justify-end max-w-4xl mx-auto relative z-20 h-full items-end pb-4 md:pb-10"
+        class="flex justify-center max-w-4xl mx-auto relative z-20 h-full items-end pb-4 md:pb-10"
       >
-        <h1 class="font-salted text-6xl md:text-8xl pr-4 md:pr-0">EL SPOT</h1>
+        <h1
+          class="font-salted text-shadow-2xs text-shadow-brand-blue text-6xl md:text-8xl pr-4 md:pr-0"
+        >
+          Cuesta Del Viento
+        </h1>
       </div>
 
-      <div class="absolute bottom-0 left-0 w-full text-brand-light">
+      <div class="absolute bottom-0 left-0 w-full text-brand-blue">
         <TheSpotTopSeparator />
+      </div>
+    </div>
+
+    <div class="bg-brand-blue">
+      <div class="max-w-6xl mx-auto py-20">
+        <div class="space-y-8 text-white text-lg md:text-xl px-4">
+          <!-- <h2 class="text-4xl md:text-6xl font-bold md:text-center">
+            CUESTA DEL VIENTO
+          </h2> -->
+
+          <p>
+            En el corazón de la precordillera, a 2 horas de la Ciudad de San
+            Juan, entre montañas áridas que parecen no tener fin, se encuentra
+            Cuesta del Viento: Un lago rodeado de cerros rojizos donde el viento
+            tiene una presencia imponente. Para muchos, uno de los mejores spots
+            del mundo para hacer kite.
+          </p>
+        </div>
       </div>
     </div>
 
     <section class="relative bg-brand-light">
       <div
-        class="bg-brand-light bg-[url('/cuesta-del-viento/white-wave.png')] bg-size-[42px_auto]"
+        class="relative bg-brand-light bg-[url('/cuesta-del-viento/white-wave.png')] bg-size-[42px_auto]"
       >
-        <div class="pt-20">
-          <div
-            class="grid gap-y-4 px-4 md:px-0 place-content-center md:justify-items-center text-brand-blue"
-          >
-            <p class="text-xl">Un lugar distinto a todo</p>
-            <h2 class="font-bold text-4xl md:text-6xl">CUESTA DEL VIENTO</h2>
-          </div>
-
-          <div class="max-w-7xl pt-10 mx-auto">
-            <div
-              class="max-w-prose px-4 text-brand-blue md:border-l border-brand-blue"
-            >
-              <p>
-                En el corazón de la precordillera, a 2 horas de la Ciudad de San
-                Juan, entre montañas áridas que parecen no tener fin, se
-                encuentra Cuesta del Viento: Un lago rodeado de cerros rojizos
-                donde el viento tiene una presencia imponente. Para muchos, uno
-                de los mejores spots del mundo para hacer kite.
-              </p>
-            </div>
-
-            <div
-              class="relative w-full h-full flex justify-end md:border-l border-brand-blue py-6 px-4 md:px-0"
-            >
-              <div
-                class="w-[100px] h-px bg-brand-blue absolute -translate-y-1/2 left-0 top-1/2 z-40 hidden md:block"
-              >
-              </div>
-              <img
-                src="https://turismo-en-argentina.com/wp-content/uploads/2018/01/img107B.jpg"
-                alt="Dique Cuesta del Viento"
-                class="rounded-2xl w-full md:w-[90%] md:h-[500px] h-[300px] object-cover"
-              />
-            </div>
-
-            <div class="flex justify-start">
-              <div
-                class="max-w-prose space-y-4 px-4 md:border-l border-brand-blue text-brand-blue"
-              >
-                <p>
-                  Quienes lo visitan por primera vez lo dicen siempre: “Siento
-                  que estoy en otro planeta”. Y algo de eso hay. Las montañas
-                  cambian de color con el pasar del día, las noches se cubren de
-                  estrellas que parecen estar al alcance de las manos, y el
-                  viento, el principal protagonista llega casi cada día,
-                  puntual, y junto con él navegantes y viajeros de todas partes.
-                  Este escenario mágico, la energía del lugar y una comunidad
-                  que te recibe con los brazos abiertos, son difíciles de
-                  explicar si no las vivís.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="relative w-full h-full md:border-l border-brand-blue flex justify-end pt-6 px-4 md:px-0"
-            >
-              <div
-                class="w-[100px] h-px bg-brand-blue absolute -translate-y-1/2 left-0 top-1/2 z-40 hidden md:block"
-              >
-              </div>
-              <img
-                src="https://www.suteba.org.ar/files/85643_1162.jpg"
-                alt="Dique Cuesta del Viento"
-                class="rounded-2xl object-cover w-full md:w-[90%] md:h-[500px]"
-                h-[300px]
-              />
-            </div>
-          </div>
+        <div
+          class="relative z-20 text-brand-blue drop-shadow-xs drop-shadow-brand-blue"
+        >
+          <AboutUsUnderSeparator />
         </div>
 
-        <div class="pt-20 relative">
-          <div id="mas-que-kite" class="max-w-5xl mx-auto text-brand-blue px-4">
-            <div
-              class="grid gap-y-4 place-content-center md:justify-items-center text-brand-blue"
-            >
-              <p>
-                Rodeo y sus alrededores ofrecen experiencias para todos los
-                gustos.
-              </p>
-              <h2 class="font-bold text-4xl md:text-6xl">MÁS QUE KITE</h2>
-            </div>
-
-            <ul
-              class="grid grid-cols-2 overflow-hidden md:grid-cols-3 gap-10 pt-10 md:pt-20 relative"
-            >
-              <li
-                class="text-center flex flex-col items-center gap-2 relative after:content-[''] after:absolute after:-right-5 after:top-1/2 after:-translate-y-1/2 after:w-px after:h-[100px] after:bg-brand-blue after:block"
-              >
-                <div class="size-16 md:size-24">
-                  <Star />
-                </div>
-                <span class="text-sm md:text-base">
-                  Caminatas por los cerros y miradores con vistas al dique
-                </span>
-              </li>
-
-              <li
-                class="text-center flex flex-col items-center gap-2 relative md:after:content-[''] md:after:absolute md:after:-right-5 md:after:top-1/2 md:after:-translate-y-1/2 md:after:w-px md:after:h-[100px] md:after:bg-brand-blue"
-              >
-                <div class="md:h-24 md:w-32 h-16 w-24">
-                  <Mountain />
-                </div>
-                <span class="text-sm md:text-base">
-                  Escalada, mountain bike y senderismo
-                </span>
-              </li>
-
-              <li
-                class="text-center flex flex-col items-center gap-2 relative after:content-[''] after:absolute after:-right-5 after:top-1/2 after:-translate-y-1/2 after:w-px after:h-[100px] after:bg-brand-blue after:block md:after:hidden"
-              >
-                <div class="size-12 md:size-24">
-                  <Tennis />
-                </div>
-                <span class="text-sm md:text-base">
-                  Stand Up Paddle o kayak por las mañanas
-                </span>
-              </li>
-
-              <li
-                class="text-center flex flex-col items-center gap-2 relative after:content-[''] after:absolute after:-right-5 after:top-1/2 after:-translate-y-1/2 after:w-px after:h-[100px] after:bg-brand-blue after:block"
-              >
-                <div
-                  class="size-16 flex items-center justify-center md:size-24"
-                >
-                  <Food />
-                </div>
-                <span class="text-sm md:text-base">
-                  Restaurantes de gastronomía local
-                </span>
-              </li>
-
-              <li
-                class="text-center flex flex-col items-center gap-2 relative after:content-[''] after:absolute after:-right-5 after:top-1/2 after:-translate-y-1/2 after:w-px after:h-[100px] after:bg-brand-blue after:block"
-              >
-                <div class="size-16 md:size-24">
-                  <Telescope />
-                </div>
-                <span class="text-sm md:text-base">
-                  Experiencias guiadas de observación de estrellas y fenómenos
-                  astrológicos
-                </span>
-              </li>
-
-              <li class="text-center flex flex-col items-center gap-2">
-                <div class="md:h-24 md:w-12 h-16 w-8">
-                  <Drink />
-                </div>
-                <span class="text-sm md:text-base">
-                  Bares con noches de música y shows de entretenimiento
-                </span>
-              </li>
-            </ul>
-
-            <p class="pt-20 text-center text-lg">
-              La zona combina naturaleza, tranquilidad y buena energía —todo lo
-              necesario para vivir unos días de conexión total.
-            </p>
-          </div>
-        </div>
-
-        <div class="relative py-30">
+        <!-- <div class="absolute w-full h-[600px] left-0 top-0 z-0">
           <img
-            src="/cuesta-del-viento/facu-volando.jpg"
-            class="object-cover w-full h-dvh object-[70%_50%] md:object-center"
-            alt="Facu Kiteando en Cuesta del Viento"
+            src="https://turismo-en-argentina.com/wp-content/uploads/2018/01/img107B.jpg"
+            alt="Dique Cuesta del Viento"
+            class="w-full h-[600px] object-cover"
           />
+        </div> -->
+
+        <div class="pt-10 px-4">
+          <div class="max-w-7xl mx-auto">
+            <div class="text-brand-blue">
+              <p class="space-y-4 text-lg">
+                <span class="block">
+                  Quienes lo visitan por primera vez lo dicen siempre:
+                </span>
+                <span class="block font-bold text-3xl md:text-5xl italic">
+                  “Siento que estoy en otro planeta”
+                </span>
+                <span class="block">
+                  Y algo de eso hay. Las montañas cambian de color con el pasar
+                  del día, las noches se cubren de estrellas que parecen estar
+                  al alcance de las manos, y el viento, el principal
+                  protagonista llega casi cada día, puntual, y junto con él
+                  navegantes y viajeros de todas partes. Este escenario mágico,
+                  la energía del lugar y una comunidad que te recibe con los
+                  brazos abiertos, son difíciles de explicar si no las vivís.
+                </span>
+              </p>
+            </div>
+
+            <div
+              class="relative w-full grid md:grid-cols-2 h-[500px] pt-10 gap-x-10 gap-y-4"
+            >
+              <img
+                src="https://media.sanjuan8.com/p/f9dd44433e128fb9e1608d2f23ae7842/adjuntos/303/imagenes/009/533/0009533738/1200x0/smart/cuesta-del-vientowebp.png"
+                alt="Dique Cuesta del Viento"
+                class="rounded-2xl object-cover w-full h-full"
+              />
+              <img
+                src="https://mendoza-camara.org/wp-content/uploads/2017/08/4-Windsurf-en-Cuesta-del-Viento-1.jpg"
+                alt="Dique Cuesta del Viento"
+                class="rounded-2xl object-cover w-full h-full"
+              />
+            </div>
+          </div>
         </div>
 
-        <div class="max-w-7xl mx-auto">
+        <!-- DONDE SIEMPRE SOPLA -->
+        <div class="max-w-7xl mx-auto pt-30">
           <div class="grid md:grid-cols-2 md:gap-x-10">
             <div class="relative flex md:overflow-hidden">
               <div
@@ -255,8 +165,82 @@ const images = [
             </div>
 
             <div
-              class="space-y-10 text-lg max-w-prose relative z-10 text-brand-blue row-span-1 px-4"
+              class="space-y-8 md:space-y-10 text-lg max-w-prose relative z-10 text-brand-blue row-span-1 px-4"
             >
+              <div
+                class="hidden md:block absolute -right-4 lg:-right-8 xl:-right-30 -bottom-4 z-10"
+              >
+                <!-- DONDE SIEMPRE SOPLA SVG -->
+                <svg
+                  class="w-full max-w-3xl mx-auto"
+                  viewBox="100 -200 900 1000"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <!-- Define the invisible path -->
+                  <defs>
+                    <path
+                      id="arcDondeSiempreSopla"
+                      d="M101 631Q146 742 355 748 603 733 797 432"></path>
+                  </defs>
+
+                  <!-- Text that follows the path -->
+                  <text
+                    font-size="80"
+                    fill="currentColor"
+                    font-weight="600"
+                    letter-spacing="3"
+                  >
+                    <textPath
+                      href="#arcDondeSiempreSopla"
+                      startOffset="50%"
+                      text-anchor="middle"
+                      class="font-salted text-brand-blue"
+                    >
+                      DONDE SIEMPRE SOPLA
+                    </textPath>
+                  </text>
+
+                  <text
+                    x="950"
+                    y="570"
+                    font-size="80"
+                    fill="currentColor"
+                    font-weight="600"
+                    letter-spacing="3"
+                    class="font-salted text-brand-blue"
+                    transform="rotate(-70 740 570)"
+                  >
+                    A
+                  </text>
+
+                  <text
+                    x="800"
+                    y="170"
+                    font-size="80"
+                    fill="currentColor"
+                    font-weight="600"
+                    letter-spacing="3"
+                    class="font-salted text-brand-blue"
+                  >
+                    A
+                  </text>
+
+                  <text
+                    x="1000"
+                    y="120"
+                    font-size="80"
+                    fill="currentColor"
+                    font-weight="600"
+                    letter-spacing="3"
+                    class="font-salted text-brand-blue"
+                    transform="rotate(-40 800 170)"
+                    opacity="0.85"
+                  >
+                    A
+                  </text>
+                </svg>
+              </div>
+
               <h4 class="text-2xl font-bold text-brand-blue">
                 DONDE SIEMPRE SOPLA
               </h4>
@@ -302,30 +286,168 @@ const images = [
           </div>
         </div>
 
-        <div class="relative py-20">
-          <img
-            src="/cuesta-del-viento/lucca-volando.jpeg"
-            class="object-cover w-full h-dvh object-[70%_50%] md:object-center"
-            alt="Facu Kiteando en Cuesta del Viento"
-          />
+        <!-- MAS QUE KITE -->
+        <div class="pb-20 pt-20 md:pt-30 relative">
+          <div id="mas-que-kite" class="max-w-5xl mx-auto text-brand-blue px-4">
+            <div
+              class="grid gap-y-4 place-content-center md:justify-items-center text-brand-blue"
+            >
+              <!-- <p>
+                Rodeo y sus alrededores ofrecen experiencias para todos los
+                gustos.
+              </p> -->
+              <h2 class="font-bold text-4xl md:text-6xl">MÁS QUE KITE</h2>
+            </div>
+
+            <ul
+              class="grid grid-cols-2 overflow-hidden md:overflow-visible md:grid-cols-3 gap-6 md:gap-10 pt-10 md:pt-20 relative"
+            >
+              <li
+                class="text-center flex flex-col items-center relative bg-white shadow-news-card rounded-2xl"
+              >
+                <div class="h-[350px] w-full">
+                  <img
+                    src="https://trayectoriasenviaje.com/wp-content/uploads/2019/10/Rodeo_san_juan-40.jpg"
+                    alt="Dique Cuesta del Viento"
+                    class="rounded-t-2xl object-cover w-full h-full"
+                  />
+                </div>
+                <div class="px-2 py-4">
+                  <span class="text-sm md:text-base">
+                    Caminatas por los cerros y miradores con vistas al dique
+                  </span>
+                </div>
+              </li>
+
+              <li
+                class="text-center flex flex-col items-center relative bg-white shadow-news-card rounded-2xl"
+              >
+                <div class="h-[350px] w-full">
+                  <img
+                    src="https://lavidadeviaje.com/wp-content/uploads/2013/07/La-Vida-de-Viaje-Portada-24.jpg"
+                    alt="Dique Cuesta del Viento"
+                    class="rounded-t-2xl object-cover w-full h-full"
+                  />
+                </div>
+                <div class="px-2 py-4">
+                  <span class="text-sm md:text-base">
+                    Escalada, mountain bike y senderismo
+                  </span>
+                </div>
+              </li>
+
+              <li
+                class="text-center flex flex-col items-center relative bg-white shadow-news-card rounded-2xl"
+              >
+                <div class="h-[350px] w-full">
+                  <img
+                    src="https://discoveryseakayak.com/wp-content/uploads/2025/06/dsk_kayaking_group.jpg"
+                    alt="Dique Cuesta del Viento"
+                    class="rounded-t-2xl object-cover w-full h-full"
+                  />
+                </div>
+                <div class="px-2 py-4">
+                  <span class="text-sm md:text-base">
+                    Stand Up Paddle o kayak por las mañanas
+                  </span>
+                </div>
+              </li>
+
+              <li
+                class="text-center flex flex-col items-center relative bg-white shadow-news-card rounded-2xl"
+              >
+                <div class="h-[350px] w-full">
+                  <img
+                    src="https://centrosantafe.com.mx/cdn/shop/articles/los-5-mejores-restaurantes-de-carne.jpg?v=1559341579"
+                    alt="Dique Cuesta del Viento"
+                    class="rounded-t-2xl object-cover w-full h-full"
+                  />
+                </div>
+                <div class="px-2 py-4">
+                  <span class="text-sm md:text-base">
+                    Restaurantes de gastronomía local
+                  </span>
+                </div>
+              </li>
+
+              <li
+                class="text-center flex flex-col items-center relative bg-white shadow-news-card rounded-2xl"
+              >
+                <div class="h-[350px] w-full">
+                  <img
+                    src="https://media.tiempodesanjuan.com/p/a1b0ca7efe90d236b720a97743e2699d/adjuntos/331/imagenes/000/761/0000761315/790x0/smart/imagepng.png"
+                    alt="Dique Cuesta del Viento"
+                    class="rounded-t-2xl object-cover w-full h-full"
+                  />
+                </div>
+                <div class="px-2 py-4">
+                  <span class="text-sm md:text-base">
+                    Experiencias guiadas de observación de estrellas y fenómenos
+                    astrológicos
+                  </span>
+                </div>
+              </li>
+
+              <li
+                class="text-center flex flex-col items-center bg-white shadow-news-card rounded-2xl"
+              >
+                <div class="h-[350px] w-full">
+                  <img
+                    src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/2d/9e/e3/pampa-bar.jpg?w=1000&h=-1&s=1"
+                    alt="Dique Cuesta del Viento"
+                    class="rounded-t-2xl object-cover w-full h-full"
+                  />
+                </div>
+                <div class="px-2 py-4">
+                  <span class="text-sm md:text-base">
+                    Bares con noches de música y shows de entretenimiento
+                  </span>
+                </div>
+              </li>
+            </ul>
+
+            <!-- <p class="pt-20 text-center text-lg">
+              La zona combina naturaleza, tranquilidad y buena energía —todo lo
+              necesario para vivir unos días de conexión total.
+            </p> -->
+          </div>
         </div>
 
-        <div id="mas-que-kite-como-llegar" class="md:pt-10 pb-20">
-          <div>
-            <div class="md:text-center px-4 md:px-0 text-brand-blue">
+        <div class="relative w-full h-dvh">
+          <!-- <div
+            class="absolute inset-0 bg-no-repeat bg-position-[bottom_70%_right_50%] bg-cover"
+            style="background-image: url('https://turismo-en-argentina.com/wp-content/uploads/2018/01/img107B.jpg');"
+          >
+          </div> -->
+
+          <div
+            class="absolute inset-0 bg-no-repeat md:bg-position-[bottom_70%_right_50%] bg-position-[bottom_70%_right_35%] bg-cover"
+            style="background-image: url('/cuesta-del-viento/flying.png');"
+          >
+          </div>
+
+          <div class="absolute left-0 bottom-0 w-full text-celeste-3 z-20">
+            <TheSpotTopSeparator />
+          </div>
+        </div>
+
+        <!-- COMO LLEGAR -->
+        <div id="mas-que-kite-como-llegar" class="pb-10">
+          <div class="bg-celeste-3 py-20">
+            <div class="md:text-center px-4 md:px-0 text-white spae-y-2">
               <h2 class="font-bold text-4xl md:text-6xl pb-2">CÓMO LLEGAR</h2>
+              <p>
+                Cuesta del Viento se encuentra en el departamento de Iglesia,
+                provincia de San Juan, a unos 180 km al noroeste de la ciudad
+                capital.
+              </p>
             </div>
 
             <div class="py-10 max-w-7xl mx-auto">
               <div class="grid md:grid-cols-5 gap-x-10 px-4">
-                <div class="md:col-span-2 space-y-2 text-brand-blue">
-                  <p class="mb-4">
-                    Cuesta del Viento se encuentra en el departamento de
-                    Iglesia, provincia de San Juan, a unos 180 km al noroeste de
-                    la ciudad capital.
-                  </p>
-                  <div>
-                    <h3 class="font-semibold">Desde San Juan</h3>
+                <div class="md:col-span-2 space-y-4 text-white">
+                  <div class="space-y-2">
+                    <h3 class="font-bold text-lg">Desde San Juan</h3>
                     <p>
                       Unas 2 horas en auto o 4 en bus hacia el norte por la Ruta
                       40 y luego la Ruta 149 por Iglesia. También podés seguir
@@ -333,16 +455,16 @@ const images = [
                     </p>
                   </div>
 
-                  <div>
-                    <h3 class="font-semibold">Desde Mendoza</h3>
+                  <div class="space-y-2">
+                    <h3 class="font-bold text-lg">Desde Mendoza</h3>
                     <p>
                       Unas 4 horas en auto o 6–7 hs en bus (no hay uno directo;
                       deberías conectar en San Juan).
                     </p>
                   </div>
 
-                  <div>
-                    <h3 class="font-semibold">Desde Córdoba</h3>
+                  <div class="space-y-2">
+                    <h3 class="font-bold text-lg">Desde Córdoba</h3>
                     <p>
                       Unas 8 horas en auto, pasando por Villa Dolores y Jáchal
                       hasta Rodeo. Todo el camino está asfaltado y ofrece vistas
@@ -350,15 +472,14 @@ const images = [
                     </p>
                   </div>
 
-                  <div>
-                    <h3 class="font-semibold">
+                  <div class="space-y-2">
+                    <h3 class="font-bold text-lg">
                       Desde Buenos Aires u otras provincias
                     </h3>
                     <p>
                       Podés volar a San Juan Capital o a Mendoza y desde ahí
                       continuar en auto o bus. Si preferís manejar, el viaje
-                      completo son unos <strong
-                        >1.200 km —aprox. 15 horas</strong
+                      completo son unos <strong>1.200 km aprox. 15 horas</strong
                       > por Ruta 7 y luego Ruta 150.
                     </p>
                   </div>
@@ -369,197 +490,209 @@ const images = [
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54467.75347765515!2d-69.1173416182144!3d-30.18664593872637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9684bb8638777e6d%3A0x44246635a8420f27!2sFauna%20Kite!5e0!3m2!1ses-419!2sar!4v1766591363583!5m2!1ses-419!2sar"
                     width="100%"
                     height="450"
-                    style="border:0;"
+                    class="border-none rounded-md"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="max-w-7xl mx-auto md:py-20">
-              <div
-                id="como-llegar"
-                class="grid md:grid-cols-5 text-brand-blue md:gap-10 px-4 md:px-0"
-              >
-                <p class="md:col-span-2 py-8">
-                  <strong>Tip:</strong> Si viajás solo, los fines de semana suele
-                  haber kiters viajando a Rodeo con lugar disponible y ganas de compartir
-                  el viaje —<a
-                    class="underline"
-                    href="https://wa.me/542646600588"
-                    target="_blank"
-                    rel="noopener noreferrer">escribinos por WhatsApp</a
-                  > y te damos una mano.
-                </p>
-                <p class="md:col-span-3 p-6 md:p-8 max-w-md">
-                  Te recomendamos tener algún tipo de movilidad en el lugar.
-                  Algunos alojamientos ofrecen traslado al dique o bicicletas.
-                  Si no vas a tener movilidad, lo ideal es hospedarte cerca del
-                  spot.
-                </p>
+          <div class="text-celeste-3">
+            <AboutUsUnderSeparator />
+          </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pb-20">
+          <div
+            id="como-llegar"
+            class="grid md:grid-cols-2 max-w-2xl text-brand-blue text-lg md:gap-20 gap-10 px-4 md:px-0"
+          >
+            <div class="space-y-8">
+              <div class="flex justify-center">
+                <Icon name="combi" class="size-32 text-brand-blue" />
               </div>
+              <p class="">
+                <strong>Tip:</strong> Si viajás solo, los fines de semana suele haber
+                kiters viajando a Rodeo con lugar disponible y ganas de compartir
+                el viaje —
+                <a
+                  class="underline whatsapp-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >escribinos por WhatsApp
+                </a> y te damos una mano.
+              </p>
+            </div>
 
-              <div
-                id="que-llevar"
-                class="max-w-prose text-brand-blue pt-10 px-4 md:px-0"
-              >
-                <h2 class="font-bold text-3xl pb-2">Qué llevar</h2>
-
-                <p class="mb-3">
-                  Durante las clases te damos todo el equipo necesario —traje de
-                  neoprene, chaleco y casco— así que solo necesitás traer lo
-                  básico:
-                </p>
-
-                <ul class="list-inside space-y-2">
-                  <li class="flex items-start gap-3">
-                    <svg
-                      class="w-5 h-5 shrink-0 mt-1"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <circle
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        stroke-width="1.2"></circle>
-                      <path
-                        d="M8 12l2 2 6-6"
-                        stroke="currentColor"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></path>
-                    </svg>
-                    <span>Ropa cómoda</span>
-                  </li>
-
-                  <li class="flex items-start gap-3">
-                    <svg
-                      class="w-5 h-5 shrink-0 mt-1"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <rect
-                        x="3"
-                        y="3"
-                        width="18"
-                        height="14"
-                        rx="2"
-                        stroke="currentColor"
-                        stroke-width="1.2"></rect>
-                      <path
-                        d="M8 21h8"
-                        stroke="currentColor"
-                        stroke-width="1.2"
-                        stroke-linecap="round"></path>
-                    </svg>
-                    <span>Toalla, traje de baño y sandalias</span>
-                  </li>
-
-                  <li class="flex items-start gap-3">
-                    <svg
-                      class="w-5 h-5 shrink-0 mt-1"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M1 12h22"
-                        stroke="currentColor"
-                        stroke-width="1.2"
-                        stroke-linecap="round"></path>
-                      <path
-                        d="M12 2v20"
-                        stroke="currentColor"
-                        stroke-width="1.2"
-                        stroke-linecap="round"></path>
-                    </svg>
-                    <span>Protector solar, lentes de sol y gorra</span>
-                  </li>
-
-                  <li class="flex items-start gap-3">
-                    <svg
-                      class="w-5 h-5 shrink-0 mt-1"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M3 3h18v12H3z"
-                        stroke="currentColor"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></path>
-                      <path
-                        d="M7 21h10"
-                        stroke="currentColor"
-                        stroke-width="1.2"
-                        stroke-linecap="round"></path>
-                    </svg>
-                    <span
-                      >Abrigo para las noches (aunque sea verano puede
-                      refrescar)</span
-                    >
-                  </li>
-
-                  <li class="flex items-start gap-3">
-                    <svg
-                      class="w-5 h-5 shrink-0 mt-1"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M12 2l2 7h7l-5.5 4 2 7L12 16l-7.5 4 2-7L1 9h7l2-7z"
-                        stroke="currentColor"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></path>
-                    </svg>
-                    <span
-                      >Zapas cómodas por si querés hacer caminatas o salir a
-                      correr</span
-                    >
-                  </li>
-
-                  <li class="flex items-start gap-3">
-                    <svg
-                      class="w-5 h-5 shrink-0 mt-1"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M4 4h16v16H4z"
-                        stroke="currentColor"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></path>
-                      <path
-                        d="M8 8h8v8H8z"
-                        stroke="currentColor"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></path>
-                    </svg>
-                    <span>Mate, agua y buena onda 🌬️</span>
-                  </li>
-                </ul>
-
-                <p class="mt-4">
-                  Si tenés tu traje de neoprene propio, un <strong
-                    >4/3 largo</strong
-                  > es ideal; si venís en diciembre o enero, con un <strong
-                    >3/2</strong
-                  > vas a estar cómodo.
-                </p>
+            <div class="space-y-8">
+              <div class="flex justify-center">
+                <Icon name="cabana" class="w-36 h-32 text-brand-blue" />
               </div>
+              <p class="">
+                Te recomendamos tener algún tipo de movilidad en el lugar.
+                Algunos alojamientos ofrecen traslado al dique o bicicletas. Si
+                no vas a tener movilidad, lo ideal es hospedarte cerca del spot.
+              </p>
             </div>
           </div>
+
+          <!-- QUE LLEVAR -->
+          <!-- <div
+            id="que-llevar"
+            class="max-w-prose text-brand-blue pt-10 px-4 md:px-0"
+          >
+            <h2 class="font-bold text-3xl pb-2">Qué llevar</h2>
+
+            <p class="mb-3">
+              Durante las clases te damos todo el equipo necesario —traje de
+              neoprene, chaleco y casco— así que solo necesitás traer lo básico:
+            </p>
+
+            <ul class="list-inside space-y-2">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 shrink-0 mt-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="1.2"></circle>
+                  <path
+                    d="M8 12l2 2 6-6"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+                <span>Ropa cómoda</span>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 shrink-0 mt-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="14"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.2"></rect>
+                  <path
+                    d="M8 21h8"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"></path>
+                </svg>
+                <span>Toalla, traje de baño y sandalias</span>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 shrink-0 mt-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 12h22"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"></path>
+                  <path
+                    d="M12 2v20"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"></path>
+                </svg>
+                <span>Protector solar, lentes de sol y gorra</span>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 shrink-0 mt-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 3h18v12H3z"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M7 21h10"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"></path>
+                </svg>
+                <span
+                  >Abrigo para las noches (aunque sea verano puede refrescar)</span
+                >
+              </li>
+
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 shrink-0 mt-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2l2 7h7l-5.5 4 2 7L12 16l-7.5 4 2-7L1 9h7l2-7z"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+                <span
+                  >Zapas cómodas por si querés hacer caminatas o salir a correr</span
+                >
+              </li>
+
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 shrink-0 mt-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 4h16v16H4z"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M8 8h8v8H8z"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+                <span>Mate, agua y buena onda 🌬️</span>
+              </li>
+            </ul>
+
+            <p class="mt-4">
+              Si tenés tu traje de neoprene propio, un <strong>4/3 largo</strong
+              > es ideal; si venís en diciembre o enero, con un <strong
+                >3/2</strong
+              > vas a estar cómodo.
+            </p>
+          </div> -->
         </div>
       </div>
     </section>
@@ -567,3 +700,25 @@ const images = [
 
   <Footer />
 </Layout>
+
+<script>
+  import { INSTRUCTORS_PHONE } from "../../constants";
+
+  function getRandomInstructor() {
+    return Math.random() < 0.5
+      ? INSTRUCTORS_PHONE.lucca
+      : INSTRUCTORS_PHONE.facu;
+  }
+
+  function initializeWhatsAppLinks() {
+    const whatsappBtn = document.querySelector(".whatsapp-btn");
+    if (whatsappBtn) {
+      const phone = getRandomInstructor();
+      whatsappBtn.href = `https://wa.me/${phone}`;
+    }
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    initializeWhatsAppLinks();
+  });
+</script>

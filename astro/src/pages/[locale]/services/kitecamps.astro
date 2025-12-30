@@ -72,13 +72,21 @@ const images = [
 ---
 
 <ServicesLayout>
-  <div class="grid md:grid-cols-2 gap-10 py-10 md:py-20 max-w-6xl mx-auto">
-    <div class="text-brand-blue max-w-prose text-lg space-y-4 px-4">
-      <h1 class="font-bold text-2xl md:text-4xl">KITE CAMP</h1>
-      <p>
+    <Fragment slot="header">
+    <div class="max-w-6xl mx-auto pb-30">
+      <div class="space-y-8 text-white text-lg md:text-xl px-4">
+         <p>
         Un KiteCamp es una oportunidad única para progresar, disfrutar y conocer
         gente nueva que vibra igual que vos.
       </p>
+      </div>
+    </div>
+  </Fragment>
+
+  <div class="grid md:grid-cols-2 gap-10 py-10 max-w-6xl mx-auto">
+    <div class="text-brand-blue max-w-prose text-lg space-y-4 px-4">
+      <h1 class="font-bold text-2xl md:text-4xl">KITE CAMP</h1>
+   
       <p>
         No importa si venís solo o acompañado, durante varios días vas a ser
         parte de una comunidad y vivir una experiencia completa de kite,
@@ -98,6 +106,12 @@ const images = [
         <li>🎸 Música en la casa FAUNA y shows OpenMic.</li>
         <li>🎁 Kits de bienvenida y sorpresas durante.</li>
       </ul>
+
+        <div class="flex pt-4">
+          <button class="bg-brand-blue text-white text-base px-6 py-3 font-bold rounded-2xl">
+            CONSULTAR PRÓXIMO
+            </button>
+          </div>
     </div>
 
     <div class="w-full px-4 md:w-[500px] overflow-hidden justify-self-center">

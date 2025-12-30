@@ -31,7 +31,7 @@ const links = [
       <div class="flex items-center justify-between">
         <a href="/">
           <div
-            class="relative w-full max-w-[100px] aspect-[3.45/1] flex items-center justify-center"
+            class="relative w-full max-w-[130px] aspect-[3.45/1] flex items-center justify-center"
           >
             <Image decoding="async" src={logo} alt="Logo FaunaKite white" />
           </div>
@@ -42,7 +42,7 @@ const links = [
         {
           links.map((link) => (
             <a
-              class="hover:text-brand-red text-shadow-md"
+              class="hover:text-brand-red hover:text-shadow-none text-shadow-md"
               href={link.href}
               {...link.props}
             >

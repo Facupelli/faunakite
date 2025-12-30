@@ -50,17 +50,14 @@ function replaceLocale(path: string, targetLang: string) {
     class="flex items-center gap-2 cursor-pointer select-none
       bg-transparent bg-opacity-90
       px-3 py-1.5 rounded-full shadow-sm
-      ring ring-slate-200
+      border
       hover:shadow-md transition duration-150
       focus-visible:ring focus-visible:ring-offset-2 focus-visible:ring-brand-green
       outline-none"
     aria-haspopup="menu"
     aria-label="Select language"
   >
-    <span
-      class="text-sm font-bold text-slate-800 dark:text-slate-100 text-shadow-md"
-      >{currentLabel}</span
-    >
+    <span class="text-sm font-bold">{currentLabel}</span>
 
     <!-- chevron -->
     <Icon name="chevron-down" />
