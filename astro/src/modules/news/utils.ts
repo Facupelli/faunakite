@@ -30,6 +30,7 @@ export interface News {
   title?: string;
   slug: Slug;
   summary: string;
+  epigraph?: string;
   image?: ImageAsset & { alt?: string };
   body: PortableTextBlock[];
 }

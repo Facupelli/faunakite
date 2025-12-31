@@ -22,7 +22,7 @@ export function ProductCard({ product }: { product: TiendaNubeProduct }) {
             className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300 rounded-t-xl"
           />
 
-          <div className="absolute z-30 -bottom-4 right-4 bg-brand-blue border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
+          <div className="absolute z-30 -bottom-4 right-4 bg-brand-red border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
             <a
               href={product.canonical_url}
               target="_blank"

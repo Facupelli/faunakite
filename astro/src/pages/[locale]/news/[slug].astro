@@ -12,6 +12,7 @@ import { urlFor } from "../../../modules/news/image.utils";
 import { formatDate } from "../../../modules/news/date.utils";
 import Nav from "../../../components/nav.astro";
 import NewsCard from "../../../components/news-card.astro";
+import Footer from "../../../components/footer.astro";
 
 export async function getStaticPaths() {
   const posts = await getNews();
@@ -64,61 +65,112 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
     <Nav />
   </header>
 
-  <div class="bg-brand-blue min-h-dvh">
-    <div class="max-w-7xl mx-auto pb-20 pt-40 px-4">
-      <div class="flex flex-col md:flex-row gap-y-20">
-        <article class="md:basis-[75%] md:max-w-prose md:mx-auto">
-          <h1 class="font-bold text-4xl">{post.title}</h1>
-          <p class="text-sm text-white/60">
-            {formatDate(post._createdAt)}
-          </p>
-          <p class="py-4">{post.summary}</p>
+  <main>
+    <div class="text-brand-blue">
+      <div
+        class="relative bg-brand-light min-h-dvh bg-[url('/cuesta-del-viento/white-wave-contrast-2.png')] bg-size-[42px_auto]"
+      >
+        <div class="max-w-7xl mx-auto pb-20 pt-40 px-4">
+          <div class="flex flex-col md:flex-row gap-y-20">
+            <article class="md:basis-[75%] md:max-w-prose md:mx-auto">
+              <h1 class="font-bold text-4xl">{post.title}</h1>
+              <p class="text-sm text-brand-blue/80">
+                {formatDate(post._createdAt)}
+              </p>
+              <p class="py-4">{post.summary}</p>
 
-          <div>
-            {
-              post.image ? (
-                <div class="relative h-80 w-full py-10">
-                  <picture>
-                    {/* WebP - good compression with broad support */}
-                    <source
-                      type="image/webp"
-                      srcset={generateSrcSet(post.image, "webp")}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    {/* Fallback */}
-                    <img
-                      src={getOptimizedImageUrl(post.image, 800)}
-                      srcset={generateSrcSet(post.image)}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      alt={post.image.alt || post.title}
-                      width="800"
-                      height="800"
-                      class="object-cover w-full h-full rounded-2xl"
-                    />
-                  </picture>
-                </div>
-              ) : (
-                <div class="post__cover--none" />
-              )
-            }
-          </div>
+              <div>
+                {
+                  post.image ? (
+                    <div class="relative h-80 w-full py-8">
+                      <picture>
+                        {/* WebP - good compression with broad support */}
+                        <source
+                          type="image/webp"
+                          srcset={generateSrcSet(post.image, "webp")}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                        {/* Fallback */}
+                        <img
+                          src={getOptimizedImageUrl(post.image, 800)}
+                          srcset={generateSrcSet(post.image)}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          alt={post.image.alt || post.title}
+                          width="800"
+                          height="800"
+                          class="object-cover w-full h-full rounded-2xl"
+                        />
+                      </picture>
+                      {post.epigraph && (
+                        <p class="text-brand-blue/80 text-sm p-2">
+                          {post.epigraph}
+                        </p>
+                      )}
+                    </div>
+                  ) : (
+                    <div class="post__cover--none" />
+                  )
+                }
+              </div>
 
-          <PortableText value={post.body} />
-        </article>
-        <aside class="md:basis-[25%] space-y-4">
-          <p class="font-bold text-lg">Más Noticias</p>
-          <div class="grid gap-10">
-            {
-              posts.length >= 3 &&
-                posts.map((post) => (
-                  <div>
-                    <NewsCard post={post} aside />
-                  </div>
-                ))
-            }
+              <div class="h-px w-full bg-brand-blue/20 mb-6"></div>
+
+              <PortableText value={post.body} />
+            </article>
+
+            <aside class="md:basis-[25%] space-y-4">
+              <p class="font-bold text-lg">Más Noticias</p>
+              <div class="grid gap-10">
+                {
+                  posts.length >= 3 &&
+                    posts.map((post) => (
+                      <article class="w-full h-full text-brand-blue rounded-md overflow-hidden bg-white group cursor-pointer flex ">
+                        <div class="p-4 space-y-2">
+                          <h3 class="pt-2 text-xl">
+                            <a href={`/post/${post.slug.current}`}>
+                              {post.title}
+                            </a>
+                          </h3>
+
+                          <p class="text-xs text-gray-600">
+                            {formatDate(post._createdAt)}
+                          </p>
+
+                          <div class="">
+                            <a
+                              class="text-brand-red hover:underline"
+                              href={`/es/news/${post.slug.current}`}
+                            >
+                              Ver más
+                            </a>
+                          </div>
+                        </div>
+
+                        {post.image ? (
+                          <div class="relative h-40 overflow-hidden">
+                            <img
+                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              src={urlFor(post.image)
+                                .width(200)
+                                .height(200)
+                                .url()}
+                              loading="lazy"
+                              alt={post.image.alt || ""}
+                            />
+                          </div>
+                        ) : (
+                          <div class="w-full h-[231px] bg-black" />
+                        )}
+                      </article>
+                    ))
+                }
+              </div>
+            </aside>
           </div>
-        </aside>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
+
+  <Footer />
 </Layout>

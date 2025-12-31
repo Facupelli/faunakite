@@ -1,6 +1,4 @@
 ---
-import Carousel from "../../../components/embla-carousel";
-import { ImageCard } from "../../../components/spot/carousel-image-card";
 import { useTranslations } from "../../../i18n/utils";
 import ServicesLayout from "../../../layouts/services-layout.astro";
 import KitecampPhoto1 from "../../../assets/kitecamp/kitecamp-1.webp";
@@ -15,6 +13,13 @@ import KitecampPhoto9 from "../../../assets/kitecamp/kitecamp-9.webp";
 import KitecampPhoto10 from "../../../assets/kitecamp/kitecamp-10.webp";
 import KitecampPhoto11 from "../../../assets/kitecamp/kitecamp-11.webp";
 import { TheSpotCarousel } from "../../../components/spot/spot-carousel";
+import { Icon } from "astro-icon/components";
+import {
+  getKitecamps,
+  getPastKitecamps,
+  type Kitecamp,
+} from "../../../modules/kitecamps/utils";
+import { urlFor } from "../../../modules/news/image.utils";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -22,6 +27,9 @@ export async function getStaticPaths() {
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
+
+const kitecamps: Kitecamp[] = await getKitecamps();
+const pastKitecamps: Kitecamp[] = await getPastKitecamps();
 
 const images = [
   {
@@ -72,13 +80,13 @@ const images = [
 ---
 
 <ServicesLayout>
-    <Fragment slot="header">
+  <Fragment slot="header">
     <div class="max-w-6xl mx-auto pb-30">
       <div class="space-y-8 text-white text-lg md:text-xl px-4">
-         <p>
-        Un KiteCamp es una oportunidad única para progresar, disfrutar y conocer
-        gente nueva que vibra igual que vos.
-      </p>
+        <p>
+          Un KiteCamp es una oportunidad única para progresar, disfrutar y
+          conocer gente nueva que vibra igual que vos.
+        </p>
       </div>
     </div>
   </Fragment>
@@ -86,7 +94,7 @@ const images = [
   <div class="grid md:grid-cols-2 gap-10 py-10 max-w-6xl mx-auto">
     <div class="text-brand-blue max-w-prose text-lg space-y-4 px-4">
       <h1 class="font-bold text-2xl md:text-4xl">KITE CAMP</h1>
-   
+
       <p>
         No importa si venís solo o acompañado, durante varios días vas a ser
         parte de una comunidad y vivir una experiencia completa de kite,
@@ -95,27 +103,116 @@ const images = [
       <p>
         <strong> Cada edición incluye: </strong>
       </p>
-      <ul class="flex flex-col gap-2">
-        <li>
-          🪁 Clases personalizadas, individuales o grupales o rental, según tu
-          nivel.
+      <ul class="flex flex-col gap-4">
+        <li class="flex gap-4 items-center">
+          <Icon name="graduation-cap" class="size-8" />
+          <span>
+            Clases personalizadas, individuales o grupales o rental, según tu
+            nivel.
+          </span>
         </li>
-        <li>🎥 Análisis de video para acelerar tu progreso.</li>
-        <li>🧘 Sesiones de yoga o estiramiento.</li>
-        <li>🍽️ Desayunos y cenas grupales</li>
-        <li>🎸 Música en la casa FAUNA y shows OpenMic.</li>
-        <li>🎁 Kits de bienvenida y sorpresas durante.</li>
+        <li class="flex gap-4 items-center">
+          <Icon name="video-camera" class="size-8" />
+          <span> Análisis de video para acelerar tu progreso. </span>
+        </li>
+        <li class="flex gap-4 items-center">
+          <Icon name="person-standing" class="size-8" />
+          <span> Sesiones de yoga o estiramiento. </span>
+        </li>
+        <li class="flex gap-4 items-center">
+          <Icon name="utensils" class="size-8" />
+          <span> Desayunos y cenas grupales </span>
+        </li>
+
+        <li class="flex gap-4 items-center">
+          <Icon name="guitar" class="size-8" />
+          <span> Música en la casa FAUNA y shows OpenMic. </span>
+        </li>
+        <li class="flex gap-4 items-center">
+          <Icon name="present" class="size-8" />
+          <span> Kits de bienvenida y sorpresas durante. </span>
+        </li>
       </ul>
 
-        <div class="flex pt-4">
-          <button class="bg-brand-blue text-white text-base px-6 py-3 font-bold rounded-2xl">
-            CONSULTAR PRÓXIMO
-            </button>
-          </div>
+      <div class="flex pt-4">
+        <a
+          class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
+        >
+          RESERVAR YA
+        </a>
+      </div>
     </div>
 
     <div class="w-full px-4 md:w-[500px] overflow-hidden justify-self-center">
       <TheSpotCarousel client:load images={images} />
+    </div>
+  </div>
+
+  <div class="text-brand-blue max-w-6xl mx-auto space-y-16">
+    <div class="space-y-6">
+      <h2 class="font-bold text-2xl md:text-4xl uppercase">
+        Próximas Ediciones
+      </h2>
+      <div class="grid">
+        {
+          kitecamps.map((kitecamp) => (
+            <div class="grid grid-cols-2 ">
+              <div class="bg-white/50 p-6 space-y-4">
+                <p class="font-bold text-3xl font-salted">{kitecamp.title}</p>
+                <p>{kitecamp.description}</p>
+              </div>
+              <div class="relative flex justify-center items-center p-6">
+                <div class="relative z-10 flex flex-col items-center gap-4">
+                  <p class="font-bold text-5xl text-white text-shadow-md">
+                    {kitecamp.date}
+                  </p>
+                  <a class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-2 font-bold rounded-md">
+                    SUMATE
+                  </a>
+                </div>
+
+                {kitecamp.image && (
+                  <div
+                    class="absolute inset-0 bg-no-repeat bg-cover z-0"
+                    style={`background-image: url('${urlFor(kitecamp.image).width(500).height(300).url()}');`}
+                  />
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <h2 class="font-bold text-2xl md:text-4xl uppercase">
+        Ediciones Anteriores
+      </h2>
+      <div class="grid gap-4">
+        {
+          pastKitecamps.map((kitecamp) => (
+            <div class="grid grid-cols-2 ">
+              <div class="bg-white/50 p-6 flex items-center">
+                <p class="font-bold text-3xl font-salted">{kitecamp.title}</p>
+              </div>
+              <div class="relative flex justify-center items-center p-6">
+                <div class="relative z-10 flex flex-col items-center gap-4">
+                  <p class="font-bold text-3xl text-white text-shadow-md">
+                    {kitecamp.date}
+                  </p>
+                </div>
+
+                {kitecamp.image && (
+                  <div
+                    class="absolute inset-0 bg-no-repeat bg-cover z-0"
+                    style={`background-image: url('${urlFor(kitecamp.image).width(500).height(300).url()}');`}
+                  />
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </ServicesLayout>

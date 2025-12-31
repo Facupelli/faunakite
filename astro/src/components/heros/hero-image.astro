@@ -11,8 +11,7 @@ const t = useTranslations(lang);
 >
   <!-- Mobile Background Image (hidden on md and up) -->
   <div
-    class="absolute inset-0 md:hidden bg-no-repeat bg-position-[center_right_20%] bg-cover"
-    style="background-image: url('/hero-mobile-2.webp');"
+    class="absolute inset-0 md:hidden bg-no-repeat bg-position-[center_right_20%] bg-cover bg-[url('/hero-mobile-2.webp')]"
   >
   </div>
 
@@ -27,7 +26,7 @@ const t = useTranslations(lang);
     class="relative z-20 space-y-8 md:space-y-4 flex flex-col justify-between px-4 h-[calc(100dvh-80px)] pt-20 md:pt-0 md:h-auto"
   >
     <div class="max-w-4xl mx-auto">
-      <div class="font-bold tracking-tight text-balance font-helvetica">
+      <div class="font-bold tracking-tight text-balance">
         <!-- {t("hero.title")} -->
         <span class="block text-4xl md:text-5xl lg:text-6xl">
           MÁS QUE UNA ESCUELA
@@ -42,16 +41,14 @@ const t = useTranslations(lang);
             <BrushStain class="w-full h-full text-celeste-2" />
           </div>
 
-          <span
-            class="relative z-10 font-salted uppercase text-5xl md:text-7xl"
-          >
-            UNA COMUNIDAD DE VIENTOS
+          <span class="relative z-10 font-salted text-5xl md:text-7xl">
+            una comunindad de vientos
           </span>
         </div>
       </div>
     </div>
 
-    <div class="pb-10">
+    <!-- <div class="pb-10">
       <p
         class="lg:text-xl text-white/95 text-shadow-2xs text-shadow-brand-blue max-w-2xl text-pretty pb-8 leading-relaxed md:pb-6"
       >
@@ -66,12 +63,12 @@ const t = useTranslations(lang);
           APRENDE KITESURF EN CUESTA DEL VIENTO
         </a>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <!-- DESKTOP Background Image  -->
   <div
-    class="absolute inset-0 z-10 bg-linear-to-r from-brand-blue/50 to to-transparent"
+    class="absolute inset-0 z-10 bg-linear-to-r from-brand-blue/50 to-transparent"
   >
   </div>
   <div

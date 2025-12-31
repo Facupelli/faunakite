@@ -19,7 +19,7 @@ export const ui = {
     "hero.title.red": "A Community of Winds",
     "hero.subtitle":
       "At FAUNA we believe kiteboarding is just the excuse to bring us together. What truly moves us is the people, the shared moments and that unique energy that happens between those who love wind, water and nature.",
-    "services.button": "SEE MORE",
+    "services.button": "See More",
     "services.courses.title": "Courses & Lessons",
     "services.courses.summary":
       "Live a full experience connected with nature and surrounded by good energy.",
@@ -188,7 +188,7 @@ export const ui = {
     "hero.title.red": "Una comunidad de vientos",
     "hero.subtitle":
       "En FAUNA creemos que el kite es solo la excusa para encontrarnos. Lo que realmente nos mueve es la gente, los momentos compartidos y esa energía única que se genera entre los que amamos el viento, el agua y la naturaleza.",
-    "services.button": "VER MÁS",
+    "services.button": "Ver Más",
     "services.courses.title": "Cursos & Clases",
     "services.courses.summary":
       "Viví una experiencia completa, en contacto con la naturaleza y rodeado de buena energía.",
@@ -204,11 +204,11 @@ export const ui = {
     "about-us.title": "Sobre Nosotros",
     "about-us.summary":
       "Somos una comunidad de vientos. Porque el kite es solo la excusa perfecta para encontrarnos, compartir y disfrutar de lo que nos gusta: el deporte y la naturaleza. FAUNA es más que una escuela: un lugar de encuentro donde el kite es una experiencia compartida, el aprendizaje un camino divertido y cada persona que llega, un nuevo amigo.",
-    "about-us.button": "Quienes Somos",
+    "about-us.button": "Quiénes Somos",
     "the-spot.title": "El Spot: Cuesta Del Viento ",
     "the-spot.summary":
       "Donde siempre sopla: El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta del Viento sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
-    "the-spot.button": "Conoce Cuesta del Viento",
+    "the-spot.button": "Conocé Cuesta del Viento",
     "testimonials.title": "Lo Que Dicen Nuestros Riders",
     "testimonials.subtitle":
       "Experiencias reales de estudiantes que confiaron en nosotros para comenzar su aventura en el kitesurf",
@@ -233,7 +233,7 @@ export const ui = {
     "newsletter.dialog.error.message":
       "No pudimos guardar tu correo. El viento puede estar fuerte. ¿Intenta de nuevo?",
     "newsletter.dialog.error.button": "Reintentar",
-    "store.button": "VISITA LA TIENDA",
+    "store.button": "Visita la tienda",
     "community.title": "COMUNIDAD DE VIENTOS",
     "community.paragraph.1":
       "En FAUNA creemos que el kite es solo la excusa para encontrarnos. Lo que realmente nos mueve es la gente, los momentos compartidos y esa energía única que se genera entre los que amamos el viento, el agua, el deporte y la naturaleza.",

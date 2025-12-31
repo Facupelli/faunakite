@@ -93,7 +93,7 @@ const activities = [
   <div>
     <div class="flex flex-col md:flex-row gap-10 max-w-7xl mx-auto pt-10 px-4">
       <div class="md:basis-[33%]">
-        <h2 class="font-salted text-5xl md:text-6xl text-brand-blue">
+        <h2 class="font-salted text-5xl md:text-6xl text-brand-red">
           Lo Stagnone, Sicilia
         </h2>
       </div>
@@ -117,6 +117,14 @@ const activities = [
             pizzas y helados que vas a probar en la vida.
           </p>
         </div>
+
+        <div class="pt-6 flex justify-end">
+          <a
+            class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
+          >
+            VIAJÁ CON NOSOTROS
+          </a>
+        </div>
       </div>
     </div>
 
@@ -124,14 +132,14 @@ const activities = [
       <TheSpotCarousel client:load images={carouselImages} />
     </div>
 
-    <div class="space-y-8 max-w-7xl mx-auto text-brand-blue pt-30 pb-10 px-4">
+    <div class="space-y-8 max-w-7xl mx-auto text-brand-blue pt-20 pb-10 px-4">
       <h2
         class="text-4xl md:text-[90px] text-center text-pretty font-salted leading-tight"
       >
         Experiencias de un Kite Trip en Sicilia
       </h2>
       <p
-        class="text-center text-lg text-brand-blue/80 max-w-lg mx-auto text-pretty"
+        class="text-center text-lg text-brand-blue/80 max-w-2xl mx-auto text-pretty"
       >
         Viajamos para navegar en los mejores spots del Mediterráneo y descubrir
         la isla desde adentro, combinando viento, cultura y comunidad.
@@ -160,17 +168,39 @@ const activities = [
       }
     </div>
 
-    <div class="text-brand-blue max-w-7xl mx-auto text-lg py-10 px-4 md:py-20">
-      <p class="pb-4">
-        Durante los Kite Trips FAUNA en Sicilia, compartimos días de navegación,
-        aprendizaje y convivencia:
-      </p>
-      <ul class="space-y-2 pl-4">
-        <li>🏡 Alojamiento con desayuno cerca del spot.</li>
-        <li>🪁 Clases personalizadas o rental con instructores FAUNA.</li>
-        <li>🎥 Análisis de video, yoga y actividades fuera del agua.</li>
-        <li>🍷 Cenas grupales, música, paseos y atardeceres épicos.</li>
-      </ul>
+    <div class="flex flex-col md:flex-row gap-10 max-w-7xl mx-auto pt-10 px-4">
+      <div class="md:basis-[20%]">
+        <h2 class="font-salted text-5xl md:text-6xl text-brand-red">
+          kite trips fauna
+        </h2>
+      </div>
+      <div class="md:basis-[80%] text-brand-blue text-lg">
+        <p class="pb-4 font-bold">
+          Compartimos días de navegación, aprendizaje y convivencia:
+        </p>
+        <ul class="grid grid-cols-2 items-start gap-x-6 list-disc list-inside">
+          <li class="py-2 rounded-2xl">
+            Alojamiento con desayuno cerca del spot
+          </li>
+          <li class="py-2 rounded-2xl">
+            Clases personalizadas o rental con instructores FAUNA
+          </li>
+          <li class="py-2 rounded-2xl">
+            Análisis de video, yoga y actividades fuera del agua
+          </li>
+          <li class="py-2 rounded-2xl">
+            Cenas grupales, música, paseos y atardeceres épicos
+          </li>
+        </ul>
+
+        <div class="pt-10 flex justify-center max-w-7xl mx-auto">
+          <a
+            class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
+          >
+            VIAJÁ CON NOSOTROS
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </ServicesLayout>

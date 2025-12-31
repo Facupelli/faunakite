@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
-export const newsType = defineType({
-  name: 'news',
-  title: 'Noticia',
+export const kitecampType = defineType({
+  name: 'kitecamp',
+  title: 'Kitecamp',
   type: 'document',
   fields: [
     defineField({
@@ -11,13 +11,7 @@ export const newsType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'slug',
-      type: 'slug',
-      options: {source: 'title'},
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'summary',
+      name: 'description',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
@@ -26,13 +20,9 @@ export const newsType = defineType({
       type: 'image',
     }),
     defineField({
-      name: 'epigraph',
-      type: 'string',
-    }),
-    defineField({
-      name: 'body',
-      type: 'array',
-      of: [{type: 'block'}],
+      name: 'date',
+      type: 'date',
+      validation: (rule) => rule.required(),
     }),
   ],
 })

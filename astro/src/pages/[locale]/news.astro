@@ -6,6 +6,7 @@ import { getNews, type News } from "../../modules/news/utils";
 import logo from "../../assets/logos/logo-blanco-03.png";
 import Nav from "../../components/nav.astro";
 import TheSpotTopSeparator from "../../components/svg/the-spot-top-separator.astro";
+import Footer from "../../components/footer.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -20,7 +21,7 @@ const posts: News[] = await getNews();
     <Nav />
   </header>
 
-  <main class="min-h-dvh bg-brand-blue">
+  <main class="min-h-dvh bg-brand-light">
     <div class="relative w-full h-[220px] md:h-[300px]">
       <div
         class="absolute inset-0 bg-no-repeat bg-position-[bottom_30%_right_20%] bg-cover"
@@ -38,32 +39,40 @@ const posts: News[] = await getNews();
         </h1>
       </div>
 
-      <div class="absolute bottom-0 left-0 w-full text-brand-blue">
+      <div class="absolute bottom-0 left-0 w-full text-brand-light">
         <TheSpotTopSeparator />
       </div>
     </div>
 
-    <div class="mx-auto max-w-2xl px-5 py-12">
-      <div class="relative -top-2.5 flex flex-col gap-8">
-        {
-          posts.map((post) => (
-            <a
-              href={`/${lang}/news/${post.slug.current}`}
-              class="block cursor-pointer py-4 hover:scale-[1.005] will-change-transform scale-100 active:scale-100 transition-all duration-150"
-            >
-              <article>
-                <h2 class="text-[28px] font-black leading-none mb-2">
-                  {post.title}
-                </h2>
-                <p class="text-[13px] text-gray-700 dark:text-gray-300">
-                  {formatDate(post._createdAt)}
-                </p>
-                <p class="mt-1">{post.summary}</p>
-              </article>
-            </a>
-          ))
-        }
+    <div class="relative">
+      <div
+        class="bg-brand-light bg-[url('/cuesta-del-viento/white-wave-contrast-2.png')] bg-size-[42px_auto]"
+      >
+        <div class="mx-auto max-w-2xl px-5 py-12">
+          <div class="relative -top-2.5 flex flex-col gap-6">
+            {
+              posts.map((post) => (
+                <a
+                  href={`/${lang}/news/${post.slug.current}`}
+                  class="block cursor-pointer py-4 hover:scale-[1.005] will-change-transform scale-100 active:scale-100 transition-all duration-150 "
+                >
+                  <article>
+                    <h2 class="text-[28px] font-bold text-brand-red leading-none mb-2">
+                      {post.title}
+                    </h2>
+                    <p class="text-[13px] text-brand-blue/90">
+                      {formatDate(post._createdAt)}
+                    </p>
+                    <p class="mt-1 text-brand-blue">{post.summary}</p>
+                  </article>
+                </a>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </div>
   </main>
+
+  <Footer />
 </Layout>
