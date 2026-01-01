@@ -28,8 +28,10 @@ export async function getStaticPaths() {
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
 
-const kitecamps: Kitecamp[] = await getKitecamps();
-const pastKitecamps: Kitecamp[] = await getPastKitecamps();
+const kitecamps: Kitecamp[] = await getKitecamps(lang);
+const pastKitecamps: Kitecamp[] = await getPastKitecamps(lang);
+
+console.dir({ kitecamps }, { depth: null });
 
 const images = [
   {

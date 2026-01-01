@@ -5,7 +5,10 @@ import type { News } from "../modules/news/utils";
 import Cactuses from "./svg/cactuses.astro";
 import AboutUsUnderSeparator from "./svg/about-us-under-separator.astro";
 
-const posts: News[] = await getLatestNews();
+const lang = Astro.params.locale as "en" | "es";
+
+const posts: News[] = await getLatestNews(lang);
+console.log({ posts });
 ---
 
 <section>
@@ -27,7 +30,7 @@ const posts: News[] = await getLatestNews();
 
       <div class="grid md:grid-cols-3 grid-rows-1 gap-10 px-4">
         {
-          posts.length >= 3 &&
+          posts.length >= 0 &&
             posts.map((post) => (
               <div>
                 <NewsCard post={post} />

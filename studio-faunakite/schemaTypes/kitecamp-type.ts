@@ -7,13 +7,11 @@ export const kitecampType = defineType({
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
-      validation: (rule) => rule.required(),
+      type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'description',
-      type: 'string',
-      validation: (rule) => rule.required(),
+      type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'image',
@@ -25,4 +23,22 @@ export const kitecampType = defineType({
       validation: (rule) => rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      date: 'date',
+      media: 'image',
+    },
+    prepare({title, date, media}) {
+      const titleText =
+        title?.find((t: any) => t._key === 'es')?.value ||
+        title?.find((t: any) => t._key === 'en')?.value ||
+        'Sin título'
+      return {
+        title: titleText,
+        subtitle: date,
+        media,
+      }
+    },
+  },
 })

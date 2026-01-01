@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
 
-const allies = await getAllies();
+const allies = await getAllies(lang);
 
 const categories = [
   {

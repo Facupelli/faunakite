@@ -20,13 +20,11 @@ export const allyType = defineType({
     }),
     defineField({
       name: 'title',
-      type: 'string',
-      validation: (rule) => rule.required(),
+      type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'description',
-      type: 'string',
-      validation: (rule) => rule.required(),
+      type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'phone',
@@ -45,4 +43,21 @@ export const allyType = defineType({
       type: 'image',
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image',
+    },
+    prepare({title, media}) {
+      // Show Spanish title in preview, fallback to English
+      const titleText =
+        title?.find((t: any) => t._key === 'es')?.value ||
+        title?.find((t: any) => t._key === 'en')?.value ||
+        'Sin título'
+      return {
+        title: titleText,
+        media,
+      }
+    },
+  },
 })

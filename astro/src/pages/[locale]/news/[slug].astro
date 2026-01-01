@@ -2,7 +2,7 @@
 import type { InferGetStaticParamsType } from "astro";
 import { PortableText } from "astro-portabletext";
 import {
-  getSingleNews,
+  getNewsBySlug,
   getNews,
   type News,
   getLatestNews,
@@ -15,17 +15,33 @@ import NewsCard from "../../../components/news-card.astro";
 import Footer from "../../../components/footer.astro";
 
 export async function getStaticPaths() {
-  const posts = await getNews();
-  return posts.map((post) => ({
-    params: { locale: "es", slug: post.slug.current },
-  }));
+  const languages = ["es", "en"] as const;
+  const paths = [];
+
+  for (const locale of languages) {
+    const posts = await getNews(locale);
+
+    paths.push(
+      ...posts.map((post) => ({
+        params: {
+          locale,
+          slug: post.slug.current,
+        },
+      }))
+    );
+  }
+
+  return paths;
 }
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-const { slug } = Astro.params as Params;
+const { slug, locale } = Astro.params as Params;
+const lang = locale as "en" | "es";
 
-const post = await getSingleNews(slug);
-const posts: News[] = await getLatestNews();
+const post = await getNewsBySlug(slug, lang);
+const posts: News[] = await getLatestNews(lang);
+
+const morePosts: News[] = posts.filter((post) => post.slug.current !== slug);
 
 function getOptimizedImageUrl(
   image: any,
@@ -41,12 +57,16 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
     .map((size) => `${getOptimizedImageUrl(image, size, format)} ${size}w`)
     .join(", ");
 }
+
+if (!post) {
+  return Astro.redirect(`/${lang}/news`);
+}
 ---
 
 <Layout>
   <Fragment slot="head">
     {
-      post.image && (
+      post?.image && (
         <>
           <link
             rel="preload"
@@ -122,8 +142,8 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
               <p class="font-bold text-lg">Más Noticias</p>
               <div class="grid gap-10">
                 {
-                  posts.length >= 3 &&
-                    posts.map((post) => (
+                  morePosts.length >= 1 &&
+                    morePosts.map((post) => (
                       <article class="w-full h-full text-brand-blue rounded-md overflow-hidden bg-white group cursor-pointer flex ">
                         <div class="p-4 space-y-2">
                           <h3 class="pt-2 text-xl">

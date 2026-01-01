@@ -7,19 +7,15 @@ export const newsType = defineType({
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
-      validation: (rule) => rule.required(),
+      type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'slug',
-      type: 'slug',
-      options: {source: 'title'},
-      validation: (rule) => rule.required(),
+      type: 'internationalizedArraySlug',
     }),
     defineField({
       name: 'summary',
-      type: 'string',
-      validation: (rule) => rule.required(),
+      type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'image',
@@ -27,12 +23,27 @@ export const newsType = defineType({
     }),
     defineField({
       name: 'epigraph',
-      type: 'string',
+      type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'body',
-      type: 'array',
-      of: [{type: 'block'}],
+      type: 'internationalizedArrayBlockContent',
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image',
+    },
+    prepare({title, media}) {
+      const titleText =
+        title?.find((t: any) => t._key === 'es')?.value ||
+        title?.find((t: any) => t._key === 'en')?.value ||
+        'Sin título'
+      return {
+        title: titleText,
+        media,
+      }
+    },
+  },
 })

@@ -22,3 +22,18 @@ export function useEnumTranslations(lang: Lang) {
     return translation[lang] ?? translation[defaultLang];
   };
 }
+
+export function getLocalizedValue<T>(
+  field: Array<{ _key: string; value: T }> | undefined,
+  language: "es" | "en"
+): T | undefined {
+  if (!field || !Array.isArray(field)) {
+    return undefined;
+  }
+
+  const localized = field.find((item) => item._key === language);
+  if (localized) return localized.value;
+
+  const fallback = field.find((item) => item._key === "es");
+  return fallback?.value;
+}

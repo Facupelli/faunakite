@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const lang = Astro.params.locale as "en" | "es";
-const posts: News[] = await getNews();
+const posts: News[] = await getNews(lang);
 ---
 
 <Layout title="Noticias | Fauna Kite ">
@@ -46,7 +46,7 @@ const posts: News[] = await getNews();
 
     <div class="relative">
       <div
-        class="bg-brand-light bg-[url('/cuesta-del-viento/white-wave-contrast-2.png')] bg-size-[42px_auto]"
+        class="bg-brand-light min-h-dvh bg-[url('/cuesta-del-viento/white-wave-contrast-2.png')] bg-size-[42px_auto]"
       >
         <div class="mx-auto max-w-2xl px-5 py-12">
           <div class="relative -top-2.5 flex flex-col gap-6">
