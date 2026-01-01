@@ -118,7 +118,7 @@ const team = [
           <AboutUsUnderSeparator />
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="max-w-7xl mx-auto px-4 py-20">
           <div class="pb-10 text-brand-blue space-y-4">
             <h3 class="font-bold uppercase text-4xl md:text-6xl">
               {t("about.team.title")}
@@ -164,7 +164,7 @@ const team = [
 
         <!-- NUESTRA HISTORIA -->
         <div class="pb-20">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+          <div class="max-w-7xl mx-auto px-4 pt-20">
             <h3
               class="font-bold uppercase text-4xl md:text-6xl text-brand-blue pb-10"
             >
@@ -177,19 +177,18 @@ const team = [
               class="max-w-7xl mx-auto grid md:grid-cols-12 md:grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
             >
               <div class="md:col-span-4 p-4">
-                <div class="px-4 sm:px-6 lg:px-8 space-y-4">
+                <div class="md:px-4 space-y-4">
                   <div class="font-bold text-3xl font-salted">2013</div>
-
                   <p>
                     {t("about.history.2013.text")}
                   </p>
                 </div>
               </div>
-              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-8">
+              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-4">
                 <img
                   src={aboutUsPhoto1.src}
                   alt="About Us Photo 1"
-                  class="w-full h-full object-cover rounded-md [clip-path:polygon(5%_0,100%_0,100%_100%,5%_100%,0_50%)]"
+                  class="w-full h-full object-cover rounded-md md:[clip-path:polygon(5%_0,100%_0,100%_100%,5%_100%,0_50%)]"
                 />
               </div>
             </div>
@@ -199,22 +198,23 @@ const team = [
             <div
               class="max-w-7xl mx-auto grid md:grid-cols-12 md:grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
             >
-              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-8">
-                <img
-                  src={aboutUsPhoto2.src}
-                  alt="About Us Photo 1"
-                  class="w-full h-full object-cover rounded-md object-[30%_40%] [clip-path:polygon(0_0,95%_0,100%_50%,95%_100%,0_100%)]"
-                />
-              </div>
-              <div class="md:col-span-4 p-4">
-                <div class="px-4 sm:px-6 lg:px-8 space-y-4">
+              <div class="md:col-span-4 p-4 md:order-2">
+                <div class="md:px-4 space-y-4">
                   <div class="font-bold text-3xl font-salted">2016</div>
-
                   <p>
                     {t("about.history.2016.text")}
                   </p>
                 </div>
               </div>
+              <div
+                class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-4 md:order-1"
+              >
+                <img
+                  src={aboutUsPhoto2.src}
+                  alt="About Us Photo 2"
+                  class="w-full h-full object-cover rounded-md object-[30%_40%] md:[clip-path:polygon(0_0,95%_0,100%_50%,95%_100%,0_100%)]"
+                />
+              </div>
             </div>
           </div>
 
@@ -223,19 +223,18 @@ const team = [
               class="max-w-7xl mx-auto grid md:grid-cols-12 md:grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
             >
               <div class="md:col-span-4 p-4">
-                <div class="px-4 sm:px-6 lg:px-8 space-y-4">
+                <div class="md:px-4 space-y-4">
                   <div class="font-bold text-3xl font-salted">2020</div>
-
                   <p>
                     {t("about.history.2020.text")}
                   </p>
                 </div>
               </div>
-              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-8">
+              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-4">
                 <img
                   src="/about-us/historia-3.jpg"
-                  alt="About Us Photo 1"
-                  class="w-full h-full object-cover rounded-md [clip-path:polygon(5%_0,100%_0,100%_100%,5%_100%,0_50%)]"
+                  alt="About Us Photo 3"
+                  class="w-full h-full object-cover rounded-md md:[clip-path:polygon(5%_0,100%_0,100%_100%,5%_100%,0_50%)]"
                 />
               </div>
             </div>
@@ -245,21 +244,22 @@ const team = [
             <div
               class="max-w-7xl mx-auto grid md:grid-cols-12 md:grid-rows-[repeat(1,minmax(0,300px))] text-brand-blue"
             >
-              <div class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-8">
-                <img
-                  src="/about-us/historia-4.jpeg"
-                  alt="About Us Photo 1"
-                  class="w-full h-full object-cover rounded-md [clip-path:polygon(0_0,95%_0,100%_50%,95%_100%,0_100%)]"
-                />
-              </div>
-              <div class="md:col-span-4 p-4">
-                <div class="px-4 sm:px-6 lg:px-8 space-y-4">
+              <div class="md:col-span-4 p-4 md:order-2">
+                <div class="md:px-4 space-y-4">
                   <div class="font-bold text-3xl font-salted">2024</div>
-
                   <p>
                     {t("about.history.2024.text")}
                   </p>
                 </div>
+              </div>
+              <div
+                class="relative md:col-span-8 py-8 md:py-4 md:px-12 px-4 md:order-1"
+              >
+                <img
+                  src="/about-us/historia-4.jpeg"
+                  alt="About Us Photo 4"
+                  class="w-full h-full object-cover rounded-md md:[clip-path:polygon(0_0,95%_0,100%_50%,95%_100%,0_100%)]"
+                />
               </div>
             </div>
           </div>
@@ -271,7 +271,9 @@ const team = [
 
         <div class="bg-celeste-3 pb-10">
           <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-            <p class="text-2xl font-bold">{t("about.present.title")}</p>
+            <p class="text-2xl font-bold text-center md:text-left">
+              {t("about.present.title")}
+            </p>
             <div class="grid place-content-center py-10">
               <div
                 class="space-y-8 text-xl md:text-2xl leading-relaxed tracking-wide text-center"
@@ -291,7 +293,9 @@ const team = [
           </div>
 
           <div class="flex justify-end max-w-6xl mx-auto">
-            <div class="w-full max-w-[400px] aspect-[3.45/1]">
+            <div
+              class="w-full max-w-[250px] px-4 md:max-w-[400px] aspect-[3.45/1]"
+            >
               <Image
                 decoding="async"
                 loading="lazy"
