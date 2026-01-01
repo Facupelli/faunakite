@@ -41,10 +41,7 @@ const images = [
 
 <Layout title="Cuesta del Viento | Fauna Kite ">
   <Fragment slot="head">
-    <meta
-      name="description"
-      content="Cuesta del Viento, San Juan: uno de los mejores spots de kitesurf del mundo. Más de 300 días de viento al año, paisajes únicos entre montañas y una comunidad que vive el kite con pasión."
-    />
+    <meta name="description" content={t("the-spot.meta.description")} />
   </Fragment>
 
   <header>
@@ -77,16 +74,8 @@ const images = [
     <div class="bg-brand-blue">
       <div class="max-w-6xl mx-auto py-20">
         <div class="space-y-8 text-white text-lg md:text-xl px-4">
-          <!-- <h2 class="text-4xl md:text-6xl font-bold md:text-center">
-            CUESTA DEL VIENTO
-          </h2> -->
-
           <p>
-            En el corazón de la precordillera, a 2 horas de la Ciudad de San
-            Juan, entre montañas áridas que parecen no tener fin, se encuentra
-            Cuesta del Viento: Un lago rodeado de cerros rojizos donde el viento
-            tiene una presencia imponente. Para muchos, uno de los mejores spots
-            del mundo para hacer kite.
+            {t("the-spot.intro.p1")}
           </p>
         </div>
       </div>
@@ -102,32 +91,18 @@ const images = [
           <AboutUsUnderSeparator />
         </div>
 
-        <!-- <div class="absolute w-full h-[600px] left-0 top-0 z-0">
-          <img
-            src="https://turismo-en-argentina.com/wp-content/uploads/2018/01/img107B.jpg"
-            alt="Dique Cuesta del Viento"
-            class="w-full h-[600px] object-cover"
-          />
-        </div> -->
-
         <div class="pt-10 px-4">
           <div class="max-w-7xl mx-auto">
             <div class="text-brand-blue">
               <p class="space-y-4 text-lg">
                 <span class="block">
-                  Quienes lo visitan por primera vez lo dicen siempre:
+                  {t("the-spot.impression.p1")}
                 </span>
                 <span class="block font-bold text-3xl md:text-5xl italic">
-                  “Siento que estoy en otro planeta”
+                  {t("the-spot.impression.quote")}
                 </span>
                 <span class="block">
-                  Y algo de eso hay. Las montañas cambian de color con el pasar
-                  del día, las noches se cubren de estrellas que parecen estar
-                  al alcance de las manos, y el viento, el principal
-                  protagonista llega casi cada día, puntual, y junto con él
-                  navegantes y viajeros de todas partes. Este escenario mágico,
-                  la energía del lugar y una comunidad que te recibe con los
-                  brazos abiertos, son difíciles de explicar si no las vivís.
+                  {t("the-spot.impression.p2")}
                 </span>
               </p>
             </div>
@@ -223,7 +198,7 @@ const images = [
 
             <div class="relative flex md:overflow-hidden">
               <div
-                class="absolute inset-0 w-full p-4 md:p-0 top-20 md:top-0 md:w-[70%] opacity-20 md:opacity-100 z-0 h-full object-contain"
+                class="absolute inset-0 w-full p-4 md:p-0 top-20 md:top-0 md:w-[70%] lg:w-[65%] opacity-20 md:opacity-100 z-0 h-full object-contain"
               >
                 <CuestaDelVientoLocation />
               </div>
@@ -236,42 +211,23 @@ const images = [
                 DONDE SIEMPRE SOPLA
               </h4> -->
               <p>
-                El dique cuesta el viento reporta
-                <strong>más de 300 días de viento al año</strong> y durante los meses
-                de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta
-                del Viento sea uno de los lugares más confiables de Sudamérica a la
-                hora de aprender, progresar o simplemente disfrutar de largas sesiones
-                en el agua.
+                {t("the-spot.wind.p1")}
               </p>
 
               <p>
-                <strong
-                  >Los vientos térmicos llegan casi todos los días
-                </strong>. En un día promedio, se levanta sobre el mediodía,
-                iniciando suave y amigable durante algunas horas, ideal para
-                quienes están aprendiendo o quieran disfrutar una sesión de
-                viento más amigable.
+                {t("the-spot.wind.p2")}
               </p>
 
               <p>
-                Con el pasar de las horas, el viento va aumentando su fuerza:
-                llega el momento de disfrute para aquellos que ya tienen un poco
-                más experiencia.<strong>
-                  En condiciones regulares, varía entre 20 y 35 nudos</strong
-                >.
+                {t("the-spot.wind.p3")}
               </p>
 
               <p>
-                Llegado el atardecer, que en diciembre y enero sucede luego de
-                las 21hs, el viento aún sopla creando un escenario de velas y
-                colores increíbles sobre las montañas.
+                {t("the-spot.wind.p4")}
               </p>
 
               <p>
-                <strong>Es el sueño de todo kiter</strong>: viento asegurado, un
-                paisaje único que te deja sin palabras y una comunidad amigable
-                que vive el kitesurf con mucha pasión y siempre dispuesta a
-                algún plan después de navegar.
+                {t("the-spot.wind.p5")}
               </p>
             </div>
           </div>
@@ -287,7 +243,9 @@ const images = [
                 Rodeo y sus alrededores ofrecen experiencias para todos los
                 gustos.
               </p> -->
-              <h2 class="font-bold text-4xl md:text-6xl">MÁS QUE KITE</h2>
+              <h2 class="font-bold text-4xl md:text-6xl">
+                {t("the-spot.more-than-kite.title")}
+              </h2>
             </div>
 
             <ul
@@ -305,7 +263,7 @@ const images = [
                 </div>
                 <div class="px-2 py-4">
                   <span class="text-sm md:text-base">
-                    Caminatas por los cerros y miradores con vistas al dique
+                    {t("the-spot.more-than-kite.item1")}
                   </span>
                 </div>
               </li>
@@ -322,7 +280,7 @@ const images = [
                 </div>
                 <div class="px-2 py-4">
                   <span class="text-sm md:text-base">
-                    Escalada, mountain bike y senderismo
+                    {t("the-spot.more-than-kite.item2")}
                   </span>
                 </div>
               </li>
@@ -339,7 +297,7 @@ const images = [
                 </div>
                 <div class="px-2 py-4">
                   <span class="text-sm md:text-base">
-                    Stand Up Paddle o kayak por las mañanas
+                    {t("the-spot.more-than-kite.item3")}
                   </span>
                 </div>
               </li>
@@ -356,7 +314,7 @@ const images = [
                 </div>
                 <div class="px-2 py-4">
                   <span class="text-sm md:text-base">
-                    Restaurantes de gastronomía local
+                    {t("the-spot.more-than-kite.item4")}
                   </span>
                 </div>
               </li>
@@ -373,8 +331,7 @@ const images = [
                 </div>
                 <div class="px-2 py-4">
                   <span class="text-sm md:text-base">
-                    Experiencias guiadas de observación de estrellas y fenómenos
-                    astrológicos
+                    {t("the-spot.more-than-kite.item5")}
                   </span>
                 </div>
               </li>
@@ -391,7 +348,7 @@ const images = [
                 </div>
                 <div class="px-2 py-4">
                   <span class="text-sm md:text-base">
-                    Bares con noches de música y shows de entretenimiento
+                    {t("the-spot.more-than-kite.item6")}
                   </span>
                 </div>
               </li>
@@ -402,24 +359,13 @@ const images = [
                 class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-2 font-bold rounded-2xl"
                 href={`/${lang}/allies`}
               >
-                CONOCÉ TUS BENEFICIOS
+                {t("the-spot.more-than-kite.cta")}
               </a>
             </div>
-
-            <!-- <p class="pt-20 text-center text-lg">
-              La zona combina naturaleza, tranquilidad y buena energía —todo lo
-              necesario para vivir unos días de conexión total.
-            </p> -->
           </div>
         </div>
 
         <div class="relative w-full h-dvh">
-          <!-- <div
-            class="absolute inset-0 bg-no-repeat bg-position-[bottom_70%_right_50%] bg-cover"
-            style="background-image: url('https://turismo-en-argentina.com/wp-content/uploads/2018/01/img107B.jpg');"
-          >
-          </div> -->
-
           <div
             class="absolute inset-0 bg-no-repeat md:bg-position-[bottom_70%_right_50%] bg-position-[bottom_70%_right_35%] bg-cover"
             style="background-image: url('/cuesta-del-viento/flying.png');"
@@ -435,11 +381,11 @@ const images = [
         <div id="mas-que-kite-como-llegar" class="pb-10">
           <div class="bg-celeste-3 py-20">
             <div class="md:text-center px-4 md:px-0 text-white spae-y-2">
-              <h2 class="font-bold text-4xl md:text-6xl pb-2">CÓMO LLEGAR</h2>
+              <h2 class="font-bold text-4xl md:text-6xl pb-2">
+                {t("the-spot.how-to-get.title")}
+              </h2>
               <p>
-                Cuesta del Viento se encuentra en el departamento de Iglesia,
-                provincia de San Juan, a unos 180 km al noroeste de la ciudad
-                capital.
+                {t("the-spot.how-to-get.intro")}
               </p>
             </div>
 
@@ -447,40 +393,38 @@ const images = [
               <div class="grid md:grid-cols-5 gap-x-10 px-4">
                 <div class="md:col-span-2 space-y-4 text-white">
                   <div class="space-y-2">
-                    <h3 class="font-bold text-lg">Desde San Juan</h3>
+                    <h3 class="font-bold text-lg">
+                      {t("the-spot.how-to-get.sanjuan.title")}
+                    </h3>
                     <p>
-                      Unas 2 horas en auto o 4 en bus hacia el norte por la Ruta
-                      40 y luego la Ruta 149 por Iglesia. También podés seguir
-                      por Ruta 150 pasando por Jáchal.
-                    </p>
-                  </div>
-
-                  <div class="space-y-2">
-                    <h3 class="font-bold text-lg">Desde Mendoza</h3>
-                    <p>
-                      Unas 4 horas en auto o 6–7 hs en bus (no hay uno directo;
-                      deberías conectar en San Juan).
-                    </p>
-                  </div>
-
-                  <div class="space-y-2">
-                    <h3 class="font-bold text-lg">Desde Córdoba</h3>
-                    <p>
-                      Unas 8 horas en auto, pasando por Villa Dolores y Jáchal
-                      hasta Rodeo. Todo el camino está asfaltado y ofrece vistas
-                      increíbles.
+                      {t("the-spot.how-to-get.sanjuan.text")}
                     </p>
                   </div>
 
                   <div class="space-y-2">
                     <h3 class="font-bold text-lg">
-                      Desde Buenos Aires u otras provincias
+                      {t("the-spot.how-to-get.mendoza.title")}
                     </h3>
                     <p>
-                      Podés volar a San Juan Capital o a Mendoza y desde ahí
-                      continuar en auto o bus. Si preferís manejar, el viaje
-                      completo son unos <strong>1.200 km aprox. 15 horas</strong
-                      > por Ruta 7 y luego Ruta 150.
+                      {t("the-spot.how-to-get.mendoza.text")}
+                    </p>
+                  </div>
+
+                  <div class="space-y-2">
+                    <h3 class="font-bold text-lg">
+                      {t("the-spot.how-to-get.cordoba.title")}
+                    </h3>
+                    <p>
+                      {t("the-spot.how-to-get.cordoba.text")}
+                    </p>
+                  </div>
+
+                  <div class="space-y-2">
+                    <h3 class="font-bold text-lg">
+                      {t("the-spot.how-to-get.buenos-aires.title")}
+                    </h3>
+                    <p>
+                      {t("the-spot.how-to-get.buenos-aires.text")}
                     </p>
                   </div>
                 </div>
@@ -514,15 +458,15 @@ const images = [
                 <Icon name="combi" class="size-32 text-brand-blue" />
               </div>
               <p class="">
-                <strong>Tip:</strong> Si viajás solo, los fines de semana suele haber
-                kiters viajando a Rodeo con lugar disponible y ganas de compartir
-                el viaje —
+                <strong>Tip:</strong>
+                {t("the-spot.tips.carpool.text")}
                 <a
                   class="underline whatsapp-btn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >escribinos por WhatsApp
-                </a> y te damos una mano.
+                  >{t("the-spot.tips.carpool.link")}
+                </a>
+                {t("the-spot.tips.carpool.suffix")}
               </p>
             </div>
 
@@ -531,9 +475,7 @@ const images = [
                 <Icon name="cabana" class="w-36 h-32 text-brand-blue" />
               </div>
               <p class="">
-                Te recomendamos tener algún tipo de movilidad en el lugar.
-                Algunos alojamientos ofrecen traslado al dique o bicicletas. Si
-                no vas a tener movilidad, lo ideal es hospedarte cerca del spot.
+                {t("the-spot.tips.mobility")}
               </p>
             </div>
           </div>

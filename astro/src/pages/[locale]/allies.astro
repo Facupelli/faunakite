@@ -18,9 +18,15 @@ const t = useTranslations(lang);
 const allies = await getAllies();
 
 const categories = [
-  { value: "lodging", label: "Alojamientos" },
-  { value: "restaurant", label: "Restaurantes" },
-  { value: "other", label: "Otros" },
+  {
+    value: "lodging",
+    label: lang === "en" ? "Accommodations" : "Alojamientos",
+  },
+  {
+    value: "restaurant",
+    label: lang === "en" ? "Restaurants" : "Restaurantes",
+  },
+  { value: "other", label: lang === "en" ? "Other" : "Otros" },
 ];
 
 const alliesByCategory = categories
@@ -87,7 +93,7 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
         <h1
           class="font-salted text-shadow-2xs text-shadow-brand-blue text-6xl md:text-8xl pr-4 md:pr-0"
         >
-          ALIADOS
+          {t("ally.title")}
         </h1>
       </div>
 

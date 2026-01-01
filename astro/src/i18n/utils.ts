@@ -1,15 +1,24 @@
-import { ui, enumTranslations, defaultLang } from "./ui";
+import {
+  ui,
+  enumTranslations,
+  defaultLang,
+  type UIKeys,
+  type Lang,
+  type EnumKeys,
+} from "./ui";
 
-export function useTranslations(lang: keyof typeof ui) {
-  return function t(key: keyof (typeof ui)[typeof defaultLang]) {
-    return key in ui[lang] ? (ui[lang] as any)[key] : ui[defaultLang][key];
+// Updated translation function that works with the new structure
+export function useTranslations(lang: Lang) {
+  return function t(key: UIKeys): string {
+    const translation = ui[key];
+    return translation[lang] ?? translation[defaultLang];
   };
 }
 
-export function useEnumTranslations(lang: keyof typeof enumTranslations) {
-  return function t(key: keyof (typeof enumTranslations)[typeof defaultLang]) {
-    return key in enumTranslations[lang]
-      ? (enumTranslations[lang] as any)[key]
-      : enumTranslations[defaultLang][key];
+// Separate function for enum translations
+export function useEnumTranslations(lang: Lang) {
+  return function t(key: EnumKeys): string {
+    const translation = enumTranslations[key];
+    return translation[lang] ?? translation[defaultLang];
   };
 }

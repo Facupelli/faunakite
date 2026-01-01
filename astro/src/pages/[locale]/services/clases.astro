@@ -15,16 +15,11 @@ const t = useTranslations(lang);
     <div class="max-w-6xl mx-auto pb-30">
       <div class="space-y-8 text-white text-lg md:text-xl px-4">
         <p>
-          Aprender con FAUNA es mucho más que aprender Kite o WingFoil: es vivir
-          una experiencia completa, en contacto con la naturaleza y rodeado de
-          buena energía.
+          {t("services.intro.p1")}
         </p>
 
         <p>
-          Enseñamos con equipos de última generación, estrictos protocolos de
-          seguridad y un enfoque 100% personalizado, adaptando cada clase a tu
-          ritmo y nivel. Te acompañamos en todo momento para que aprendas, y
-          progreses con seguridad, pero sobre todo: divirtiéndote en el camino.
+          {t("services.intro.p2")}
         </p>
       </div>
     </div>
@@ -34,7 +29,9 @@ const t = useTranslations(lang);
     <!-- CURSOS -->
     <div class="flex flex-col gap-10">
       <div class="">
-        <h2 class="text-4xl text-brand-blue font-bold">Cursos de Kite</h2>
+        <h2 class="text-4xl text-brand-blue font-bold">
+          {t("services.kite.initial.title")}
+        </h2>
       </div>
       <div class="grid md:grid-cols-2 gap-10 items-start">
         <!-- CURSO INICIAL -->
@@ -50,11 +47,22 @@ const t = useTranslations(lang);
           </div>
 
           <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">Curso Inicial</h2>
+            <h2 class="font-bold text-2xl pb-2">
+              {t("services.kite.initial.title")}
+            </h2>
             <div class="space-y-1">
-              <p><strong>Duración:</strong> 3 días - 9hs de clase</p>
-              <p><strong>Nivel:</strong> Principiante</p>
-              <p><strong>Modalidad:</strong> Individual o Doble</p>
+              <p>
+                <strong>{t("services.common.duration")}:</strong>
+                {t("services.kite.initial.duration")}
+              </p>
+              <p>
+                <strong>{t("services.common.level")}:</strong>
+                {t("services.kite.initial.level")}
+              </p>
+              <p>
+                <strong>{t("services.common.mode")}:</strong>
+                {t("services.kite.initial.mode")}
+              </p>
             </div>
             <div class="relative">
               <div
@@ -62,30 +70,20 @@ const t = useTranslations(lang);
                 data-expanded="false"
               >
                 <p>
-                  Tu primera experiencia con el viento. Ideal para quienes nunca
-                  probaron el kite o apenas dieron sus primeros pasos.
+                  {t("services.kite.initial.p1")}
                 </p>
-                <div class="expandable-text">
+                <div class="expandable-text space-y-2">
                   <p>
-                    En 3 días vas a aprender: a entender el viento, cómo
-                    funciona el equipo y sus medidas de seguridad, cómo
-                    controlar el kite y utilizarlo para desplazarte en el agua,
-                    relanzarlo, levantarte y navegar tus primeros metros sobre
-                    la tabla y volver con seguridad.
+                    {t("services.kite.initial.p2")}
                   </p>
                   <p>
-                    El objetivo: que te conviertas en un kiter independiente,
-                    capaz de entrar, practicar y salir del agua de manera segura
-                    y autónoma.
+                    {t("services.kite.initial.p3")}
                   </p>
                   <p>
-                    En promedio, 9 horas es lo que se necesita para ser
-                    independiente.
+                    {t("services.kite.initial.p4")}
                   </p>
                   <p>
-                    Este curso podés tomarlo de manera individual o doble
-                    (compartido con un amigo o familiar) siempre y cuando tengan
-                    pesos similares. Consultanos para más información.
+                    {t("services.kite.initial.p5")}
                   </p>
                 </div>
               </div>
@@ -94,7 +92,7 @@ const t = useTranslations(lang);
                   class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
                   aria-expanded="false"
                 >
-                  Ver más
+                  {t("services.common.seeMore")}
                 </button>
                 <div>
                   <a
@@ -103,7 +101,7 @@ const t = useTranslations(lang);
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Reservar
+                    {t("services.common.book")}
                   </a>
                 </div>
               </div>
@@ -124,11 +122,22 @@ const t = useTranslations(lang);
           </div>
 
           <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">Curso Intensivo</h2>
+            <h2 class="font-bold text-2xl pb-2">
+              {t("services.kite.intensive.title")}
+            </h2>
             <div class="space-y-1">
-              <p><strong>Duración:</strong> 2 días - 6hs de clase</p>
-              <p><strong>Nivel:</strong> Principiante o Intermedio</p>
-              <p><strong>Modalidad:</strong> Individual</p>
+              <p>
+                <strong>{t("services.common.duration")}:</strong>
+                {t("services.kite.intensive.duration")}
+              </p>
+              <p>
+                <strong>{t("services.common.level")}:</strong>
+                {t("services.kite.intensive.level")}
+              </p>
+              <p>
+                <strong>{t("services.common.mode")}:</strong>
+                {t("services.kite.intensive.mode")}
+              </p>
             </div>
             <div class="relative">
               <div
@@ -136,26 +145,14 @@ const t = useTranslations(lang);
                 data-expanded="false"
               >
                 <p>
-                  Ideal si no tenés mucho tiempo y querés aprovecharlo al
-                  máximo. Este curso, también está pensado para quienes ya
-                  tomaron algunas clases antes o tienen experiencia en otros
-                  deportes de viento.
+                  {t("services.kite.intensive.p1")}
                 </p>
-                <div class="expandable-text">
+                <div class="expandable-text space-y-2">
                   <p>
-                    En pocas sesiones concentradas te enseñamos las bases para
-                    que entiendas cómo funciona todo: el viento, seguridad,
-                    control de kite, potencia, dirección y navegar sobre la
-                    tabla.
+                    {t("services.kite.intensive.p2")}
                   </p>
                   <p>
-                    El objetivo: que te conviertas en un kiter independiente,
-                    capaz de entrar, practicar y salir del agua de manera segura
-                    y autónoma.
-                  </p>
-                  <p>
-                    El objetivo: Que aprendas lo fundamental del deporte y
-                    puedas comenzar a practicarlo de manera segura y autónoma.
+                    {t("services.kite.intensive.p3")}
                   </p>
                 </div>
               </div>
@@ -164,7 +161,7 @@ const t = useTranslations(lang);
                   class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
                   aria-expanded="false"
                 >
-                  Ver más
+                  {t("services.common.seeMore")}
                 </button>
                 <div>
                   <a
@@ -173,7 +170,7 @@ const t = useTranslations(lang);
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Reservar
+                    {t("services.common.book")}
                   </a>
                 </div>
               </div>
@@ -186,7 +183,9 @@ const t = useTranslations(lang);
     <!-- CLASES -->
     <div class="flex flex-col gap-10">
       <div class="">
-        <h2 class="text-4xl text-brand-blue font-bold">Clases de Kite</h2>
+        <h2 class="text-4xl text-brand-blue font-bold">
+          {t("services.kite.classes.title")}
+        </h2>
       </div>
       <div class="grid md:grid-cols-2 gap-10 items-start">
         <!-- CLASE INDIVIDUAL -->
@@ -202,10 +201,18 @@ const t = useTranslations(lang);
           </div>
 
           <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">Clase Individual</h2>
+            <h2 class="font-bold text-2xl pb-2">
+              {t("services.kite.class.individual.title")}
+            </h2>
             <div class="space-y-1">
-              <p><strong>Duración:</strong> 1 o 2 horas</p>
-              <p><strong>Nivel:</strong> Intermedio o Avanzado</p>
+              <p>
+                <strong>{t("services.common.duration")}:</strong>
+                {t("services.kite.class.individual.duration")}
+              </p>
+              <p>
+                <strong>{t("services.common.level")}:</strong>
+                {t("services.kite.class.individual.level")}
+              </p>
             </div>
             <div class="relative">
               <div
@@ -213,15 +220,11 @@ const t = useTranslations(lang);
                 data-expanded="false"
               >
                 <p>
-                  Ideal para quienes ya completaron el curso y aún necesitan una
-                  mano para lograr sentirse seguros o ser independientes en al
-                  agua. (Asistencia)
+                  {t("services.kite.class.individual.p1")}
                 </p>
                 <div class="expandable-text">
                   <p>
-                    También, para quienes ya navegan y quieren progresar:
-                    mejorar su riding, ceñida (ir upwind con facilidad),
-                    aprender transiciones o perfeccionar tu estilo.
+                    {t("services.kite.class.individual.p2")}
                   </p>
                 </div>
               </div>
@@ -230,7 +233,7 @@ const t = useTranslations(lang);
                   class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
                   aria-expanded="false"
                 >
-                  Ver más
+                  {t("services.common.seeMore")}
                 </button>
                 <div>
                   <a
@@ -239,7 +242,7 @@ const t = useTranslations(lang);
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Reservar
+                    {t("services.common.book")}
                   </a>
                 </div>
               </div>
@@ -260,10 +263,18 @@ const t = useTranslations(lang);
           </div>
 
           <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">Clase Avanzada</h2>
+            <h2 class="font-bold text-2xl pb-2">
+              {t("services.kite.class.advanced.title")}
+            </h2>
             <div class="space-y-1">
-              <p><strong>Duración:</strong> 1 o 2 horas</p>
-              <p><strong>Nivel:</strong> Avanzado</p>
+              <p>
+                <strong>{t("services.common.duration")}:</strong>
+                {t("services.kite.class.advanced.duration")}
+              </p>
+              <p>
+                <strong>{t("services.common.level")}:</strong>
+                {t("services.kite.class.advanced.level")}
+              </p>
             </div>
             <div class="relative">
               <div
@@ -271,27 +282,17 @@ const t = useTranslations(lang);
                 data-expanded="false"
               >
                 <p>
-                  Si ya dominás el kite y querés llevarlo al siguiente nivel, te
-                  ayudamos a volar más alto, con más control y con más estilo.
-                  Desaprendiendo malos hábitos, trabajando en la técnica fuera y
-                  dentro del agua, practicando el enfoque y atravesando miedos.
+                  {t("services.kite.class.advanced.p1")}
                 </p>
-                <div class="expandable-text">
+                <div class="expandable-text space-y-2">
                   <p>
-                    En la vida de todo kiter llega un punto en el que nos
-                    sentimos "estancados", que hacemos siempre lo mismo y
-                    estamos trabados en nuestro progreso. Te acompañamos a
-                    desbloquear algunos miedos y trabas, ganando confianza con
-                    práctica segura y adecuada a tus objetivos, respetando las
-                    condiciones y manteniendo el foco.
+                    {t("services.kite.class.advanced.p2")}
                   </p>
                   <p>
-                    Aprendé: a saltar con técnica, a hacer maniobras,
-                    rotaciones, kite-loops, aterrizajes suaves y controlados.
+                    {t("services.kite.class.advanced.p3")}
                   </p>
                   <p>
-                    Esta clase puede ser grabada en video para analizarla luego
-                    en tierra y así entender y corregir los errores.
+                    {t("services.kite.class.advanced.p4")}
                   </p>
                 </div>
               </div>
@@ -300,7 +301,7 @@ const t = useTranslations(lang);
                   class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
                   aria-expanded="false"
                 >
-                  Ver más
+                  {t("services.common.seeMore")}
                 </button>
                 <div>
                   <a
@@ -309,7 +310,7 @@ const t = useTranslations(lang);
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Reservar
+                    {t("services.common.book")}
                   </a>
                 </div>
               </div>
@@ -330,10 +331,18 @@ const t = useTranslations(lang);
           </div>
 
           <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">Clase de Prueba</h2>
+            <h2 class="font-bold text-2xl pb-2">
+              {t("services.kite.class.try.title")}
+            </h2>
             <div class="space-y-1">
-              <p><strong>Duración:</strong> 2 horas</p>
-              <p><strong>Nivel:</strong> Cualquiera</p>
+              <p>
+                <strong>{t("services.common.duration")}:</strong>
+                {t("services.kite.class.try.duration")}
+              </p>
+              <p>
+                <strong>{t("services.common.level")}:</strong>
+                {t("services.kite.class.try.level")}
+              </p>
             </div>
             <div class="relative">
               <div
@@ -341,16 +350,11 @@ const t = useTranslations(lang);
                 data-expanded="false"
               >
                 <p>
-                  ¿Querés ver de qué se trata antes de comprometerte a tomar el
-                  curso?
+                  {t("services.kite.class.try.p1")}
                 </p>
                 <div class="expandable-text">
                   <p>
-                    Probá una clase corta donde vas a aprender brevemente sobre
-                    el viento, las medidas de seguridad del equipo y vas a
-                    entrar al agua a sentir el viento, jugar un poco con el kite
-                    o el wing mientras aprendés a controlarlo y descubrir por
-                    qué todos se enamoran de estos deportes.
+                    {t("services.kite.class.try.p2")}
                   </p>
                 </div>
               </div>
@@ -359,7 +363,7 @@ const t = useTranslations(lang);
                   class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
                   aria-expanded="false"
                 >
-                  Ver más
+                  {t("services.common.seeMore")}
                 </button>
                 <div>
                   <a
@@ -368,7 +372,7 @@ const t = useTranslations(lang);
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Reservar
+                    {t("services.common.book")}
                   </a>
                 </div>
               </div>
@@ -382,7 +386,7 @@ const t = useTranslations(lang);
     <div class="flex flex-col gap-10">
       <div class="">
         <h2 class="text-4xl text-brand-blue font-bold">
-          Cursos & Clases de Wingfoil
+          {t("services.wingfoil.title")}
         </h2>
       </div>
       <div class="grid md:grid-cols-2 gap-10 items-start">
@@ -399,29 +403,24 @@ const t = useTranslations(lang);
           </div>
 
           <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">Clase de Wingfoil</h2>
+            <h2 class="font-bold text-2xl pb-2">
+              {t("services.wingfoil.class.title")}
+            </h2>
             <div class="relative">
               <div class="space-y-2 expandable-content" data-expanded="false">
-                <p>El wing foil es libertad pura.</p>
+                <p>{t("services.wingfoil.class.p1")}</p>
                 <div class="expandable-text space-y-2">
                   <p>
-                    Una combinación perfecta entre viento, equilibrio y conexión
-                    con el agua. No hay motor, ni cuerdas, ni ruido: solo vos,
-                    el ala y el viento empujándote a volar.
+                    {t("services.wingfoil.class.p2")}
                   </p>
                   <p>
-                    En FAUNA te enseñamos desde cero, con equipos de última
-                    generación, acompañamiento personalizado y protocolos de
-                    seguridad que garantizan una experiencia segura y divertida.
+                    {t("services.wingfoil.class.p3")}
                   </p>
                   <p>
-                    Cada clase es adaptada a tu ritmo y a tus objetivos, para
-                    que progreses disfrutando.
+                    {t("services.wingfoil.class.p4")}
                   </p>
                   <p>
-                    Podés tomar el curso inicial completo en 3 días (9hs de
-                    clase); un curso intensivo de 2 días (6hs de clase); o bien,
-                    tomar clases individuales o solo hacer una clase de prueba.
+                    {t("services.wingfoil.class.p5")}
                   </p>
                 </div>
               </div>
@@ -430,7 +429,7 @@ const t = useTranslations(lang);
                   class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
                   aria-expanded="false"
                 >
-                  Ver más
+                  {t("services.common.seeMore")}
                 </button>
                 <div>
                   <a
@@ -439,7 +438,7 @@ const t = useTranslations(lang);
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Reservar
+                    {t("services.common.book")}
                   </a>
                 </div>
               </div>

@@ -2,7 +2,6 @@
 import { useTranslations } from "../../../i18n/utils";
 import ServicesLayout from "../../../layouts/services-layout.astro";
 import SicilyPhoto from "../../../assets/destino-sicilia.jpg";
-import { Image } from "astro:assets";
 import { TheSpotCarousel } from "../../../components/spot/spot-carousel";
 
 export async function getStaticPaths() {
@@ -69,22 +68,13 @@ const activities = [
     <div class="max-w-6xl mx-auto pb-30">
       <div class="space-y-8 text-lg md:text-xl px-4">
         <p>
-          Durante el invierno argentino, la temporada de kite en Cuesta del
-          Viento termina, pero <strong
-            >la comunidad de Fauna no se queda quieta:</strong
-          > organizamos experiencias únicas en distintos destinos de Argentina y del
-          mundo, combinando deporte, naturaleza y amistad. No son viajes tradicionales:
-          son aventuras compartidas donde el kite, el surf y la nieve, son solo la
-          excusa para vivir algo mucho más grande.
+          {t("services.kitetrips.header.p1")}
         </p>
         <p>
-          Nuestro objetivo es que cada viaje sea una celebración del movimiento,
-          la naturaleza y la vida en comunidad. Podés venir solo o acompañado;
-          vas a volver con amigos nuevos y muchas historias para contar.
+          {t("services.kitetrips.header.p2")}
         </p>
         <p>
-          Viajamos para compartir. Para explorar. Para sentirnos parte de algo
-          más.
+          {t("services.kitetrips.header.p3")}
         </p>
       </div>
     </div>
@@ -94,27 +84,22 @@ const activities = [
     <div class="flex flex-col md:flex-row gap-10 max-w-7xl mx-auto pt-10 px-4">
       <div class="md:basis-[33%]">
         <h2 class="font-salted text-5xl md:text-6xl text-brand-red">
-          Lo Stagnone, Sicilia
+          {t("services.kitetrips.destination.title")}
         </h2>
       </div>
       <div class="md:basis-[66%]">
         <div class="text-brand-blue max-w-7xl mx-auto text-lg space-y-4">
           <p>
-            En el corazón del Mediterráneo se encuentra uno de los destinos más
-            mágicos para el kitesurf: Lo Stagnone.
+            {t("services.kitetrips.destination.p1")}
           </p>
           <p>
-            Una laguna de de mar, con agua poco profunda y viento constante que
-            hace que el aprendizaje sea muy amigable.
+            {t("services.kitetrips.destination.p2")}
           </p>
           <p>
-            Y no solo se trata del kite: Sicilia es un paraíso natural con
-            pueblos e islas increíbles para visitar, cargados de historia muy
-            antigua y atardeceres inolvidables.
+            {t("services.kitetrips.destination.p3")}
           </p>
           <p>
-            La Dolce Vita: Kite, excursiones, playas y las mejores pastas,
-            pizzas y helados que vas a probar en la vida.
+            {t("services.kitetrips.destination.p4")}
           </p>
         </div>
 
@@ -122,7 +107,7 @@ const activities = [
           <a
             class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
           >
-            VIAJÁ CON NOSOTROS
+            {t("services.kitetrips.cta.travel")}
           </a>
         </div>
       </div>
@@ -136,13 +121,12 @@ const activities = [
       <h2
         class="text-4xl md:text-[90px] text-center text-pretty font-salted leading-tight"
       >
-        Experiencias de un Kite Trip en Sicilia
+        {t("services.kitetrips.experiences.title")}
       </h2>
       <p
         class="text-center text-lg text-brand-blue/80 max-w-2xl mx-auto text-pretty"
       >
-        Viajamos para navegar en los mejores spots del Mediterráneo y descubrir
-        la isla desde adentro, combinando viento, cultura y comunidad.
+        {t("services.kitetrips.experiences.subtitle")}
       </p>
     </div>
 
@@ -171,25 +155,25 @@ const activities = [
     <div class="flex flex-col md:flex-row gap-10 max-w-7xl mx-auto pt-10 px-4">
       <div class="md:basis-[20%]">
         <h2 class="font-salted text-5xl md:text-6xl text-brand-red">
-          kite trips fauna
+          {t("services.kitetrips.fauna.title")}
         </h2>
       </div>
       <div class="md:basis-[80%] text-brand-blue text-lg">
         <p class="pb-4 font-bold">
-          Compartimos días de navegación, aprendizaje y convivencia:
+          {t("services.kitetrips.fauna.intro")}
         </p>
         <ul class="grid grid-cols-2 items-start gap-x-6 list-disc list-inside">
           <li class="py-2 rounded-2xl">
-            Alojamiento con desayuno cerca del spot
+            {t("services.kitetrips.fauna.item1")}
           </li>
           <li class="py-2 rounded-2xl">
-            Clases personalizadas o rental con instructores FAUNA
+            {t("services.kitetrips.fauna.item2")}
           </li>
           <li class="py-2 rounded-2xl">
-            Análisis de video, yoga y actividades fuera del agua
+            {t("services.kitetrips.fauna.item3")}
           </li>
           <li class="py-2 rounded-2xl">
-            Cenas grupales, música, paseos y atardeceres épicos
+            {t("services.kitetrips.fauna.item4")}
           </li>
         </ul>
 
@@ -197,7 +181,7 @@ const activities = [
           <a
             class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
           >
-            VIAJÁ CON NOSOTROS
+            {t("services.kitetrips.cta.travel")}
           </a>
         </div>
       </div>

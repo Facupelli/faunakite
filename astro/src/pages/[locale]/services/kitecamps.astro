@@ -84,8 +84,7 @@ const images = [
     <div class="max-w-6xl mx-auto pb-30">
       <div class="space-y-8 text-white text-lg md:text-xl px-4">
         <p>
-          Un KiteCamp es una oportunidad única para progresar, disfrutar y
-          conocer gente nueva que vibra igual que vos.
+          {t("services.kitecamps.header.p1")}
         </p>
       </div>
     </div>
@@ -96,41 +95,38 @@ const images = [
       <h1 class="font-bold text-2xl md:text-4xl">KITE CAMP</h1>
 
       <p>
-        No importa si venís solo o acompañado, durante varios días vas a ser
-        parte de una comunidad y vivir una experiencia completa de kite,
-        diversión y nuevos amigos.
+        {t("services.kitecamps.intro.p1")}
       </p>
       <p>
-        <strong> Cada edición incluye: </strong>
+        <strong> {t("services.kitecamps.includes.title")}: </strong>
       </p>
       <ul class="flex flex-col gap-4">
         <li class="flex gap-4 items-center">
           <Icon name="graduation-cap" class="size-8" />
           <span>
-            Clases personalizadas, individuales o grupales o rental, según tu
-            nivel.
+            {t("services.kitecamps.includes.item1")}
           </span>
         </li>
         <li class="flex gap-4 items-center">
           <Icon name="video-camera" class="size-8" />
-          <span> Análisis de video para acelerar tu progreso. </span>
+          <span> {t("services.kitecamps.includes.item2")} </span>
         </li>
         <li class="flex gap-4 items-center">
           <Icon name="person-standing" class="size-8" />
-          <span> Sesiones de yoga o estiramiento. </span>
+          <span> {t("services.kitecamps.includes.item3")} </span>
         </li>
         <li class="flex gap-4 items-center">
           <Icon name="utensils" class="size-8" />
-          <span> Desayunos y cenas grupales </span>
+          <span> {t("services.kitecamps.includes.item4")} </span>
         </li>
 
         <li class="flex gap-4 items-center">
           <Icon name="guitar" class="size-8" />
-          <span> Música en la casa FAUNA y shows OpenMic. </span>
+          <span> {t("services.kitecamps.includes.item5")} </span>
         </li>
         <li class="flex gap-4 items-center">
           <Icon name="present" class="size-8" />
-          <span> Kits de bienvenida y sorpresas durante. </span>
+          <span> {t("services.kitecamps.includes.item6")} </span>
         </li>
       </ul>
 
@@ -138,7 +134,7 @@ const images = [
         <a
           class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
         >
-          RESERVAR YA
+          {t("services.kitecamps.cta.book")}
         </a>
       </div>
     </div>
@@ -151,7 +147,7 @@ const images = [
   <div class="text-brand-blue max-w-6xl mx-auto space-y-16">
     <div class="space-y-6">
       <h2 class="font-bold text-2xl md:text-4xl uppercase">
-        Próximas Ediciones
+        {t("services.kitecamps.upcoming.title")}
       </h2>
       <div class="grid">
         {
@@ -167,7 +163,7 @@ const images = [
                     {kitecamp.date}
                   </p>
                   <a class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-2 font-bold rounded-md">
-                    SUMATE
+                    {t("services.kitecamps.upcoming.cta.join")}
                   </a>
                 </div>
 
@@ -186,7 +182,7 @@ const images = [
 
     <div class="space-y-6">
       <h2 class="font-bold text-2xl md:text-4xl uppercase">
-        Ediciones Anteriores
+        {t("services.kitecamps.past.title")}
       </h2>
       <div class="grid gap-4">
         {

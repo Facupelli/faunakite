@@ -13,10 +13,14 @@ import aboutUsPhotoFacu from "../../assets/about-us/about-us-facu.jpeg";
 import aboutUsPhotoLucca from "../../assets/about-us/about-us-lucca.jpeg";
 import TheSpotTopSeparator from "../../components/svg/the-spot-top-separator.astro";
 import logo from "../../assets/logos/logo-blanco-03.png";
+import { useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
 }
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
 
 const historyImages = [
   {
@@ -44,26 +48,21 @@ const team = [
   {
     name: "Lucca",
     image: aboutUsPhotoLucca,
-    position: "Co-fundador & Instructor",
-    description:
-      "El primero en descubrir el kite en 2016 y enamorarse de Cuesta del Viento. Su pasión por enseñar y compartir lo que ama es lo que dio origen a FAUNA.",
+    position: t("about.team.lucca.position"),
+    description: t("about.team.lucca.description"),
   },
   {
     name: "Facu",
     image: aboutUsPhotoFacu,
-    position: "Co-fundador & Instructor",
-    description:
-      "Se sumó al kite tras la invitación de Lucca y juntos comenzaron esta aventura. Su vocación por la enseñanza hace que cada alumno se sienta parte de la familia.",
+    position: t("about.team.facu.position"),
+    description: t("about.team.facu.description"),
   },
 ];
 ---
 
 <Layout title="Quienes Somos | Fauna Kite ">
   <Fragment slot="head">
-    <meta
-      name="description"
-      content="Conocé la historia de FAUNA Kite: una escuela nacida de la amistad, el viento y la pasión por la naturaleza. Nuestra filosofía, valores y comunidad en Cuesta del Viento."
-    />
+    <meta name="description" content={t("about.meta.description")} />
   </Fragment>
 
   <header>
@@ -84,7 +83,7 @@ const team = [
         <h1
           class="font-salted text-shadow-2xs text-shadow-brand-blue text-6xl md:text-8xl pr-4 md:pr-0"
         >
-          NOSOTROS
+          {t("about.hero.title")}
         </h1>
       </div>
 
@@ -95,26 +94,17 @@ const team = [
 
     <div class="bg-brand-blue">
       <div class="max-w-6xl mx-auto space-y-8 py-20">
-        <!-- <h1 class="text-5xl md:text-7xl font-salted font-bold md:text-center">
-          Nosotros
-        </h1> -->
-
         <div class="space-y-8 text-white text-lg md:text-xl px-4">
           <p>
-            Somos una comunidad de vientos. Porque el kite es solo la excusa
-            perfecta para encontrarnos, compartir y disfrutar de lo que nos
-            gusta: el deporte y la naturaleza.
+            {t("about.intro.p1")}
           </p>
 
           <p>
-            FAUNA es más que una escuela, es un lugar de encuentro donde el kite
-            es una experiencia compartida, el aprendizaje un camino divertido y
-            cada persona que llega, un nuevo amigo.
+            {t("about.intro.p2")}
           </p>
 
           <p>
-            Vení a vivir el kite como una forma de vida. Aprendé, conectá,
-            disfrutá, cuidá y compartí.
+            {t("about.intro.p3")}
           </p>
         </div>
       </div>
@@ -131,13 +121,11 @@ const team = [
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div class="pb-10 text-brand-blue space-y-4">
             <h3 class="font-bold uppercase text-4xl md:text-6xl">
-              Nuestro Equipo
+              {t("about.team.title")}
             </h3>
 
             <p class="md:text-lg">
-              We love what we do and we do what we love. Its an honour to be
-              able to be in the water as much as possible and to show you a part
-              of our lives.
+              {t("about.team.subtitle")}
             </p>
           </div>
 
@@ -180,7 +168,7 @@ const team = [
             <h3
               class="font-bold uppercase text-4xl md:text-6xl text-brand-blue pb-10"
             >
-              Nuestra Historia
+              {t("about.history.title")}
             </h3>
           </div>
 
@@ -193,13 +181,7 @@ const team = [
                   <div class="font-bold text-3xl font-salted">2013</div>
 
                   <p>
-                    FAUNA nace primero de la amistad entre Lucca y Facu, que se
-                    conocieron con 14 años y desde entonces comparten dos
-                    grandes pasiones: el deporte al aire libre y la música. Con
-                    los deportes todo empezó mucho antes del kite: en 2013, un
-                    viaje de ski encendió una chispa —el gusto por enseñar y
-                    compartir lo que se ama— y eso terminó transformándose en
-                    una forma de vida.
+                    {t("about.history.2013.text")}
                   </p>
                 </div>
               </div>
@@ -229,12 +211,7 @@ const team = [
                   <div class="font-bold text-3xl font-salted">2016</div>
 
                   <p>
-                    El kite llegó en 2016. Lucca lo aprendió en un viaje y, la
-                    primera vez que navegó en Cuesta del Viento, no lo podía
-                    creer: el paraíso del viento estaba mucho más cerca de casa
-                    de lo que imaginaba. Pensó inmediatamente en compartirlo con
-                    Facu; él tomó el curso, se enamoró del deporte, y así nació
-                    la pasión compartida.
+                    {t("about.history.2016.text")}
                   </p>
                 </div>
               </div>
@@ -250,13 +227,7 @@ const team = [
                   <div class="font-bold text-3xl font-salted">2020</div>
 
                   <p>
-                    Ambos se certificaron como instructores y comenzaron a
-                    enseñar en escuelas locales. Debido a la estacionalidad del
-                    deporte, empezaron a viajar en busca de viento —Maui,
-                    Sicilia, Australia, Valencia— donde dictaron cursos y
-                    organizaron camps. Aquellas experiencias dejaron algo claro:
-                    el kite es la excusa perfecta para encontrarse, compartir y
-                    conectar también fuera del agua.
+                    {t("about.history.2020.text")}
                   </p>
                 </div>
               </div>
@@ -286,12 +257,7 @@ const team = [
                   <div class="font-bold text-3xl font-salted">2024</div>
 
                   <p>
-                    Lo que pasó en esos viajes no podía quedarse solo en
-                    Sicilia. En casa, entre montañas y viento constante,
-                    encontraron el lugar donde todo tenía sentido: Cuesta del
-                    Viento. Allí nació FAUNA —una escuela, sí, pero sobre todo
-                    un punto de encuentro para quienes buscan vivir experiencias
-                    reales, al aire libre y en buena compañía.
+                    {t("about.history.2024.text")}
                   </p>
                 </div>
               </div>
@@ -305,28 +271,20 @@ const team = [
 
         <div class="bg-celeste-3 pb-10">
           <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-            <p class="text-2xl font-bold">ACTUALIDAD</p>
+            <p class="text-2xl font-bold">{t("about.present.title")}</p>
             <div class="grid place-content-center py-10">
               <div
                 class="space-y-8 text-xl md:text-2xl leading-relaxed tracking-wide text-center"
               >
                 <p>
-                  FAUNA es una comunidad de vientos, aprendemos juntos, nos
-                  cuidamos entre todos y celebramos la vida al aire libre. El
-                  kite es la excusa; la comunidad y la conexión con la
-                  naturaleza, el objetivo.
+                  {t("about.present.p1")}
                 </p>
                 <p>
-                  En FAUNA la enseñanza va de la mano con la amistad: mates,
-                  música, risas, charlas, comidas, viajes y, por supuesto, mucho
-                  kite. Si buscás aprender en compañía, explorar nuevos vientos
-                  y sumar amigos, este es tu lugar.
+                  {t("about.present.p2")}
                 </p>
 
                 <p>
-                  Una escuela, pero sobre todo un espacio donde la experiencia
-                  compartida es el motor. Te esperamos para navegar, aprender y
-                  ser parte de la comunidad.
+                  {t("about.present.p3")}
                 </p>
               </div>
             </div>
