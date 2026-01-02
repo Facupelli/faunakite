@@ -470,105 +470,77 @@ const t = useTranslations(lang);
 </style>
 
 <script>
-  import { INSTRUCTORS_PHONE } from "../../../constants";
-
-  function getRandomInstructor() {
-    return Math.random() < 0.5
-      ? INSTRUCTORS_PHONE.lucca
-      : INSTRUCTORS_PHONE.facu;
-  }
+  import { initializeWhatsAppButtons } from "../../../modules/utils/whatsapp";
 
   const courseMessages = {
-    "curso-inicial": encodeURIComponent(
-      `¡Hola! Mi nombre es: _____
+    "curso-inicial": `¡Hola! Mi nombre es: _____
 Me gustaría tomar el *Curso Inicial de 9hs* con ustedes en *Cuesta del Viento*
 Voy: Solo/a / con __ personas más
 Fechas: _____
-¿Tienen disponibilidad? ¡Gracias!`
-    ),
-    "curso-intensivo": encodeURIComponent(
-      `¡Hola! Mi nombre es: _____
+¿Tienen disponibilidad? ¡Gracias!`,
+    "curso-intensivo": `¡Hola! Mi nombre es: _____
 Me gustaría tomar *6 hs de clase* con ustedes en *Cuesta del Viento*
 Mi nivel es: _____
 Voy: Solo/a / con __ personas más
 Fechas: _____
-¿Tienen disponibilidad? ¡Gracias!`
-    ),
-    "clase-individual": encodeURIComponent(
-      `¡Hola! Mi nombre es: _____
+¿Tienen disponibilidad? ¡Gracias!`,
+    "clase-individual": `¡Hola! Mi nombre es: _____
 Me gustaría reservar una *Clase Individual/Avanzada* con ustedes en *Cuesta del Viento*
 Mi nivel es: _____
 Viajo: Solo/a / con __ personas más
 Fechas: _____
 Objetivos: _____
-¿Tienen disponibilidad? ¡Gracias!`
-    ),
-    "clase-avanzada": encodeURIComponent(
-      `¡Hola! Mi nombre es: _____
+¿Tienen disponibilidad? ¡Gracias!`,
+    "clase-avanzada": `¡Hola! Mi nombre es: _____
 Me gustaría reservar una *Clase Individual/Avanzada* con ustedes en *Cuesta del Viento*
 Mi nivel es: _____
 Viajo: Solo/a / con __ personas más
 Fechas: _____
 Objetivos: _____
-¿Tienen disponibilidad? ¡Gracias!`
-    ),
-    "clase-prueba": encodeURIComponent(
-      `¡Hola! Mi nombre es: _____
+¿Tienen disponibilidad? ¡Gracias!`,
+    "clase-prueba": `¡Hola! Mi nombre es: _____
 Me gustaría agendar una *Clase de Prueba* con FAUNA en *Cuesta del Viento*
 Mis fechas posibles son: _____
-¿Tienen disponibilidad? ¡Gracias!`
-    ),
-    "clase-wingfoil": encodeURIComponent(
-      `¡Hola! Mi nombre es: _____
+¿Tienen disponibilidad? ¡Gracias!`,
+    "clase-wingfoil": `¡Hola! Mi nombre es: _____
 Me gustaría tomar una *Clase de Wingfoil* con ustedes en *Cuesta del Viento*
 Mi nivel es: _____
 Voy: Solo/a / con __ personas más
 Fechas: _____
-¿Tienen disponibilidad? ¡Gracias!`
-    ),
+¿Tienen disponibilidad? ¡Gracias!`,
   };
-
-  function initializeWhatsAppLinks() {
-    const courses = document.querySelectorAll("[data-course-type]");
-
-    courses.forEach((course) => {
-      const courseType = course.dataset.courseType;
-      const whatsappBtn = course.querySelector(".whatsapp-btn");
-      const message = courseMessages[courseType];
-
-      if (whatsappBtn && message) {
-        const phone = getRandomInstructor();
-        whatsappBtn.href = `https://wa.me/${phone}?text=${message}`;
-      }
-    });
-  }
 
   // Expandable content handler
   function initializeExpandable() {
-    const container = document.getElementById("courses-container");
+    const container: HTMLElement | null =
+      document.getElementById("courses-container");
 
     container?.addEventListener("click", (e) => {
-      const btn = e.target.closest(".expand-btn");
+      if (!(e.target instanceof HTMLElement)) {
+        return;
+      }
+
+      const btn = e.target?.closest(".expand-btn");
       if (!btn) {
         return;
       }
 
-      const content = btn.closest(".flex").previousElementSibling;
+      const content = btn.closest(".flex")?.previousElementSibling;
       if (!content || !content.classList.contains("expandable-content")) {
         return;
       }
 
-      const isExpanded = content.dataset.expanded === "true";
+      const isExpanded = content.getAttribute("data-expanded") === "true";
 
-      content.dataset.expanded = isExpanded ? "false" : "true";
+      content.setAttribute("data-expanded", isExpanded ? "false" : "true");
       btn.textContent = isExpanded ? "Ver más" : "Ver menos";
-      btn.setAttribute("aria-expanded", !isExpanded);
+      btn.setAttribute("aria-expanded", String(!isExpanded));
     });
   }
 
   // Initialize on page load
   document.addEventListener("astro:page-load", () => {
-    initializeWhatsAppLinks();
+    initializeWhatsAppButtons(courseMessages);
     initializeExpandable();
   });
 </script>

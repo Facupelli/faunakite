@@ -11,6 +11,10 @@ export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
 }
 
+interface Props {
+  title?: string;
+}
+
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
 ---

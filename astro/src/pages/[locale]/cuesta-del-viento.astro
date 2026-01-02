@@ -644,23 +644,9 @@ const images = [
 </Layout>
 
 <script>
-  import { INSTRUCTORS_PHONE } from "../../constants";
-
-  function getRandomInstructor() {
-    return Math.random() < 0.5
-      ? INSTRUCTORS_PHONE.lucca
-      : INSTRUCTORS_PHONE.facu;
-  }
-
-  function initializeWhatsAppLinks() {
-    const whatsappBtn = document.querySelector(".whatsapp-btn");
-    if (whatsappBtn) {
-      const phone = getRandomInstructor();
-      whatsappBtn.href = `https://wa.me/${phone}`;
-    }
-  }
+  import { initializeWhatsAppButton } from "../../modules/utils/whatsapp";
 
   document.addEventListener("astro:page-load", () => {
-    initializeWhatsAppLinks();
+    initializeWhatsAppButton(".whatsapp-btn", "");
   });
 </script>

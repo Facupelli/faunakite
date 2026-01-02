@@ -77,11 +77,13 @@ const images = [
         </p>
 
         <div class="flex justify-center w-full">
-          <button
-            class="bg-brand-red text-white w-full text-base px-6 py-2 font-bold rounded-2xl"
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp-btn text-center bg-brand-red text-white w-full text-base px-6 py-2 font-bold rounded-2xl"
           >
             {t("services.rental.cta.button")}
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -93,3 +95,11 @@ const images = [
     </div>
   </div>
 </ServicesLayout>
+
+<script>
+  import { initializeWhatsAppButton } from "../../../modules/utils/whatsapp";
+
+  document.addEventListener("astro:page-load", () => {
+    initializeWhatsAppButton(".whatsapp-btn", "");
+  });
+</script>

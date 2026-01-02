@@ -105,7 +105,9 @@ const activities = [
 
         <div class="pt-6 flex justify-end">
           <a
-            class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp-btn bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
           >
             {t("services.kitetrips.cta.travel")}
           </a>
@@ -181,7 +183,9 @@ const activities = [
 
         <div class="pt-10 flex justify-center max-w-7xl mx-auto">
           <a
-            class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp-btn bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
           >
             {t("services.kitetrips.cta.travel")}
           </a>
@@ -190,3 +194,11 @@ const activities = [
     </div>
   </div>
 </ServicesLayout>
+
+<script>
+  import { initializeWhatsAppButton } from "../../../modules/utils/whatsapp";
+
+  document.addEventListener("astro:page-load", () => {
+    initializeWhatsAppButton(".whatsapp-btn", "");
+  });
+</script>

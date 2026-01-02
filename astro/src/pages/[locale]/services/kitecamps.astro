@@ -20,6 +20,10 @@ import {
   type Kitecamp,
 } from "../../../modules/kitecamps/utils";
 import { urlFor } from "../../../modules/news/image.utils";
+import {
+  createWhatsAppLink,
+  getRandomInstructor,
+} from "../../../modules/utils/whatsapp";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -30,8 +34,6 @@ const t = useTranslations(lang);
 
 const kitecamps: Kitecamp[] = await getKitecamps(lang);
 const pastKitecamps: Kitecamp[] = await getPastKitecamps(lang);
-
-console.dir({ kitecamps }, { depth: null });
 
 const images = [
   {
@@ -79,6 +81,13 @@ const images = [
     alt: "KiteCamp",
   },
 ];
+
+function createKitecampMessage(title: string, date: string) {
+  return `¡Hola! Mi nombre es: _____
+Me gustaría unirme al *${title}*
+Fecha: ${date}
+¿Tienen disponibilidad? ¡Gracias!`;
+}
 ---
 
 <ServicesLayout>
@@ -153,33 +162,47 @@ const images = [
       </h2>
       <div class="grid">
         {
-          kitecamps.map((kitecamp) => (
-            <div class="grid md:grid-cols-2 ">
-              <div class="bg-white/50 p-6 space-y-4">
-                <p class="font-bold text-2xl md:text-3xl font-salted">
-                  {kitecamp.title}
-                </p>
-                <p>{kitecamp.description}</p>
-              </div>
-              <div class="relative flex justify-center items-center p-6">
-                <div class="relative z-10 flex flex-col items-center gap-4">
-                  <p class="font-bold text-3xl md:text-5xl text-white text-shadow-md">
-                    {kitecamp.date}
-                  </p>
-                  <a class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-2 font-bold rounded-md">
-                    {t("services.kitecamps.upcoming.cta.join")}
-                  </a>
-                </div>
+          kitecamps.map((kitecamp) => {
+            const instructorPhone = getRandomInstructor();
+            const message = createKitecampMessage(
+              kitecamp.title ?? "",
+              kitecamp.date
+            );
+            const whatsappLink = createWhatsAppLink(instructorPhone, message);
 
-                {kitecamp.image && (
-                  <div
-                    class="absolute inset-0 bg-no-repeat bg-cover z-0"
-                    style={`background-image: url('${urlFor(kitecamp.image).width(500).height(300).url()}');`}
-                  />
-                )}
+            return (
+              <div class="grid md:grid-cols-2 ">
+                <div class="bg-white/50 p-6 space-y-4">
+                  <p class="font-bold text-2xl md:text-3xl font-salted">
+                    {kitecamp.title}
+                  </p>
+                  <p>{kitecamp.description}</p>
+                </div>
+                <div class="relative flex justify-center items-center p-6">
+                  <div class="relative z-10 flex flex-col items-center gap-4">
+                    <p class="font-bold text-3xl md:text-5xl text-white text-shadow-md">
+                      {kitecamp.date}
+                    </p>
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-2 font-bold rounded-md"
+                    >
+                      {t("services.kitecamps.upcoming.cta.join")}
+                    </a>
+                  </div>
+
+                  {kitecamp.image && (
+                    <div
+                      class="absolute inset-0 bg-no-repeat bg-cover z-0"
+                      style={`background-image: url('${urlFor(kitecamp.image).width(500).height(300).url()}');`}
+                    />
+                  )}
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         }
       </div>
     </div>
