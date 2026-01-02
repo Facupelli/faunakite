@@ -1027,22 +1027,17 @@ export const ui = {
   // BOOKED-SUCCESS PAGE
   "booked-success.title": { en: "All Set!", es: "Todo listo!" },
   "booked-success.subtitle": {
-    en: "Your spot is confirmed. Get ready to feed the wind and ride the waves with our community.",
-    es: "Tu lugar esta confirmado. Prepárate para alimentar el viento y navegar por las olas con nuestra comunidad.",
+    en: "Your spot is confirmed. ",
+    es: "Tu lugar esta confirmado. ",
   },
   "booked-success.infocards.wind.title": { en: "What's Next", es: "Qué sigue" },
   "booked-success.infocards.wind.subtitle": {
     en: "Check your email for course details, gear list and meeting location.",
     es: "Revisa tu correo electrónico para detalles de curso, lista de equipo y ubicación de reunión.",
   },
-  "booked-success.infocards.waves.title": { en: "Get Ready", es: "Preparate" },
-  "booked-success.infocards.waves.subtitle": {
-    en: "Bring sunscreen, water and your sense of adventure. We'll take care of all the gear.",
-    es: "Trae protector solar, agua y tu sensación de aventura. Te sumamos todo el equipo.",
-  },
   "booked-success.cta": {
-    en: "BACK TO HOMEPAGE",
-    es: "VOLVER A LA PÁGINA DE INICIO",
+    en: "YOU CAN NOW CLOSE THIS TAB",
+    es: "YA PODÉS CERRAR ESTA PESTAÑA",
   },
   "booked-success.footer.note": {
     en: "Questions? Contact us at",
