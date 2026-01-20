@@ -16,8 +16,9 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout title="Fauna Kite Escuela de Kitesurf">
+<Layout title="Fauna Kite Escuela de Kitesurf" locale={Astro.params.locale}>
   <Fragment slot="head">
+    <link rel="canonical" href={`https://faunakite.com/${Astro.params.locale}`} />
     <meta
       name="description"
       content="Fauna Kite es más que una escuela de kitesurf en Cuesta del Viento: una comunidad unida por el viento, el deporte y la naturaleza. Aprendé kite, conectá con personas reales y viví el kite como una forma de vida."

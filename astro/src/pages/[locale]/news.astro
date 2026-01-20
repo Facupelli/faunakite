@@ -16,7 +16,33 @@ const lang = Astro.params.locale as "en" | "es";
 const posts: News[] = await getNews(lang);
 ---
 
-<Layout title="Noticias | Fauna Kite ">
+<Layout title="Noticias | Fauna Kite " locale={Astro.params.locale}>
+  <Fragment slot="head">
+    <meta name="description" content="Últimas noticias de FAUNA Kite. Eventos, competencias, y todo el mundo del kitesurf en Cuesta del Viento y Argentina." />
+    <link rel="canonical" href={`https://faunakite.com/${Astro.params.locale}/news`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FAUNA Kite" />
+    <meta property="og:title" content="Noticias | FAUNA Kite" />
+    <meta
+      property="og:description"
+      content="Últimas noticias de FAUNA Kite. Eventos, competencias, y todo el mundo del kitesurf en Cuesta del Viento y Argentina."
+    />
+    <meta property="og:url" content={`https://faunakite.com/${Astro.params.locale}/news`} />
+    <meta
+      property="og:image"
+      content="https://faunakite.com/og/fauna-news.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Noticias | FAUNA Kite" />
+    <meta
+      name="twitter:description"
+      content="Últimas noticias de FAUNA Kite. Eventos, competencias, y todo el mundo del kitesurf en Cuesta del Viento y Argentina."
+    />
+    <meta
+      name="twitter:image"
+      content="https://faunakite.com/og/fauna-news.jpg"
+    />
+  </Fragment>
   <header>
     <Nav />
   </header>

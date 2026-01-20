@@ -19,12 +19,94 @@ const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
 ---
 
-<Layout title="Lo Que Hacemos | Fauna Kite ">
+<Layout title="Lo Que Hacemos | Fauna Kite " locale={Astro.params.locale}>
   <Fragment slot="head">
     <meta
       name="description"
       content="Clases y cursos de kitesurf y wingfoil en Cuesta del Viento. Cursos iniciales, intensivos, clases avanzadas, rental, kite camps y viajes. Aprendé con seguridad, buena energía y sé parte de la comunidad FAUNA."
     />
+    <link rel="canonical" href={`https://faunakite.com/${Astro.params.locale}/services/clases`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FAUNA Kite" />
+    <meta property="og:title" content="Clases y Cursos de Kitesurf | FAUNA Kite" />
+    <meta
+      property="og:description"
+      content="Clases y cursos de kitesurf y wingfoil en Cuesta del Viento. Aprendé con los mejores instructores y viví la experiencia FAUNA."
+    />
+    <meta property="og:url" content={`https://faunakite.com/${Astro.params.locale}/services/clases`} />
+    <meta
+      property="og:image"
+      content="https://faunakite.com/og/fauna-services.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Clases y Cursos de Kitesurf | FAUNA Kite" />
+    <meta
+      name="twitter:description"
+      content="Clases y cursos de kitesurf y wingfoil en Cuesta del Viento. Aprendé con seguridad y buena energía."
+    />
+    <meta
+      name="twitter:image"
+      content="https://faunakite.com/og/fauna-services.jpg"
+    />
+    <!-- SCHEMA MARKUP FOR SERVICES -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": "FAUNA Kite - Servicios de Kitesurf",
+      "description": "Clases y cursos de kitesurf y wingfoil en Cuesta del Viento. Cursos iniciales, intensivos, clases avanzadas, rental, kite camps y viajes.",
+      "url": `https://faunakite.com/${Astro.params.locale}/services/clases`,
+      "image": "https://faunakite.com/og/fauna-services.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "San Juan",
+        "addressCountry": "AR"
+      },
+      "sport": ["Kitesurfing", "Wing Foiling"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de Kitesurf",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Course",
+              "name": "Curso Inicial de Kitesurf",
+              "description": "Curso completo de 9 horas para principiantes"
+            },
+            "provider": {
+              "@type": "SportsActivityLocation",
+              "name": "FAUNA Kite"
+            }
+          },
+          {
+            "@type": "Offer", 
+            "itemOffered": {
+              "@type": "Course",
+              "name": "Clases Individuales de Kitesurf",
+              "description": "Clases personalizadas para todos los niveles"
+            },
+            "provider": {
+              "@type": "SportsActivityLocation",
+              "name": "FAUNA Kite"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Course", 
+              "name": "Clases de Wingfoil",
+              "description": "Aprendé wingfoil con instructores certificados"
+            },
+            "provider": {
+              "@type": "SportsActivityLocation",
+              "name": "FAUNA Kite"
+            }
+          }
+        ]
+      }
+    }
+    </script>
   </Fragment>
 
   <header>

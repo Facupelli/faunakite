@@ -60,9 +60,32 @@ const team = [
 ];
 ---
 
-<Layout title="Quienes Somos | Fauna Kite ">
+<Layout title="Quienes Somos | Fauna Kite " locale={Astro.params.locale}>
   <Fragment slot="head">
     <meta name="description" content={t("about.meta.description")} />
+    <link rel="canonical" href={`https://faunakite.com/${Astro.params.locale}/about-us`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FAUNA Kite" />
+    <meta property="og:title" content="Quiénes Somos | FAUNA Kite" />
+    <meta
+      property="og:description"
+      content={t("about.meta.description")}
+    />
+    <meta property="og:url" content={`https://faunakite.com/${Astro.params.locale}/about-us`} />
+    <meta
+      property="og:image"
+      content="https://faunakite.com/og/fauna-about.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Quiénes Somos | FAUNA Kite" />
+    <meta
+      name="twitter:description"
+      content={t("about.meta.description")}
+    />
+    <meta
+      name="twitter:image"
+      content="https://faunakite.com/og/fauna-about.jpg"
+    />
   </Fragment>
 
   <header>
@@ -137,7 +160,7 @@ const team = [
                     <div class="h-[450px] md:h-[600px] relative overflow-hidden">
                       <Image
                         src={member.image}
-                        alt="Lucca Instructor y Fundador"
+                        alt={`${member.name} - ${member.position} en FAUNA Kite`}
                         class="w-full h-full object-cover"
                       />
                       <div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
@@ -296,13 +319,13 @@ const team = [
             <div
               class="w-full max-w-[250px] px-4 md:max-w-[400px] aspect-[3.45/1]"
             >
-              <Image
-                decoding="async"
-                loading="lazy"
-                src={logo}
-                alt="Logo FaunaKite white"
-                class="object-contain"
-              />
+<Image
+                        decoding="async"
+                        loading="lazy"
+                        src={logo}
+                        alt="FAUNA Kite - Logo blanco de la escuela de kitesurf"
+                        class="object-contain"
+                      />
             </div>
           </div>
         </div>

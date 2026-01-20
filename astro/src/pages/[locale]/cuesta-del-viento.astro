@@ -39,9 +39,32 @@ const images = [
 ];
 ---
 
-<Layout title="Cuesta del Viento | Fauna Kite ">
+<Layout title="Cuesta del Viento | Fauna Kite " locale={Astro.params.locale}>
   <Fragment slot="head">
     <meta name="description" content={t("the-spot.meta.description")} />
+    <link rel="canonical" href={`https://faunakite.com/${Astro.params.locale}/cuesta-del-viento`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FAUNA Kite" />
+    <meta property="og:title" content="Cuesta del Viento | FAUNA Kite" />
+    <meta
+      property="og:description"
+      content={t("the-spot.meta.description")}
+    />
+    <meta property="og:url" content={`https://faunakite.com/${Astro.params.locale}/cuesta-del-viento`} />
+    <meta
+      property="og:image"
+      content="https://faunakite.com/og/fauna-cuesta-del-viento.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cuesta del Viento | FAUNA Kite" />
+    <meta
+      name="twitter:description"
+      content={t("the-spot.meta.description")}
+    />
+    <meta
+      name="twitter:image"
+      content="https://faunakite.com/og/fauna-cuesta-del-viento.jpg"
+    />
   </Fragment>
 
   <header>
@@ -110,16 +133,16 @@ const images = [
             <div
               class="relative w-full grid md:grid-cols-2 h-[500px] pt-10 gap-x-10 gap-y-4"
             >
-              <img
-                src="https://media.sanjuan8.com/p/f9dd44433e128fb9e1608d2f23ae7842/adjuntos/303/imagenes/009/533/0009533738/1200x0/smart/cuesta-del-vientowebp.png"
-                alt="Dique Cuesta del Viento"
-                class="rounded-2xl object-cover w-full h-full"
-              />
-              <img
-                src="https://mendoza-camara.org/wp-content/uploads/2017/08/4-Windsurf-en-Cuesta-del-Viento-1.jpg"
-                alt="Dique Cuesta del Viento"
-                class="rounded-2xl object-cover w-full h-full"
-              />
+<img
+                 src="https://media.sanjuan8.com/p/f9dd44433e128fb9e1608d2f23ae7842/adjuntos/303/imagenes/009/533/0009533738/1200x0/smart/cuesta-del-vientowebp.png"
+                 alt="Vista aérea del Dique Cuesta del Viento - lugar perfecto para kitesurf"
+                 class="rounded-2xl object-cover w-full h-full"
+               />
+               <img
+                 src="https://mendoza-camara.org/wp-content/uploads/2017/08/4-Windsurf-en-Cuesta-del-Viento-1.jpg"
+                 alt="Practicando windsurf en las aguas del Dique Cuesta del Viento"
+                 class="rounded-2xl object-cover w-full h-full"
+               />
             </div>
           </div>
         </div>
