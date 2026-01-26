@@ -5,7 +5,7 @@ import { getLocalizedValue } from "../../i18n/utils";
 
 export async function getAllies(language: "es" | "en"): Promise<Ally[]> {
   const allies = await sanityClient.fetch(
-    groq`*[_type == "ally"] | order(_createdAt desc)`
+    groq`*[_type == "ally"] | order(_createdAt desc)`,
   );
 
   return allies.map((ally: any) => ({
@@ -17,6 +17,8 @@ export async function getAllies(language: "es" | "en"): Promise<Ally[]> {
     link: ally.link,
     contact: ally.contact,
     image: ally.image,
+    whatsappLink: ally.whatsappLink,
+    discount: ally.discount,
   }));
 }
 
@@ -29,4 +31,10 @@ export interface Ally {
   link?: string;
   phone?: string;
   image?: ImageAsset & { alt?: string };
+  whatsappLink?: string;
+  contact?: string;
+  discount?: {
+    value: string;
+    details?: { _key: string; value: string }[];
+  };
 }

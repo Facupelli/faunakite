@@ -63,25 +63,25 @@ const team = [
 <Layout title="Quienes Somos | Fauna Kite " locale={Astro.params.locale}>
   <Fragment slot="head">
     <meta name="description" content={t("about.meta.description")} />
-    <link rel="canonical" href={`https://faunakite.com/${Astro.params.locale}/about-us`} />
+    <link
+      rel="canonical"
+      href={`https://faunakite.com/${Astro.params.locale}/about-us`}
+    />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="FAUNA Kite" />
     <meta property="og:title" content="Quiénes Somos | FAUNA Kite" />
+    <meta property="og:description" content={t("about.meta.description")} />
     <meta
-      property="og:description"
-      content={t("about.meta.description")}
+      property="og:url"
+      content={`https://faunakite.com/${Astro.params.locale}/about-us`}
     />
-    <meta property="og:url" content={`https://faunakite.com/${Astro.params.locale}/about-us`} />
     <meta
       property="og:image"
       content="https://faunakite.com/og/fauna-about.jpg"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Quiénes Somos | FAUNA Kite" />
-    <meta
-      name="twitter:description"
-      content={t("about.meta.description")}
-    />
+    <meta name="twitter:description" content={t("about.meta.description")} />
     <meta
       name="twitter:image"
       content="https://faunakite.com/og/fauna-about.jpg"
@@ -146,10 +146,6 @@ const team = [
             <h3 class="font-bold uppercase text-4xl md:text-6xl">
               {t("about.team.title")}
             </h3>
-
-            <p class="md:text-lg">
-              {t("about.team.subtitle")}
-            </p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-20">
@@ -317,15 +313,15 @@ const team = [
 
           <div class="flex justify-end max-w-6xl mx-auto">
             <div
-              class="w-full max-w-[250px] px-4 md:max-w-[400px] aspect-[3.45/1]"
+              class="w-full max-w-[200px] px-4 md:max-w-[300px] aspect-[3.45/1]"
             >
-<Image
-                        decoding="async"
-                        loading="lazy"
-                        src={logo}
-                        alt="FAUNA Kite - Logo blanco de la escuela de kitesurf"
-                        class="object-contain"
-                      />
+              <Image
+                decoding="async"
+                loading="lazy"
+                src={logo}
+                alt="FAUNA Kite - Logo blanco de la escuela de kitesurf"
+                class="object-contain"
+              />
             </div>
           </div>
         </div>

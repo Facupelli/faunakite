@@ -1,0 +1,43 @@
+---
+import { getBookingEmailTemplate } from "../modules/booking/nodemailer/utils";
+
+if (import.meta.env.PROD) {
+  return new Response("Not Found", { status: 404 });
+}
+
+const emailHTML = getBookingEmailTemplate();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Preview - Fauna Kite</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        background: #333;
+      }
+      .preview-note {
+        max-width: 600px;
+        margin: 0 auto 20px;
+        padding: 15px;
+        background: #fff3cd;
+        border: 1px solid #ffc107;
+        border-radius: 4px;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preview-note">
+      <strong>📧 Email Preview Mode</strong><br />
+      Note: The QR code uses <code>cid:qrcode</code> and won't display here. In actual
+      emails, it will be embedded properly.
+    </div>
+
+    <Fragment set:html={emailHTML} />
+  </body>
+</html>

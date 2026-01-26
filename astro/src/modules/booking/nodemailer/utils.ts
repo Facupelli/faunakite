@@ -6,7 +6,7 @@ export class NodemailerError extends Error {
   constructor(
     message: string,
     public readonly statusCode?: number,
-    public readonly originalError?: unknown
+    public readonly originalError?: unknown,
   ) {
     super(message);
     this.name = "NodemailerError";
@@ -25,7 +25,7 @@ export const sendMail = async (
   to: string,
   subject: string,
   template: string,
-  qrBuffer: Buffer
+  qrBuffer: Buffer,
 ) => {
   try {
     const mailOptions = {
@@ -77,10 +77,18 @@ export function getBookingEmailTemplate() {
                     <tr>
                         <td style="padding: 40px 40px 20px 40px;">
                             <h1 style="margin: 0 0 20px 0; color: #051d26; font-size: 28px; font-weight: bold; line-height: 1.3;">
-                                Recibimos Tus Datos!
+                               Tu reserva está confirmada!
                             </h1>
                             <p style="margin: 0 0 30px 0; color: #3c2005; font-size: 16px; line-height: 1.6;">
-                                ¡Felicidades! Estamos muy contentos de que te hayas unido a nosotros en Fauna Kite.
+                                Estamos muy contentos de que formes parte de nuestra comunidad y no vemos la hora de estar en el agua.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 0px 40px 0px 40px;">
+                            <p style="margin: 0 0 30px 0; color: #3c2005; font-size: 16px; line-height: 1.6;">
+                                A continuación, el código QR de tu reserva para que accedas a los beneficios y descuentos exlusivos de nuestra comunidad.
                             </p>
                         </td>
                     </tr>
@@ -88,7 +96,7 @@ export function getBookingEmailTemplate() {
                     <!-- QR Code Section -->
                     <tr>
                         <td style="padding: 20px 40px 30px 40px;">
-                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa; border-radius: 8px; border: 2px solid #496807;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa; border-radius: 8px; border: 2px solid #051d26;">
                                 <tr>
                                     <td style="padding: 30px; text-align: center;">
                                         <h2 style="margin: 0 0 15px 0; color: #051d26; font-size: 20px; font-weight: bold;">
@@ -106,11 +114,70 @@ export function getBookingEmailTemplate() {
                         </td>
                     </tr>
                     
+                    <!-- CTA Button -->
+                    <tr>
+                        <td style="padding: 20px 40px 30px 40px; text-align: center;">
+                            <a href="${SITE_URL}/es/allies" target="_blank" style="display: inline-block; padding: 16px 40px; background-color: #d7f9f9; color: #051d26; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0, 0.2);">
+                                Conocé tus beneficios
+                            </a>
+                        </td>
+                    </tr>
+
+                    <!-- Divider -->
+                    <tr>
+                        <td style="padding: 0 40px;">
+                            <div style="border-top: 2px solid #f0f0f0;"></div>
+                        </td>
+                    </tr>
+
+                    <!-- Prepará tu mochila Section -->
+                    <tr>
+                        <td style="padding: 35px 40px 20px 40px;">
+                            <h2 style="margin: 0 0 20px 0; color: #051d26; font-size: 22px; font-weight: bold;">
+                                Prepará tu mochila!
+                            </h2>
+                            <p style="margin: 0 0 15px 0; color: #3c2005; font-size: 15px; line-height: 1.6;">
+                                Durante las clases te damos todo el equipo necesario (traje de neoprene, chaleco y casco). Solo necesitás traer:
+                            </p>
+                            <ul style="margin: 0 0 20px 20px; padding: 0; color: #3c2005; font-size: 15px; line-height: 1.8;">
+                                <li style="margin-bottom: 8px;">Ropa cómoda, traje de baño y toalla</li>
+                                <li style="margin-bottom: 8px;">Protector solar, lentes de sol y gorra</li>
+                                <li style="margin-bottom: 8px;">Abrigo para las noches (puede refrescar bastante)</li>
+                                <li style="margin-bottom: 8px;">Mate, agua y buena onda</li>
+                            </ul>
+                            <p style="margin: 0; color: #666666; font-size: 14px; line-height: 1.5; font-style: italic;">
+                                Si tenés tu traje de neoprene propio, un 4/3 largo es ideal, o 3/2 en diciembre y enero.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- Cómo Llegar Section -->
+                    <tr>
+                        <td style="padding: 20px 40px 35px 40px;">
+                            <h2 style="margin: 0 0 15px 0; color: #051d26; font-size: 22px; font-weight: bold;">
+                                Cómo Llegar
+                            </h2>
+                            <p style="margin: 0 0 15px 0; color: #3c2005; font-size: 15px; line-height: 1.6;">
+                                Nos encontramos en la playa del Dique Cuesta del Viento, San Juan.
+                            </p>
+                            <a href="https://maps.app.goo.gl/2GH4EQ4TK24zeBLp7" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #f8f9fa; color: #051d26; text-decoration: none; border-radius: 6px; font-size: 15px; font-weight: bold; border: 2px solid #051d26;">
+                                📌 Ver en Google Maps
+                            </a>
+                        </td>
+                    </tr>
+
+                    <!-- Divider -->
+                    <tr>
+                        <td style="padding: 0 40px;">
+                            <div style="border-top: 2px solid #f0f0f0;"></div>
+                        </td>
+                    </tr>
+                    
                     <!-- Footer Message -->
                     <tr>
-                        <td style="padding: 20px 40px 40px 40px;">
+                        <td style="padding: 35px 40px 40px 40px;">
                             <p style="margin: 0 0 15px 0; color: #3c2005; font-size: 15px; line-height: 1.6;">
-                                Nos vemos en el agua! 🪁🌊
+                                Nos vemos en el agua!
                             </p>
                             <p style="margin: 0; color: #666666; font-size: 14px; line-height: 1.5;">
                               Si tenes alguna pregunta, no dudes en ponerte en contacto con nosotros.

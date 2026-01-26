@@ -135,7 +135,7 @@ const headerIndexMap = BOOKING_SHEET_HEADERS.reduce<Record<string, number>>(
     acc[h] = idx;
     return acc;
   },
-  {}
+  {},
 );
 
 function fromSpreadsheetRow(row: unknown[]): Booking | null {
@@ -255,17 +255,17 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
   const heightCm = parseNumberCell(getCell(row, "heightCm"));
   const currentLevel = parseStringCell(getCell(row, "currentLevel"));
   const detailedSkillLevel = parseStringCell(
-    getCell(row, "detailedSkillLevel")
+    getCell(row, "detailedSkillLevel"),
   );
   const mainObjective = parseStringCell(getCell(row, "mainObjective"));
   const additionalNotes = parseStringCell(getCell(row, "additionalNotes"));
   const referralSource = parseStringCell(getCell(row, "referralSource"));
   const referralSourceOther = parseStringCell(
-    getCell(row, "referralSourceOther")
+    getCell(row, "referralSourceOther"),
   );
   const newsletterOptIn = parseBooleanCell(
     getCell(row, "newsletterOptIn"),
-    false
+    false,
   );
 
   if (
@@ -278,16 +278,6 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
     !arrivalTime ||
     !departureDate
   ) {
-    console.log({
-      createdAt,
-      customerName,
-      birthDate,
-      customerEmail,
-      province,
-      arrivalDate,
-      arrivalTime,
-      departureDate,
-    });
     return null;
   }
 

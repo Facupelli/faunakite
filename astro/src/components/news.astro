@@ -8,7 +8,6 @@ import AboutUsUnderSeparator from "./svg/about-us-under-separator.astro";
 const lang = Astro.params.locale as "en" | "es";
 
 const posts: News[] = await getLatestNews(lang);
-console.log({ posts });
 ---
 
 <section>

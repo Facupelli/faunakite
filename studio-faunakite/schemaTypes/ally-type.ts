@@ -35,12 +35,42 @@ export const allyType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'whatsappLink',
+      title: 'WhatsApp Link',
+      type: 'url',
+      validation: (rule) =>
+        rule.uri({
+          scheme: ['https'],
+          allowRelative: false,
+        }),
+    }),
+    defineField({
       name: 'contact',
       type: 'string',
     }),
     defineField({
       name: 'image',
       type: 'image',
+    }),
+    defineField({
+      name: 'discount',
+      title: 'Descuento',
+      type: 'object',
+      fields: [
+        {
+          name: 'value',
+          title: 'Valor',
+          type: 'string',
+          description: 'Ej: "10%", "15%", "2x1"',
+          validation: (rule) => rule.required(),
+        },
+        {
+          name: 'details',
+          title: 'Detalles adicionales',
+          type: 'internationalizedArrayString',
+          description: 'Opcional: condiciones, restricciones, etc.',
+        },
+      ],
     }),
   ],
   preview: {

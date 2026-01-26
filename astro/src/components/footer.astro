@@ -193,11 +193,17 @@ const className = fill
             class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60"
           >
             <p>
-              © {new Date().getFullYear()} Fauna Kite. Todos los derechos reservados.
+              © {new Date().getFullYear()} Fauna Kite. {
+                t("footer.legal.copyright")
+              }
             </p>
             <div class="flex gap-6">
-              <a href="/privacy" class="transition-colors"> Privacidad </a>
-              <a href="/terms" class="transition-colors"> Términos </a>
+              <a href="/privacy" class="transition-colors">
+                {t("footer.legal.privacy")}
+              </a>
+              <a href="/terms" class="transition-colors">
+                {t("footer.legal.terms")}
+              </a>
             </div>
           </div>
         </div>

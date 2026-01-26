@@ -7,17 +7,23 @@ export const defaultLang = "es";
 
 // New structure: key-first approach
 export const ui = {
-  "nav.services": { en: "What We Do", es: "Lo Que Hacemos" },
+  "nav.services": { en: "What We Offer", es: "Que Ofrecemos" },
   "nav.about": { en: "About Us", es: "Nosotros" },
   "nav.spot": { en: "The Spot", es: "El Spot" },
-  "nav.allies": { en: "Allies", es: "Aliados" },
+  "nav.allies": {
+    en: "Benefits",
+    es: "Beneficios",
+  },
   "nav.news": { en: "News", es: "Noticias" },
   "nav.store": { en: "Store", es: "Tienda" },
 
   // HOME PAGE
-  "hero.title.white": { en: "More Than a School", es: "Más que una escuela" },
+  "hero.title.white": {
+    en: "More Than a Kite School",
+    es: "Más que una escuela",
+  },
   "hero.title.red": {
-    en: "A Community of Winds",
+    en: "A Wind Community",
     es: "una comunidad de vientos",
   },
   "hero.subtitle": {
@@ -56,8 +62,8 @@ export const ui = {
     es: "El Spot: Cuesta Del Viento",
   },
   "the-spot.summary": {
-    en: "Where the wind never stops: Cuesta del Viento dam gets more than 300 windy days a year, and from October to May it never fails. That's why Cuesta del Viento is one of the most reliable places in South America to learn, progress or simply enjoy long sessions on the water.",
-    es: "Donde siempre sopla: El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta del Viento sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
+    en: "Where the wind never stops: Cuesta del Viento dam gets more than 300 windy days a year, and from October to May it never fails. That's why this spot is one of the most reliable places in South America to learn, progress or simply enjoy long sessions on the water.",
+    es: "Donde siempre sopla: El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, no falla. Esto hace que este spot sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
   },
   "the-spot.button.discover": {
     en: "Discover Cuesta del Viento",
@@ -90,6 +96,10 @@ export const ui = {
   "testimonials.testimonial.3.description": {
     en: "The school is very professional and the place is incredible. I loved that the lessons are personalized and safety is always the priority. Now I can't wait to come back in summer and keep progressing.",
     es: "Excelente experiencia con Fauna Kite. Lucca y Facu son excelentes personas e instructores. Aparte de las clases y alquiler de equipo, te hacen sentir en familia durante tus dias de kite. Un abrazo chicos y espero verlos pronto de nuevo. Yewww!",
+  },
+  "testimonials.cta": {
+    en: "See More Testimonials",
+    es: "Ver Más Testimonios",
   },
   "newsletter.title": { en: "Join the Community", es: "Sumate a la Comunidad" },
   "newsletter.subtitle": {
@@ -145,10 +155,22 @@ export const ui = {
   "footer.newsletter.title": { en: "Newsletter", es: "Newsletter" },
   "footer.newsletter.subtitle": { en: "", es: "" },
   "footer.newsletter.button": { en: "Subscribe", es: "Suscribirse" },
+  "footer.legal.copyright": {
+    en: "All rights reserved.",
+    es: "Todos los derechos reservados.",
+  },
+  "footer.legal.privacy": {
+    en: "Privacy",
+    es: "Privacidad",
+  },
+  "footer.legal.terms": {
+    en: "Terms",
+    es: "Términos",
+  },
 
   // SERVICES PAGE
   // LAYOUT
-  "services.layout.title": { en: "What We Do", es: "Lo Que Hacemos" },
+  "services.layout.title": { en: "What We Offer", es: "Que Ofrecemos" },
 
   // NAV
   "services.nav.courses": { en: "Classes & Courses", es: "Clases & Cursos" },
@@ -314,12 +336,12 @@ export const ui = {
     en: "Trial Lesson",
   },
   "services.kite.class.try.duration": {
-    es: "2 horas",
-    en: "2 hours",
+    es: "1.5 horas",
+    en: "1.5 hours",
   },
   "services.kite.class.try.level": {
-    es: "Cualquiera",
-    en: "Any",
+    es: "Principiante",
+    en: "Beginner",
   },
   "services.kite.class.try.p1": {
     es: "¿Querés ver de qué se trata antes de comprometerte a tomar el curso?",
@@ -620,10 +642,6 @@ export const ui = {
     es: "Nuestro Equipo",
     en: "Our Team",
   },
-  "about.team.subtitle": {
-    es: "We love what we do and we do what we love. Its an honour to be able to be in the water as much as possible and to show you a part of our lives.",
-    en: "We love what we do and we do what we love. It’s an honour to be in the water as much as possible and to show you a part of our lives.",
-  },
 
   // ======================
   // ABOUT – TEAM MEMBERS
@@ -650,7 +668,7 @@ export const ui = {
   // ======================
   "about.history.title": {
     es: "Nuestra Historia",
-    en: "Our History",
+    en: "Our Story",
   },
 
   "about.history.2013.text": {
@@ -678,7 +696,7 @@ export const ui = {
   // ======================
   "about.present.title": {
     es: "ACTUALIDAD",
-    en: "PRESENT DAY",
+    en: "TODAY",
   },
   "about.present.p1": {
     es: "FAUNA es una comunidad de vientos, aprendemos juntos, nos cuidamos entre todos y celebramos la vida al aire libre. El kite es la excusa; la comunidad y la conexión con la naturaleza, el objetivo.",
@@ -713,17 +731,14 @@ export const ui = {
   // ======================
   // FIRST IMPRESSION
   // ======================
+
+  "the-spot.impression.title": {
+    es: "Un Lugar Único",
+    en: "A Unique Place",
+  },
   "the-spot.impression.p1": {
-    es: "Quienes lo visitan por primera vez lo dicen siempre:",
-    en: "Those who visit it for the first time always say the same thing:",
-  },
-  "the-spot.impression.quote": {
-    es: "“Siento que estoy en otro planeta”",
-    en: "“I feel like I’m on another planet”",
-  },
-  "the-spot.impression.p2": {
-    es: "Y algo de eso hay. Las montañas cambian de color con el pasar del día, las noches se cubren de estrellas que parecen estar al alcance de las manos, y el viento, el principal protagonista llega casi cada día, puntual, y junto con él navegantes y viajeros de todas partes. Este escenario mágico, la energía del lugar y una comunidad que te recibe con los brazos abiertos, son difíciles de explicar si no las vivís.",
-    en: "And there’s some truth to that. The mountains change color throughout the day, nights are filled with stars that seem within reach, and the wind — the main protagonist — arrives almost every day, right on time, bringing riders and travelers from all over the world. This magical setting, the energy of the place, and a community that welcomes you with open arms are hard to explain unless you experience them.",
+    es: "Quienes lo visitan por primera vez lo dicen siempre: “Siento que estoy en otro planeta”. Y algo de eso hay. Las montañas cambian de color con el pasar del día, las noches se cubren de estrellas que parecen estar al alcance de las manos, y el viento, el principal protagonista llega casi cada día, puntual, y junto con él navegantes y viajeros de todas partes. Este escenario mágico, la energía del lugar y una comunidad que te recibe con los brazos abiertos, son difíciles de explicar si no las vivís.",
+    en: "Those who visit it for the first time always say the same thing: “I feel like I’m on another planet”. And there’s some truth to that. The mountains change color throughout the day, nights are filled with stars that seem within reach, and the wind — the main protagonist — arrives almost every day, right on time, bringing riders and travelers from all over the world. This magical setting, the energy of the place, and a community that welcomes you with open arms are hard to explain unless you experience them.",
   },
 
   // ======================
@@ -766,8 +781,8 @@ export const ui = {
     en: "Hikes through hills and viewpoints overlooking the dam",
   },
   "the-spot.more-than-kite.item2": {
-    es: "Escalada, mountain bike y senderismo",
-    en: "Climbing, mountain biking, and hiking",
+    es: "Paseos a caballo / Cabalgatas",
+    en: "Horseback riding tours",
   },
   "the-spot.more-than-kite.item3": {
     es: "Stand Up Paddle o kayak por las mañanas",
@@ -855,18 +870,27 @@ export const ui = {
     en: "We recommend having some form of transportation while you’re there. Some accommodations offer transfers to the dam or bicycles. If you won’t have mobility, it’s best to stay close to the spot.",
   },
 
+  "the-spot.tips.things-to-bring": {
+    es: "Durante las clases te damos todo el equipo necesario —traje de neoprene, chaleco y casco—, solo necesitás traer lo básico: ropa cómoda, toalla, traje de baño y sandalias; protector solar, lentes de sol y gorra; abrigo para las noches (incluso en verano refresca bastante); zapatillas cómodas por si te copa caminar o salir a correr; mate, agua y buena onda. Si tenés tu traje de neoprene propio, un 4/3 largo es ideal, o 3/2 en diciembre y enero.",
+    en: "We provide all the necessary equipment during the lessons —wetsuit, vest, and helmet— you only need to bring the basics: comfortable clothes, towel, swimsuit and sandals; sunscreen, sunglasses and a cap; something warm for the evenings (even in summer it can get chilly); comfortable sneakers for walks or morning runs; mate, water and good vibes. If you have your own wetsuit, a 4/3 full suit is ideal, or a 3/2 in December and January.",
+  },
+
   // ALLY PAGE
   "ally.title": {
     es: "ALIADOS",
     en: "ALLIES",
   },
   "ally.description.p1": {
-    en: "At Fauna Kite, we believe the experience goes far beyond the water. That's why we partner with local allies in Cuesta del Viento and Rodeo —including accommodations, restaurants, and complementary activities such as yoga and massages— to offer exclusive benefits to our students.",
-    es: "En Fauna Kite creemos que la experiencia va mucho más allá del agua. Por eso, trabajamos junto a aliados locales de Cuesta del Viento y Rodeo —alojamientos, restaurantes y actividades complementarias como yoga y masajes— para ofrecer beneficios exclusivos a nuestros alumnos.",
+    en: "At Fauna Kite, we believe the experience goes far beyond the water. That's why we partner with local providers in Cuesta del Viento and Rodeo —including accommodations, restaurants, and complementary activities such as yoga and massages— to offer exclusive benefits to our students.",
+    es: "En Fauna Kite creemos que la experiencia va mucho más allá del agua. Por eso, trabajamos junto a prestadores locales de Cuesta del Viento y Rodeo —alojamientos, restaurantes y actividades complementarias como yoga y masajes— para ofrecer beneficios exclusivos a nuestros alumnos.",
   },
   "ally.description.p2": {
     en: "Being part of Fauna means access to special discounts, curated experiences, and unique offers that enhance your stay and connect you with the local community.",
     es: "Ser parte de Fauna significa acceder a descuentos, propuestas especiales y experiencias seleccionadas que enriquecen tu estadía y te conectan con la comunidad local.",
+  },
+  "ally.description.p3": {
+    en: "Once you book a course, class, or equipment rental, you’ll receive an email with a QR code that gives you access to these benefits. Our partner providers will scan it to verify that you’re a Fauna Kite student and unlock the perks included in the program.",
+    es: "Una vez realizada tu reserva de curso, clase o rental, vas a recibir un email con un código QR con el que vas a poder acceder a estos beneficios. Los prestadores lo van a escanear para verificar que sos alumno de Fauna Kite y habilitarte las ventajas del programa.",
   },
 
   // BOOKED PAGE
@@ -1032,8 +1056,8 @@ export const ui = {
   },
   "booked-success.infocards.wind.title": { en: "What's Next", es: "Qué sigue" },
   "booked-success.infocards.wind.subtitle": {
-    en: "Check your email for course details, gear list and meeting location.",
-    es: "Revisa tu correo electrónico para detalles de curso, lista de equipo y ubicación de reunión.",
+    en: "Pack your bag and check your email. You’ll find useful information about your booking and a QR code you’ll use to access your exclusive benefits and discounts on accommodations, restaurants, and more.",
+    es: "Prepará tu mochila y revisá tu correo electrónico. Vas a encontrar información úitil de tu reserva y un Código QR que vas a usar para acceder a tus beneficios y descuentos exclusivos en alojamientos, restaurantes y más.",
   },
   "booked-success.cta": {
     en: "YOU CAN NOW CLOSE THIS TAB",

@@ -53,7 +53,7 @@ export const book = {
           },
           {
             message: "Arrival date must be after today",
-          }
+          },
         ),
         arrivalTime: z
           .string()
@@ -88,8 +88,6 @@ export const book = {
     handler: async (input, context) => {
       const turnstileToken = input["cf-turnstile-response"];
 
-      console.log({ turnstileToken });
-
       try {
         const verificationResponse = await fetch(
           "https://challenges.cloudflare.com/turnstile/v0/siteverify",
@@ -100,12 +98,10 @@ export const book = {
               secret: TURNSTILE_BOOKED_SECRET_KEY,
               response: turnstileToken,
             }),
-          }
+          },
         );
 
         const verification = await verificationResponse.json();
-
-        console.log({ verification });
 
         if (!verification.success) {
           throw new Error("Captcha verification failed");
@@ -153,7 +149,7 @@ export const book = {
 
       try {
         const qrBuffer = await createUrlQr(
-          `${SITE_URL}/es/verify/${bookingResult.bookingId}`
+          `${SITE_URL}/es/verify/${bookingResult.bookingId}`,
         );
 
         const template = getBookingEmailTemplate();

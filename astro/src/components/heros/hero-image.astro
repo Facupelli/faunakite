@@ -27,43 +27,30 @@ const t = useTranslations(lang);
   >
     <div class="max-w-4xl mx-auto">
       <div class="font-bold tracking-tight text-balance">
-        <!-- {t("hero.title")} -->
-        <span class="block text-4xl md:text-5xl uppercase lg:text-6xl">
+        <span
+          class="relative z-30 block text-4xl md:text-5xl uppercase lg:text-6xl"
+        >
           {t("hero.title.white")}
         </span>
+
         <div
           class="relative text-brand-red block text-shadow-2xs text-shadow-brand-blue"
         >
-          <div
-            class="absolute inset-0 pointer-events-none z-0"
-            aria-hidden="true"
-          >
-            <BrushStain class="w-full h-full text-celeste-2" />
-          </div>
+          <span class="relative font-salted text-5xl md:text-7xl">
+            <span
+              class="absolute inset-0 pointer-events-none z-0"
+              aria-hidden="true"
+            >
+              <BrushStain class="w-full h-full text-celeste-2 scale-y-75" />
+            </span>
 
-          <span class="relative z-10 font-salted text-5xl md:text-7xl">
-            {t("hero.title.red")}
+            <span class="relative z-10 pr-10">
+              {t("hero.title.red")}
+            </span>
           </span>
         </div>
       </div>
     </div>
-
-    <!-- <div class="pb-10">
-      <p
-        class="lg:text-xl text-white/95 text-shadow-2xs text-shadow-brand-blue max-w-2xl text-pretty pb-8 leading-relaxed md:pb-6"
-      >
-        {t("hero.subtitle")}
-      </p>
-
-      <div class="flex justify-center md:justify-start w-full">
-        <a
-          href={`/${lang}/services/clases`}
-          class="px-4 md:px-6 py-3 font-bold text-sm md:text-base rounded-2xl w-full md:w-auto text-center bg-brand-blue"
-        >
-          APRENDE KITESURF EN CUESTA DEL VIENTO
-        </a>
-      </div>
-    </div> -->
   </div>
 
   <!-- DESKTOP Background Image  -->
