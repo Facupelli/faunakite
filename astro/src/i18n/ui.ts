@@ -7,7 +7,7 @@ export const defaultLang = "es";
 
 // New structure: key-first approach
 export const ui = {
-  "nav.services": { en: "What We Offer", es: "Que Ofrecemos" },
+  "nav.services": { en: "What We Offer", es: "Qué Ofrecemos" },
   "nav.about": { en: "About Us", es: "Nosotros" },
   "nav.spot": { en: "The Spot", es: "El Spot" },
   "nav.allies": {
@@ -360,24 +360,12 @@ export const ui = {
     en: "Wingfoil Lesson",
   },
   "services.wingfoil.class.p1": {
-    es: "El wing foil es libertad pura.",
-    en: "Wingfoiling is pure freedom.",
+    es: "El wing foil es libertad pura: viento, equilibrio y conexión con el agua. En FAUNA lo enseñamos de forma simple, progresiva y disfrutando el proceso, sin apuros y en contacto con la naturaleza. Cada clase se adapta a tu nivel, tu ritmo y tus objetivos, para que aprendas con seguridad y confianza.",
+    en: "Wing foiling is pure freedom: wind, balance, and a deep connection with the water. At FAUNA, we teach it in a simple, progressive way, enjoying every step of the process—no rush, and always in touch with nature. Each class is tailored to your level, your pace, and your goals, so you learn with confidence and safety.",
   },
   "services.wingfoil.class.p2": {
-    es: "Una combinación perfecta entre viento, equilibrio y conexión con el agua. No hay motor, ni cuerdas, ni ruido: solo vos, el ala y el viento empujándote a volar.",
-    en: "A perfect combination of wind, balance, and connection with the water. No engine, no lines, no noise: just you, the wing, and the wind pushing you to fly.",
-  },
-  "services.wingfoil.class.p3": {
-    es: "En FAUNA te enseñamos desde cero, con equipos de última generación, acompañamiento personalizado y protocolos de seguridad que garantizan una experiencia segura y divertida.",
-    en: "At FAUNA we teach you from scratch, using state-of-the-art equipment, personalized guidance, and safety protocols that guarantee a safe and fun experience.",
-  },
-  "services.wingfoil.class.p4": {
-    es: "Cada clase es adaptada a tu ritmo y a tus objetivos, para que progreses disfrutando.",
-    en: "Each lesson is adapted to your pace and goals, so you can progress while enjoying the process.",
-  },
-  "services.wingfoil.class.p5": {
-    es: "Podés tomar el curso inicial completo en 3 días (9hs de clase); un curso intensivo de 2 días (6hs de clase); o bien, tomar clases individuales o solo hacer una clase de prueba.",
-    en: "You can take the complete beginner course in 3 days (9 hours of lessons); an intensive 2-day course (6 hours of lessons); or take private lessons or just do a trial lesson.",
+    es: "Podés elegir entre el curso inicial completo (9 hs en 3 días), un curso intensivo (6 hs en 2 o 3 días), clases individuales de 2hs personalizadas o una clase de prueba para vivir esta experiencia.",
+    en: "You can choose between a full beginner course (9 hours over 3 days), an intensive course (6 hours over 2 or 3 days), personalized 2-hour private lessons, or a trial class to experience it for yourself.",
   },
 
   // Common actions
