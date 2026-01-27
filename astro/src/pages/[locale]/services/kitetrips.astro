@@ -1,8 +1,21 @@
 ---
 import { useTranslations } from "../../../i18n/utils";
 import ServicesLayout from "../../../layouts/services-layout.astro";
-import SicilyPhoto from "../../../assets/destino-sicilia.jpg";
-import { TheSpotCarousel } from "../../../components/spot/spot-carousel";
+import { KitetripsCarousel } from "../../../components/spot/spot-carousel";
+import Sicily1Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-1.webp";
+import Sicily2Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-2.webp";
+import Sicily3Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-3.webp";
+import Sicily4Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-4.webp";
+import Sicily5Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-5.webp";
+import Sicily6Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-6.webp";
+import Sicily7Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-7.webp";
+import Sicily8Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-8.webp";
+import Sicily9Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-9.webp";
+import Sicily11Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-11.webp";
+import Sicily12Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-12.webp";
+import Sicily13Photo from "../../../assets/what-we-offer/kitetrips/lo-stagnone-13.webp";
+import SicilyPhoto from "../../../assets/what-we-offer/kitetrips/sicily-kite.webp";
+import { getImage } from "astro:assets";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -13,27 +26,86 @@ const t = useTranslations(lang);
 
 const carouselImages = [
   {
-    src: SicilyPhoto.src,
+    src: Sicily2Photo,
     alt: "Lo Stagnone, Sicilia",
   },
   {
-    src: "https://cdn.prod.website-files.com/61b694c59f46238057609302/665df4f13b65f87aa7d5df78_6%20Sicile%20Cefalu.jpg",
+    src: Sicily1Photo,
     alt: "Lo Stagnone, Sicilia",
   },
   {
-    src: "https://jaywaytravel.com/wp-content/smush-webp/2025/09/ancient-ruins-taormina-sicily-italy.jpg.webp",
+    src: Sicily3Photo,
     alt: "Lo Stagnone, Sicilia",
   },
   {
-    src: "https://www.iroamly.com/images/sicily.webp",
+    src: Sicily4Photo,
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: Sicily5Photo,
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: Sicily6Photo,
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: Sicily7Photo,
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: Sicily8Photo,
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: Sicily9Photo,
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: Sicily11Photo,
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: Sicily12Photo,
+    alt: "Lo Stagnone, Sicilia",
+  },
+  {
+    src: Sicily13Photo,
     alt: "Lo Stagnone, Sicilia",
   },
 ];
 
+const optimizedImages = await Promise.all(
+  carouselImages.map(async (image) => {
+    const optimizedDesktop = await getImage({
+      src: image.src,
+      width: 1920,
+      height: 1080, // 16:9 aspect ratio
+      format: "webp",
+      quality: 85,
+    });
+
+    const optimizedMobile = await getImage({
+      src: image.src,
+      width: 800,
+      height: 450, // 16:9 aspect ratio
+      format: "webp",
+      quality: 85,
+    });
+
+    return {
+      alt: image.alt,
+      srcDesktop: optimizedDesktop.src,
+      srcMobile: optimizedMobile.src,
+      width: 1920,
+      height: 1080,
+    };
+  }),
+);
+
 const activities = [
   {
-    image:
-      "https://www.muchoviento.com/wp-content/uploads/2023/03/home-page-module-video-scaled.jpg",
+    image: SicilyPhoto.src,
 
     title: "Kite",
     description:
@@ -115,34 +187,40 @@ const activities = [
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto py-10 md:py-20 h-[350px] md:h-[800px]">
-      <TheSpotCarousel client:load images={carouselImages} />
-    </div>
+    <div class="flex items-center gap-10 max-w-7xl mx-auto">
+      <div class="basis-3/5">
+        <div class="max-w-7xl mx-auto py-10 md:py-20 h-[350px] md:h-[800px]">
+          <KitetripsCarousel client:load images={optimizedImages} />
+        </div>
+      </div>
 
-    <div class="space-y-8 max-w-7xl mx-auto text-brand-blue pt-20 pb-10 px-4">
-      <h2
-        class="text-4xl md:text-[90px] text-center text-pretty font-salted leading-tight"
-      >
-        {t("services.kitetrips.experiences.title")}
-      </h2>
-      <p
-        class="text-center text-lg text-brand-blue/80 max-w-2xl mx-auto text-pretty"
-      >
-        {t("services.kitetrips.experiences.subtitle")}
-      </p>
+      <div class="basis-2/5">
+        <div class="space-y-8 text-brand-blue pt-20 pb-10 px-4">
+          <h2
+            class="text-4xl md:text-[90px] text-center text-pretty font-salted leading-tight"
+          >
+            {t("services.kitetrips.experiences.title")}
+          </h2>
+          <p
+            class="text-center text-lg text-brand-blue/80 max-w-2xl mx-auto text-pretty"
+          >
+            {t("services.kitetrips.experiences.subtitle")}
+          </p>
+        </div>
+      </div>
     </div>
 
     <div
       class="flex flex-wrap items-center justify-center gap-10 py-10 md:py-20"
     >
       {
-        activities.map((activity) => (
+        activities.map((activity, index) => (
           <div class="shadow-news-card rounded-2xl w-[300px] text-brand-blue">
             <div>
               <img
                 src={activity.image}
                 alt="Kitesurf, Sicilia"
-                class="object-cover size-[300px] rounded-t-2xl"
+                class={`object-cover size-[300px] rounded-t-2xl ${index === 0 && "object-[50%_90%]"}`}
               />
             </div>
             <div class="p-8 bg-white rounded-b-2xl space-y-4">
@@ -181,7 +259,7 @@ const activities = [
           </li>
         </ul>
 
-        <div class="pt-10 flex justify-center max-w-7xl mx-auto">
+        <div class="pt-10 flex justify-start max-w-7xl mx-auto">
           <a
             target="_blank"
             rel="noopener noreferrer"

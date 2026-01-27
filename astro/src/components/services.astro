@@ -1,9 +1,9 @@
 ---
 import { Image } from "astro:assets";
-import cursos from "../assets/courses.webp";
-import kiteCamp from "../assets/kite-camps.webp";
-import rental from "../assets/rental.webp";
-import travels from "../assets/travels.webp";
+import cursos from "../assets/services/courses.webp";
+import kiteCamp from "../assets/services/kitecamps.webp";
+import rental from "../assets/what-we-offer/rental/rental-4.webp";
+import travels from "../assets/services/kitetrips.webp";
 import { useTranslations } from "../i18n/utils";
 import ServicesBackground from "./svg/services-background.astro";
 import { Icon } from "astro-icon/components";
@@ -58,7 +58,7 @@ const services = [
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto"
     >
       {
-        services.map((service) => (
+        services.map((service, index) => (
           <div class="group relative bg-celeste-3  lg:bg-brand-blue rounded-xl overflow-hidden shadow-news-card cursor-pointer">
             <a href={service.link}>
               <div class="relative h-60 w-full overflow-hidden">
@@ -67,13 +67,13 @@ const services = [
                   alt={service.title}
                   widths={[400, 665, 800, 1200]}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 665px"
-                  class="object-cover transition-transform duration-500 group-hover:scale-105 h-full w-full"
+                  class={`object-cover transition-transform duration-500 group-hover:scale-105 h-full w-full ${index === 0 && "object-[50%_75%]"}`}
                 />
 
                 <div class="absolute w-full h-[25%] bottom-0 bg-linear-to-t from-celeste-3 to-transparent" />
 
                 <div class="flex justify-between items-end mb-4 absolute bottom-0 px-8 w-full">
-                  <h2 class="text-2xl font-bold text-foreground ">
+                  <h2 class="text-2xl font-bold text-foreground text-shadow-2xs text-shadow-brand-blue ">
                     {service.title}
                   </h2>
 

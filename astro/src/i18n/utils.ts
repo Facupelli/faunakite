@@ -7,7 +7,6 @@ import {
   type EnumKeys,
 } from "./ui";
 
-// Updated translation function that works with the new structure
 export function useTranslations(lang: Lang) {
   return function t(key: UIKeys): string {
     const translation = ui[key];
@@ -15,7 +14,6 @@ export function useTranslations(lang: Lang) {
   };
 }
 
-// Separate function for enum translations
 export function useEnumTranslations(lang: Lang) {
   return function t(key: EnumKeys): string {
     const translation = enumTranslations[key];
@@ -25,7 +23,7 @@ export function useEnumTranslations(lang: Lang) {
 
 export function getLocalizedValue<T>(
   field: Array<{ _key: string; value: T }> | undefined,
-  language: "es" | "en"
+  language: "es" | "en",
 ): T | undefined {
   if (!field || !Array.isArray(field)) {
     return undefined;

@@ -10,7 +10,7 @@ export const ui = {
   "nav.services": { en: "What We Offer", es: "Qué Ofrecemos" },
   "nav.about": { en: "About Us", es: "Nosotros" },
   "nav.spot": { en: "The Spot", es: "El Spot" },
-  "nav.allies": {
+  "nav.benefits": {
     en: "Benefits",
     es: "Beneficios",
   },
@@ -149,7 +149,12 @@ export const ui = {
   "footer.navigation.courses": { en: "Courses", es: "Cursos" },
   "footer.navigation.rental": { en: "Rental", es: "Rental" },
   "footer.navigation.kitecamps": { en: "Kitecamps", es: "Kitecamps" },
-  "footer.navigation.allies": { en: "Allies", es: "Aliados" },
+  "footer.navigation.cuesta-del-viento": {
+    en: "Cuesta del Viento",
+    es: "Cuesta del Viento",
+  },
+  "footer.navigation.benefits": { en: "Benefits", es: "Beneficios" },
+  "footer.navigation.news": { en: "Fauna News", es: "Noticias" },
   "footer.navigation.store": { en: "Store", es: "Tienda" },
   "footer.contact.title": { en: "Contact", es: "Contacto" },
   "footer.newsletter.title": { en: "Newsletter", es: "Newsletter" },
@@ -485,6 +490,7 @@ export const ui = {
     es: "Próximas Ediciones",
     en: "Upcoming Editions",
   },
+
   "services.kitecamps.upcoming.cta.join": {
     es: "SUMATE",
     en: "JOIN",
@@ -725,7 +731,11 @@ export const ui = {
     en: "A Unique Place",
   },
   "the-spot.impression.p1": {
-    es: "Quienes lo visitan por primera vez lo dicen siempre: “Siento que estoy en otro planeta”. Y algo de eso hay. Las montañas cambian de color con el pasar del día, las noches se cubren de estrellas que parecen estar al alcance de las manos, y el viento, el principal protagonista llega casi cada día, puntual, y junto con él navegantes y viajeros de todas partes. Este escenario mágico, la energía del lugar y una comunidad que te recibe con los brazos abiertos, son difíciles de explicar si no las vivís.",
+    es: "Quienes lo visitan por primera vez lo dicen siempre: “Siento que estoy en otro planeta”. Y algo de eso hay. Las montañas cambian de color con el pasar del día, las noches se cubren de estrellas que parecen estar al alcance de las manos, y el viento, el principal protagonista llega casi cada día, puntual, y junto con él navegantes y viajeros de todas partes. ",
+    en: "Those who visit it for the first time always say the same thing: “I feel like I’m on another planet”. And there’s some truth to that. The mountains change color throughout the day, nights are filled with stars that seem within reach, and the wind — the main protagonist — arrives almost every day, right on time, bringing riders and travelers from all over the world. This magical setting, the energy of the place, and a community that welcomes you with open arms are hard to explain unless you experience them.",
+  },
+  "the-spot.impression.p2": {
+    es: "Este escenario mágico, la energía del lugar y una comunidad que te recibe con los brazos abiertos, son difíciles de explicar si no las vivís.",
     en: "Those who visit it for the first time always say the same thing: “I feel like I’m on another planet”. And there’s some truth to that. The mountains change color throughout the day, nights are filled with stars that seem within reach, and the wind — the main protagonist — arrives almost every day, right on time, bringing riders and travelers from all over the world. This magical setting, the energy of the place, and a community that welcomes you with open arms are hard to explain unless you experience them.",
   },
 
@@ -865,8 +875,8 @@ export const ui = {
 
   // ALLY PAGE
   "ally.title": {
-    es: "ALIADOS",
-    en: "ALLIES",
+    es: "BENEFICIOS FAUNA",
+    en: "FAUNA BENEFITS",
   },
   "ally.description.p1": {
     en: "At Fauna Kite, we believe the experience goes far beyond the water. That's why we partner with local providers in Cuesta del Viento and Rodeo —including accommodations, restaurants, and complementary activities such as yoga and massages— to offer exclusive benefits to our students.",
@@ -1064,6 +1074,93 @@ export const ui = {
   "booking-not-found.subtitle": {
     en: "We couldn't find a booking with the ID you provided.",
     es: "No pudimos encontrar una reserva con el ID que proporcionaste.",
+  },
+
+  // BOOKING EMAIL
+  // Email template translations
+  "email.booking.subject": {
+    es: "Bienvenido a Fauna Kite!",
+    en: "Welcome to Fauna Kite!",
+  },
+  "email.booking.title": {
+    es: "Tu reserva está confirmada!",
+    en: "Your booking is confirmed!",
+  },
+  "email.booking.welcome": {
+    es: "Estamos muy contentos de que formes parte de nuestra comunidad y no vemos la hora de estar en el agua.",
+    en: "We're thrilled to have you as part of our community and can't wait to get on the water.",
+  },
+  "email.booking.qr.intro": {
+    es: "A continuación, el código QR de tu reserva para que accedas a los beneficios y descuentos exclusivos de nuestra comunidad.",
+    en: "Below is your booking QR code to access the exclusive benefits and discounts of our community.",
+  },
+  "email.booking.qr.title": {
+    es: "Código QR de tu reserva",
+    en: "Your Booking QR Code",
+  },
+  "email.booking.qr.description": {
+    es: "Accede a tus beneficios utilizando este código QR",
+    en: "Access your benefits using this QR code",
+  },
+  "email.booking.qr.alt": {
+    es: "Código QR del curso",
+    en: "Course QR Code",
+  },
+  "email.booking.cta.benefits": {
+    es: "Conocé tus beneficios",
+    en: "Discover Your Benefits",
+  },
+  "email.booking.pack.title": {
+    es: "Prepará tu mochila!",
+    en: "Pack Your Bag!",
+  },
+  "email.booking.pack.intro": {
+    es: "Durante las clases te damos todo el equipo necesario (traje de neoprene, chaleco y casco). Solo necesitás traer:",
+    en: "During the lessons we provide all necessary equipment (wetsuit, life vest, and helmet). You only need to bring:",
+  },
+  "email.booking.pack.item1": {
+    es: "Ropa cómoda, traje de baño y toalla",
+    en: "Comfortable clothes, swimsuit, and towel",
+  },
+  "email.booking.pack.item2": {
+    es: "Protector solar, lentes de sol y gorra",
+    en: "Sunscreen, sunglasses, and hat",
+  },
+  "email.booking.pack.item3": {
+    es: "Abrigo para las noches (puede refrescar bastante)",
+    en: "Warm clothing for evenings (it can get quite cool)",
+  },
+  "email.booking.pack.item4": {
+    es: "Mate, agua y buena onda",
+    en: "Mate, water, and good vibes",
+  },
+  "email.booking.pack.wetsuit": {
+    es: "Si tenés tu traje de neoprene propio, un 4/3 largo es ideal, o 3/2 en diciembre y enero.",
+    en: "If you have your own wetsuit, a 4/3 full suit is ideal, or 3/2 in December and January.",
+  },
+  "email.booking.location.title": {
+    es: "Cómo Llegar",
+    en: "How to Get Here",
+  },
+  "email.booking.location.description": {
+    es: "Nos encontramos en la playa del Dique Cuesta del Viento, San Juan.",
+    en: "We're located at Cuesta del Viento Dam beach, San Juan.",
+  },
+  "email.booking.location.maps": {
+    es: "📌 Ver en Google Maps",
+    en: "📌 View on Google Maps",
+  },
+  "email.booking.footer.greeting": {
+    es: "Nos vemos en el agua!",
+    en: "See you on the water!",
+  },
+  "email.booking.footer.contact": {
+    es: "Si tenés alguna pregunta, no dudes en ponerte en contacto con nosotros.",
+    en: "If you have any questions, don't hesitate to contact us.",
+  },
+  "email.booking.footer.tagline": {
+    es: "Comunidad de Vientos",
+    en: "Wind Community",
   },
 } as const;
 

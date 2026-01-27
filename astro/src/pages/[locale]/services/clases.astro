@@ -1,6 +1,13 @@
 ---
 import { useTranslations } from "../../../i18n/utils";
 import ServicesLayout from "../../../layouts/services-layout.astro";
+import { Image } from "astro:assets";
+import ClaseAvanzadaPhoto from "../../../assets/what-we-offer/clases/clase-avanzada.webp";
+import ClaseIndividualPhoto from "../../../assets/what-we-offer/clases/clase-individual.webp";
+import ClasePruebaPhoto from "../../../assets/what-we-offer/clases/clase-prueba.webp";
+import ClaseWingfoilPhoto from "../../../assets/what-we-offer/clases/clase-wingfoil.webp";
+import CursoInicialPhoto from "../../../assets/what-we-offer/clases/curso-inicial.webp";
+import CursoIntensivoPhoto from "../../../assets/what-we-offer/clases/curso-intensivo.webp";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -40,9 +47,11 @@ const t = useTranslations(lang);
           data-course-type="curso-inicial"
         >
           <div class="relative md:basis-[33%] flex overflow-hidden">
-            <img
-              src="https://images.pexels.com/photos/10087765/pexels-photo-10087765.jpeg?_gl=1*1prvhrg*_ga*MTk3MDY0MTc3NS4xNzY2MDA1OTE5*_ga_8JE65Q40S6*czE3NjYwNjUyMjkkbzIkZzEkdDE3NjYwNjUyODMkajYkbDAkaDA."
+            <Image
+              src={CursoInicialPhoto}
+              alt={t("services.kite.initial.title")}
               class="md:absolute md:inset-0 rounded-md filter-bluish-dark w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
 
@@ -115,9 +124,11 @@ const t = useTranslations(lang);
           data-course-type="curso-intensivo"
         >
           <div class="relative md:basis-[33%] flex overflow-hidden">
-            <img
-              src="https://images.pexels.com/photos/18555969/pexels-photo-18555969.jpeg?_gl=1*erz5t8*_ga*MTk3MDY0MTc3NS4xNzY2MDA1OTE5*_ga_8JE65Q40S6*czE3NjYwNjUyMjkkbzIkZzEkdDE3NjYwNjU0NzgkajUxJGwwJGgw"
-              class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
+            <Image
+              src={CursoIntensivoPhoto}
+              alt={t("services.kite.intensive.title")}
+              class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover object-[50%_100%]"
+              loading="lazy"
             />
           </div>
 
@@ -194,9 +205,11 @@ const t = useTranslations(lang);
           data-course-type="clase-individual"
         >
           <div class="md:basis-[33%] relative flex overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1578060124065-41f863eb9ebe?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            <Image
+              src={ClaseIndividualPhoto}
+              alt={t("services.kite.class.individual.title")}
               class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
 
@@ -256,9 +269,11 @@ const t = useTranslations(lang);
           data-course-type="clase-avanzada"
         >
           <div class="md:basis-[33%] relative flex overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1620152174993-40a74a7e24c2?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            <Image
+              src={ClaseAvanzadaPhoto}
+              alt={t("services.kite.class.advanced.title")}
               class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
 
@@ -324,9 +339,11 @@ const t = useTranslations(lang);
           data-course-type="clase-prueba"
         >
           <div class="md:basis-[33%] relative flex overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1627988114935-406dadb71002?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
+            <Image
+              src={ClasePruebaPhoto}
+              alt={t("services.kite.class.try.title")}
+              class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover object-[50%_100%]"
+              loading="lazy"
             />
           </div>
 
@@ -396,9 +413,11 @@ const t = useTranslations(lang);
           data-course-type="clase-wingfoil"
         >
           <div class="md:basis-[33%] relative flex overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1666175497565-1c366074f2b2?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            <Image
+              src={ClaseWingfoilPhoto}
+              alt={t("services.wingfoil.class.title")}
               class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
 

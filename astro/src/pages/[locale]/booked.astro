@@ -104,6 +104,8 @@ if (result && !result.error) {
         )
       }
 
+      <input type="hidden" name="locale" value={lang} />
+
       <section class="bg-white rounded-lg shadow-md p-2 md:p-6">
         <div class="flex items-center gap-3 mb-6">
           <span
@@ -650,7 +652,7 @@ if (result && !result.error) {
               name="additionalNotes"
               rows={4}
               placeholder={t(
-                "booked.section5.field.additionalNotes.placeholder"
+                "booked.section5.field.additionalNotes.placeholder",
               )}
               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             ></textarea>
@@ -807,7 +809,7 @@ if (result && !result.error) {
 <script>
   const form = document.getElementById("booked-form") as HTMLFormElement;
   const submitBtn = document.getElementById(
-    "booking-submit-btn"
+    "booking-submit-btn",
   ) as HTMLButtonElement;
 
   if (form && submitBtn) {

@@ -31,6 +31,7 @@ export const book = {
         "cf-turnstile-response": z
           .string()
           .min(1, "Captcha verification required"),
+        locale: z.enum(["es", "en"]),
         // SECTION 1: Personal Data
         customerName: z.string().min(1, "El nombre es requerido"),
         birthDate: z.coerce.date(),
@@ -152,7 +153,7 @@ export const book = {
           `${SITE_URL}/es/verify/${bookingResult.bookingId}`,
         );
 
-        const template = getBookingEmailTemplate();
+        const template = getBookingEmailTemplate(input.locale);
         await sendMail(input.customerEmail, "Bienvenido!", template, qrBuffer);
       } catch (error) {
         console.error("[BOOKING FORM ERROR] send email to customer:", error);

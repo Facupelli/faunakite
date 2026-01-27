@@ -12,7 +12,9 @@ const links = [
   { name: t("footer.navigation.courses"), href: "services/clases" },
   { name: t("footer.navigation.rental"), href: "services/rental" },
   { name: t("footer.navigation.kitecamps"), href: "services/kitecamps" },
-  { name: t("footer.navigation.allies"), href: "allies" },
+  { name: t("footer.navigation.cuesta-del-viento"), href: "cuesta-del-viento" },
+  { name: t("footer.navigation.benefits"), href: "benefits" },
+  { name: t("footer.navigation.news"), href: "news" },
   {
     name: t("footer.navigation.store"),
     href: "https://faunakite.mitiendanube.com/",
@@ -120,68 +122,49 @@ const className = fill
           </div>
 
           {/* Contact */}
-          <div>
+          <div class="lg:col-span-2">
             <h4 class="font-bold tracking-wide uppercase mb-4 text-fauna-sun">
               {t("footer.contact.title")}
             </h4>
-            <ul class="space-y-3 text-sm">
-              <li class="text-white/80">
-                <a
-                  href="https://wa.me/5492646600588"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="transition-colors flex items-center gap-2"
-                >
-                  <span>+54 9 264 6600588</span>
-                  <div class="whatsapp-btn flex items-center justify-center">
-                    <Icon name="whatsapp" />
-                  </div>
-                </a>
-              </li>
-              <li class="text-white/80">
-                <a
-                  href="https://wa.me/5492645828246"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center gap-2 transition-colors"
-                >
-                  <span>+54 9 264 5828246</span>
-                  <div class="whatsapp-btn flex items-center justify-center">
-                    <Icon name="whatsapp" />
-                  </div>
-                </a>
-              </li>
+            <ul class="space-y-3 text-sm lg:grid lg:grid-cols-2">
+              <div class="space-y-3">
+                <li class="text-white/80">
+                  <a
+                    href="https://wa.me/5492646600588"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="transition-colors flex items-center gap-2"
+                  >
+                    <span>+54 9 264 6600588</span>
+                    <div class="whatsapp-btn flex items-center justify-center">
+                      <Icon name="whatsapp" />
+                    </div>
+                  </a>
+                </li>
+                <li class="text-white/80">
+                  <a
+                    href="https://wa.me/5492645828246"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-2 transition-colors"
+                  >
+                    <span>+54 9 264 5828246</span>
+                    <div class="whatsapp-btn flex items-center justify-center">
+                      <Icon name="whatsapp" />
+                    </div>
+                  </a>
+                </li>
+              </div>
 
-              <li class="text-white/80">
-                <a href="mailto:hola@faunakite.com" class="transition-colors">
-                  faunacomunidad@gmail.com
-                </a>
-              </li>
-              <li class="text-white/80">San Juan, Argentina</li>
+              <div class="space-y-3">
+                <li class="text-white/80">
+                  <a href="mailto:hola@faunakite.com" class="transition-colors">
+                    faunacomunidad@gmail.com
+                  </a>
+                </li>
+                <li class="text-white/80">San Juan, Argentina</li>
+              </div>
             </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h4 class="font-bold tracking-wide uppercase mb-4 text-fauna-sun">
-              {t("footer.newsletter.title")}
-            </h4>
-            <p class="text-white/80 text-sm mb-4">
-              {t("footer.newsletter.subtitle")}
-            </p>
-            <form class="flex flex-col gap-2">
-              <input
-                type="email"
-                placeholder="Tu email"
-                class="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-fauna-sun focus:bg-white/15 transition-colors text-sm"
-              />
-              <button
-                type="submit"
-                class="px-4 py-2 bg-fauna-sun text-primary font-bold tracking-wide uppercase text-sm rounded-lg/90 transition-colors"
-              >
-                {t("footer.newsletter.button")}
-              </button>
-            </form>
           </div>
         </div>
       </div>

@@ -26,7 +26,16 @@ export default function Carousel({
   showNavigation = true,
   showDots = true,
 }: CarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop, align });
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop,
+    align,
+    // Prevent momentum scrolling which can cause zoom effects
+    dragFree: false,
+    // Ensure smooth container transitions
+    duration: 25,
+    // Skip snaps to prevent recalculation jumps
+    skipSnaps: false,
+  });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -62,7 +71,10 @@ export default function Carousel({
 
     onSelect();
     emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
+
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
   }, [emblaApi, onSelect]);
 
   // Map breakpoints and columns to complete Tailwind classes
@@ -115,10 +127,12 @@ export default function Carousel({
       {/* Mobile/Carousel View */}
       <div className={clsx("relative h-full", getHideCarouselClass())}>
         <div className="overflow-hidden h-full" ref={emblaRef}>
-          <div className="flex">
+          <div className="flex h-full">
             {childrenArray.map((child, index) => (
-              <div key={index} className="flex-[0_0_100%] min-w-0 px-4 py-4">
-                <div className="w-full h-full">{child}</div>
+              <div key={index} className="flex-[0_0_100%] min-w-0 px-2 h-full">
+                <div className="w-full h-full flex items-center justify-center">
+                  {child}
+                </div>
               </div>
             ))}
           </div>
@@ -178,7 +192,7 @@ export default function Carousel({
                   "size-2 rounded-full transition-all",
                   index === selectedIndex
                     ? "bg-gray-800 w-6"
-                    : "bg-gray-300 hover:bg-gray-400"
+                    : "bg-gray-300 hover:bg-gray-400",
                 )}
                 onClick={() => emblaApi?.scrollTo(index)}
                 aria-label={`Go to slide ${index + 1}`}
@@ -195,7 +209,7 @@ export default function Carousel({
             "hidden",
             getGridClasses(),
             gap,
-            "place-items-center"
+            "place-items-center",
           )}
         >
           {childrenArray}

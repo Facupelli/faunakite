@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import aboutUsImage from "../assets/about-us-photo.webp";
 import { useTranslations } from "../i18n/utils";
 import Trees from "./svg/trees.astro";
 
@@ -22,15 +20,6 @@ const t = useTranslations(lang);
       </h2>
 
       <div class="grid md:grid-cols-3 place-items-center gap-8">
-        <!-- <div class="md:hidden">
-          <Image
-            src={aboutUsImage}
-            alt="About us image"
-            class="w-full h-full object-contain relative z-40"
-            fetchpriority="auto"
-          />
-        </div> -->
-
         <div class="space-y-4 md:col-span-2">
           <p
             class="text-lg md:text-xl leading-relaxed text-pretty text-brand-blue md:p-4"

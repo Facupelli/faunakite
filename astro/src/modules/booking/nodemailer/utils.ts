@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 import { GOOGLE_APP_PASSWORD } from "astro:env/server";
 import { SITE_URL } from "astro:env/client";
+import { useTranslations } from "../../../i18n/utils";
 
 export class NodemailerError extends Error {
   constructor(
@@ -50,14 +51,16 @@ export const sendMail = async (
   }
 };
 
-export function getBookingEmailTemplate() {
+export function getBookingEmailTemplate(locale: "es" | "en") {
+  const t = useTranslations(locale);
+
   return `
   <!DOCTYPE html>
-<html lang="en">
+<html lang="${locale}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enrollment Confirmation - Fauna Kite</title>
+    <title>${t("email.booking.title")}</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f4f4f4;">
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f4;">
@@ -77,10 +80,10 @@ export function getBookingEmailTemplate() {
                     <tr>
                         <td style="padding: 40px 40px 20px 40px;">
                             <h1 style="margin: 0 0 20px 0; color: #051d26; font-size: 28px; font-weight: bold; line-height: 1.3;">
-                               Tu reserva está confirmada!
+                               ${t("email.booking.title")}
                             </h1>
                             <p style="margin: 0 0 30px 0; color: #3c2005; font-size: 16px; line-height: 1.6;">
-                                Estamos muy contentos de que formes parte de nuestra comunidad y no vemos la hora de estar en el agua.
+                                ${t("email.booking.welcome")}
                             </p>
                         </td>
                     </tr>
@@ -88,7 +91,7 @@ export function getBookingEmailTemplate() {
                     <tr>
                         <td style="padding: 0px 40px 0px 40px;">
                             <p style="margin: 0 0 30px 0; color: #3c2005; font-size: 16px; line-height: 1.6;">
-                                A continuación, el código QR de tu reserva para que accedas a los beneficios y descuentos exlusivos de nuestra comunidad.
+                               ${t("email.booking.qr.intro")}
                             </p>
                         </td>
                     </tr>
@@ -100,10 +103,10 @@ export function getBookingEmailTemplate() {
                                 <tr>
                                     <td style="padding: 30px; text-align: center;">
                                         <h2 style="margin: 0 0 15px 0; color: #051d26; font-size: 20px; font-weight: bold;">
-                                            Codigo QR de tu reserva
+                                            ${t("email.booking.qr.title")}
                                         </h2>
                                         <p style="margin: 0 0 25px 0; color: #3c2005; font-size: 14px; line-height: 1.5;">
-                                            Accede a tus beneficios utilizando este código QR
+                                           ${t("email.booking.qr.description")}
                                         </p>
                                         
                                         <!-- QR Code Image -->
@@ -117,8 +120,8 @@ export function getBookingEmailTemplate() {
                     <!-- CTA Button -->
                     <tr>
                         <td style="padding: 20px 40px 30px 40px; text-align: center;">
-                            <a href="${SITE_URL}/es/allies" target="_blank" style="display: inline-block; padding: 16px 40px; background-color: #d7f9f9; color: #051d26; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0, 0.2);">
-                                Conocé tus beneficios
+                            <a href="${SITE_URL}/es/benefits" target="_blank" style="display: inline-block; padding: 16px 40px; background-color: #d7f9f9; color: #051d26; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0, 0.2);">
+                               ${t("email.booking.cta.benefits")}
                             </a>
                         </td>
                     </tr>
@@ -134,19 +137,19 @@ export function getBookingEmailTemplate() {
                     <tr>
                         <td style="padding: 35px 40px 20px 40px;">
                             <h2 style="margin: 0 0 20px 0; color: #051d26; font-size: 22px; font-weight: bold;">
-                                Prepará tu mochila!
+                                 ${t("email.booking.pack.title")}
                             </h2>
                             <p style="margin: 0 0 15px 0; color: #3c2005; font-size: 15px; line-height: 1.6;">
-                                Durante las clases te damos todo el equipo necesario (traje de neoprene, chaleco y casco). Solo necesitás traer:
+                               ${t("email.booking.pack.intro")}
                             </p>
                             <ul style="margin: 0 0 20px 20px; padding: 0; color: #3c2005; font-size: 15px; line-height: 1.8;">
-                                <li style="margin-bottom: 8px;">Ropa cómoda, traje de baño y toalla</li>
-                                <li style="margin-bottom: 8px;">Protector solar, lentes de sol y gorra</li>
-                                <li style="margin-bottom: 8px;">Abrigo para las noches (puede refrescar bastante)</li>
-                                <li style="margin-bottom: 8px;">Mate, agua y buena onda</li>
+                                <li style="margin-bottom: 8px;">${t("email.booking.pack.item1")}</li>
+                                <li style="margin-bottom: 8px;">${t("email.booking.pack.item2")}</li>
+                                <li style="margin-bottom: 8px;">${t("email.booking.pack.item3")}</li>
+                                <li style="margin-bottom: 8px;">${t("email.booking.pack.item4")}</li>
                             </ul>
                             <p style="margin: 0; color: #666666; font-size: 14px; line-height: 1.5; font-style: italic;">
-                                Si tenés tu traje de neoprene propio, un 4/3 largo es ideal, o 3/2 en diciembre y enero.
+                                ${t("email.booking.pack.wetsuit")}
                             </p>
                         </td>
                     </tr>
@@ -155,13 +158,13 @@ export function getBookingEmailTemplate() {
                     <tr>
                         <td style="padding: 20px 40px 35px 40px;">
                             <h2 style="margin: 0 0 15px 0; color: #051d26; font-size: 22px; font-weight: bold;">
-                                Cómo Llegar
+                              ${t("email.booking.location.title")}
                             </h2>
                             <p style="margin: 0 0 15px 0; color: #3c2005; font-size: 15px; line-height: 1.6;">
-                                Nos encontramos en la playa del Dique Cuesta del Viento, San Juan.
+                               ${t("email.booking.location.description")}
                             </p>
                             <a href="https://maps.app.goo.gl/2GH4EQ4TK24zeBLp7" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #f8f9fa; color: #051d26; text-decoration: none; border-radius: 6px; font-size: 15px; font-weight: bold; border: 2px solid #051d26;">
-                                📌 Ver en Google Maps
+                                 ${t("email.booking.location.maps")}
                             </a>
                         </td>
                     </tr>
@@ -177,10 +180,10 @@ export function getBookingEmailTemplate() {
                     <tr>
                         <td style="padding: 35px 40px 40px 40px;">
                             <p style="margin: 0 0 15px 0; color: #3c2005; font-size: 15px; line-height: 1.6;">
-                                Nos vemos en el agua!
+                               ${t("email.booking.footer.greeting")}
                             </p>
                             <p style="margin: 0; color: #666666; font-size: 14px; line-height: 1.5;">
-                              Si tenes alguna pregunta, no dudes en ponerte en contacto con nosotros.
+                             ${t("email.booking.footer.contact")}
                             </p>
                         </td>
                     </tr>
@@ -192,7 +195,7 @@ export function getBookingEmailTemplate() {
                                 <strong>Fauna Kite</strong>
                             </p>
                             <p style="margin: 10px 0 0 0; color: #ffffff; font-size: 13px; line-height: 1.5;">
-                                Comunidad de Vientos
+                                ${t("email.booking.footer.tagline")}
                             </p>
                         </td>
                     </tr>
