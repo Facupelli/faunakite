@@ -86,6 +86,13 @@ const team = [
       name="twitter:image"
       content="https://faunakite.com/og/fauna-about.jpg"
     />
+    <!-- performance -->
+    <link
+      rel="preload"
+      href="/headers/header-2.webp"
+      as="image"
+      fetchpriority="high"
+    />
   </Fragment>
 
   <header>
@@ -96,7 +103,7 @@ const team = [
     <div class="relative w-full h-[220px] md:h-[300px]">
       <div
         class="absolute inset-0 bg-no-repeat bg-position-[bottom_40%_right_20%] bg-cover"
-        style="background-image: url('/headers/header-2.jpeg');"
+        style="background-image: url('/headers/header-2.webp');"
       >
       </div>
 

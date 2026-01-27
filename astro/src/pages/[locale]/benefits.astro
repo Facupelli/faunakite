@@ -74,6 +74,14 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
         </>
       )
     }
+
+    <!-- performance -->
+    <link
+      rel="preload"
+      href="/headers/header-1.webp"
+      as="image"
+      fetchpriority="high"
+    />
   </Fragment>
 
   <header>
@@ -84,7 +92,7 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
     <div class="relative w-full h-[220px] md:h-[300px]">
       <div
         class="absolute inset-0 bg-no-repeat bg-position-[bottom_60%_right_20%] bg-cover"
-        style="background-image: url('/headers/header-1.jpeg');"
+        style="background-image: url('/headers/header-1.webp');"
       >
       </div>
 
