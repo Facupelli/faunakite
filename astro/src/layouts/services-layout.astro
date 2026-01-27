@@ -6,6 +6,8 @@ import AboutUsUnderSeparator from "../components/svg/about-us-under-separator.as
 import TheSpotTopSeparator from "../components/svg/the-spot-top-separator.astro";
 import { useTranslations } from "../i18n/utils";
 import Layout from "./Layout.astro";
+import headerImage from '../assets/headers/header-4.webp';
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -48,8 +50,6 @@ const t = useTranslations(lang);
       name="twitter:image"
       content="https://faunakite.com/og/fauna-services.jpg"
     />
-    <!-- performance -->
-    <link rel="preload" href="/headers/header-4.webp" as="image" fetchpriority="high" />
     <!-- SCHEMA MARKUP FOR SERVICES -->
     <script type="application/ld+json">
     {
@@ -117,10 +117,16 @@ const t = useTranslations(lang);
 
   <main class="min-h-dvh bg-brand-light">
     <div class="relative w-full h-[220px] md:h-[300px]">
-      <div
-        class="absolute inset-0 bg-no-repeat bg-position-[bottom_42%_right_50%] bg-cover"
-        style="background-image: url('/headers/header-4.webp');"
-      >
+      <div class="absolute inset-0">
+        <Image 
+          src={headerImage}
+          alt="Header background"
+          fetchpriority="high"
+          class="w-full h-full object-cover object-[50%_58%]"
+          widths={[640, 768, 1024, 1280, 1536]}
+          sizes="100vw"
+          quality={92}
+        />
       </div>
 
       <div

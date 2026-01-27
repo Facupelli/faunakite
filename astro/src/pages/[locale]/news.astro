@@ -6,6 +6,8 @@ import Nav from "../../components/nav.astro";
 import TheSpotTopSeparator from "../../components/svg/the-spot-top-separator.astro";
 import Footer from "../../components/footer.astro";
 import { urlFor } from "../../modules/news/image.utils";
+import { Image } from "astro:assets";
+import headerImage from "../../assets/hero/hero-desktop.webp";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -74,10 +76,16 @@ function getImageSrcSet(image: any, sizes: number[]) {
 
   <main class="min-h-dvh bg-brand-light">
     <div class="relative w-full h-[220px] md:h-[300px]">
-      <div
-        class="absolute inset-0 bg-no-repeat bg-position-[bottom_30%_right_20%] bg-cover"
-        style="background-image: url('/hero-desktop-2.jpeg');"
-      >
+      <div class="absolute inset-0">
+        <Image
+          src={headerImage}
+          alt="Header background"
+          fetchpriority="high"
+          class="w-full h-full object-cover object-[80%_70%]"
+          widths={[640, 768, 1024, 1280, 1920]}
+          sizes="100vw"
+          quality={92}
+        />
       </div>
 
       <div

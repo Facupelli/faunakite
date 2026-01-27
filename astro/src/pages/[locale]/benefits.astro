@@ -8,6 +8,8 @@ import TheSpotTopSeparator from "../../components/svg/the-spot-top-separator.ast
 import AboutUsUnderSeparator from "../../components/svg/about-us-under-separator.astro";
 import { useTranslations } from "../../i18n/utils";
 import { Icon } from "astro-icon/components";
+import headerImage from "../../assets/headers/header-1.webp";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -74,14 +76,6 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
         </>
       )
     }
-
-    <!-- performance -->
-    <link
-      rel="preload"
-      href="/headers/header-1.webp"
-      as="image"
-      fetchpriority="high"
-    />
   </Fragment>
 
   <header>
@@ -90,10 +84,16 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
 
   <main class="min-h-dvh bg-brand-light">
     <div class="relative w-full h-[220px] md:h-[300px]">
-      <div
-        class="absolute inset-0 bg-no-repeat bg-position-[bottom_60%_right_20%] bg-cover"
-        style="background-image: url('/headers/header-1.webp');"
-      >
+      <div class="absolute inset-0">
+        <Image
+          src={headerImage}
+          alt="Header background"
+          fetchpriority="high"
+          class="w-full h-full object-cover object-[80%_40%]"
+          widths={[640, 768, 1024, 1280, 1536]}
+          sizes="100vw"
+          quality={92}
+        />
       </div>
 
       <div

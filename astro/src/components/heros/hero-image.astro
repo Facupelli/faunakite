@@ -1,6 +1,9 @@
 ---
 import { useTranslations } from "../../i18n/utils";
 import BrushStain from "../../components/svg/newsletter-background.astro";
+import { Image } from "astro:assets";
+import desktopHeroImage from "../../assets/hero/hero-desktop.webp";
+import mobileHeroImage from "../../assets/hero/hero-mobile.webp";
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
@@ -9,10 +12,17 @@ const t = useTranslations(lang);
 <section
   class="relative h-dvh w-full flex items-center px-0 md:px-20 bg-brand-blue"
 >
-  <!-- Mobile Background Image (hidden on md and up) -->
-  <div
-    class="absolute inset-0 md:hidden bg-no-repeat bg-position-[center_right_20%] bg-cover bg-[url('/hero-mobile-2.webp')]"
-  >
+  <div class="absolute inset-0">
+    <Image
+      src={mobileHeroImage}
+      alt="Header background"
+      fetchpriority="high"
+      class="w-full h-full md:hidden object-cover object-[80%_50%]"
+      widths={[400, 600]}
+      sizes="(max-width: 768px) 100vw, 0px"
+      quality={95}
+      format="webp"
+    />
   </div>
 
   <!-- Mobile Overlay (hidden on md and up) -->
@@ -58,9 +68,15 @@ const t = useTranslations(lang);
     class="absolute inset-0 z-10 bg-linear-to-r from-brand-blue/50 to-transparent"
   >
   </div>
-  <div
-    class="absolute inset-0 z-0 md:block hidden bg-no-repeat bg-right bg-cover"
-    style="background-image: url('/hero-desktop-2.jpeg');"
-  >
+
+  <div class="absolute inset-0">
+    <Image
+      src={desktopHeroImage}
+      alt="Header background"
+      fetchpriority="high"
+      class="w-full h-full z-0 md:block hidden object-cover"
+      widths={[1920, 2400, 3000]}
+      sizes="100vw"
+    />
   </div>
 </section>
