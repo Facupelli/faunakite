@@ -4,6 +4,8 @@ import { useTranslations } from "../i18n/utils";
 import { actions } from "astro:actions";
 import { isInputError } from "astro:actions";
 
+const isProd = import.meta.env.PROD;
+
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
 
@@ -165,8 +167,15 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
   </section>
 </div>
 
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
-></script>
+{
+  isProd && (
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    />
+  )
+}
 
 <script>
   import { actions } from "astro:actions";
@@ -174,14 +183,14 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
   function initNewsletter() {
     const form = document.getElementById("newsletter-form") as HTMLFormElement;
     const dialog = document.getElementById(
-      "newsletterDialog"
+      "newsletterDialog",
     ) as HTMLDialogElement;
     const title = document.getElementById("dialogTitle") as HTMLHeadingElement;
     const message = document.getElementById(
-      "dialogMessage"
+      "dialogMessage",
     ) as HTMLParagraphElement;
     const iconContainer = document.getElementById(
-      "iconContainer"
+      "iconContainer",
     ) as HTMLDivElement;
     const iconSuccess = document.getElementById("iconSuccess") as HTMLElement;
     const iconError = document.getElementById("iconError") as HTMLElement;
@@ -246,10 +255,10 @@ const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
       e.preventDefault();
 
       const submitButton = form.querySelector(
-        'button[type="submit"]'
+        'button[type="submit"]',
       ) as HTMLButtonElement;
       const emailInput = form.querySelector(
-        'input[name="email"]'
+        'input[name="email"]',
       ) as HTMLInputElement;
 
       submitButton.disabled = true;
