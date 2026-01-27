@@ -98,7 +98,14 @@ const images = [
 <script>
   import { initializeWhatsAppButton } from "../../../modules/utils/whatsapp";
 
+  const rentalMessage = `¡Hola! Mi nombre es: _____
+Quisiera consultar por *Rental de equipo* en *Cuesta del Viento*
+Puedo navegar con seguridad y ceñir sin problema: *SI/NO*
+Necesitaría alquilar: *Equipo Completo* / *Solo kite y barra*
+Fechas: _____
+¡Gracias!`;
+
   document.addEventListener("astro:page-load", () => {
-    initializeWhatsAppButton(".whatsapp-btn", "");
+    initializeWhatsAppButton(".whatsapp-btn", rentalMessage);
   });
 </script>

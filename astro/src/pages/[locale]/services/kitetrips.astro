@@ -263,7 +263,7 @@ const activities = [
           <a
             target="_blank"
             rel="noopener noreferrer"
-            class="whatsapp-btn bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
+            class="whatsapp-btn-2 bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
           >
             {t("services.kitetrips.cta.travel")}
           </a>
@@ -278,5 +278,6 @@ const activities = [
 
   document.addEventListener("astro:page-load", () => {
     initializeWhatsAppButton(".whatsapp-btn", "");
+    initializeWhatsAppButton(".whatsapp-btn-2", "");
   });
 </script>

@@ -108,7 +108,9 @@ Fecha: ${date}
 
       <div class="flex justify-center md:justify-start pt-4">
         <a
-          class="bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
+          class="whatsapp-btn bg-brand-red hover:bg-white hover:text-brand-red border hover:border-brand-red transition-colors duration-200 cursor-pointer text-white text-base px-6 py-3 font-bold rounded-2xl"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {t("services.kitecamps.cta.book")}
         </a>
@@ -208,3 +210,11 @@ Fecha: ${date}
     </div>
   </div>
 </ServicesLayout>
+
+<script>
+  import { initializeWhatsAppButton } from "../../../modules/utils/whatsapp";
+
+  document.addEventListener("astro:page-load", () => {
+    initializeWhatsAppButton(".whatsapp-btn", "");
+  });
+</script>
