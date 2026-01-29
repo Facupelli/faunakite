@@ -185,9 +185,15 @@ const t = useTranslations(lang);
             </div>
 
             <div class="flex items-center gap-10 pt-6">
-              <p class="basis-1/4 space-y-4 text-lg text-brand-blue">
-                {t("the-spot.impression.p2")}
-              </p>
+              <div
+                class="basis-1/4 flex flex-col justify-center items-center gap-6"
+              >
+                <Icon name="wind-2" class="size-28 text-celeste-3" />
+
+                <p class="space-y-4 text-lg text-brand-blue">
+                  {t("the-spot.impression.p2")}
+                </p>
+              </div>
               <div class="basis-3/4">
                 <div class="relative w-full grid md:grid-cols-2 gap-10">
                   <div class="w-full h-full">
