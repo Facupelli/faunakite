@@ -11,6 +11,7 @@ import TheSpot1Photo from "../../assets/the-spot/the-spot-1.webp";
 import TheSpot2Photo from "../../assets/the-spot/the-spot-2.webp";
 import TheSpot3Photo from "../../assets/the-spot/the-spot-3.webp";
 import TheSpot4Photo from "../../assets/the-spot/the-spot-4.webp";
+import FlyingPhoto from "../../assets/the-spot/flying.webp";
 import { Image } from "astro:assets";
 import { getImage } from "astro:assets";
 import headerImage from "../../assets/headers/header-3.webp";
@@ -453,10 +454,13 @@ const t = useTranslations(lang);
         </div>
 
         <div class="relative w-full h-dvh">
-          <div
-            class="absolute inset-0 bg-no-repeat md:bg-position-[bottom_70%_right_50%] bg-position-[bottom_70%_right_35%] bg-cover"
-            style="background-image: url('/cuesta-del-viento/flying.png');"
-          >
+          <div class="absolute inset-0">
+            <Image
+              src={FlyingPhoto}
+              alt="Vista aérea del Dique Cuesta del Viento - lugar perfecto para kitesurf"
+              class="h-full object-cover w-full object-[65%_30%] md:object-[50%_30%]"
+              loading="lazy"
+            />
           </div>
 
           <div class="absolute left-0 bottom-0 w-full text-celeste-3 z-20">
