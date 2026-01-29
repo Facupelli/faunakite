@@ -170,7 +170,7 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
                         ally.link !== undefined) && (
                         <div class="absolute top-[300px] right-4 flex gap-2 items-center">
                           {ally.whatsappLink !== undefined && (
-                            <div class="bg-brand-red border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
+                            <div class="bg-[#25D366] border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
                               <a
                                 href={ally.whatsappLink}
                                 target="_blank"
@@ -185,7 +185,7 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
                           )}
 
                           {ally.link !== undefined && (
-                            <div class="bg-brand-red border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
+                            <div class="bg-brand-blue border-4 border-white size-10 rounded-full text-white flex items-center justify-center">
                               <a
                                 href={ally.link}
                                 target="_blank"
@@ -215,16 +215,18 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
                       )}
 
                       <div class="p-4 md:p-6 space-y-4">
-                        <h3 class="text-2xl font-bold">{ally.title}</h3>
-                        <p>{ally.description}</p>
+                        <div class="flex gap-2 items-center">
+                          <h3 class="text-2xl font-bold">{ally.title}</h3>
+                          {ally.discount !== undefined && (
+                            <div>
+                              <span class="py-2 px-4 bg-brand-light text-brand-blue rounded-2xl">
+                                {ally.discount?.value}
+                              </span>
+                            </div>
+                          )}
+                        </div>
 
-                        {ally.discount !== undefined && (
-                          <div>
-                            <span class="py-2 px-4 bg-brand-light text-brand-blue rounded-2xl">
-                              {ally.discount?.value}
-                            </span>
-                          </div>
-                        )}
+                        <p>{ally.description}</p>
 
                         {ally.phone !== undefined && (
                           <div>
