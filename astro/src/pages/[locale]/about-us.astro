@@ -297,38 +297,42 @@ const team = [
 
         <div class="bg-celeste-3 pb-10">
           <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-            <p class="text-2xl font-bold text-center md:text-left">
-              {t("about.present.title")}
-            </p>
-            <div class="grid place-content-center py-10">
-              <div
-                class="space-y-8 text-xl md:text-2xl leading-relaxed tracking-wide text-center"
-              >
-                <p>
-                  {t("about.present.p1")}
-                </p>
-                <p>
-                  {t("about.present.p2")}
-                </p>
+            <div class="flex items-center gap-30 py-10">
+              <div class="basis-3/5 grid place-content-center">
+                <div class="space-y-8 text-xl leading-relaxed tracking-wide">
+                  <p class="text-center text-2xl font-bold md:text-left">
+                    {t("about.present.title")}
+                  </p>
+                  <p>
+                    {t("about.present.p1")}
+                  </p>
+                  <p>
+                    {t("about.present.p2")}
+                  </p>
 
-                <p>
-                  {t("about.present.p3")}
-                </p>
+                  <p>
+                    {t("about.present.p3")}
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <div class="flex justify-end max-w-6xl mx-auto">
-            <div
-              class="w-full max-w-[200px] px-4 md:max-w-[300px] aspect-[3.45/1]"
-            >
-              <Image
-                decoding="async"
-                loading="lazy"
-                src={logo}
-                alt="FAUNA Kite - Logo blanco de la escuela de kitesurf"
-                class="object-contain"
-              />
+              <div class="basis-2/5">
+                <div
+                  class="relative w-full aspect-9/16 rounded-2xl overflow-hidden shadow-news-card"
+                >
+                  <video
+                    poster="/logos/logo-blanco-square.png"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    class="absolute inset-0 w-full h-full object-cover"
+                  >
+                    <source src="/videos/about.webm" type="video/webm" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
             </div>
           </div>
         </div>
