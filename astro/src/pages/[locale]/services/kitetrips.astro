@@ -276,8 +276,12 @@ const activities = [
 <script>
   import { initializeWhatsAppButton } from "../../../modules/utils/whatsapp";
 
+  const kitetripMessage = `¡Hola! Mi nombre es: _____
+Quisiera consultar por por el próximo *KiteTrip* a Sicilia
+¡Gracias!`;
+
   document.addEventListener("astro:page-load", () => {
-    initializeWhatsAppButton(".whatsapp-btn", "");
-    initializeWhatsAppButton(".whatsapp-btn-2", "");
+    initializeWhatsAppButton(".whatsapp-btn", kitetripMessage);
+    initializeWhatsAppButton(".whatsapp-btn-2", kitetripMessage);
   });
 </script>

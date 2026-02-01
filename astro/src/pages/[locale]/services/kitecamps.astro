@@ -214,7 +214,11 @@ Fecha: ${date}
 <script>
   import { initializeWhatsAppButton } from "../../../modules/utils/whatsapp";
 
+  const kitecampMessage = `¡Hola! Mi nombre es: _____
+Quisiera consultar por por el próximo *KiteCamp*
+¡Gracias!`;
+
   document.addEventListener("astro:page-load", () => {
-    initializeWhatsAppButton(".whatsapp-btn", "");
+    initializeWhatsAppButton(".whatsapp-btn", kitecampMessage);
   });
 </script>
