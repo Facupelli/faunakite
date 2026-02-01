@@ -612,6 +612,10 @@ export const ui = {
     es: "NOSOTROS",
     en: "ABOUT US",
   },
+  "about.cards.language": {
+    es: "IDIOMAS",
+    en: "LANGUAGES",
+  },
 
   // ======================
   // ABOUT – INTRO
@@ -641,20 +645,84 @@ export const ui = {
   // ABOUT – TEAM MEMBERS
   // ======================
   "about.team.lucca.position": {
-    es: "Co-fundador & Instructor",
-    en: "Co-founder & Instructor",
+    es: "Co-Fundador & Instructor",
+    en: "Co-Founder & Instructor",
   },
   "about.team.lucca.description": {
-    es: "El primero en descubrir el kite en 2016 y enamorarse de Cuesta del Viento. Su pasión por enseñar y compartir lo que ama es lo que dio origen a FAUNA.",
-    en: "The first to discover kiteboarding in 2016 and fall in love with Cuesta del Viento. His passion for teaching and sharing what he loves is what gave birth to FAUNA.",
+    es: "Instructor de ski desde hace más de 10 años. Descubrió el kite en 2016 y desde 2019 persigue el viento enseñando el deporte: Desde Hawaii, a Sicilia y Australia; hasta fundar Fauna en Cuesta del Viento en 2024. Paciente, didáctico y técnico a la hora de explicar.",
+    en: "Ski instructor for over 10 years. Discovered kiteboarding in 2016 and since 2019 has been chasing the wind teaching the sport: From Hawaii, to Sicily and Australia; until founding Fauna in Cuesta del Viento in 2024. Patient, didactic, and technical when explaining.",
+  },
+  "about.team.lucca.languages": {
+    es: "ES, EN, IT, FR",
+    en: "ES, EN, IT, FR",
   },
   "about.team.facu.position": {
-    es: "Co-fundador & Instructor",
-    en: "Co-founder & Instructor",
+    es: "Co-Fundador & Instructor",
+    en: "Co-Founder & Instructor",
   },
   "about.team.facu.description": {
-    es: "Se sumó al kite tras la invitación de Lucca y juntos comenzaron esta aventura. Su vocación por la enseñanza hace que cada alumno se sienta parte de la familia.",
-    en: "He joined kiteboarding after Lucca’s invitation and together they began this adventure. His vocation for teaching makes every student feel like part of the family.",
+    es: "Se dedicó a la educación y coordinación durante muchos años. Apasionado por el ski, llegó al Kitesurf en el 2019. Deporte que enseña desde hace 4 años en Cuesta del viento y Europa; hasta formar Fauna en el 2024. Ama el ejercicio de enseñanza-aprendizaje, es divertido y super paciente.",
+    en: "Dedicated to education and coordination for many years. Passionate about skiing, he came to kitesurfing in 2019. A sport he has been teaching for 4 years in Cuesta del Viento and Europe; until forming Fauna in 2024. He loves the teaching-learning exercise, is fun and super patient.",
+  },
+  "about.team.facu.languages": {
+    es: "ES, IT",
+    en: "ES, IT",
+  },
+  "about.team.augusto.position": {
+    es: "Instructor",
+    en: "Instructor",
+  },
+  "about.team.augusto.description": {
+    es: "Aprendió a navegar hace más de 10 años en Cuesta del Viento, spot que eligió para enseñar el deporte. Le gusta crear una relación cercana con los alumnos y motivarlos en el aprendizaje. Su virtud: la paciencia.",
+    en: "Learned to kiteboard over 10 years ago in Cuesta del Viento, the spot he chose to teach the sport. He likes to create a close relationship with students and motivate them in their learning. His virtue: patience.",
+  },
+  "about.team.augusto.languages": {
+    es: "ES, EN",
+    en: "ES, EN",
+  },
+  "about.team.mikael.position": {
+    es: "Instructor",
+    en: "Instructor",
+  },
+  "about.team.mikael.description": {
+    es: "Fue profesor de secundaria y de ski, hoy enseña en el agua. Vive el kitesurf a fondo y disfruta tanto iniciar a nuevos riders como ayudar a otros a mejorar, siempre con calma, confianza y pasión por el viento.",
+    en: "He was a high school and ski teacher, today he teaches on the water. He lives kitesurfing to the fullest and enjoys both initiating new riders and helping others improve, always with calm, confidence, and passion for the wind.",
+  },
+  "about.team.mikael.languages": {
+    es: "DE, FR, EN, ES",
+    en: "DE, FR, EN, ES",
+  },
+  "about.team.franco.position": {
+    es: "Instructor",
+    en: "Instructor",
+  },
+  "about.team.franco.description": {
+    es: "Conoció el kite en 2018 y lo enseña en Sicilia y Cuesta del Viento. Médico durante el año e instructor de kite en el verano. Metódico en la enseñanza, siempre velando por el cuidado y la seguridad.",
+    en: "Discovered kiteboarding in 2018 and teaches it in Sicily and Cuesta del Viento. A doctor during the year and kite instructor in the summer. Methodical in teaching, always ensuring care and safety.",
+  },
+  "about.team.franco.languages": {
+    es: "ES, EN, IT",
+    en: "ES, EN, IT",
+  },
+  "about.team.ema.position": {
+    es: "Community Manager",
+    en: "Community Manager",
+  },
+  "about.team.ema.description": {
+    es: "Estudia comunicación y le encanta el diseño y crear contenido audiovisual. Conoció Cuesta del Viento en el 2023 y se adentró en el kitesurf enamorándose del deporte y de su entorno.",
+    en: "Studies communication and loves design and creating audiovisual content. Discovered Cuesta del Viento in 2023 and delved into kitesurfing, falling in love with the sport and its surroundings.",
+  },
+  "about.team.pili.position": {
+    es: "Instructora",
+    en: "Instructor",
+  },
+  "about.team.pili.description": {
+    es: "Rider local. Navega desde 2015 y es instructora desde hace 6 años. Durante el invierno, viaja a otros spots a navegar y dar clases de kite: Brasil, Tarifa y Sicilia. Ama acompañar el proceso de aprendizaje y",
+    en: "Local rider. Has been kiteboarding since 2015 and an instructor for 6 years. During the winter, travels to other spots to kite and teach classes: Brazil, Tarifa, and Sicily. Loves accompanying the learning process and",
+  },
+  "about.team.pili.languages": {
+    es: "ES",
+    en: "ES",
   },
 
   // ======================
@@ -721,6 +789,10 @@ export const ui = {
     es: "En el corazón de la precordillera, a 2 horas de la Ciudad de San Juan, entre montañas áridas que parecen no tener fin, se encuentra Cuesta del Viento: Un lago rodeado de cerros rojizos donde el viento tiene una presencia imponente. Para muchos, uno de los mejores spots del mundo para hacer kite.",
     en: "In the heart of the pre-mountain range, two hours from the city of San Juan, among arid mountains that seem endless, lies Cuesta del Viento: a lake surrounded by reddish hills where the wind has an imposing presence. For many, one of the best kitesurf spots in the world.",
   },
+  "the-spot.masonry.button": {
+    es: "Ver todas las fotos",
+    en: "See all photos",
+  },
 
   // ======================
   // FIRST IMPRESSION
@@ -731,12 +803,16 @@ export const ui = {
     en: "A Unique Place",
   },
   "the-spot.impression.p1": {
-    es: "Quienes lo visitan por primera vez lo dicen siempre: “Siento que estoy en otro planeta”. Y algo de eso hay. Las montañas cambian de color con el pasar del día, las noches se cubren de estrellas que parecen estar al alcance de las manos, y el viento, el principal protagonista llega casi cada día, puntual, y junto con él navegantes y viajeros de todas partes. ",
-    en: "Those who visit it for the first time always say the same thing: “I feel like I’m on another planet”. And there’s some truth to that. The mountains change color throughout the day, nights are filled with stars that seem within reach, and the wind — the main protagonist — arrives almost every day, right on time, bringing riders and travelers from all over the world. This magical setting, the energy of the place, and a community that welcomes you with open arms are hard to explain unless you experience them.",
+    es: "Quienes lo visitan por primera vez lo dicen siempre: “Siento que estoy en otro planeta”. Y algo de eso hay. ",
+    en: "Those who visit it for the first time always say the same thing: “I feel like I’m on another planet”. And there’s some truth to that. ",
   },
   "the-spot.impression.p2": {
+    es: "Las montañas cambian de color con el pasar del día, las noches se cubren de estrellas que parecen estar al alcance de las manos, y el viento, el principal protagonista llega casi cada día, puntual, y junto con él navegantes y viajeros de todas partes. ",
+    en: "And there’s some truth to that. The mountains change color throughout the day, nights are filled with stars that seem within reach, and the wind — the main protagonist — arrives almost every day, right on time, bringing riders and travelers from all over the world. This magical setting, the energy of the place, and a community that welcomes you with open arms are hard to explain unless you experience them.",
+  },
+  "the-spot.impression.p3": {
     es: "Este escenario mágico, la energía del lugar y una comunidad que te recibe con los brazos abiertos, son difíciles de explicar si no las vivís.",
-    en: "Those who visit it for the first time always say the same thing: “I feel like I’m on another planet”. And there’s some truth to that. The mountains change color throughout the day, nights are filled with stars that seem within reach, and the wind — the main protagonist — arrives almost every day, right on time, bringing riders and travelers from all over the world. This magical setting, the energy of the place, and a community that welcomes you with open arms are hard to explain unless you experience them.",
+    en: "This magical setting, the energy of the place, and a community that welcomes you with open arms are hard to explain unless you experience them.",
   },
 
   // ======================
@@ -774,29 +850,53 @@ export const ui = {
     es: "MÁS QUE KITE",
     en: "MORE THAN KITE",
   },
-  "the-spot.more-than-kite.item1": {
-    es: "Caminatas por los cerros y miradores con vistas al dique",
-    en: "Hikes through hills and viewpoints overlooking the dam",
+  "the-spot.more-than-kite.item1.title": {
+    es: "Caminatas",
+    en: "Hikes",
   },
-  "the-spot.more-than-kite.item2": {
-    es: "Paseos a caballo / Cabalgatas",
-    en: "Horseback riding tours",
+  "the-spot.more-than-kite.item1.description": {
+    es: "Disfruta de caminatas guiadas por los cerros y miradores",
+    en: "Enjoy guided hikes through the hills and viewpoints",
   },
-  "the-spot.more-than-kite.item3": {
-    es: "Stand Up Paddle o kayak por las mañanas",
-    en: "Stand Up Paddle or kayaking in the mornings",
+  "the-spot.more-than-kite.item2.title": {
+    es: "Cabalgatas",
+    en: "Horseback Riding",
   },
-  "the-spot.more-than-kite.item4": {
-    es: "Restaurantes de gastronomía local",
-    en: "Local gastronomy restaurants",
+  "the-spot.more-than-kite.item2.description": {
+    es: "Vive paseos a caballo por senderos naturales, explorando la belleza del entorno",
+    en: "Experience horseback riding tours along natural trails, exploring the beauty of the surroundings",
   },
-  "the-spot.more-than-kite.item5": {
-    es: "Experiencias guiadas de observación de estrellas y fenómenos astrológicos",
-    en: "Guided stargazing experiences and astronomical phenomena",
+  "the-spot.more-than-kite.item3.title": {
+    es: "Remo y Paddle",
+    en: "Paddling and Rowing",
   },
-  "the-spot.more-than-kite.item6": {
-    es: "Bares con noches de música y shows de entretenimiento",
-    en: "Bars with live music nights and entertainment shows",
+  "the-spot.more-than-kite.item3.description": {
+    es: "Practica Stand Up Paddle o remo en kayak navegando por aguas serenas",
+    en: "Try Stand Up Paddle or kayaking, gliding across serene waters",
+  },
+  "the-spot.more-than-kite.item4.title": {
+    es: "Gastronomía Local Auténtica",
+    en: "Authentic Local Cuisine",
+  },
+  "the-spot.more-than-kite.item4.description": {
+    es: "Descubre restaurantes que ofrecen delicias de la gastronomía local",
+    en: "Discover restaurants serving local gastronomy delights",
+  },
+  "the-spot.more-than-kite.item5.title": {
+    es: "Observación de Estrellas",
+    en: "Guided Stargazing",
+  },
+  "the-spot.more-than-kite.item5.description": {
+    es: "Participa en experiencias guiadas de observación de estrellas y fenómenos astrológicos",
+    en: "Join guided stargazing experiences and observations of astronomical phenomena",
+  },
+  "the-spot.more-than-kite.item6.title": {
+    es: "Noches de Entretenimiento",
+    en: "Entertainment Nights",
+  },
+  "the-spot.more-than-kite.item6.description": {
+    es: "Relájate en bares con noches de música en vivo y shows de entretenimiento variados",
+    en: "Relax in bars featuring live music nights and diverse entertainment shows",
   },
   "the-spot.more-than-kite.cta": {
     es: "CONOCÉ TUS BENEFICIOS",
@@ -850,6 +950,10 @@ export const ui = {
   // ======================
   // TIPS
   // ======================
+  "the-spot.tips.title": {
+    es: "Consejos para el viaje",
+    en: "Travel Tips",
+  },
   "the-spot.tips.carpool.text": {
     es: "Si viajás solo, los fines de semana suele haber kiters viajando a Rodeo con lugar disponible y ganas de compartir el viaje —",
     en: "If you're traveling alone, on weekends there are often kiters heading to Rodeo with available seats and willing to share the ride —",
