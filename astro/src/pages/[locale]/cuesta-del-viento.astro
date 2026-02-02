@@ -49,6 +49,7 @@ const verticalImages = [
   {
     src: Spot12Photo,
     alt: "Cuesta del Viento",
+    className: "object-[70%_50%]",
   },
   {
     src: Spot9Photo,
@@ -61,6 +62,7 @@ const verticalImages = [
   {
     src: Spot11Photo,
     alt: "Cuesta del Viento",
+    className: "object-[50%_30%]",
   },
   {
     src: Spot6Photo,
@@ -92,6 +94,7 @@ const optimizedVertical = await Promise.all(
       height: 1920,
       format: "webp",
       quality: 85,
+      className: img.className,
     });
     const mobile = await getImage({
       src: img.src,
@@ -99,6 +102,7 @@ const optimizedVertical = await Promise.all(
       height: 800,
       format: "webp",
       quality: 85,
+      className: img.className,
     });
     return {
       alt: img.alt,
@@ -106,6 +110,7 @@ const optimizedVertical = await Promise.all(
       srcMobile: mobile.src,
       width: 1080,
       height: 1920,
+      className: img.className,
     };
   }),
 );

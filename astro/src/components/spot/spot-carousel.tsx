@@ -59,6 +59,7 @@ export function KitetripsCarousel({
     srcMobile: string;
     width: number;
     height: number;
+    className?: string;
   }[];
   showDots?: boolean;
   autoplay?: boolean;
@@ -79,13 +80,7 @@ export function KitetripsCarousel({
           alt={image.alt}
           width={image.width}
           height={image.height}
-          className={
-            index === 10
-              ? "object-[50%_15%]"
-              : index === 7
-                ? "object-[50%_90%]"
-                : ""
-          }
+          className={image.className}
         />
       ))}
     </Carousel>

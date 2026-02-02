@@ -56,6 +56,7 @@ const carouselImages = [
   {
     src: Sicily8Photo,
     alt: "Lo Stagnone, Sicilia",
+    className: "object-[50%_90%]",
   },
   {
     src: Sicily9Photo,
@@ -68,6 +69,7 @@ const carouselImages = [
   {
     src: Sicily12Photo,
     alt: "Lo Stagnone, Sicilia",
+    className: "object-[50%_15%]",
   },
   {
     src: Sicily13Photo,
@@ -83,6 +85,7 @@ const optimizedImages = await Promise.all(
       height: 1080, // 16:9 aspect ratio
       format: "webp",
       quality: 85,
+      className: image.className,
     });
 
     const optimizedMobile = await getImage({
@@ -91,6 +94,7 @@ const optimizedImages = await Promise.all(
       height: 450, // 16:9 aspect ratio
       format: "webp",
       quality: 85,
+      className: image.className,
     });
 
     return {
@@ -99,6 +103,7 @@ const optimizedImages = await Promise.all(
       srcMobile: optimizedMobile.src,
       width: 1920,
       height: 1080,
+      className: image.className,
     };
   }),
 );
