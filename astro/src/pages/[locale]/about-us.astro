@@ -16,6 +16,7 @@ import FrancoPhoto from "../../assets/about-us/team/franco.webp";
 import LuccaPhoto from "../../assets/about-us/team/lucca.webp";
 import MikaelPhoto from "../../assets/about-us/team/mikael.webp";
 import EmaPhoto from "../../assets/about-us/team/emaa.webp";
+import PiliPhoto from "../../assets/about-us/team/pili.webp";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -43,7 +44,7 @@ const team = [
   },
   {
     name: "Pili",
-    image: FacuPhoto,
+    image: PiliPhoto,
     position: t("about.team.pili.position"),
     description: t("about.team.pili.description"),
     languages: t("about.team.pili.languages"),
