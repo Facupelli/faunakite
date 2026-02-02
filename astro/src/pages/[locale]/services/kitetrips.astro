@@ -187,15 +187,17 @@ const activities = [
       </div>
     </div>
 
-    <div class="flex items-center gap-10 max-w-7xl mx-auto">
-      <div class="basis-3/5">
+    <div
+      class="flex flex-col md:flex-row items-center gap-10 max-w-7xl mx-auto"
+    >
+      <div class="md:basis-3/5">
         <div class="max-w-7xl mx-auto py-10 md:py-20 h-[350px] md:h-[800px]">
           <KitetripsCarousel client:load images={optimizedImages} />
         </div>
       </div>
 
-      <div class="basis-2/5">
-        <div class="space-y-8 text-brand-blue pt-20 pb-10 px-4">
+      <div class="md:basis-2/5">
+        <div class="space-y-8 text-brand-blue pt-0 md:pt-20 pb-10 px-4">
           <h2
             class="text-4xl md:text-[90px] text-center text-pretty font-salted leading-tight"
           >
