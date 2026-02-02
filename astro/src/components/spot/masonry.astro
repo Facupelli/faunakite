@@ -115,25 +115,35 @@ const t = useTranslations(lang);
   </div>
 </div>
 
-<script define:vars={{ galleryId }}>
-  document.addEventListener("DOMContentLoaded", () => {
-    const grid = document.getElementById(galleryId);
-    const button = document.getElementById(`${galleryId}-button`);
-    const buttonWrapper = document.getElementById(
-      `${galleryId}-button-wrapper`,
-    );
+<script is:inline>
+  function initMasonryGalleries() {
+    const buttons = document.querySelectorAll("[data-masonry-expand]");
 
-    if (!grid || !button || !buttonWrapper) return;
+    buttons.forEach((button) => {
+      if (button.dataset.initialized) return; // Prevent double-binding
+      button.dataset.initialized = "true";
 
-    button.addEventListener("click", () => {
-      // Instantly remove height constraint
-      grid.style.maxHeight = "none";
+      const galleryId = button.dataset.masonryExpand;
+      const grid = document.getElementById(galleryId);
+      const buttonWrapper = button.closest('[id$="-button-wrapper"]');
 
-      // Fade out and remove button
-      buttonWrapper.style.opacity = "0";
-      setTimeout(() => buttonWrapper.remove(), 300);
+      if (!grid || !buttonWrapper) return;
+
+      button.addEventListener("click", () => {
+        grid.style.maxHeight = "none";
+        buttonWrapper.style.opacity = "0";
+        setTimeout(() => buttonWrapper.remove(), 300);
+      });
     });
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMasonryGalleries);
+  } else {
+    initMasonryGalleries();
+  }
+
+  document.addEventListener("astro:page-load", initMasonryGalleries);
 </script>
 
 <style>
