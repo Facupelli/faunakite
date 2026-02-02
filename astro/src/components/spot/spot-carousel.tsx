@@ -49,6 +49,9 @@ export function CarouselWithBreakpoints({
 
 export function KitetripsCarousel({
   images,
+  showDots = true,
+  showNavigation = true,
+  autoplay = false,
 }: {
   images: {
     alt: string;
@@ -57,9 +60,17 @@ export function KitetripsCarousel({
     width: number;
     height: number;
   }[];
+  showDots?: boolean;
+  autoplay?: boolean;
+  showNavigation?: boolean;
 }) {
   return (
-    <Carousel gridBreakpoint="none">
+    <Carousel
+      gridBreakpoint="none"
+      showDots={showDots}
+      autoplay={autoplay}
+      showNavigation={showNavigation}
+    >
       {images?.map((image, index) => (
         <KitetripImageCard
           key={index}

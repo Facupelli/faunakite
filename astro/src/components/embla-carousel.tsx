@@ -1,5 +1,6 @@
-import { useState, useCallback, useEffect, Children } from "react";
+import { useState, useCallback, useEffect, Children, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 function clsx(...classes: (string | boolean | undefined | null)[]): string {
   return classes.filter(Boolean).join(" ");
@@ -14,6 +15,10 @@ interface CarouselProps {
   gap?: string;
   showNavigation?: boolean;
   showDots?: boolean;
+  autoplay?: boolean;
+  autoplayDelay?: number;
+  stopOnInteraction?: boolean;
+  stopOnMouseEnter?: boolean;
 }
 
 export default function Carousel({
@@ -25,17 +30,32 @@ export default function Carousel({
   gap = "gap-6",
   showNavigation = true,
   showDots = true,
+  autoplay = false,
+  autoplayDelay = 3000,
+  stopOnInteraction = false,
+  stopOnMouseEnter = true,
 }: CarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop,
-    align,
-    // Prevent momentum scrolling which can cause zoom effects
-    dragFree: false,
-    // Ensure smooth container transitions
-    duration: 25,
-    // Skip snaps to prevent recalculation jumps
-    skipSnaps: false,
-  });
+  const autoplayPlugin = useRef(
+    autoplay
+      ? Autoplay({
+          delay: autoplayDelay,
+          stopOnInteraction,
+          stopOnMouseEnter,
+        })
+      : null,
+  );
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop,
+      align,
+      dragFree: false,
+      duration: 25,
+      skipSnaps: false,
+    },
+    autoplayPlugin.current ? [autoplayPlugin.current] : [],
+  );
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);

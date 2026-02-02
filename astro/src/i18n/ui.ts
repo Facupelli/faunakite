@@ -786,8 +786,12 @@ export const ui = {
   // INTRO
   // ======================
   "the-spot.intro.p1": {
-    es: "En el corazón de la precordillera, a 2 horas de la Ciudad de San Juan, entre montañas áridas que parecen no tener fin, se encuentra Cuesta del Viento: Un lago rodeado de cerros rojizos donde el viento tiene una presencia imponente. Para muchos, uno de los mejores spots del mundo para hacer kite.",
-    en: "In the heart of the pre-mountain range, two hours from the city of San Juan, among arid mountains that seem endless, lies Cuesta del Viento: a lake surrounded by reddish hills where the wind has an imposing presence. For many, one of the best kitesurf spots in the world.",
+    es: "En el corazón de la precordillera, a 2 horas de la Ciudad de San Juan, entre montañas áridas que parecen no tener fin, se encuentra Cuesta del Viento: Un lago rodeado de cerros rojizos donde el viento tiene una presencia imponente. Para muchos, ",
+    en: "In the heart of the pre-mountain range, two hours from the city of San Juan, among arid mountains that seem endless, lies Cuesta del Viento: a lake surrounded by reddish hills where the wind has an imposing presence. For many, ",
+  },
+  "the-spot.intro.span": {
+    es: "uno de los mejores spots del mundo para hacer kite.",
+    en: "one of the best kitesurf spots in the world.",
   },
   "the-spot.masonry.button": {
     es: "Ver todas las fotos",
@@ -798,9 +802,13 @@ export const ui = {
   // FIRST IMPRESSION
   // ======================
 
-  "the-spot.impression.title": {
-    es: "Un Lugar Único",
-    en: "A Unique Place",
+  "the-spot.impression.title.1": {
+    es: "Un Lugar ",
+    en: "A Unique ",
+  },
+  "the-spot.impression.title.2": {
+    es: "Único",
+    en: "Place",
   },
   "the-spot.impression.p1": {
     es: "Quienes lo visitan por primera vez lo dicen siempre: “Siento que estoy en otro planeta”. Y algo de eso hay. ",
@@ -823,26 +831,24 @@ export const ui = {
     en: "where it always blows",
   },
   "the-spot.wind.p1": {
-    es: "El dique cuesta el viento reporta más de 300 días de viento al año y durante los meses de octubre a mayo, Cuesta del Viento no falla. Esto hace que Cuesta del Viento sea uno de los lugares más confiables de Sudamérica a la hora de aprender, progresar o simplemente disfrutar de largas sesiones en el agua.",
-    en: "Cuesta del Viento dam reports more than 300 windy days per year, and from October to May it rarely fails. This makes Cuesta del Viento one of the most reliable places in South America to learn, progress, or simply enjoy long sessions on the water.",
-  },
-  "the-spot.wind.p2": {
-    es: "Los vientos térmicos llegan casi todos los días. En un día promedio, se levanta sobre el mediodía, iniciando suave y amigable durante algunas horas, ideal para quienes están aprendiendo o quieran disfrutar una sesión de viento más amigable.",
-    en: "Thermal winds arrive almost every day. On an average day, the wind starts around midday, beginning soft and friendly for a few hours — ideal for those who are learning or looking for a more relaxed session.",
-  },
-  "the-spot.wind.p3": {
-    es: "Con el pasar de las horas, el viento va aumentando su fuerza: llega el momento de disfrute para aquellos que ya tienen un poco más experiencia. En condiciones regulares, varía entre 20 y 35 nudos.",
-    en: "As the hours go by, the wind increases in strength, creating perfect conditions for those with more experience. Under regular conditions, it ranges between 20 and 35 knots.",
-  },
-  "the-spot.wind.p4": {
-    es: "Llegado el atardecer, que en diciembre y enero sucede luego de las 21hs, el viento aún sopla creando un escenario de velas y colores increíbles sobre las montañas.",
-    en: "By sunset — which in December and January happens after 9 p.m. — the wind is still blowing, creating an incredible scene of kites and colors over the mountains.",
-  },
-  "the-spot.wind.p5": {
-    es: "Es el sueño de todo kiter: viento asegurado, un paisaje único que te deja sin palabras y una comunidad amigable que vive el kitesurf con mucha pasión y siempre dispuesta a algún plan después de navegar.",
-    en: "It’s every kiter’s dream: guaranteed wind, a unique landscape that leaves you speechless, and a friendly community that lives kitesurfing with passion and is always up for plans after riding.",
+    es: "El dique Cuesta del Viento es un lugar único para aprender, progresar o simplemente disfrutar largas sesiones en el agua. Su combinación de paisaje, condiciones naturales y energía lo convierten en un spot que te atrapa desde el primer día.",
+    en: "Cuesta del Viento Dam is a unique place to learn, progress, or simply enjoy long sessions on the water. Its mix of scenery, natural conditions, and energy turns it into a spot that hooks you from day one.",
   },
 
+  "the-spot.wind.p2": {
+    es: "Durante la jornada, el viento se levanta de forma progresiva: comienza suave y amigable, ideal para quienes están dando sus primeros pasos o buscan una sesión relajada. Con el correr de las horas, se vuelve más intenso, ofreciendo un escenario perfecto para quienes ya tienen más experiencia.",
+    en: "Throughout the day, the wind builds up progressively: it starts light and friendly, ideal for beginners or for those looking for a relaxed session. As the hours pass, it gets stronger, creating a perfect setting for more experienced riders.",
+  },
+
+  "the-spot.wind.p3": {
+    es: "Hacia el final del día, el entorno se transforma en un espectáculo visual: velas recortadas contra las montañas, luces cálidas y un ambiente que invita a quedarse.",
+    en: "Toward the end of the day, the surroundings turn into a visual show: kites silhouetted against the mountains, warm light, and an atmosphere that makes you want to stay.",
+  },
+
+  "the-spot.wind.p4": {
+    es: "Es el sueño de todo kiter: un paisaje que te deja sin palabras y una comunidad apasionada, siempre dispuesta a compartir el agua y también algún plan después de navegar.",
+    en: "It’s every kiter’s dream: a landscape that leaves you speechless and a passionate community, always ready to share the water — and a plan or two after the session.",
+  },
   // ======================
   // MAS QUE KITE
   // ======================
@@ -867,12 +873,12 @@ export const ui = {
     en: "Experience horseback riding tours along natural trails, exploring the beauty of the surroundings",
   },
   "the-spot.more-than-kite.item3.title": {
-    es: "Remo y Paddle",
-    en: "Paddling and Rowing",
+    es: "Kayak y Paddle",
+    en: "Kayak and Paddle",
   },
   "the-spot.more-than-kite.item3.description": {
-    es: "Practica Stand Up Paddle o remo en kayak navegando por aguas serenas",
-    en: "Try Stand Up Paddle or kayaking, gliding across serene waters",
+    es: "Kayak o Stand Up Paddle por aguas serenas o en el río",
+    en: "Kayak or Stand Up Paddle, across serene waters or in the river",
   },
   "the-spot.more-than-kite.item4.title": {
     es: "Gastronomía Local Auténtica",
@@ -954,26 +960,34 @@ export const ui = {
     es: "Consejos para el viaje",
     en: "Travel Tips",
   },
+  "the-spot.tips.carpool.title": {
+    es: "Viajás solo?",
+    en: "Travelling Alone?",
+  },
   "the-spot.tips.carpool.text": {
-    es: "Si viajás solo, los fines de semana suele haber kiters viajando a Rodeo con lugar disponible y ganas de compartir el viaje —",
-    en: "If you're traveling alone, on weekends there are often kiters heading to Rodeo with available seats and willing to share the ride —",
+    es: "Los fines de semana suele haber kiters viajando a Rodeo con lugar disponible y ganas de compartir el viaje, escribinos por whatsapp y te damos una mano.",
+    en: "On weekends there are often kiters heading to Rodeo with available seats and willing to share the ride, message us on WhatsApp and we'll help you out.",
   },
   "the-spot.tips.carpool.link": {
     es: "escribinos por WhatsApp",
     en: "message us on WhatsApp",
   },
-  "the-spot.tips.carpool.suffix": {
-    es: "y te damos una mano.",
-    en: "and we'll help you out.",
-  },
 
-  "the-spot.tips.mobility": {
+  "the-spot.tips.mobility.title": {
+    es: "Mobilidad en Rodeo",
+    en: "Mobility in Rodeo",
+  },
+  "the-spot.tips.mobility.text": {
     es: "Te recomendamos tener algún tipo de movilidad en el lugar. Algunos alojamientos ofrecen traslado al dique o bicicletas. Si no vas a tener movilidad, lo ideal es hospedarte cerca del spot.",
     en: "We recommend having some form of transportation while you’re there. Some accommodations offer transfers to the dam or bicycles. If you won’t have mobility, it’s best to stay close to the spot.",
   },
 
-  "the-spot.tips.things-to-bring": {
-    es: "Durante las clases te damos todo el equipo necesario —traje de neoprene, chaleco y casco—, solo necesitás traer lo básico: ropa cómoda, toalla, traje de baño y sandalias; protector solar, lentes de sol y gorra; abrigo para las noches (incluso en verano refresca bastante); zapatillas cómodas por si te copa caminar o salir a correr; mate, agua y buena onda. Si tenés tu traje de neoprene propio, un 4/3 largo es ideal, o 3/2 en diciembre y enero.",
+  "the-spot.tips.things-to-bring.title": {
+    es: "Equipo y Ropa",
+    en: "Equipment and Clothing",
+  },
+  "the-spot.tips.things-to-bring.text": {
+    es: "Durante las clases te damos todo el equipo necesario, traje de neoprene, chaleco y casco, solo necesitás traer lo básico: ropa cómoda, toalla, traje de baño y sandalias; protector solar, lentes de sol y gorra; abrigo para las noches (incluso en verano refresca bastante); zapatillas cómodas por si te copa caminar o salir a correr; mate, agua y buena onda. Si tenés tu traje de neoprene propio, un 4/3 largo es ideal, o 3/2 en diciembre y enero.",
     en: "We provide all the necessary equipment during the lessons —wetsuit, vest, and helmet— you only need to bring the basics: comfortable clothes, towel, swimsuit and sandals; sunscreen, sunglasses and a cap; something warm for the evenings (even in summer it can get chilly); comfortable sneakers for walks or morning runs; mate, water and good vibes. If you have your own wetsuit, a 4/3 full suit is ideal, or a 3/2 in December and January.",
   },
 
