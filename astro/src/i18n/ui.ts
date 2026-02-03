@@ -673,8 +673,8 @@ export const ui = {
     en: "Co-Founder & Instructor",
   },
   "about.team.facu.description": {
-    es: "Se dedicó a la educación y coordinación durante muchos años. Apasionado por el ski, llegó al Kitesurf en el 2019. Deporte que enseña desde hace 4 años en Cuesta del viento y Europa; hasta formar Fauna en el 2024. Ama el ejercicio de enseñanza-aprendizaje, es divertido y super paciente.",
-    en: "Dedicated to education and coordination for many years. Passionate about skiing, he came to kitesurfing in 2019. A sport he has been teaching for 4 years in Cuesta del Viento and Europe; until forming Fauna in 2024. He loves the teaching-learning exercise, is fun and super patient.",
+    es: "Se dedicó a la educación y coordinación de grupos desde el año 2009. Apasionado por el ski terminó llegando al Kitesurf en el 2019. Deporte que comenzó a enseñar hace 4 años en Cuesta del Viento y Europa hasta formar Fauna en el 2024. Ama el ejercicio de enseñanza-aprendizaje, es divertido y súper paciente.",
+    en: "He has been dedicated to education and group coordination since 2009. Passionate about skiing, he eventually found his way into kitesurfing in 2019. He started teaching the sport four years ago in Cuesta del Viento and Europe, and later founded Fauna in 2024. He loves the teaching–learning process and is fun and extremely patient.",
   },
   "about.team.facu.languages": {
     es: "ES, IT",
