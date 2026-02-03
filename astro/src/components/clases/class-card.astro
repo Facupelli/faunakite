@@ -45,7 +45,7 @@ const t = useTranslations(lang);
     <Image
       src={image}
       alt={imageAlt}
-      class={`md:absolute md:inset-0 rounded-md filter-bluish-dark w-full h-full object-cover ${imageClass}`}
+      class={`md:absolute md:inset-0 rounded-lg filter-bluish-dark w-full h-full object-cover ${imageClass}`}
       loading="lazy"
     />
   </div>
@@ -117,7 +117,7 @@ const t = useTranslations(lang);
           <div class="flex flex-col gap-4">
             <button
               type="button"
-              class="expand-toggle text-sm inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-brand-red transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded w-fit group"
+              class="expand-toggle text-sm inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-brand-red transition-colors focus:outline-none w-fit group"
               aria-expanded="false"
               aria-controls={`expandable-${uniqueId}`}
               data-text-more={t("services.common.seeMore")}
