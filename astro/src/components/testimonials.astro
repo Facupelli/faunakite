@@ -89,8 +89,12 @@ const testimonials = [
 
 <script>
   // Auto-rotate testimonials on mobile only
-  const container = document.getElementById("testimonials-container");
-  const cards = document.querySelectorAll(".testimonial-card");
+  const container = document.getElementById(
+    "testimonials-container",
+  ) as HTMLElement | null;
+  const cards = document.querySelectorAll(
+    ".testimonial-card",
+  ) as NodeListOf<HTMLElement>;
   let currentIndex = 0;
   let autoRotateInterval: number | null = null;
 
@@ -99,13 +103,17 @@ const testimonials = [
   }
 
   function rotateTestimonial() {
-    if (!isMobile() || !cards.length) return;
+    if (!isMobile() || !cards.length || !container) return;
 
     currentIndex = (currentIndex + 1) % cards.length;
-    cards[currentIndex].scrollIntoView({
+
+    // Scroll the container, not the page
+    const targetCard = cards[currentIndex];
+    const scrollPosition = targetCard.offsetLeft - container.offsetLeft;
+
+    container.scrollTo({
+      left: scrollPosition,
       behavior: "smooth",
-      block: "nearest",
-      inline: "start",
     });
   }
 
