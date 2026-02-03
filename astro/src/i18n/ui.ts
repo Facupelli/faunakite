@@ -313,8 +313,8 @@ export const ui = {
     en: "Duration: 1 or 2 hours",
   },
   "services.kite.class.advanced.level": {
-    es: "Nivel: Avanzado",
-    en: "Level: Advanced",
+    es: "Avanzado",
+    en: "Advanced",
   },
   "services.kite.class.advanced.p1": {
     es: "Si ya dominás el kite y querés llevarlo al siguiente nivel, te ayudamos a volar más alto, con más control y con más estilo. Desaprendiendo malos hábitos, trabajando en la técnica fuera y dentro del agua, practicando el enfoque y atravesando miedos.",
