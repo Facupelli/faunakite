@@ -394,8 +394,8 @@ export const ui = {
   // RENTAL – MAIN CONTENT
   // ======================
   "services.rental.content.p1": {
-    es: "En Fauna contamos con material de última generación para todas las medidas y condiciones.",
-    en: "At Fauna we have state-of-the-art equipment for all sizes and conditions.",
+    es: "En Fauna contamos con material de última generación de todas las condiciones.",
+    en: "At Fauna we have state-of-the-art equipment for all conditions.",
   },
   "services.rental.content.p2": {
     es: "Trabajamos con Slingshot, Core y Duotone.",
@@ -717,8 +717,8 @@ export const ui = {
     en: "Instructor",
   },
   "about.team.pili.description": {
-    es: "Rider local. Navega desde 2015 y es instructora desde hace 6 años. Durante el invierno, viaja a otros spots a navegar y dar clases de kite: Brasil, Tarifa y Sicilia. Ama acompañar el proceso de aprendizaje y",
-    en: "Local rider. Has been kiteboarding since 2015 and an instructor for 6 years. During the winter, travels to other spots to kite and teach classes: Brazil, Tarifa, and Sicily. Loves accompanying the learning process and",
+    es: "Rider local. Navega desde 2015 y es instructora desde hace 6 años. Durante el invierno, viaja a otros spots a navegar y dar clases de kite: Brasil, Tarifa y Sicilia. Ama acompañar el proceso de aprendizaje y divertirse en el camino. Carismática, chispa y buena onda.",
+    en: "Local rider. Has been kiteboarding since 2015 and an instructor for 6 years. During the winter, travels to other spots to kite and teach classes: Brazil, Tarifa, and Sicily. Loves accompanying the learning process and having fun along the way. Charismatic, sparkly, and good vibes.",
   },
   "about.team.pili.languages": {
     es: "ES",

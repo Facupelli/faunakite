@@ -65,16 +65,16 @@ const t = useTranslations(lang);
 
   <!-- DESKTOP Background Image  -->
   <div
-    class="absolute inset-0 z-10 bg-linear-to-r from-brand-blue/50 to-transparent"
+    class="absolute inset-0 h-[calc(100dvh+100px)] z-10 bg-linear-to-r from-brand-blue/50 to-transparent"
   >
   </div>
 
-  <div class="absolute inset-0">
+  <div class="absolute inset-0 h-[calc(100dvh+100px)]">
     <Image
       src={desktopHeroImage}
       alt="Header background"
       fetchpriority="high"
-      class="w-full h-full z-0 md:block hidden object-cover"
+      class="w-full h-full z-0 md:block hidden object-cover object-[50%_0%]"
       widths={[1920, 2400, 3000]}
       sizes="100vw"
     />
