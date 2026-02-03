@@ -1,0 +1,177 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import type { ImageMetadata } from "astro";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+  image: ImageMetadata;
+  imageAlt: string;
+  imageClass?: string;
+  title: string;
+  duration?: string;
+  level?: string;
+  mode?: string;
+  descriptions: string[];
+  courseType: string;
+}
+
+const {
+  image,
+  imageAlt,
+  imageClass,
+  title,
+  duration,
+  level,
+  mode,
+  descriptions,
+  courseType,
+} = Astro.props;
+
+const [visibleDescription, ...expandableDescriptions] = descriptions;
+const hasExpandableContent = expandableDescriptions.length > 0;
+const uniqueId = Math.random().toString(36).substr(2, 9);
+
+const lang = Astro.params.locale as "en" | "es";
+const t = useTranslations(lang);
+---
+
+<article
+  class="course-card text-brand-blue flex flex-col md:flex-row gap-6 bg-white shadow-news-card md:shadow-none md:bg-transparent p-4 md:p-0 rounded-xl md:rounded-none"
+  data-course-type={courseType}
+>
+  <!-- Image Section -->
+  <div class="relative md:basis-[33%] h-[350px] flex overflow-hidden">
+    <Image
+      src={image}
+      alt={imageAlt}
+      class={`md:absolute md:inset-0 rounded-md filter-bluish-dark w-full h-full object-cover ${imageClass}`}
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Content Section -->
+  <div class="md:basis-[66%] space-y-3">
+    <h2 class="font-bold text-2xl pb-2 uppercase">{title}</h2>
+
+    <!-- Meta Info -->
+    <div class="space-y-3">
+      {
+        duration !== undefined && (
+          <div class="flex items-center gap-3">
+            <Icon name="clock" class="size-5 text-brand-red stroke-3" />
+            <span class="text-brand-blue/80">
+              {t("services.common.duration")}:
+            </span>
+            <span class="font-bold">{duration}</span>
+          </div>
+        )
+      }
+      {
+        level !== undefined && (
+          <div class="flex items-center gap-3">
+            <Icon name="level" class="size-5 text-brand-red" />
+            <span>{t("services.common.level")}:</span>
+            <span class="font-bold">{level}</span>
+          </div>
+        )
+      }
+      {
+        mode !== undefined && (
+          <div class="flex items-center gap-3">
+            <Icon name="users" class="size-5 text-brand-red stroke-3" />
+            <span>{t("services.common.mode")}:</span>
+            <span class="font-bold">{mode}</span>
+          </div>
+        )
+      }
+    </div>
+
+    <!-- Description with Expandable Feature -->
+    <div class="relative pt-2" data-expandable-wrapper>
+      <!-- Always Visible -->
+      <p>{visibleDescription}</p>
+
+      <!-- Expandable Content -->
+      {
+        hasExpandableContent && (
+          <div
+            class="expandable-panel grid transition-all duration-500 ease-in-out pb-2"
+            aria-hidden="true"
+            id={`expandable-${uniqueId}`}
+          >
+            <div class="overflow-hidden">
+              <div class="space-y-2 pt-2">
+                {expandableDescriptions.map((desc) => (
+                  <p class="text-brand-blue/90">{desc}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+      }
+
+      <!-- Controls -->
+      {
+        hasExpandableContent && (
+          <div class="flex flex-col gap-4">
+            <button
+              type="button"
+              class="expand-toggle text-sm inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-brand-red transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded w-fit group"
+              aria-expanded="false"
+              aria-controls={`expandable-${uniqueId}`}
+              data-text-more={t("services.common.seeMore")}
+              data-text-less={t("services.common.seeLess")}
+            >
+              <span class="expand-text text-brand-red">
+                {t("services.common.seeMore")}
+              </span>
+              <Icon
+                name="chevron-down"
+                class="size-4 text-brand-red transition-transform duration-300 group-aria-expanded:rotate-180"
+              />
+            </button>
+          </div>
+        )
+      }
+
+      <div class="pt-4">
+        <a
+          href="#"
+          class="whatsapp-btn w-full md:w-fit inline-block text-center bg-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:bg-brand-red transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t("services.common.book")}
+        </a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  .expandable-panel {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+      grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease-out;
+  }
+
+  .expandable-panel[aria-hidden="false"] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  /* Chevron rotation via group-aria-expanded */
+  .expand-toggle[aria-expanded="true"] :global(svg) {
+    transform: rotate(180deg);
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .expandable-panel {
+      transition: none;
+    }
+  }
+</style>

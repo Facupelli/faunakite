@@ -71,7 +71,7 @@ export const ui = {
   },
   "the-spot.button.benefits": {
     en: "Know your Benefits",
-    es: "Conocé tus Beneficios",
+    es: "Beneficios de aprender con Fauna",
   },
   "the-spot.button.how-to-get": {
     en: "How to Get There",
@@ -175,7 +175,7 @@ export const ui = {
 
   // SERVICES PAGE
   // LAYOUT
-  "services.layout.title": { en: "What We Offer", es: "Que Ofrecemos" },
+  "services.layout.title": { en: "What We Offer", es: "Qué Ofrecemos" },
 
   // NAV
   "services.nav.courses": { en: "Classes & Courses", es: "Clases & Cursos" },
@@ -218,7 +218,7 @@ export const ui = {
   },
   "services.kite.initial.mode": {
     es: "Individual o Doble",
-    en: "Private or Shared",
+    en: "Single or Double",
   },
   "services.kite.initial.p1": {
     es: "Tu primera experiencia con el viento. Ideal para quienes nunca probaron el kite o apenas dieron sus primeros pasos.",
@@ -258,7 +258,7 @@ export const ui = {
   },
   "services.kite.intensive.mode": {
     es: "Individual",
-    en: "Private",
+    en: "Single",
   },
   "services.kite.intensive.p1": {
     es: "Ideal si no tenés mucho tiempo y querés aprovecharlo al máximo. Este curso, también está pensado para quienes ya tomaron algunas clases antes o tienen experiencia en otros deportes de viento.",
@@ -348,13 +348,25 @@ export const ui = {
     es: "Principiante",
     en: "Beginner",
   },
+  "services.kite.class.try.mode": {
+    es: "Individual o Doble",
+    en: "Single or Double",
+  },
   "services.kite.class.try.p1": {
-    es: "¿Querés ver de qué se trata antes de comprometerte a tomar el curso?",
-    en: "Do you want to see what it’s about before committing to the full course?",
+    es: "¿Querés ver de qué se trata el deporte antes de comprometerte a tomar el curso?",
+    en: "Do you want to see what the sport is about before committing to the course?",
   },
   "services.kite.class.try.p2": {
-    es: "Probá una clase corta donde vas a aprender brevemente sobre el viento, las medidas de seguridad del equipo y vas a entrar al agua a sentir el viento, jugar un poco con el kite o el wing mientras aprendés a controlarlo y descubrir por qué todos se enamoran de estos deportes.",
-    en: "Try a short lesson where you will briefly learn about the wind, equipment safety measures, and enter the water to feel the wind, play a bit with the kite or wing while learning to control it, and discover why everyone falls in love with these sports.",
+    es: "Probá con una clase donde vas a aprender brevemente sobre el viento, las medidas de seguridad del equipo y vas a entrar al agua a sentir el viento, jugar un poco con el kite mientras aprendés a controlarlo y descubrir por qué todos se enamoran de este deporte.",
+    en: "Try a class where you’ll briefly learn about the wind, the safety measures of the equipment, and then get in the water to feel the wind, play a bit with the kite as you learn to control it, and discover why everyone falls in love with this sport.",
+  },
+  "services.kite.class.try.p3": {
+    es: "¿Tenés algún amigo, familiar o pareja que le gustaría vivir esta experiencia con vos?",
+    en: "Do you have a friend, family member, or partner who would like to live this experience with you?",
+  },
+  "services.kite.class.try.p4": {
+    es: "Esta clase de prueba puede compartirse también de a dos personas con un mismo kite e instructor.",
+    en: "This trial class can also be shared by two people with the same kite and instructor.",
   },
 
   // ======================

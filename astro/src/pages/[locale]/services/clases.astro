@@ -8,6 +8,8 @@ import ClasePruebaPhoto from "../../../assets/what-we-offer/clases/clase-prueba.
 import ClaseWingfoilPhoto from "../../../assets/what-we-offer/clases/clase-wingfoil.webp";
 import CursoInicialPhoto from "../../../assets/what-we-offer/clases/curso-inicial.webp";
 import CursoIntensivoPhoto from "../../../assets/what-we-offer/clases/curso-intensivo.webp";
+import { Icon } from "astro-icon/components";
+import ClassCard from "../../../components/clases/class-card.astro";
 
 export async function getStaticPaths() {
   return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
@@ -36,448 +38,125 @@ const t = useTranslations(lang);
     <!-- CURSOS -->
     <div class="flex flex-col gap-10">
       <div class="">
-        <h2 class="text-4xl text-brand-blue font-bold">
+        <h2 class="text-5xl text-brand-blue font-bold uppercase font-salted">
           {t("services.kite.courses.title")}
         </h2>
       </div>
+
       <div class="grid md:grid-cols-2 gap-10 items-start">
-        <!-- CURSO INICIAL -->
-        <div
-          class="text-brand-blue flex flex-col-reverse md:flex-row gap-6"
-          data-course-type="curso-inicial"
-        >
-          <div class="relative md:basis-[33%] flex overflow-hidden">
-            <Image
-              src={CursoInicialPhoto}
-              alt={t("services.kite.initial.title")}
-              class="md:absolute md:inset-0 rounded-md filter-bluish-dark w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
+        <ClassCard
+          image={CursoInicialPhoto}
+          imageAlt="Curso Inicial"
+          title={t("services.kite.initial.title")}
+          duration={t("services.kite.initial.duration")}
+          level={t("services.kite.initial.level")}
+          mode={t("services.kite.initial.mode")}
+          descriptions={[
+            t("services.kite.initial.p1"),
+            t("services.kite.initial.p2"),
+            t("services.kite.initial.p3"),
+            t("services.kite.initial.p4"),
+            t("services.kite.initial.p5"),
+          ]}
+          courseType="curso-inicial"
+        />
 
-          <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">
-              {t("services.kite.initial.title")}
-            </h2>
-            <div class="space-y-1">
-              <p>
-                <strong>{t("services.common.duration")}:</strong>
-                {t("services.kite.initial.duration")}
-              </p>
-              <p>
-                <strong>{t("services.common.level")}:</strong>
-                {t("services.kite.initial.level")}
-              </p>
-              <p>
-                <strong>{t("services.common.mode")}:</strong>
-                {t("services.kite.initial.mode")}
-              </p>
-            </div>
-            <div class="relative">
-              <div
-                class="space-y-2 pt-2 expandable-content"
-                data-expanded="false"
-              >
-                <p>
-                  {t("services.kite.initial.p1")}
-                </p>
-                <div class="expandable-text space-y-2">
-                  <p>
-                    {t("services.kite.initial.p2")}
-                  </p>
-                  <p>
-                    {t("services.kite.initial.p3")}
-                  </p>
-                  <p>
-                    {t("services.kite.initial.p4")}
-                  </p>
-                  <p>
-                    {t("services.kite.initial.p5")}
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 mt-3">
-                <button
-                  class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
-                  aria-expanded="false"
-                >
-                  {t("services.common.seeMore")}
-                </button>
-                <div>
-                  <a
-                    class="whatsapp-btn hover:bg-brand-red inline-block text-center bg-brand-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("services.common.book")}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CURSO INTENSIVO -->
-        <div
-          class="text-brand-blue flex flex-col-reverse md:flex-row gap-6"
-          data-course-type="curso-intensivo"
-        >
-          <div class="relative md:basis-[33%] flex overflow-hidden">
-            <Image
-              src={CursoIntensivoPhoto}
-              alt={t("services.kite.intensive.title")}
-              class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover object-[50%_100%]"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">
-              {t("services.kite.intensive.title")}
-            </h2>
-            <div class="space-y-1">
-              <p>
-                <strong>{t("services.common.duration")}:</strong>
-                {t("services.kite.intensive.duration")}
-              </p>
-              <p>
-                <strong>{t("services.common.level")}:</strong>
-                {t("services.kite.intensive.level")}
-              </p>
-              <p>
-                <strong>{t("services.common.mode")}:</strong>
-                {t("services.kite.intensive.mode")}
-              </p>
-            </div>
-            <div class="relative">
-              <div
-                class="space-y-2 pt-2 expandable-content"
-                data-expanded="false"
-              >
-                <p>
-                  {t("services.kite.intensive.p1")}
-                </p>
-                <div class="expandable-text space-y-2">
-                  <p>
-                    {t("services.kite.intensive.p2")}
-                  </p>
-                  <p>
-                    {t("services.kite.intensive.p3")}
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 mt-3">
-                <button
-                  class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
-                  aria-expanded="false"
-                >
-                  {t("services.common.seeMore")}
-                </button>
-                <div>
-                  <a
-                    class="whatsapp-btn hover:bg-brand-red inline-block text-center bg-brand-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("services.common.book")}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ClassCard
+          image={CursoIntensivoPhoto}
+          imageAlt="Curso Intensivo"
+          imageClass="object-[50%_90%]"
+          title={t("services.kite.intensive.title")}
+          duration={t("services.kite.intensive.duration")}
+          level={t("services.kite.intensive.level")}
+          mode={t("services.kite.intensive.mode")}
+          descriptions={[
+            t("services.kite.intensive.p1"),
+            t("services.kite.intensive.p2"),
+            t("services.kite.intensive.p3"),
+            t("services.kite.intensive.p4"),
+          ]}
+          courseType="curso-intensivo"
+        />
       </div>
     </div>
 
     <!-- CLASES -->
     <div class="flex flex-col gap-10">
       <div class="">
-        <h2 class="text-4xl text-brand-blue font-bold">
+        <h2 class="text-5xl text-brand-blue font-bold uppercase font-salted">
           {t("services.kite.classes.title")}
         </h2>
       </div>
       <div class="grid md:grid-cols-2 gap-10 items-start">
-        <!-- CLASE INDIVIDUAL -->
-        <div
-          class="text-brand-blue flex flex-col-reverse md:flex-row gap-6"
-          data-course-type="clase-individual"
-        >
-          <div class="md:basis-[33%] relative flex overflow-hidden">
-            <Image
-              src={ClaseIndividualPhoto}
-              alt={t("services.kite.class.individual.title")}
-              class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
+        <ClassCard
+          image={ClaseIndividualPhoto}
+          imageAlt="Clase Individual"
+          title={t("services.kite.class.individual.title")}
+          duration={t("services.kite.class.individual.duration")}
+          level={t("services.kite.class.individual.level")}
+          descriptions={[
+            t("services.kite.class.individual.p1"),
+            t("services.kite.class.individual.p2"),
+          ]}
+          courseType="clase-individual"
+        />
 
-          <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">
-              {t("services.kite.class.individual.title")}
-            </h2>
-            <div class="space-y-1">
-              <p>
-                <strong>{t("services.common.duration")}:</strong>
-                {t("services.kite.class.individual.duration")}
-              </p>
-              <p>
-                <strong>{t("services.common.level")}:</strong>
-                {t("services.kite.class.individual.level")}
-              </p>
-            </div>
-            <div class="relative">
-              <div
-                class="space-y-2 pt-2 expandable-content"
-                data-expanded="false"
-              >
-                <p>
-                  {t("services.kite.class.individual.p1")}
-                </p>
-                <div class="expandable-text">
-                  <p>
-                    {t("services.kite.class.individual.p2")}
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 mt-3">
-                <button
-                  class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
-                  aria-expanded="false"
-                >
-                  {t("services.common.seeMore")}
-                </button>
-                <div>
-                  <a
-                    class="whatsapp-btn hover:bg-brand-red inline-block text-center bg-brand-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("services.common.book")}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ClassCard
+          image={ClaseAvanzadaPhoto}
+          imageAlt="Clase Avanzada"
+          title={t("services.kite.class.advanced.title")}
+          duration={t("services.kite.class.advanced.duration")}
+          level={t("services.kite.class.advanced.level")}
+          descriptions={[
+            t("services.kite.class.advanced.p1"),
+            t("services.kite.class.advanced.p2"),
+            t("services.kite.class.advanced.p3"),
+            t("services.kite.class.advanced.p4"),
+          ]}
+          courseType="clase-avanzada"
+        />
 
-        <!-- CLASE AVANZADA -->
-        <div
-          class="text-brand-blue flex flex-col-reverse md:flex-row gap-6"
-          data-course-type="clase-avanzada"
-        >
-          <div class="md:basis-[33%] relative flex overflow-hidden">
-            <Image
-              src={ClaseAvanzadaPhoto}
-              alt={t("services.kite.class.advanced.title")}
-              class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">
-              {t("services.kite.class.advanced.title")}
-            </h2>
-            <div class="space-y-1">
-              <p>
-                <strong>{t("services.common.duration")}:</strong>
-                {t("services.kite.class.advanced.duration")}
-              </p>
-              <p>
-                <strong>{t("services.common.level")}:</strong>
-                {t("services.kite.class.advanced.level")}
-              </p>
-            </div>
-            <div class="relative">
-              <div
-                class="space-y-2 pt-2 expandable-content"
-                data-expanded="false"
-              >
-                <p>
-                  {t("services.kite.class.advanced.p1")}
-                </p>
-                <div class="expandable-text space-y-2">
-                  <p>
-                    {t("services.kite.class.advanced.p2")}
-                  </p>
-                  <p>
-                    {t("services.kite.class.advanced.p3")}
-                  </p>
-                  <p>
-                    {t("services.kite.class.advanced.p4")}
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 mt-3">
-                <button
-                  class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
-                  aria-expanded="false"
-                >
-                  {t("services.common.seeMore")}
-                </button>
-                <div>
-                  <a
-                    class="whatsapp-btn hover:bg-brand-red inline-block text-center bg-brand-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("services.common.book")}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CLASE DE PRUEBA -->
-        <div
-          class="text-brand-blue flex flex-col-reverse md:flex-row gap-6"
-          data-course-type="clase-prueba"
-        >
-          <div class="md:basis-[33%] relative flex overflow-hidden">
-            <Image
-              src={ClasePruebaPhoto}
-              alt={t("services.kite.class.try.title")}
-              class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover object-[50%_100%]"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">
-              {t("services.kite.class.try.title")}
-            </h2>
-            <div class="space-y-1">
-              <p>
-                <strong>{t("services.common.duration")}:</strong>
-                {t("services.kite.class.try.duration")}
-              </p>
-              <p>
-                <strong>{t("services.common.level")}:</strong>
-                {t("services.kite.class.try.level")}
-              </p>
-            </div>
-            <div class="relative">
-              <div
-                class="space-y-2 pt-2 expandable-content"
-                data-expanded="false"
-              >
-                <p>
-                  {t("services.kite.class.try.p1")}
-                </p>
-                <div class="expandable-text">
-                  <p>
-                    {t("services.kite.class.try.p2")}
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 mt-3">
-                <button
-                  class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
-                  aria-expanded="false"
-                >
-                  {t("services.common.seeMore")}
-                </button>
-                <div>
-                  <a
-                    class="whatsapp-btn hover:bg-brand-red inline-block text-center bg-brand-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("services.common.book")}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ClassCard
+          image={ClasePruebaPhoto}
+          imageAlt="Clase Prueba"
+          imageClass="object-[50%_90%]"
+          title={t("services.kite.class.try.title")}
+          duration={t("services.kite.class.try.duration")}
+          level={t("services.kite.class.try.level")}
+          mode={t("services.kite.class.try.mode")}
+          descriptions={[
+            t("services.kite.class.try.p1"),
+            t("services.kite.class.try.p2"),
+            t("services.kite.class.try.p3"),
+            t("services.kite.class.try.p4"),
+          ]}
+          courseType="clase-prueba"
+        />
       </div>
     </div>
 
     <!-- WINGFOIL -->
     <div class="flex flex-col gap-10">
       <div class="">
-        <h2 class="text-4xl text-brand-blue font-bold">
+        <h2 class="text-5xl text-brand-blue font-bold uppercase font-salted">
           {t("services.wingfoil.title")}
         </h2>
       </div>
       <div class="grid md:grid-cols-2 gap-10 items-start">
-        <!-- CLASE DE WINGFOIL -->
-        <div
-          class="text-brand-blue flex flex-col-reverse md:flex-row gap-6"
-          data-course-type="clase-wingfoil"
-        >
-          <div class="md:basis-[33%] relative flex overflow-hidden">
-            <Image
-              src={ClaseWingfoilPhoto}
-              alt={t("services.wingfoil.class.title")}
-              class="rounded-md filter-bluish-dark md:absolute md:inset-0 w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="md:basis-[66%]">
-            <h2 class="font-bold text-2xl pb-2">
-              {t("services.wingfoil.class.title")}
-            </h2>
-            <div class="relative">
-              <div class="space-y-2 expandable-content" data-expanded="false">
-                <p>{t("services.wingfoil.class.p1")}</p>
-                <div class="expandable-text space-y-2">
-                  <p>
-                    {t("services.wingfoil.class.p2")}
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 mt-3">
-                <button
-                  class="expand-btn text-brand-blue font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 rounded text-left"
-                  aria-expanded="false"
-                >
-                  {t("services.common.seeMore")}
-                </button>
-                <div>
-                  <a
-                    class="whatsapp-btn hover:bg-brand-red inline-block text-center bg-brand-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("services.common.book")}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ClassCard
+          image={ClaseWingfoilPhoto}
+          imageAlt="Clase Wingfoil"
+          title={t("services.wingfoil.class.title")}
+          descriptions={[
+            t("services.wingfoil.class.p1"),
+            t("services.wingfoil.class.p2"),
+          ]}
+          courseType="clase-wingfoil"
+        />
       </div>
     </div>
   </div>
 </ServicesLayout>
-
-<style>
-  .expandable-text {
-    max-height: 0;
-    overflow: hidden;
-    transition:
-      max-height 0.6s ease-out,
-      opacity 0.4s ease-out;
-    opacity: 0;
-  }
-
-  .expandable-content[data-expanded="true"] .expandable-text {
-    max-height: 1000px;
-    opacity: 1;
-    transition:
-      max-height 0.6s ease-in,
-      opacity 0.4s ease-in;
-  }
-</style>
 
 <script>
   import { initializeWhatsAppButtons } from "../../../modules/utils/whatsapp";
@@ -520,7 +199,6 @@ Fechas: _____
 ¿Tienen disponibilidad? ¡Gracias!`,
   };
 
-  // Expandable content handler
   function initializeExpandable() {
     const container: HTMLElement | null =
       document.getElementById("courses-container");
@@ -530,21 +208,34 @@ Fechas: _____
         return;
       }
 
-      const btn = e.target?.closest(".expand-btn");
+      const btn = e.target.closest(".expand-toggle");
       if (!btn) {
         return;
       }
 
-      const content = btn.closest(".flex")?.previousElementSibling;
-      if (!content || !content.classList.contains("expandable-content")) {
+      const panelId = btn.getAttribute("aria-controls");
+      if (!panelId) {
         return;
       }
 
-      const isExpanded = content.getAttribute("data-expanded") === "true";
+      const panel = document.getElementById(panelId);
+      if (!panel) {
+        return;
+      }
 
-      content.setAttribute("data-expanded", isExpanded ? "false" : "true");
-      btn.textContent = isExpanded ? "Ver más" : "Ver menos";
-      btn.setAttribute("aria-expanded", String(!isExpanded));
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      const newExpanded = !isExpanded;
+
+      btn.setAttribute("aria-expanded", String(newExpanded));
+
+      panel.setAttribute("aria-hidden", String(!newExpanded));
+
+      const textSpan = btn.querySelector(".expand-text");
+      if (textSpan) {
+        const moreText = btn.getAttribute("data-text-more") || "Ver más";
+        const lessText = btn.getAttribute("data-text-less") || "Ver menos";
+        textSpan.textContent = newExpanded ? lessText : moreText;
+      }
     });
   }
 
