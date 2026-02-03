@@ -37,11 +37,11 @@ const t = useTranslations(lang);
 ---
 
 <article
-  class="course-card text-brand-blue flex flex-col md:flex-row gap-6 bg-white shadow-news-card md:shadow-none md:bg-transparent p-4 md:p-0 rounded-xl md:rounded-none"
+  class="course-card text-brand-blue flex flex-col xl:flex-row gap-6 bg-white shadow-news-card p-4 rounded-xl"
   data-course-type={courseType}
 >
   <!-- Image Section -->
-  <div class="relative md:basis-[33%] h-[350px] flex overflow-hidden">
+  <div class="relative xl:basis-[33%] h-[350px] flex overflow-hidden">
     <Image
       src={image}
       alt={imageAlt}
@@ -51,100 +51,101 @@ const t = useTranslations(lang);
   </div>
 
   <!-- Content Section -->
-  <div class="md:basis-[66%] space-y-3">
-    <h2 class="font-bold text-2xl pb-2 uppercase">{title}</h2>
-
-    <!-- Meta Info -->
+  <div class="md:basis-[66%] flex flex-col gap-4">
     <div class="space-y-3">
-      {
-        duration !== undefined && (
-          <div class="flex items-center gap-3">
-            <Icon name="clock" class="size-5 text-brand-red stroke-3" />
-            <span class="text-brand-blue/80">
-              {t("services.common.duration")}:
-            </span>
-            <span class="font-bold">{duration}</span>
-          </div>
-        )
-      }
-      {
-        level !== undefined && (
-          <div class="flex items-center gap-3">
-            <Icon name="level" class="size-5 text-brand-red" />
-            <span>{t("services.common.level")}:</span>
-            <span class="font-bold">{level}</span>
-          </div>
-        )
-      }
-      {
-        mode !== undefined && (
-          <div class="flex items-center gap-3">
-            <Icon name="users" class="size-5 text-brand-red stroke-3" />
-            <span>{t("services.common.mode")}:</span>
-            <span class="font-bold">{mode}</span>
-          </div>
-        )
-      }
-    </div>
+      <h2 class="font-bold text-2xl uppercase">{title}</h2>
+      <!-- Meta Info -->
+      <div class="space-y-3">
+        {
+          duration !== undefined && (
+            <div class="flex items-center gap-3">
+              <Icon name="clock" class="size-5 text-brand-red stroke-3" />
+              <span class="text-brand-blue/80">
+                {t("services.common.duration")}:
+              </span>
+              <span class="font-bold">{duration}</span>
+            </div>
+          )
+        }
+        {
+          level !== undefined && (
+            <div class="flex items-center gap-3">
+              <Icon name="level" class="size-5 text-brand-red" />
+              <span>{t("services.common.level")}:</span>
+              <span class="font-bold">{level}</span>
+            </div>
+          )
+        }
+        {
+          mode !== undefined && (
+            <div class="flex items-center gap-3">
+              <Icon name="users" class="size-5 text-brand-red stroke-3" />
+              <span>{t("services.common.mode")}:</span>
+              <span class="font-bold">{mode}</span>
+            </div>
+          )
+        }
+      </div>
 
-    <!-- Description with Expandable Feature -->
-    <div class="relative pt-2" data-expandable-wrapper>
-      <!-- Always Visible -->
-      <p>{visibleDescription}</p>
+      <!-- Description with Expandable Feature -->
+      <div class="relative pt-2" data-expandable-wrapper>
+        <!-- Always Visible -->
+        <p>{visibleDescription}</p>
 
-      <!-- Expandable Content -->
-      {
-        hasExpandableContent && (
-          <div
-            class="expandable-panel grid transition-all duration-500 ease-in-out pb-2"
-            aria-hidden="true"
-            id={`expandable-${uniqueId}`}
-          >
-            <div class="overflow-hidden">
-              <div class="space-y-2 pt-2">
-                {expandableDescriptions.map((desc) => (
-                  <p class="text-brand-blue/90">{desc}</p>
-                ))}
+        <!-- Expandable Content -->
+        {
+          hasExpandableContent && (
+            <div
+              class="expandable-panel grid transition-all duration-500 ease-in-out pb-2"
+              aria-hidden="true"
+              id={`expandable-${uniqueId}`}
+            >
+              <div class="overflow-hidden">
+                <div class="space-y-2 pt-2">
+                  {expandableDescriptions.map((desc) => (
+                    <p class="text-brand-blue/90">{desc}</p>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        )
-      }
+          )
+        }
 
-      <!-- Controls -->
-      {
-        hasExpandableContent && (
-          <div class="flex flex-col gap-4">
-            <button
-              type="button"
-              class="expand-toggle text-sm inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-brand-red transition-colors focus:outline-none w-fit group"
-              aria-expanded="false"
-              aria-controls={`expandable-${uniqueId}`}
-              data-text-more={t("services.common.seeMore")}
-              data-text-less={t("services.common.seeLess")}
-            >
-              <span class="expand-text text-brand-red">
-                {t("services.common.seeMore")}
-              </span>
-              <Icon
-                name="chevron-down"
-                class="size-4 text-brand-red transition-transform duration-300 group-aria-expanded:rotate-180"
-              />
-            </button>
-          </div>
-        )
-      }
-
-      <div class="pt-4">
-        <a
-          href="#"
-          class="whatsapp-btn w-full md:w-fit inline-block text-center bg-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:bg-brand-red transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t("services.common.book")}
-        </a>
+        <!-- Controls -->
+        {
+          hasExpandableContent && (
+            <div class="flex flex-col gap-4">
+              <button
+                type="button"
+                class="expand-toggle text-sm inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-brand-red transition-colors focus:outline-none w-fit group"
+                aria-expanded="false"
+                aria-controls={`expandable-${uniqueId}`}
+                data-text-more={t("services.common.seeMore")}
+                data-text-less={t("services.common.seeLess")}
+              >
+                <span class="expand-text text-brand-red">
+                  {t("services.common.seeMore")}
+                </span>
+                <Icon
+                  name="chevron-down"
+                  class="size-4 text-brand-red transition-transform duration-300 group-aria-expanded:rotate-180"
+                />
+              </button>
+            </div>
+          )
+        }
       </div>
+    </div>
+
+    <div class="mt-auto flex justify-end">
+      <a
+        href="#"
+        class="whatsapp-btn w-full xl:w-[50%] inline-block text-center bg-brand-blue text-white font-bold py-3 px-10 rounded-xl hover:bg-brand-red transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {t("services.common.book")}
+      </a>
     </div>
   </div>
 </article>
