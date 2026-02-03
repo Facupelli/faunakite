@@ -1,9 +1,7 @@
 ---
 import { useTranslations } from "../i18n/utils";
-
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
-
 const testimonials = [
   {
     name: "Ananda Hollmann",
@@ -39,15 +37,21 @@ const testimonials = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+    <!-- Mobile: Scrollable carousel / Desktop: Grid -->
+    <div
+      id="testimonials-container"
+      class="flex md:grid overflow-x-auto py-4 snap-x snap-mandatory md:snap-none md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 scrollbar-hide scroll-smooth scroll-pl-4"
+    >
       {
-        testimonials.map((testimonial) => (
-          <article class="group relative z-30 bg-white rounded-3xl p-8 shadow-news-card transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+        testimonials.map((testimonial, index) => (
+          <article
+            class="testimonial-card group relative z-30 bg-white rounded-3xl p-8 shadow-news-card transition-all duration-300 hover:-translate-y-2 overflow-hidden shrink-0 w-[85vw] md:w-auto snap-start"
+            data-index={index}
+          >
             <div>
               <h3 class="text-xl font-bold text-slate-900 mb-2">
                 {testimonial.name}
               </h3>
-
               <div class="flex items-center gap-2 mb-4">
                 <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-linear-to-r from-cyan-100 to-blue-100 text-cyan-700">
                   {testimonial.country}
@@ -56,12 +60,10 @@ const testimonials = [
                   · {testimonial.age} {lang === "en" ? "years" : "años"}
                 </span>
               </div>
-
               <p class="text-slate-600 leading-relaxed">
                 {testimonial.description}
               </p>
             </div>
-
             <div class="absolute bottom-0 right-0 size-24 opacity-10 group-hover:opacity-20 transition-opacity">
               <svg viewBox="0 0 100 100" class="text-3" fill="currentColor">
                 <path d="M0,50 Q25,30 50,50 T100,50 L100,100 L0,100 Z" />
@@ -84,3 +86,72 @@ const testimonials = [
     </div>
   </div>
 </section>
+
+<script>
+  // Auto-rotate testimonials on mobile only
+  const container = document.getElementById("testimonials-container");
+  const cards = document.querySelectorAll(".testimonial-card");
+  let currentIndex = 0;
+  let autoRotateInterval: number | null = null;
+
+  function isMobile() {
+    return window.innerWidth < 768; // md breakpoint
+  }
+
+  function rotateTestimonial() {
+    if (!isMobile() || !cards.length) return;
+
+    currentIndex = (currentIndex + 1) % cards.length;
+    cards[currentIndex].scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  }
+
+  function startAutoRotate() {
+    if (!isMobile()) return;
+    stopAutoRotate();
+    autoRotateInterval = window.setInterval(rotateTestimonial, 5000);
+  }
+
+  function stopAutoRotate() {
+    if (autoRotateInterval) {
+      clearInterval(autoRotateInterval);
+      autoRotateInterval = null;
+    }
+  }
+
+  // Pause auto-rotate when user interacts
+  container?.addEventListener("touchstart", stopAutoRotate);
+  container?.addEventListener("scroll", () => {
+    stopAutoRotate();
+    // Resume after 3 seconds of no interaction
+    setTimeout(startAutoRotate, 3000);
+  });
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    if (isMobile()) {
+      startAutoRotate();
+    } else {
+      stopAutoRotate();
+    }
+  });
+
+  // Initialize
+  if (isMobile()) {
+    startAutoRotate();
+  }
+</script>
+
+<style>
+  /* Hide scrollbar while maintaining scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>
