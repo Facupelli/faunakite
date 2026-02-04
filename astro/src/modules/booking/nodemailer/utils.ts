@@ -22,25 +22,40 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export const sendMail = async (
-  to: string,
-  subject: string,
-  template: string,
-  qrBuffer: Buffer,
-) => {
+interface Attachment {
+  filename: string;
+  content: Buffer | string;
+  cid?: string; // Optional Content-ID for embedding in HTML
+  contentType?: string; // MIME type
+  encoding?: string; // e.g., 'base64'
+}
+
+interface EmailOptions {
+  to: string | string[]; // Support multiple recipients
+  subject: string;
+  html?: string; // HTML content
+  text?: string; // Plain text alternative
+  from?: string; // Optional override
+  cc?: string | string[];
+  bcc?: string | string[];
+  attachments?: Attachment[];
+  replyTo?: string;
+}
+
+const DEFAULT_SENDER = "Fauna Kite <faunacomunidad@gmail.com>";
+
+export const sendMail = async (options: EmailOptions) => {
   try {
     const mailOptions = {
-      from: "Fauna Kite faunacomunidad@gmail.com",
-      to,
-      subject,
-      html: template,
-      attachments: [
-        {
-          filename: "course-qr-code.png",
-          content: qrBuffer,
-          cid: "qrcode",
-        },
-      ],
+      from: options.from || DEFAULT_SENDER,
+      to: options.to,
+      subject: options.subject,
+      ...(options.html && { html: options.html }),
+      ...(options.text && { text: options.text }),
+      ...(options.cc && { cc: options.cc }),
+      ...(options.bcc && { bcc: options.bcc }),
+      ...(options.replyTo && { replyTo: options.replyTo }),
+      ...(options.attachments && { attachments: options.attachments }),
     };
 
     const mail = await transporter.sendMail(mailOptions);
