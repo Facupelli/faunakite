@@ -986,7 +986,7 @@ export const ui = {
   },
 
   "the-spot.tips.mobility.title": {
-    es: "Mobilidad en Rodeo",
+    es: "Movilidad en Rodeo",
     en: "Mobility in Rodeo",
   },
   "the-spot.tips.mobility.text": {
