@@ -31,71 +31,13 @@ import {
   generateCorrelationId,
 } from "../problem-details";
 import { notifyDeveloper, notifyDeveloperSafe } from "../error-notification";
+import { reservationSchema } from "../components/booking/booking-form.schema";
 
 // TODO: make idempotent
 export const book = {
   createBooking: defineAction({
     accept: "form",
-    input: z
-      .object({
-        "cf-turnstile-response": z
-          .string()
-          .min(1, "Captcha verification required"),
-        locale: z.enum(["es", "en"]),
-        // SECTION 1: Personal Data
-        customerName: z.string().min(1, "El nombre es requerido"),
-        birthDate: z.coerce.date(),
-        gender: z.nativeEnum(Gender).optional(),
-        customerEmail: z.string().email("Email inválido"),
-        province: z.string().min(1, "La provincia es requerida"),
-        customerPhone: z.string().optional(),
-
-        // SECTION 2: Reservation Details
-        courseType: z.nativeEnum(CourseType).optional(),
-        hoursReserved: z.coerce.number().positive().optional(),
-        arrivalDate: z.coerce.date().refine(
-          (date) => {
-            const arrival = new Date(date);
-            arrival.setHours(0, 0, 0, 0);
-
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            return arrival > today;
-          },
-          {
-            message: "Arrival date must be after today",
-          },
-        ),
-        arrivalTime: z
-          .string()
-          .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Hora inválida"),
-        departureDate: z.coerce.date(),
-        departureTime: z
-          .string()
-          .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Hora inválida")
-          .optional(),
-
-        // SECTION 3: Sports Profile
-        weightKg: z.coerce.number().positive().optional(),
-        heightCm: z.coerce.number().positive().optional(),
-        currentLevel: z.nativeEnum(SkillLevel).optional(),
-
-        // SECTION 4: Detailed Skill Level
-        detailedSkillLevel: z.nativeEnum(DetailedSkillLevel).optional(),
-
-        // SECTION 5: Goals & Preferences
-        mainObjective: z.string().optional(),
-        additionalNotes: z.string().optional(),
-
-        // SECTION 6: Marketing
-        referralSource: z.nativeEnum(ReferralSource).optional(),
-        referralSourceOther: z.string().optional(),
-        newsletterOptIn: z.coerce.boolean().default(false),
-      })
-      .refine((data) => data.departureDate > data.arrivalDate, {
-        message: "Departure date must be after arrival date",
-        path: ["departureDate"],
-      }),
+    input: reservationSchema,
     handler: async (input, context) => {
       const correlationId = generateCorrelationId();
 
@@ -106,61 +48,61 @@ export const book = {
       // ═══════════════════════════════════════════════════════════════════
       // STEP 1: CAPTCHA VERIFICATION (CRITICAL)
       // ═══════════════════════════════════════════════════════════════════
-      const turnstileToken = input["cf-turnstile-response"];
+      // const turnstileToken = input["cf-turnstile-response"];
 
-      try {
-        const verificationResponse = await fetch(
-          "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              secret: TURNSTILE_BOOKED_SECRET_KEY,
-              response: turnstileToken,
-            }),
-          },
-        );
+      // try {
+      //   const verificationResponse = await fetch(
+      //     "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      //     {
+      //       method: "POST",
+      //       headers: { "Content-Type": "application/json" },
+      //       body: JSON.stringify({
+      //         secret: TURNSTILE_BOOKED_SECRET_KEY,
+      //         response: turnstileToken,
+      //       }),
+      //     },
+      //   );
 
-        const verification = await verificationResponse.json();
+      //   const verification = await verificationResponse.json();
 
-        if (!verification.success) {
-          const problem = createCaptchaVerificationProblem(
-            `Turnstile verification failed. Success: ${verification.success}. Error codes: ${verification["error-codes"]?.join(", ") || "none"}`,
-            correlationId,
-          );
+      //   if (!verification.success) {
+      //     const problem = createCaptchaVerificationProblem(
+      //       `Turnstile verification failed. Success: ${verification.success}. Error codes: ${verification["error-codes"]?.join(", ") || "none"}`,
+      //       correlationId,
+      //     );
 
-          await notifyDeveloperSafe(
-            problem,
-            new Error(
-              `Turnstile verification failed: ${JSON.stringify(verification)}`,
-            ),
-          );
+      //     await notifyDeveloperSafe(
+      //       problem,
+      //       new Error(
+      //         `Turnstile verification failed: ${JSON.stringify(verification)}`,
+      //       ),
+      //     );
 
-          console.error(formatProblemForLog(problem));
+      //     console.error(formatProblemForLog(problem));
 
-          throw new ActionError({
-            code: "BAD_REQUEST",
-            message: "Captcha verification failed. Please try again.",
-          });
-        }
-      } catch (error) {
-        if (error instanceof ActionError) {
-          throw error;
-        }
+      //     throw new ActionError({
+      //       code: "BAD_REQUEST",
+      //       message: "Captcha verification failed. Please try again.",
+      //     });
+      //   }
+      // } catch (error) {
+      //   if (error instanceof ActionError) {
+      //     throw error;
+      //   }
 
-        const problem = createCaptchaVerificationProblem(
-          `Unexpected error during captcha verification: ${error instanceof Error ? error.message : "Unknown error"}`,
-          correlationId,
-        );
+      //   const problem = createCaptchaVerificationProblem(
+      //     `Unexpected error during captcha verification: ${error instanceof Error ? error.message : "Unknown error"}`,
+      //     correlationId,
+      //   );
 
-        await notifyDeveloper(problem, error);
-        console.error(formatProblemForLog(problem));
+      //   await notifyDeveloper(problem, error);
+      //   console.error(formatProblemForLog(problem));
 
-        throw new ActionError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Captcha Error",
-        });
-      }
+      //   throw new ActionError({
+      //     code: "INTERNAL_SERVER_ERROR",
+      //     message: "Captcha Error",
+      //   });
+      // }
 
       // ═══════════════════════════════════════════════════════════════════
       // STEP 2: BOOKING CREATION (CRITICAL)

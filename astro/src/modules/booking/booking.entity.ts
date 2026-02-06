@@ -96,7 +96,7 @@ export interface Booking {
   // ============================================================================
   customerName: string;
   birthDate: Date;
-  gender?: Gender;
+  gender?: Gender | null;
   customerEmail: string;
   province: string;
   customerPhone?: string;
@@ -104,7 +104,7 @@ export interface Booking {
   // ============================================================================
   // SECTION 2: RESERVATION DETAILS
   // ============================================================================
-  courseType?: CourseType;
+  courseType?: CourseType | null;
   hoursReserved?: number;
   arrivalDate: Date;
   arrivalTime: string;
@@ -116,12 +116,12 @@ export interface Booking {
   // ============================================================================
   weightKg?: number;
   heightCm?: number;
-  currentLevel?: SkillLevel;
+  currentLevel?: SkillLevel | null;
 
   // ============================================================================
   // SECTION 4: DETAILED SKILL ASSESSMENT
   // ============================================================================
-  detailedSkillLevel?: DetailedSkillLevel;
+  detailedSkillLevel?: DetailedSkillLevel | null;
 
   // ============================================================================
   // SECTION 5: GOALS & PREFERENCES
@@ -132,7 +132,7 @@ export interface Booking {
   // ============================================================================
   // SECTION 6: MARKETING & COMMUNICATION
   // ============================================================================
-  referralSource?: ReferralSource;
+  referralSource?: ReferralSource | null;
   referralSourceOther?: string;
   newsletterOptIn: boolean;
 }

@@ -1023,6 +1023,10 @@ export const ui = {
 
   // BOOKED PAGE
   "booked.title": { en: "Your Experience", es: "Tu Experiencia" },
+  "booked.subtitle": {
+    en: "REGISTRATION",
+    es: "REGISTRO",
+  },
   "booked.summary.1": {
     en: "Heeey! We're so stoked to know we'll be in the water together soon!",
     es: "Buenaaas! Qué alegría saber que pronto vamos a estar en el agua!",
@@ -1035,6 +1039,34 @@ export const ui = {
     en: "It will take you less than 2 minutes to complete.",
     es: "Completarlo te va a llevar menos de 2 minutos",
   },
+  "booked.start": {
+    en: "Start",
+    es: "Empezar",
+  },
+  "booked.step": {
+    en: "Step",
+    es: "Paso",
+  },
+  "booked.step.of": {
+    en: "of",
+    es: "de",
+  },
+  "booked.button.continue": {
+    en: "Continue",
+    es: "Siguiente",
+  },
+  "booked.button.previous": {
+    en: "Previous",
+    es: "Atrás",
+  },
+  "booked.button.submit": {
+    en: "Complete Reservation",
+    es: "Completar Reserva",
+  },
+  "booked.button.processing": {
+    en: "Processing...",
+    es: "Procesando...",
+  },
 
   // Form Errors
   "booked.error.title": { en: "Booking Error", es: "Error en la Reserva" },
@@ -1044,7 +1076,14 @@ export const ui = {
   },
 
   // Section 1: Personal Data
-  "booked.section1.title": { en: "YOUR INFO", es: "TUS DATOS" },
+  "booked.section1.title": {
+    en: "Personal Information",
+    es: "Información Personal",
+  },
+  "booked.section1.subtitle": {
+    en: "Please provide your basic information and contact details.",
+    es: "Por favor, proporciona tu información personal y contacto.",
+  },
   "booked.section1.field.customerName.label": {
     en: "Full Name",
     es: "Nombre Completo",
@@ -1068,7 +1107,14 @@ export const ui = {
   },
 
   // Section 2: Booking Details
-  "booked.section2.title": { en: "YOUR BOOKING", es: "TU RESERVA" },
+  "booked.section2.title": {
+    en: "Reservation Details",
+    es: "Detalles de la Reserva",
+  },
+  "booked.section2.subtitle": {
+    en: "When would you like to visit and what course are you interested in?",
+    es: "¿Cuándo quieres visitar y qué curso te interesa?",
+  },
   "booked.section2.field.courseType.label": {
     en: "Lesson Type",
     es: "Tipo de Clase",
@@ -1100,8 +1146,12 @@ export const ui = {
 
   // Section 3: Sports Profile
   "booked.section3.title": {
-    en: "YOUR SPORTS PROFILE",
-    es: "TU PERFIL DEPORTIVO",
+    en: "Sports Profile",
+    es: "Perfil Deportivo",
+  },
+  "booked.section3.subtitle": {
+    en: "Help us understand your physical profile and experience level.",
+    es: "Ayudanos a entender tu perfil físico y nivel de experiencia.",
   },
   "booked.section3.field.weightKg.label": {
     en: "Your weight (kg)",
@@ -1115,11 +1165,19 @@ export const ui = {
     en: "Current Level",
     es: "Nivel Actual",
   },
+  "booked.section3.field.currentLevel.placeholder": {
+    en: "Select your level...",
+    es: "Selecciona tu nivel...",
+  },
 
   // Section 4: Detailed Skill Level
   "booked.section4.title": {
     en: "What's Your Level? How Far Did You Get?",
     es: "¿Cuál es tu nivel? ¿Hasta dónde aprendiste?",
+  },
+  "booked.section4.subtitle": {
+    en: "This helps us match you with the right instructor and group. Also Tell us about your objectives and any special requirements.",
+    es: "Esto nos ayuda a encontrar a tu instructor y grupo adecuados. También, cuéntanos sobre tus objetivos y cualquier requisito especial.",
   },
   "booked.section4.field.detailedSkillLevel.label": {
     en: "Choose the stage you reached in your learning",
@@ -1144,8 +1202,8 @@ export const ui = {
     es: "Ej: Quiero aprender a navegar de forma independiente / Perfeccionar mis saltos / Aprender a hacer transiciones...",
   },
   "booked.section5.field.additionalNotes.label": {
-    en: "Any preference or additional notes for your lessons? (Schedule, preferred wind, kite size) / Do you have any previous injury or physical condition we should know about? (Optional)",
-    es: "Alguna preferencia o nota adicional para tus clases? (Horarios, viento preferido, medida de kite) / Tenés alguna lesión previa o condición física limitante que quieras mencionar? (Opcional)",
+    en: "Any preference or additional notes for your lessons? (Schedule, preferred wind, kite size) / Do you have any previous injury or physical condition we should know about?",
+    es: "Alguna preferencia o nota adicional para tus clases? (Horarios, viento preferido, medida de kite) / Tenés alguna lesión previa o condición física limitante que quieras mencionar?",
   },
   "booked.section5.field.additionalNotes.placeholder": {
     en: "E.g.: I prefer morning lessons / I have a right-shoulder injury / I'd like to practice in lighter winds...",
@@ -1153,7 +1211,12 @@ export const ui = {
   },
 
   // Section 6: Referral
-  "booked.section6.title": { en: "To finish...", es: "Para terminar..." },
+  "booked.section6.title": { en: "Almost Done!", es: "¡Casi listo!" },
+  "booked.section6.subtitle": {
+    en: "Help us improve by letting us know hoy you found us",
+    es: "Ayúdanos a mejorar informandonos cómo nos encontraste",
+  },
+
   "booked.section6.field.referralSource.label": {
     en: "How did you find us?",
     es: "¿Cómo llegaste a nosotros?",
@@ -1163,6 +1226,10 @@ export const ui = {
     es: "Si elegiste 'Otro', especificá aquí",
   },
   "booked.section6.field.newsLetterOptIn.label": {
+    en: "Subscribe to newsletter",
+    es: "Suscríbete a la newsletter",
+  },
+  "booked.section6.field.newsLetterOptIn.description": {
     en: "Would you like us to invite you to our sports activities and cultural events — trips, courses, Kite Camps — and send you exclusive info, discounts and promotions?",
     es: "¿Te gustaría que te invitemos a nuestras actividades deportivas y eventos culturales: Viajes, cursos, Kite Camps; y recibir información, descuentos y promociones exclusivos?",
   },
