@@ -53,7 +53,7 @@ export const ui = {
   },
   "about-us.title": { en: "About Us", es: "Sobre Nosotros" },
   "about-us.summary": {
-    en: "We are a community of winds. Because kiteboarding is the perfect excuse to meet, share and enjoy what we love: sport and nature. FAUNA is more than a school — it's a meeting place where kiteboarding is a shared experience, learning is a fun journey, and every person who arrives becomes a new friend.",
+    en: "We are a wind community. Because kiteboarding is the perfect excuse to meet, share and enjoy what we love: sport and nature. FAUNA is more than a school — it's a meeting place where kiteboarding is a shared experience, learning is a fun journey, and every person who arrives becomes a new friend.",
     es: "Somos una comunidad de vientos. Porque el kite es solo la excusa perfecta para encontrarnos, compartir y disfrutar de lo que nos gusta: el deporte y la naturaleza. FAUNA es más que una escuela: un lugar de encuentro donde el kite es una experiencia compartida, el aprendizaje un camino divertido y cada persona que llega, un nuevo amigo.",
   },
   "about-us.button": { en: "Who We Are", es: "Quiénes Somos" },
@@ -132,7 +132,7 @@ export const ui = {
     es: "Ropa diseñada para riders que buscan estilo, comodidad y protección en el agua",
   },
   "store.button": { en: "Visit the Store", es: "Visita la tienda" },
-  "community.title": { en: "COMMUNITY OF WINDS", es: "COMUNIDAD DE VIENTOS" },
+  "community.title": { en: "WINDS COMMUNITY", es: "COMUNIDAD DE VIENTOS" },
   "community.paragraph.1": {
     en: "At FAUNA we believe kiteboarding is just the excuse to meet each other. What really drives us is the people, the shared moments and that unique energy between those who love the wind, the water, the sport and nature.",
     es: "En FAUNA creemos que el kite es solo la excusa para encontrarnos. Lo que realmente nos mueve es la gente, los momentos compartidos y esa energía única que se genera entre los que amamos el viento, el agua, el deporte y la naturaleza.",
@@ -142,7 +142,7 @@ export const ui = {
     es: "Ser parte de la Comunidad FAUNA es mucho más que aprender a hacer kite: es sumarte a un grupo de amigos que comparten la misma pasión, que se ayudan y dan una mano dentro y fuera del agua, que se motivan y que se reencuentran cada temporada para disfrutar juntos de este estilo de vida.",
   },
   "footer.slogan": {
-    en: "More than a school, a community of winds.",
+    en: "More than a school, a wind community.",
     es: "Más que una escuela, una comunidad de vientos.",
   },
   "footer.navigation.title": { en: "Navigation", es: "Navegación" },
@@ -634,7 +634,7 @@ export const ui = {
   // ======================
   "about.intro.p1": {
     es: "Somos una comunidad de vientos. Porque el kite es solo la excusa perfecta para encontrarnos, compartir y disfrutar de lo que nos gusta: el deporte y la naturaleza.",
-    en: "We are a community of winds. Because kiteboarding is just the perfect excuse to come together, share, and enjoy what we love: sport and nature.",
+    en: "We are a wind community. Because kiteboarding is just the perfect excuse to come together, share, and enjoy what we love: sport and nature.",
   },
   "about.intro.p2": {
     es: "FAUNA es más que una escuela, es un lugar de encuentro donde el kite es una experiencia compartida, el aprendizaje un camino divertido y cada persona que llega, un nuevo amigo.",
@@ -774,7 +774,7 @@ export const ui = {
   },
   "about.present.p1": {
     es: "FAUNA es una comunidad de vientos, aprendemos juntos, nos cuidamos entre todos y celebramos la vida al aire libre. El kite es la excusa; la comunidad y la conexión con la naturaleza, el objetivo.",
-    en: "FAUNA is a community of winds; we learn together, take care of each other, and celebrate outdoor life. Kiteboarding is the excuse; community and connection with nature are the goal.",
+    en: "FAUNA is a wind community; we learn together, take care of each other, and celebrate outdoor life. Kiteboarding is the excuse; community and connection with nature are the goal.",
   },
   "about.present.p2": {
     es: "En FAUNA la enseñanza va de la mano con la amistad: mates, música, risas, charlas, comidas, viajes y, por supuesto, mucho kite. Si buscás aprender en compañía, explorar nuevos vientos y sumar amigos, este es tu lugar.",
@@ -1202,8 +1202,8 @@ export const ui = {
     es: "Ej: Quiero aprender a navegar de forma independiente / Perfeccionar mis saltos / Aprender a hacer transiciones...",
   },
   "booked.section5.field.additionalNotes.label": {
-    en: "Any preference or additional notes for your lessons? (Schedule, preferred wind, kite size) / Do you have any previous injury or physical condition we should know about?",
-    es: "Alguna preferencia o nota adicional para tus clases? (Horarios, viento preferido, medida de kite) / Tenés alguna lesión previa o condición física limitante que quieras mencionar?",
+    en: "Any preference or additional notes for your lessons? (kite size if you have your own equipment) / Do you have any previous injury or physical condition we should know about?",
+    es: "Alguna preferencia o nota adicional para tus clases? (medida de kite si tenés equipo propio) / Tenés alguna lesión previa o condición física limitante que quieras mencionar?",
   },
   "booked.section5.field.additionalNotes.placeholder": {
     en: "E.g.: I prefer morning lessons / I have a right-shoulder injury / I'd like to practice in lighter winds...",

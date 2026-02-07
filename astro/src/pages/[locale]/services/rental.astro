@@ -48,7 +48,7 @@ const images = [
     </div>
   </Fragment>
 
-  <div class="max-w-7xl mx-auto pb-20">
+  <div class="max-w-7xl mx-auto pb-20" id="rental-container" data-lang={lang}>
     <div
       class="max-w-4xl mx-auto flex items-center justify-center gap-12 py-4 md:py-10 px-4"
     >
@@ -98,14 +98,27 @@ const images = [
 <script>
   import { initializeWhatsAppButton } from "../../../modules/utils/whatsapp";
 
-  const rentalMessage = `¡Hola! Mi nombre es: _____
+  const rentalMessage = {
+    es: `¡Hola! Mi nombre es: _____
 Quisiera consultar por *Rental de equipo* en *Cuesta del Viento*
 Puedo navegar con seguridad y ceñir sin problema: *SI/NO*
 Necesitaría alquilar: *Equipo Completo* / *Solo kite y barra*
 Fechas: _____
-¡Gracias!`;
+¡Gracias!`,
+    en: `Hello! My name is: _____
+I would like to inquire about *Equipment Rental* at *Cuesta del Viento*
+I can sail safely and tack without problem: *YES/NO*
+I would need to rent: *Complete Equipment* / *Only kite and bar*
+Dates: _____
+Thanks!`,
+  };
 
   document.addEventListener("astro:page-load", () => {
-    initializeWhatsAppButton(".whatsapp-btn", rentalMessage);
+    const container = document.getElementById("rental-container");
+    const lang = (container?.getAttribute("data-lang") || "es") as "en" | "es";
+
+    const message = rentalMessage[lang];
+
+    initializeWhatsAppButton(".whatsapp-btn", message);
   });
 </script>

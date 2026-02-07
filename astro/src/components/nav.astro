@@ -74,7 +74,7 @@ const links = [
     id="mobile-menu"
     class="invisible opacity-0 fixed inset-0 bg-brand-blue text-white z-40 md:hidden h-dvh transition-opacity duration-300 ease-out"
   >
-    <div class="flex flex-col h-full">
+    <div class="flex gap-10 flex-col h-full">
       <!-- Mobile Menu Header -->
       <div
         class="flex justify-between items-center h-20 shrink-0 px-4 border-b border-white"
@@ -102,7 +102,7 @@ const links = [
       <!-- Mobile Menu Links -->
       <div
         id="mobile-menu-links"
-        class="flex flex-col p-6 h-full justify-around font-bold uppercase opacity-0 scale-95 transition-all duration-300 ease-out"
+        class="flex flex-col px-4 gap-10 font-bold uppercase opacity-0 scale-95 transition-all duration-300 ease-out"
       >
         {links.map((link) => <a href={link.href}>{link.name}</a>)}
       </div>

@@ -66,7 +66,11 @@ Fecha: ${date}
     </div>
   </Fragment>
 
-  <div class="grid md:grid-cols-2 gap-10 py-10 max-w-6xl mx-auto">
+  <div
+    class="grid md:grid-cols-2 gap-10 py-10 max-w-6xl mx-auto"
+    data-lang={lang}
+    id="kitecamps-container"
+  >
     <div class="text-brand-blue max-w-prose text-lg space-y-4 px-4">
       <h1 class="font-bold text-2xl md:text-4xl">KITE CAMP</h1>
 
@@ -214,11 +218,21 @@ Fecha: ${date}
 <script>
   import { initializeWhatsAppButton } from "../../../modules/utils/whatsapp";
 
-  const kitecampMessage = `¡Hola! Mi nombre es: _____
+  const kitecampMessage = {
+    es: `¡Hola! Mi nombre es: _____
 Quisiera consultar por más información y fecha del próximo *KiteCamp*
-¡Gracias!`;
+¡Gracias!`,
+    en: `Hello! My name is: _____
+I would like to inquire about more information and the date of the next *KiteCamp*
+Thanks!`,
+  };
 
   document.addEventListener("astro:page-load", () => {
-    initializeWhatsAppButton(".whatsapp-btn", kitecampMessage);
+    const container = document.getElementById("kitecamps-container");
+    const lang = (container?.getAttribute("data-lang") || "es") as "en" | "es";
+
+    const message = kitecampMessage[lang];
+
+    initializeWhatsAppButton(".whatsapp-btn", message);
   });
 </script>

@@ -1,14 +1,12 @@
 ---
 import { useTranslations } from "../../../i18n/utils";
 import ServicesLayout from "../../../layouts/services-layout.astro";
-import { Image } from "astro:assets";
 import ClaseAvanzadaPhoto from "../../../assets/what-we-offer/clases/clase-avanzada.webp";
 import ClaseIndividualPhoto from "../../../assets/what-we-offer/clases/clase-individual.webp";
 import ClasePruebaPhoto from "../../../assets/what-we-offer/clases/clase-prueba.webp";
 import ClaseWingfoilPhoto from "../../../assets/what-we-offer/clases/clase-wingfoil.webp";
 import CursoInicialPhoto from "../../../assets/what-we-offer/clases/curso-inicial.webp";
 import CursoIntensivoPhoto from "../../../assets/what-we-offer/clases/curso-intensivo.webp";
-import { Icon } from "astro-icon/components";
 import ClassCard from "../../../components/clases/class-card.astro";
 
 export async function getStaticPaths() {
@@ -37,6 +35,7 @@ const t = useTranslations(lang);
   <div
     class="max-w-[1800px] mx-auto px-4 md:px-10 space-y-20 pt-10"
     id="courses-container"
+    data-lang={lang}
   >
     <!-- CURSOS -->
     <div class="flex flex-col gap-10">
@@ -164,42 +163,89 @@ const t = useTranslations(lang);
 <script>
   import { initializeWhatsAppButtons } from "../../../modules/utils/whatsapp";
 
-  const courseMessages = {
-    "curso-inicial": `¡Hola! Mi nombre es: _____
+  const courseMessages: { [key: string]: { [key: string]: string } } = {
+    "curso-inicial": {
+      es: `¡Hola! Mi nombre es: _____
 Me gustaría tomar el *Curso Inicial de 9hs* con ustedes en *Cuesta del Viento*
 Voy: Solo/a / con __ personas más
 Fechas: _____
 ¿Tienen disponibilidad? ¡Gracias!`,
-    "curso-intensivo": `¡Hola! Mi nombre es: _____
+      en: `Hello! My name is: _____
+I would like to take the *Initial 9-Hour Course* with you at *Cuesta del Viento*
+I'm going: Alone / with __ more people
+Dates: _____
+Do you have availability? Thanks!`,
+    },
+    "curso-intensivo": {
+      es: `¡Hola! Mi nombre es: _____
 Me gustaría tomar *6 hs de clase* con ustedes en *Cuesta del Viento*
 Mi nivel es: _____
 Voy: Solo/a / con __ personas más
 Fechas: _____
 ¿Tienen disponibilidad? ¡Gracias!`,
-    "clase-individual": `¡Hola! Mi nombre es: _____
+      en: `Hello! My name is: _____
+I would like to take *6 hours of class* with you at *Cuesta del Viento*
+My level is: _____
+I'm going: Alone / with __ more people
+Dates: _____
+Do you have availability? Thanks!`,
+    },
+    "clase-individual": {
+      es: `¡Hola! Mi nombre es: _____
 Me gustaría reservar una *Clase Individual/Avanzada* con ustedes en *Cuesta del Viento*
 Mi nivel es: _____
 Viajo: Solo/a / con __ personas más
 Fechas: _____
 Objetivos: _____
 ¿Tienen disponibilidad? ¡Gracias!`,
-    "clase-avanzada": `¡Hola! Mi nombre es: _____
+      en: `Hello! My name is: _____
+I would like to book an *Individual/Advanced Class* with you at *Cuesta del Viento*
+My level is: _____
+I'm traveling: Alone / with __ more people
+Dates: _____
+Objectives: _____
+Do you have availability? Thanks!`,
+    },
+    "clase-avanzada": {
+      es: `¡Hola! Mi nombre es: _____
 Me gustaría reservar una *Clase Individual/Avanzada* con ustedes en *Cuesta del Viento*
 Mi nivel es: _____
 Viajo: Solo/a / con __ personas más
 Fechas: _____
 Objetivos: _____
 ¿Tienen disponibilidad? ¡Gracias!`,
-    "clase-prueba": `¡Hola! Mi nombre es: _____
+      en: `Hello! My name is: _____
+I would like to book an *Individual/Advanced Class* with you at *Cuesta del Viento*
+My level is: _____
+I'm traveling: Alone / with __ more people
+Dates: _____
+Objectives: _____
+Do you have availability? Thanks!`,
+    },
+    "clase-prueba": {
+      es: `¡Hola! Mi nombre es: _____
 Me gustaría agendar una *Clase de Prueba* con FAUNA en *Cuesta del Viento*
 Mis fechas posibles son: _____
 ¿Tienen disponibilidad? ¡Gracias!`,
-    "clase-wingfoil": `¡Hola! Mi nombre es: _____
+      en: `Hello! My name is: _____
+I would like to schedule a *Trial Class* with FAUNA at *Cuesta del Viento*
+My possible dates are: _____
+Do you have availability? Thanks!`,
+    },
+    "clase-wingfoil": {
+      es: `¡Hola! Mi nombre es: _____
 Me gustaría tomar una *Clase de Wingfoil* con ustedes en *Cuesta del Viento*
 Mi nivel es: _____
 Voy: Solo/a / con __ personas más
 Fechas: _____
 ¿Tienen disponibilidad? ¡Gracias!`,
+      en: `Hello! My name is: _____
+I would like to take a *Wingfoil Class* with you at *Cuesta del Viento*
+My level is: _____
+I'm going: Alone / with __ more people
+Dates: _____
+Do you have availability? Thanks!`,
+    },
   };
 
   function initializeExpandable() {
@@ -244,7 +290,12 @@ Fechas: _____
 
   // Initialize on page load
   document.addEventListener("astro:page-load", () => {
-    initializeWhatsAppButtons(courseMessages);
+    const container = document.getElementById("courses-container");
+    const lang = (container?.getAttribute("data-lang") || "es") as "en" | "es";
+
+    const messages = courseMessages[lang];
+
+    initializeWhatsAppButtons(messages);
     initializeExpandable();
   });
 </script>

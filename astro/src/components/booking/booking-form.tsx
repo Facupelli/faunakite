@@ -419,7 +419,7 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
               </div>
 
               {/* Arrival Date & Time */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="block text-sm font-semibold text-white">
                     {t("booked.section2.field.arrivalDate.label")}
@@ -455,7 +455,7 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
               </div>
 
               {/* Departure Date & Time */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="block text-sm font-semibold text-white">
                     {t("booked.section2.field.departureDate.label")}
@@ -573,7 +573,7 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
                   {...form.register("detailedSkillLevel")}
                   className="block w-full rounded-2xl border h-10 px-4 bg-white/80 border-gray-30"
                 >
-                  <option value="">Select...</option>
+                  <option value="">Seleccionar...</option>
                   <option value={DetailedSkillLevel.THEORY_AND_SAFETY}>
                     {enumT("detailedSkillLevel.theoryAndSafety")}
                   </option>
