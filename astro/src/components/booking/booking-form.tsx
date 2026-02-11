@@ -2,6 +2,7 @@ import {
   CourseType,
   DetailedSkillLevel,
   Gender,
+  MainObjective,
   ReferralSource,
   SkillLevel,
 } from "../../modules/booking/booking.entity";
@@ -323,7 +324,7 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
                 <input
                   {...form.register("province")}
                   className={`block bg-white/80 py-2 px-4 w-full rounded-2xl border border-gray-300 shadow-sm ${form.formState.errors.province && "border-red-500"}`}
-                  placeholder="California"
+                  placeholder="San Juan"
                 />
                 {form.formState.errors.province && (
                   <p className="mt-1 text-sm text-red-600">
@@ -612,14 +613,35 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
                 <label className="block text-sm font-semibold text-white">
                   {t("booked.section5.field.mainObjective.label")}
                 </label>
-                <textarea
+
+                <select
                   {...form.register("mainObjective")}
-                  rows={3}
-                  className={`block bg-white/80 py-2 px-4 w-full rounded-2xl border border-gray-300 shadow-sm `}
-                  placeholder={t(
-                    "booked.section5.field.mainObjective.placeholder",
-                  )}
-                />
+                  className="block w-full rounded-2xl border h-10 px-4 bg-white/80 border-gray-30"
+                >
+                  <option value="">Seleccionar...</option>
+
+                  <option value={MainObjective.LEARN_TO_NAVIGATE}>
+                    {enumT("mainObjective.learningToNavigate")}
+                  </option>
+                  <option value={MainObjective.BEING_INDEPENDENT}>
+                    {enumT("mainObjective.beingIndependent")}
+                  </option>
+                  <option value={MainObjective.IMPROVE_RIDING}>
+                    {enumT("mainObjective.improvingRiding")}
+                  </option>
+                  <option value={MainObjective.MAKE_TRANSITIONS}>
+                    {enumT("mainObjective.makeTransitions")}
+                  </option>
+                  <option value={MainObjective.LEARN_JUMP}>
+                    {enumT("mainObjective.learnJump")}
+                  </option>
+                  <option value={MainObjective.LEARN_NEW_MANEUVERS}>
+                    {enumT("mainObjective.learningNewManipulations")}
+                  </option>
+                  <option value={MainObjective.KITELOOPS}>
+                    {enumT("mainObjective.kiteLoops")}
+                  </option>
+                </select>
               </div>
 
               {/* Additional Notes */}

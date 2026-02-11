@@ -1440,6 +1440,36 @@ export const enumTranslations = {
     es: "Hago saltos controlados y maniobras en el aire",
   },
 
+  // Main Objective
+  "mainObjective.learningToNavigate": {
+    en: "Learn to navigate",
+    es: "Aprender a navegar",
+  },
+  "mainObjective.beingIndependent": {
+    en: "Being independent",
+    es: "Ser independiente",
+  },
+  "mainObjective.improvingRiding": {
+    en: "Improve my riding",
+    es: "Mejorar mi riding",
+  },
+  "mainObjective.makeTransitions": {
+    en: "Make transitions",
+    es: "Hacer transiciones",
+  },
+  "mainObjective.learnJump": {
+    en: "Learn to jump",
+    es: "Aprender a saltar",
+  },
+  "mainObjective.learningNewManipulations": {
+    en: "Learn new maneuvers",
+    es: "Aprender nuevas maniobras",
+  },
+  "mainObjective.kiteLoops": {
+    en: "Kiteloops",
+    es: "Kiteloops",
+  },
+
   // Referral Sources
   "referralSource.instagram": { en: "Instagram", es: "Instagram" },
   "referralSource.google": { en: "Google", es: "Google" },

@@ -1,15 +1,7 @@
-import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
 import { ActionError } from "astro:actions";
 import { createBooking } from "../modules/booking/use-cases/create-booking";
-import {
-  CourseType,
-  DetailedSkillLevel,
-  Gender,
-  ReferralSource,
-  SkillLevel,
-} from "../modules/booking/booking.entity";
-import { createUrlQr } from "../modules/booking/qr-code";
+import { createUrlQr, QrGenerationError } from "../modules/booking/qr-code";
 import { GoogleCalendarError } from "../modules/booking/google-calendar/google-calendar-client";
 import { createCalendarEvent } from "../modules/booking/google-calendar/create-event";
 import { useTranslations } from "../i18n/utils";
@@ -24,14 +16,15 @@ import { SITE_URL } from "astro:env/client";
 import {
   createBookingCreationProblem,
   createCalendarEventProblem,
-  createCaptchaVerificationProblem,
   createEmailDeliveryProblem,
   createInvalidInputProblem,
+  createQRGenerationProblem,
   formatProblemForLog,
   generateCorrelationId,
 } from "../problem-details";
 import { notifyDeveloper, notifyDeveloperSafe } from "../error-notification";
 import { reservationSchema } from "../components/booking/booking-form.schema";
+import { logCanonicalLine, type BookingContext } from "./booking.action.types";
 
 // TODO: make idempotent
 export const book = {
@@ -41,9 +34,17 @@ export const book = {
     handler: async (input, context) => {
       const correlationId = generateCorrelationId();
 
-      console.log(
-        `[BOOKING START] Correlation ID: ${correlationId}, Email: ${input.customerEmail}`,
-      );
+      const bookingContext: BookingContext = {
+        correlation_id: correlationId,
+        customer_email: input.customerEmail,
+        arrival_date: input.arrivalDate.toISOString(),
+        departure_date: input.departureDate.toISOString(),
+        locale: input.locale,
+        started_at: Date.now(),
+        result: "success",
+        steps: {},
+        degraded_services: [],
+      };
 
       // ═══════════════════════════════════════════════════════════════════
       // STEP 1: CAPTCHA VERIFICATION (CRITICAL)
@@ -111,9 +112,11 @@ export const book = {
 
       try {
         bookingResult = await createBooking(input);
-        console.log(
-          `[BOOKING SUCCESS] ID: ${bookingResult.bookingId}, Correlation ID: ${correlationId}`,
-        );
+
+        bookingContext.steps.booking_creation = {
+          success: true,
+        };
+        bookingContext.booking_id = bookingResult.bookingId;
       } catch (error) {
         const t = useTranslations(context.currentLocale as "es" | "en");
 
@@ -125,8 +128,6 @@ export const book = {
             { inputData: { ...input, "cf-turnstile-response": "[REDACTED]" } },
           );
 
-          // Validation errors might not need immediate notification (user error)
-          // but we log them for analysis
           console.error(formatProblemForLog(problem));
 
           throw new ActionError({
@@ -146,7 +147,11 @@ export const book = {
         );
 
         await notifyDeveloper(problem, error);
-        console.error(formatProblemForLog(problem));
+
+        bookingContext.steps.booking_creation = {
+          success: false,
+          error: problem,
+        };
 
         throw new ActionError({
           code: "INTERNAL_SERVER_ERROR",
@@ -155,13 +160,14 @@ export const book = {
       }
 
       // ═══════════════════════════════════════════════════════════════════
-      // STEP 3: CALENDAR EVENT CREATION (DEGRADED - NOT CRITICAL)
+      // STEP 3: CALENDAR EVENT CREATION
       // ═══════════════════════════════════════════════════════════════════
       try {
         await createCalendarEvent(input);
-        console.log(
-          `[CALENDAR SUCCESS] Booking ID: ${bookingResult.bookingId}, Correlation ID: ${correlationId}`,
-        );
+
+        bookingContext.steps.calendar_event = {
+          success: true,
+        };
       } catch (error) {
         const problem = createCalendarEventProblem(
           `Calendar event creation failed: ${error instanceof Error ? error.message : "Unknown error"}`,
@@ -170,7 +176,11 @@ export const book = {
         );
 
         await notifyDeveloperSafe(problem, error);
-        console.error(formatProblemForLog(problem));
+
+        bookingContext.steps.calendar_event = {
+          success: false,
+          error: problem,
+        };
 
         if (error instanceof GoogleCalendarError) {
           console.error(
@@ -180,16 +190,16 @@ export const book = {
       }
 
       // ═══════════════════════════════════════════════════════════════════
-      // STEP 4: QR CODE & EMAIL DELIVERY (DEGRADED - NOT CRITICAL)
+      // STEP 4: QR CODE & EMAIL DELIVERY
       // ═══════════════════════════════════════════════════════════════════
       try {
         const qrBuffer = await createUrlQr(
           `${SITE_URL}/es/verify/${bookingResult.bookingId}`,
         );
 
-        console.log(
-          `[QR CODE SUCCESS] Booking ID: ${bookingResult.bookingId}, Correlation ID: ${correlationId}`,
-        );
+        bookingContext.steps.qr_generation = {
+          success: true,
+        };
 
         const template = getBookingEmailTemplate(input.locale);
         await sendMail({
@@ -205,23 +215,57 @@ export const book = {
           ],
         });
 
-        console.log(
-          `[EMAIL SUCCESS] Sent to: ${input.customerEmail}, Booking ID: ${bookingResult.bookingId}, Correlation ID: ${correlationId}`,
-        );
+        bookingContext.steps.email_delivery = {
+          success: true,
+        };
       } catch (error) {
-        const problem = createEmailDeliveryProblem(
-          `Email delivery failed: ${error instanceof Error ? error.message : "Unknown error"}`,
-          correlationId,
-          bookingResult.bookingId,
-          input.customerEmail,
-        );
+        if (error instanceof QrGenerationError) {
+          const problem = createQRGenerationProblem(
+            `QR code generation failed: ${error.message}`,
+            correlationId,
+            bookingResult.bookingId,
+          );
 
-        await notifyDeveloperSafe(problem, error);
-        console.error(formatProblemForLog(problem));
+          bookingContext.steps.qr_generation = {
+            success: false,
+            error: problem,
+          };
+        } else if (error instanceof NodemailerError) {
+          const problem = createEmailDeliveryProblem(
+            `Email delivery failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+            correlationId,
+            bookingResult.bookingId,
+            input.customerEmail,
+          );
 
-        if (error instanceof NodemailerError) {
-          console.error(
-            `[DEGRADED SERVICE] Email delivery error: ${error.message}`,
+          bookingContext.steps.email_delivery = {
+            success: false,
+            error: problem,
+          };
+
+          await notifyDeveloperSafe(problem, error);
+        } else {
+          const problem = createEmailDeliveryProblem(
+            `QR/Email delivery failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+            correlationId,
+            bookingResult.bookingId,
+            input.customerEmail,
+          );
+
+          await notifyDeveloperSafe(problem, error);
+
+          bookingContext.steps.qr_generation = {
+            success: false,
+          };
+
+          bookingContext.steps.email_delivery = {
+            success: false,
+            error: problem,
+          };
+
+          bookingContext.degraded_services.push(
+            "qr_generation",
+            "email_delivery",
           );
         }
       }
@@ -229,9 +273,7 @@ export const book = {
       // ═══════════════════════════════════════════════════════════════════
       // SUCCESS - BOOKING COMPLETED
       // ═══════════════════════════════════════════════════════════════════
-      console.log(
-        `[BOOKING COMPLETE] ID: ${bookingResult.bookingId}, Correlation ID: ${correlationId}`,
-      );
+      logCanonicalLine(bookingContext);
 
       return {
         success: true,

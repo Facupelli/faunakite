@@ -81,7 +81,9 @@ function toSpreadsheetRow(booking: Booking): SpreadsheetRow {
     return optIn ? "¡Sí, Avísenme!" : "No, gracias...";
   }
 
-  function formatReferralSource(source: ReferralSource | undefined): string {
+  function formatReferralSource(
+    source: ReferralSource | undefined | null,
+  ): string {
     if (source === ReferralSource.OTHER && booking.referralSourceOther) {
       return booking.referralSourceOther;
     }

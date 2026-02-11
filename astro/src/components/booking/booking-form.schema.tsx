@@ -5,6 +5,7 @@ import {
   DetailedSkillLevel,
   SkillLevel,
   ReferralSource,
+  MainObjective,
 } from "../../modules/booking/booking.entity";
 
 export const reservationSchema = z
@@ -68,7 +69,12 @@ export const reservationSchema = z
       .nullish(),
 
     // SECTION 5: Goals & Preferences
-    mainObjective: z.string().optional(),
+    mainObjective: z
+      .preprocess(
+        (val) => (val === "" ? undefined : val),
+        z.nativeEnum(MainObjective).optional(),
+      )
+      .nullish(),
     additionalNotes: z.string().optional(),
 
     // SECTION 6: Marketing

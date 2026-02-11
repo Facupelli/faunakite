@@ -28,6 +28,16 @@ export enum DetailedSkillLevel {
   CONTROLLED_JUMPS_AND_MANEUVERS = "saltos-controlados-maniobras",
 }
 
+export enum MainObjective {
+  LEARN_TO_NAVIGATE = "aprender-a-navegar",
+  BEING_INDEPENDENT = "ser-independiente",
+  IMPROVE_RIDING = "mejorar-mi-riding",
+  MAKE_TRANSITIONS = "hacer-transiciones",
+  LEARN_JUMP = "aprender-a-saltar",
+  LEARN_NEW_MANEUVERS = "aprender-nuevas-maniobras",
+  KITELOOPS = "kiteloops",
+}
+
 export const DetailedSkillLevelDict = {
   [DetailedSkillLevel.THEORY_AND_SAFETY]:
     "1) Teoría y seguridad y primeros vuelos",
@@ -126,7 +136,7 @@ export interface Booking {
   // ============================================================================
   // SECTION 5: GOALS & PREFERENCES
   // ============================================================================
-  mainObjective?: string;
+  mainObjective?: string | null;
   additionalNotes?: string;
 
   // ============================================================================

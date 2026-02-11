@@ -40,6 +40,7 @@ export interface BookingProblemDetails extends ProblemDetails {
     | "captcha_verification"
     | "booking_creation"
     | "calendar_event"
+    | "qr_generation"
     | "email_delivery";
   /** User-facing error code for i18n */
   userErrorCode?: string;
@@ -80,6 +81,7 @@ const PROBLEM_TYPES = {
   CAPTCHA_VERIFICATION_FAILED: "/errors/captcha-verification-failed",
   BOOKING_CREATION_FAILED: "/errors/booking-creation-failed",
   CALENDAR_EVENT_FAILED: "/errors/calendar-event-failed",
+  QR_GENERATION_FAILED: "/errors/qr-generation-failed",
   EMAIL_DELIVERY_FAILED: "/errors/email-delivery-failed",
   INVALID_INPUT: "/errors/invalid-input",
   INTERNAL_ERROR: "/errors/internal-server-error",
@@ -154,6 +156,24 @@ export function createCalendarEventProblem(
     correlationId,
     timestamp: new Date().toISOString(),
     bookingStep: "calendar_event",
+    bookingId, // Booking succeeded, so we have an ID
+  };
+}
+
+export function createQRGenerationProblem(
+  detail: string,
+  correlationId: string,
+  bookingId?: string,
+): BookingProblemDetails {
+  return {
+    type: PROBLEM_TYPES.QR_GENERATION_FAILED,
+    title: "QR Code Generation Failed",
+    status: 500,
+    detail,
+    instance: `/booking/${correlationId}`,
+    correlationId,
+    timestamp: new Date().toISOString(),
+    bookingStep: "qr_generation",
     bookingId, // Booking succeeded, so we have an ID
   };
 }
