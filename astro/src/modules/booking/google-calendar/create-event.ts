@@ -43,7 +43,7 @@ export async function createCalendarEvent(input: CreateBookingData) {
   ].filter(Boolean);
 
   const response = await googleCalendarClient.createEvent({
-    summary: `${input.customerName} - ${input.courseType ?? ""} ${input.hoursReserved ?? ""}`,
+    summary: `${input.customerName} - ${input.courseType ?? ""} ${input.hoursReserved && `${input.hoursReserved}hs`}`,
     start: {
       dateTime: input.arrivalDate.toISOString(),
       timeZone: "America/Argentina/Buenos_Aires",
