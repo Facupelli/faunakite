@@ -149,7 +149,7 @@ export default function Carousel({
         <div className="overflow-hidden h-full" ref={emblaRef}>
           <div className="flex h-full">
             {childrenArray.map((child, index) => (
-              <div key={index} className="flex-[0_0_100%] min-w-0 px-2 h-full">
+              <div key={index} className="flex-[0_0_100%] min-w-0 h-full">
                 <div className="w-full h-full flex items-center justify-center">
                   {child}
                 </div>
@@ -162,7 +162,7 @@ export default function Carousel({
         {showNavigation && (
           <>
             <button
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-40 bg-white/90 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-40 bg-white/60 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg disabled:opacity-30 disabled:cursor-not-allowed transition-all"
               onClick={scrollPrev}
               disabled={!canScrollPrev}
               aria-label="Previous slide"
@@ -181,7 +181,7 @@ export default function Carousel({
               </svg>
             </button>
             <button
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-40 bg-white/90 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-40 bg-white/60 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg disabled:opacity-30 disabled:cursor-not-allowed transition-all"
               onClick={scrollNext}
               disabled={!canScrollNext}
               aria-label="Next slide"
@@ -204,7 +204,7 @@ export default function Carousel({
 
         {/* Dot Indicators */}
         {showDots && (
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2 mt-4">
             {childrenArray.map((_, index) => (
               <button
                 key={index}

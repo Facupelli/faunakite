@@ -11,8 +11,9 @@ import Layout from "../../../layouts/Layout.astro";
 import { urlFor } from "../../../modules/news/image.utils";
 import { formatDate } from "../../../modules/news/date.utils";
 import Nav from "../../../components/nav.astro";
-import NewsCard from "../../../components/news-card.astro";
 import Footer from "../../../components/footer.astro";
+import { useTranslations } from "../../../i18n/utils";
+import NewsCarousel from "../../../components/news/news-carousel";
 
 export async function getStaticPaths() {
   const languages = ["es", "en"] as const;
@@ -27,7 +28,7 @@ export async function getStaticPaths() {
           locale,
           slug: post.slug.current,
         },
-      }))
+      })),
     );
   }
 
@@ -38,6 +39,8 @@ type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 const { slug, locale } = Astro.params as Params;
 const lang = locale as "en" | "es";
 
+const t = useTranslations(lang);
+
 const post = await getNewsBySlug(slug, lang);
 const posts: News[] = await getLatestNews(lang);
 
@@ -46,7 +49,7 @@ const morePosts: News[] = posts.filter((post) => post.slug.current !== slug);
 function getOptimizedImageUrl(
   image: any,
   width: number,
-  format: "webp" = "webp"
+  format: "webp" = "webp",
 ) {
   return urlFor(image).width(width).format(format).quality(85).url();
 }
@@ -66,14 +69,14 @@ if (!post) {
 <Layout>
   <Fragment slot="head">
     {
-      post?.image && (
+      post?.images && (
         <>
           <link
             rel="preload"
             as="image"
-            href={getOptimizedImageUrl(post.image, 800, "webp")}
+            href={getOptimizedImageUrl(post.images[0], 800, "webp")}
             type="image/webp"
-            imagesrcset={generateSrcSet(post.image, "webp")}
+            imagesrcset={generateSrcSet(post.images[0], "webp")}
             imagesizes="(max-width: 768px) 100vw, 50vw"
           />
         </>
@@ -93,61 +96,112 @@ if (!post) {
         <div class="max-w-7xl mx-auto pb-20 pt-40 px-4">
           <div class="flex flex-col md:flex-row gap-y-20">
             <article class="md:basis-[75%] md:max-w-prose md:mx-auto">
-              <h1 class="font-bold text-4xl">{post.title}</h1>
+              <h1 class="font-bold text-5xl font-salted uppercase">
+                {post.title}
+              </h1>
               <p class="text-sm text-brand-blue/80">
                 {formatDate(post._createdAt)}
               </p>
               <p class="py-4">{post.summary}</p>
 
-              <div>
+              {
+                post.ctaButton?.url != undefined && (
+                  <div>
+                    <a
+                      href={post.ctaButton.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="bg-brand-red px-4 py-2 rounded-3xl text-white text-sm font-semibold"
+                    >
+                      {post.ctaButton?.text}
+                    </a>
+                  </div>
+                )
+              }
+
+              <div class="py-4">
                 {
-                  post.image ? (
-                    <div class="relative h-80 w-full py-8">
-                      <picture>
-                        {/* WebP - good compression with broad support */}
-                        <source
-                          type="image/webp"
-                          srcset={generateSrcSet(post.image, "webp")}
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        {/* Fallback */}
-                        <img
-                          src={getOptimizedImageUrl(post.image, 800)}
-                          srcset={generateSrcSet(post.image)}
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          alt={post.image.alt || post.title}
-                          width="800"
-                          height="800"
-                          class="object-cover w-full h-full rounded-2xl"
-                        />
-                      </picture>
-                      {post.epigraph && (
-                        <p class="text-brand-blue/80 text-sm p-2">
-                          {post.epigraph}
-                        </p>
-                      )}
-                    </div>
+                  post.images && post.images.length > 0 ? (
+                    post.images.length === 1 ? (
+                      // Single image - original behavior
+                      <div>
+                        <div class="relative h-80 w-full">
+                          <picture>
+                            {/* WebP - good compression with broad support */}
+                            <source
+                              type="image/webp"
+                              srcset={generateSrcSet(post.images[0], "webp")}
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                            {/* Fallback */}
+                            <img
+                              src={getOptimizedImageUrl(post.images[0], 800)}
+                              srcset={generateSrcSet(post.images[0])}
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                              alt={post.images[0].alt || post.title}
+                              width="800"
+                              height="800"
+                              class="object-cover w-full h-full rounded-2xl"
+                            />
+                          </picture>
+                        </div>
+                        {post.epigraph && (
+                          <p class="text-brand-blue/80 text-sm p-2">
+                            {post.epigraph}
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      // Multiple images - Carousel
+                      <div class="relative w-full">
+                        <NewsCarousel client:load images={post.images} />
+                        {post.epigraph && (
+                          <p class="text-brand-blue/80 text-sm py-2">
+                            {post.epigraph}
+                          </p>
+                        )}
+                      </div>
+                    )
                   ) : (
+                    // No images
                     <div class="post__cover--none" />
                   )
                 }
               </div>
 
-              <div class="h-px w-full bg-brand-blue/20 mb-6"></div>
+              <div class="text-justify">
+                <PortableText value={post.body} />
+              </div>
 
-              <PortableText value={post.body} />
+              {
+                post.ctaButton?.url != undefined && (
+                  <div class="pt-4">
+                    <a
+                      href={post.ctaButton.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="bg-brand-blue px-4 py-2 rounded-3xl text-white text-sm font-semibold"
+                    >
+                      {post.ctaButton?.text}
+                    </a>
+                  </div>
+                )
+              }
             </article>
 
             <aside class="md:basis-[25%] space-y-4">
-              <p class="font-bold text-lg">Más Noticias</p>
+              <p class="font-bold text-xl font-salted">{t("news.more-news")}</p>
               <div class="grid gap-10">
                 {
                   morePosts.length >= 1 &&
                     morePosts.map((post) => (
-                      <article class="w-full h-full text-brand-blue rounded-md overflow-hidden bg-white group cursor-pointer flex ">
-                        <div class="p-4 space-y-2">
+                      <article class="w-full h-full text-brand-blue rounded-md overflow-hidden bg-white group cursor-pointer flex">
+                        <div class="p-4 space-y-2 basis-2/3">
                           <h3 class="pt-2 text-xl">
-                            <a href={`/post/${post.slug.current}`}>
+                            <a
+                              href={`/post/${post.slug.current}`}
+                              class="line-clamp-2"
+                            >
                               {post.title}
                             </a>
                           </h3>
@@ -166,16 +220,13 @@ if (!post) {
                           </div>
                         </div>
 
-                        {post.image ? (
-                          <div class="relative h-40 overflow-hidden">
+                        {post.images && post.images.length > 0 ? (
+                          <div class="relative basis-1/3 h-40 overflow-hidden">
                             <img
                               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                              src={urlFor(post.image)
-                                .width(200)
-                                .height(200)
-                                .url()}
+                              src={getOptimizedImageUrl(post.images[0], 200)}
                               loading="lazy"
-                              alt={post.image.alt || ""}
+                              alt={post.images[0].alt}
                             />
                           </div>
                         ) : (

@@ -173,6 +173,12 @@ export const ui = {
     es: "Términos",
   },
 
+  // NEWS
+  "news.more-news": {
+    en: "More News",
+    es: "Más Noticias",
+  },
+
   // SERVICES PAGE
   // LAYOUT
   "services.layout.title": { en: "What We Offer", es: "Qué Ofrecemos" },
@@ -838,6 +844,32 @@ export const ui = {
   // ======================
   // DONDE SIEMPRE SOPLA
   // ======================
+
+  "the-spot.wind-days.title": {
+    en: "More than 300 Windy Days per Year",
+    es: "Más de 300 Días de Viento al Año",
+  },
+  "the-spot.wind-days.description": {
+    en: "Absolute reliability from October to May, positioning Cuesta del Viento as one of the most reliable spots in South America for kitesurfing.",
+    es: "Fiabilidad absoluta de octubre a mayo, posicionando a Cuesta del Viento como uno de los spots más confiables de Sudamérica para kitesurf.",
+  },
+  "the-spot.wind-speed.title": {
+    en: "Winds of 20 to 35 Knots",
+    es: "Vientos de 20 a 35 Nudos",
+  },
+  "the-spot.wind-speed.description": {
+    en: "Thermal winds arrive almost every day, starting gentle at noon and increasing in strength in the afternoon, perfect for beginners and experienced riders.",
+    es: "Vientos térmicos llegan casi todos los días, iniciando suaves al mediodía y aumentando en fuerza por la tarde, perfectos para principiantes y experimentados.",
+  },
+  "the-spot.sail-sunset.title": {
+    en: "Sail Until Sunset",
+    es: "Navegá hasta el atardecer",
+  },
+  "the-spot.sail-sunset.description": {
+    en: "With wind until after 9 PM in summer, it creates a scene of incredible sails and colors over the mountains, accompanied by a passionate community.",
+    es: "Con viento hasta pasadas las 21hs en verano, se crea un escenario de velas y colores increíbles sobre las montañas, acompañado de una comunidad apasionada.",
+  },
+
   "the-spot.wind.title": {
     es: "donde siempre sopla",
     en: "where it always blows",
@@ -917,8 +949,8 @@ export const ui = {
     en: "Relax in bars featuring live music nights and diverse entertainment shows",
   },
   "the-spot.more-than-kite.cta": {
-    es: "CONOCÉ TUS BENEFICIOS",
-    en: "DISCOVER YOUR BENEFITS",
+    es: "Beneficios de viajar con Fauna",
+    en: "Benefits of Traveling with Fauna",
   },
 
   // ======================
@@ -1008,17 +1040,57 @@ export const ui = {
     es: "BENEFICIOS FAUNA",
     en: "FAUNA BENEFITS",
   },
-  "ally.description.p1": {
-    en: "At Fauna Kite, we believe the experience goes far beyond the water. That's why we partner with local providers in Cuesta del Viento and Rodeo —including accommodations, restaurants, and complementary activities such as yoga and massages— to offer exclusive benefits to our students.",
-    es: "En Fauna Kite creemos que la experiencia va mucho más allá del agua. Por eso, trabajamos junto a prestadores locales de Cuesta del Viento y Rodeo —alojamientos, restaurantes y actividades complementarias como yoga y masajes— para ofrecer beneficios exclusivos a nuestros alumnos.",
+  "ally.benefits.p1.part1": {
+    en: "At Fauna Kite we believe that the experience goes far beyond the water. That's why, ",
+    es: "En Fauna Kite creemos que la experiencia va mucho más allá del agua. Por eso, ",
   },
-  "ally.description.p2": {
-    en: "Being part of Fauna means access to special discounts, curated experiences, and unique offers that enhance your stay and connect you with the local community.",
-    es: "Ser parte de Fauna significa acceder a descuentos, propuestas especiales y experiencias seleccionadas que enriquecen tu estadía y te conectan con la comunidad local.",
+  "ally.benefits.p1.bold1": {
+    en: "we work together with local providers in Cuesta del Viento and Rodeo",
+    es: "trabajamos junto a prestadores locales de Cuesta del Viento y Rodeo",
   },
-  "ally.description.p3": {
-    en: "Once you book a course, class, or equipment rental, you’ll receive an email with a QR code that gives you access to these benefits. Our partner providers will scan it to verify that you’re a Fauna Kite student and unlock the perks included in the program.",
-    es: "Una vez realizada tu reserva de curso, clase o rental, vas a recibir un email con un código QR con el que vas a poder acceder a estos beneficios. Los prestadores lo van a escanear para verificar que sos alumno de Fauna Kite y habilitarte las ventajas del programa.",
+  "ally.benefits.p1.part2": {
+    en: " —accommodations, restaurants and complementary activities— to offer exclusive benefits to our students.",
+    es: " —alojamientos, restaurantes y actividades complementarias— para ofrecer beneficios exclusivos a nuestros alumnos.",
+  },
+  "ally.benefits.p2.part1": {
+    en: "Being part of Fauna means accessing ",
+    es: "Ser parte de Fauna significa acceder a ",
+  },
+  "ally.benefits.p2.bold1": {
+    en: "discounts, special proposals and selected experiences",
+    es: "descuentos, propuestas especiales y experiencias seleccionadas",
+  },
+  "ally.benefits.p2.part2": {
+    en: " that enrich your stay and connect you with the local community.",
+    es: " que enriquecen tu estadía y te conectan con la comunidad local.",
+  },
+  "ally.benefits.p3.part1": {
+    en: "Once ",
+    es: "Una vez ",
+  },
+  "ally.benefits.p3.bold1": {
+    en: "your reservation is made",
+    es: "realizada tu reserva",
+  },
+  "ally.benefits.p3.part2": {
+    en: " for a course, class or rental, ",
+    es: " de curso, clase o rental, ",
+  },
+  "ally.benefits.p3.bold2": {
+    en: "you will receive an email",
+    es: "vas a recibir un email",
+  },
+  "ally.benefits.p3.part3": {
+    en: " with a ",
+    es: " con un ",
+  },
+  "ally.benefits.p3.bold3": {
+    en: "QR Code",
+    es: "Código QR",
+  },
+  "ally.benefits.p3.part4": {
+    en: " with which you will be able to access these benefits. The providers will scan it to verify the validity and enable the program advantages.",
+    es: " con el que vas a poder acceder a estos beneficios. Los prestadores lo van a escanear para verificar la validez y habilitar las ventajas del programa.",
   },
 
   // BOOKED PAGE

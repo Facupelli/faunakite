@@ -18,8 +18,25 @@ export const newsType = defineType({
       type: 'internationalizedArrayString',
     }),
     defineField({
-      name: 'image',
-      type: 'image',
+      name: 'images',
+      title: 'Images',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative text',
+              description: 'Important for accessibility and SEO',
+            },
+          ],
+        },
+      ],
     }),
     defineField({
       name: 'epigraph',
@@ -93,7 +110,7 @@ export const newsType = defineType({
   preview: {
     select: {
       title: 'title',
-      media: 'image',
+      media: 'images.0',
     },
     prepare({title, media}) {
       const titleText =

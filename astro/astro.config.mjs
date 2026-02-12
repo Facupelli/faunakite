@@ -11,7 +11,7 @@ import sitemap from "@astrojs/sitemap";
 const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(
   process.env.NODE_ENV,
   process.cwd(),
-  ""
+  "",
 );
 
 // https://astro.build/config
@@ -73,6 +73,10 @@ export default defineConfig({
         access: "public",
       }),
       TURNSTILE_NEWSLETTER_SECRET_KEY: envField.string({
+        context: "server",
+        access: "public",
+      }),
+      TN_FEATURED_CATEGORY_ID: envField.string({
         context: "server",
         access: "public",
       }),

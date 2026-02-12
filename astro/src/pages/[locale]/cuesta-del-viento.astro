@@ -121,21 +121,18 @@ const t = useTranslations(lang);
 const cuestaData = [
   {
     icon: "wind",
-    title: "Más de 300 Días de Viento al Año",
-    description:
-      "Fiabilidad absoluta de octubre a mayo, posicionando a Cuesta del Viento como uno de los spots más confiables de Sudamérica para kitesurf.",
+    title: t("the-spot.wind-days.title"),
+    description: t("the-spot.wind-days.description"),
   },
   {
     icon: "circle-arrow-up",
-    title: "Vientos de 20 a 35 Nudos",
-    description:
-      "Vientos térmicos llegan casi todos los días, iniciando suaves al mediodía y aumentando en fuerza por la tarde, perfectos para principiantes y experimentados.",
+    title: t("the-spot.wind-speed.title"),
+    description: t("the-spot.wind-speed.description"),
   },
   {
     icon: "mountain",
-    title: "Viento hasta las 21hs en Verano",
-    description:
-      "Atardeceres con viento soplando en diciembre y enero, creando escenarios de velas y colores increíbles sobre las montañas, con una comunidad apasionada.",
+    title: t("the-spot.sail-sunset.title"),
+    description: t("the-spot.sail-sunset.description"),
   },
 ];
 
@@ -527,7 +524,7 @@ const moreThanKiteItems = [
                 <div class="grid md:grid-cols-5 gap-x-10 px-4">
                   <div class="md:col-span-2 space-y-4 text-white">
                     <div class="space-y-2">
-                      <h3 class="font-bold text-lg">
+                      <h3 class="font-bold text-xl font-salted uppercase">
                         {t("the-spot.how-to-get.sanjuan.title")}
                       </h3>
                       <p>
@@ -536,7 +533,7 @@ const moreThanKiteItems = [
                     </div>
 
                     <div class="space-y-2">
-                      <h3 class="font-bold text-lg">
+                      <h3 class="font-bold text-xl font-salted uppercase">
                         {t("the-spot.how-to-get.mendoza.title")}
                       </h3>
                       <p>
@@ -545,7 +542,7 @@ const moreThanKiteItems = [
                     </div>
 
                     <div class="space-y-2">
-                      <h3 class="font-bold text-lg">
+                      <h3 class="font-bold text-xl font-salted uppercase">
                         {t("the-spot.how-to-get.cordoba.title")}
                       </h3>
                       <p>
@@ -554,7 +551,7 @@ const moreThanKiteItems = [
                     </div>
 
                     <div class="space-y-2">
-                      <h3 class="font-bold text-lg">
+                      <h3 class="font-bold text-xl font-salted uppercase">
                         {t("the-spot.how-to-get.buenos-aires.title")}
                       </h3>
                       <p>
@@ -597,7 +594,7 @@ const moreThanKiteItems = [
                 </div>
 
                 <div class="space-y-4">
-                  <p class="font-bold text-xl">
+                  <p class="font-bold text-2xl font-salted">
                     {t("the-spot.tips.carpool.title")}
                   </p>
                   <p class="text-brand-blue/90">
@@ -621,7 +618,7 @@ const moreThanKiteItems = [
                 </div>
 
                 <div class="space-y-4">
-                  <p class="font-bold text-xl">
+                  <p class="font-bold text-2xl font-salted">
                     {t("the-spot.tips.mobility.title")}
                   </p>
                   <p class="text-brand-blue/90">
@@ -637,7 +634,7 @@ const moreThanKiteItems = [
                 </div>
 
                 <div class="space-y-4">
-                  <p class="font-bold text-xl">
+                  <p class="font-bold text-2xl font-salted">
                     {t("the-spot.tips.things-to-bring.title")}
                   </p>
                   <p class="text-brand-blue/90">
