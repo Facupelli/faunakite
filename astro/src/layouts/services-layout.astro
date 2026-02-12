@@ -6,6 +6,7 @@ import AboutUsUnderSeparator from "../components/svg/about-us-under-separator.as
 import TheSpotTopSeparator from "../components/svg/the-spot-top-separator.astro";
 import { useTranslations } from "../i18n/utils";
 import Layout from "./Layout.astro";
+import Seo from "../components/seo.astro";
 import headerImage from '../assets/headers/header-4.webp';
 import { Image } from "astro:assets";
 
@@ -19,6 +20,7 @@ interface Props {
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
+
 ---
 
 <Layout title="Lo Que Hacemos | Fauna Kite " locale={Astro.params.locale}>
@@ -27,7 +29,7 @@ const t = useTranslations(lang);
       name="description"
       content="Clases y cursos de kitesurf y wingfoil en Cuesta del Viento. Cursos iniciales, intensivos, clases avanzadas, rental, kite camps y viajes. Aprendé con seguridad, buena energía y sé parte de la comunidad FAUNA."
     />
-    <link rel="canonical" href={`https://faunakite.com/${Astro.params.locale}/services/clases`} />
+    <Seo />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="FAUNA Kite" />
     <meta property="og:title" content="Clases y Cursos de Kitesurf | FAUNA Kite" />

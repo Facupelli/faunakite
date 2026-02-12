@@ -1,0 +1,29 @@
+---
+export interface Props {
+  siteUrl?: string;
+}
+
+const { siteUrl = "https://faunakite.com" } = Astro.props;
+
+// Get current pathname and extract locale
+const pathname = Astro.url.pathname;
+const localeMatch = pathname.match(/^\/(en|es)(?:\/|$)/);
+const currentLocale = localeMatch ? localeMatch[1] : "es";
+
+// Remove leading slash for canonical path
+const canonicalPath = pathname.replace(/^\//, "");
+
+// Build canonical URL
+const canonicalUrl = `${siteUrl}/${canonicalPath}`.replace(/\/$/, ""); // Remove trailing slash
+
+// Build alternate URLs for hreflang
+const otherLocale = currentLocale === "es" ? "en" : "es";
+const alternatePath = pathname.replace(/^\/(en|es)/, `/${otherLocale}`);
+const alternateUrl = `${siteUrl}${alternatePath}`.replace(/\/$/, "");
+const currentUrl = `${siteUrl}${pathname}`.replace(/\/$/, "");
+---
+
+<link rel="canonical" href={canonicalUrl} />
+<link rel="alternate" hreflang={currentLocale} href={currentUrl} />
+<link rel="alternate" hreflang={otherLocale} href={alternateUrl} />
+<link rel="alternate" hreflang="x-default" href={currentUrl} />

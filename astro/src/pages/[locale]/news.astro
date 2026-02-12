@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Seo from "../../components/seo.astro";
 import { formatDate } from "../../modules/news/date.utils";
 import { getNews, type News } from "../../modules/news/utils";
 import Nav from "../../components/nav.astro";
@@ -36,13 +37,10 @@ function getImageSrcSet(image: any, sizes: number[]) {
 
 <Layout title="Noticias | Fauna Kite " locale={Astro.params.locale}>
   <Fragment slot="head">
+    <Seo />
     <meta
       name="description"
       content="Últimas noticias de FAUNA Kite. Eventos, competencias, y todo el mundo del kitesurf en Cuesta del Viento y Argentina."
-    />
-    <link
-      rel="canonical"
-      href={`https://faunakite.com/${Astro.params.locale}/news`}
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="FAUNA Kite" />

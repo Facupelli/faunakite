@@ -3,6 +3,7 @@ import { getAllies } from "../../modules/allies/utils";
 import Footer from "../../components/footer.astro";
 import Nav from "../../components/nav.astro";
 import Layout from "../../layouts/Layout.astro";
+import Seo from "../../components/seo.astro";
 import { urlFor } from "../../modules/news/image.utils";
 import TheSpotTopSeparator from "../../components/svg/the-spot-top-separator.astro";
 import AboutUsUnderSeparator from "../../components/svg/about-us-under-separator.astro";
@@ -55,8 +56,9 @@ function generateSrcSet(image: any, format: "webp" = "webp") {
 }
 ---
 
-<Layout title="Fauna Aliados">
+<Layout title="Fauna Aliados" locale={lang}>
   <Fragment slot="head">
+    <Seo />
     <meta
       name="description"
       content="Aliados Fauna: hoteles, restaurantes y experiencias recomendadas en Cuesta del Viento y alrededores. Beneficios exclusivos para alumnos FAUNA y una red de amigos que comparten el espíritu del kite y la buena energía."

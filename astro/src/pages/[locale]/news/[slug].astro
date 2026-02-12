@@ -8,6 +8,7 @@ import {
   getLatestNews,
 } from "../../../modules/news/utils";
 import Layout from "../../../layouts/Layout.astro";
+import Seo from "../../../components/seo.astro";
 import { urlFor } from "../../../modules/news/image.utils";
 import { formatDate } from "../../../modules/news/date.utils";
 import Nav from "../../../components/nav.astro";
@@ -66,8 +67,9 @@ if (!post) {
 }
 ---
 
-<Layout>
+<Layout title={`${post?.title || "News"} | Fauna Kite`} locale={lang}>
   <Fragment slot="head">
+    <Seo />
     {
       post?.images && (
         <>
@@ -213,7 +215,7 @@ if (!post) {
                           <div class="">
                             <a
                               class="text-brand-red hover:underline"
-                              href={`/es/news/${post.slug.current}`}
+                              href={`/${lang}/news/${post.slug.current}`}
                             >
                               Ver más
                             </a>

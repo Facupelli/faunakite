@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Nav from "../../components/nav.astro";
 import Layout from "../../layouts/Layout.astro";
+import Seo from "../../components/seo.astro";
 import AboutUsUnderSeparator from "../../components/svg/about-us-under-separator.astro";
 import Footer from "../../components/footer.astro";
 import CommunityTopSeparator from "../../components/svg/community-top-separator.astro";
@@ -88,11 +89,8 @@ const team = [
 
 <Layout title="Quienes Somos | Fauna Kite " locale={Astro.params.locale}>
   <Fragment slot="head">
+    <Seo />
     <meta name="description" content={t("about.meta.description")} />
-    <link
-      rel="canonical"
-      href={`https://faunakite.com/${Astro.params.locale}/about-us`}
-    />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="FAUNA Kite" />
     <meta property="og:title" content="Quiénes Somos | FAUNA Kite" />
