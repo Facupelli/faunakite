@@ -1,16 +1,11 @@
 ---
 import BrushStain from "../components/svg/newsletter-background.astro";
 import { useTranslations } from "../i18n/utils";
-import { actions } from "astro:actions";
-import { isInputError } from "astro:actions";
 
 const isProd = import.meta.env.PROD;
 
 const lang = Astro.params.locale as "en" | "es";
 const t = useTranslations(lang);
-
-const result = Astro.getActionResult(actions.newsletter.subscribe);
-const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 
 const TURNSTILE_NEWSLETTER_SITE_KEY = "0x4AAAAAACEmwzYSGa4EHMA4";
 ---
