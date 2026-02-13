@@ -2,11 +2,12 @@
 import { defineConfig, envField } from "astro/config";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
-import vercel from "@astrojs/vercel";
 import { loadEnv } from "vite";
 import icon from "astro-icon";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+
+import cloudflare from "@astrojs/cloudflare";
 
 const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(
   process.env.NODE_ENV,
@@ -114,5 +115,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  adapter: vercel(),
+  adapter: cloudflare(),
 });
