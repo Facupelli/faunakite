@@ -6,7 +6,8 @@ export function getGoogleServiceAccountPrivateKey(): string {
   }
 
   try {
-    return JSON.parse(jsonKey);
+    const { privateKey } = JSON.parse(jsonKey);
+    return privateKey;
   } catch (error) {
     throw new Error("Invalid GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY");
   }
