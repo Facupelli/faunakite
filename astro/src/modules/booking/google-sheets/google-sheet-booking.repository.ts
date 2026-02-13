@@ -3,19 +3,18 @@ import { GoogleSheetsClient, GoogleSheetsError } from "./google-sheet-client";
 import type { BookingRepository } from "../booking.repository";
 import type { Booking } from "../booking.entity";
 import { bookingMapper } from "./mappers/booking.mapper";
+import { getGoogleServiceAccountPrivateKey } from "../../utils/google-cloud";
 
 const GOOGLE_SHEETS_SPREADSHEET_ID = import.meta.env
   .GOOGLE_SHEETS_SPREADSHEET_ID;
 const GOOGLE_SHEETS_SHEET_NAME = import.meta.env.GOOGLE_SHEETS_SHEET_NAME;
 const GOOGLE_SERVICE_ACCOUNT_EMAIL = import.meta.env
   .GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY = import.meta.env
-  .GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
 const spreadsheetId = GOOGLE_SHEETS_SPREADSHEET_ID;
 const sheetName = GOOGLE_SHEETS_SHEET_NAME;
 const clientEmail = GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const privateKey = GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
+const privateKey = getGoogleServiceAccountPrivateKey();
 
 const client = new GoogleSheetsClient({
   spreadsheetId,

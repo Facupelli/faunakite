@@ -1,3 +1,4 @@
+import { getGoogleServiceAccountPrivateKey } from "../../utils/google-cloud";
 import {
   CourseMode,
   CourseModeDict,
@@ -7,15 +8,13 @@ import {
 } from "../booking.entity";
 import { GoogleCalendarClient } from "./google-calendar-client";
 
-const GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY = import.meta.env
-  .GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 const GOOGLE_SERVICE_ACCOUNT_EMAIL = import.meta.env
   .GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const GOOGLE_CALENDAR_ID = import.meta.env.GOOGLE_CALENDAR_ID;
 
 const calendarId = GOOGLE_CALENDAR_ID;
 const clientEmail = GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const privateKey = GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
+const privateKey = getGoogleServiceAccountPrivateKey();
 
 const googleCalendarClient = new GoogleCalendarClient({
   calendarId: calendarId,
