@@ -71,15 +71,15 @@ export default defineConfig({
       }),
       TURNSTILE_BOOKED_SECRET_KEY: envField.string({
         context: "server",
-        access: "public",
+        access: "secret",
       }),
       TURNSTILE_NEWSLETTER_SECRET_KEY: envField.string({
         context: "server",
-        access: "public",
+        access: "secret",
       }),
       TN_FEATURED_CATEGORY_ID: envField.string({
         context: "server",
-        access: "public",
+        access: "secret",
       }),
     },
   },

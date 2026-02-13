@@ -174,7 +174,7 @@ export function createQRGenerationProblem(
     correlationId,
     timestamp: new Date().toISOString(),
     bookingStep: "qr_generation",
-    bookingId, // Booking succeeded, so we have an ID
+    bookingId,
   };
 }
 
