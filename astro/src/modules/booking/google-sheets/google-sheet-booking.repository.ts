@@ -3,12 +3,14 @@ import { GoogleSheetsClient, GoogleSheetsError } from "./google-sheet-client";
 import type { BookingRepository } from "../booking.repository";
 import type { Booking } from "../booking.entity";
 import { bookingMapper } from "./mappers/booking.mapper";
-import {
-  GOOGLE_SHEETS_SPREADSHEET_ID,
-  GOOGLE_SHEETS_SHEET_NAME,
-  GOOGLE_SERVICE_ACCOUNT_EMAIL,
-  GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
-} from "astro:env/server";
+
+const GOOGLE_SHEETS_SPREADSHEET_ID = import.meta.env
+  .GOOGLE_SHEETS_SPREADSHEET_ID;
+const GOOGLE_SHEETS_SHEET_NAME = import.meta.env.GOOGLE_SHEETS_SHEET_NAME;
+const GOOGLE_SERVICE_ACCOUNT_EMAIL = import.meta.env
+  .GOOGLE_SERVICE_ACCOUNT_EMAIL;
+const GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY = import.meta.env
+  .GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
 const spreadsheetId = GOOGLE_SHEETS_SPREADSHEET_ID;
 const sheetName = GOOGLE_SHEETS_SHEET_NAME;

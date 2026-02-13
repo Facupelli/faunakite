@@ -1,7 +1,9 @@
 import nodemailer from "nodemailer";
-import { GOOGLE_APP_PASSWORD } from "astro:env/server";
-import { SITE_URL } from "astro:env/client";
 import { useTranslations } from "../../../i18n/utils";
+
+const SITE_URL = import.meta.env.SITE_URL;
+
+const GOOGLE_APP_PASSWORD = import.meta.env.GOOGLE_APP_PASSWORD;
 
 export class NodemailerError extends Error {
   constructor(

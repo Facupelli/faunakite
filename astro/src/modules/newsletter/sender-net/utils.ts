@@ -1,5 +1,6 @@
 import type { NewSubscriberPayload, NewSubscriberResponse } from "./types";
-import { SENDER_NET_ACCESS_TOKEN } from "astro:env/server";
+
+const SENDER_NET_ACCESS_TOKEN = import.meta.env.SENDER_NET_ACCESS_TOKEN;
 
 const accessToken = SENDER_NET_ACCESS_TOKEN;
 const url = new URL("https://api.sender.net/v2/subscribers");
@@ -11,7 +12,7 @@ let headers = {
 };
 
 export async function createSubscriber(
-  data: NewSubscriberPayload
+  data: NewSubscriberPayload,
 ): Promise<
   NewSubscriberResponse | { success: false; message: string; data: null }
 > {

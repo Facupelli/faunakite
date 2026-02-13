@@ -1,9 +1,8 @@
 import type { TiendaNubeProduct } from "./types";
-import {
-  TIENDANUBE_ACCESS_TOKEN,
-  TIENDANUBE_USER_ID,
-  TN_FEATURED_CATEGORY_ID,
-} from "astro:env/server";
+
+const TIENDANUBE_ACCESS_TOKEN = import.meta.env.TIENDANUBE_ACCESS_TOKEN;
+const TIENDANUBE_USER_ID = import.meta.env.TIENDANUBE_USER_ID;
+const TN_FEATURED_CATEGORY_ID = import.meta.env.TN_FEATURED_CATEGORY_ID;
 
 const accessToken = TIENDANUBE_ACCESS_TOKEN;
 const userId = TIENDANUBE_USER_ID;

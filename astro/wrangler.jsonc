@@ -10,4 +10,8 @@
   "observability": {
     "enabled": true,
   },
+
+  "vars": {
+    "SITE_URL": "https://faunakite.com",
+  },
 }

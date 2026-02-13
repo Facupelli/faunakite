@@ -11,7 +11,6 @@ import {
   sendMail,
 } from "../modules/booking/nodemailer/utils";
 import type { CreateBookingResult } from "../modules/booking/use-cases/create-booking.use-case";
-import { SITE_URL } from "astro:env/client";
 import {
   createBookingCreationProblem,
   createCalendarEventProblem,
@@ -24,6 +23,8 @@ import {
 import { notifyDeveloper, notifyDeveloperSafe } from "../error-notification";
 import { reservationSchema } from "../components/booking/booking-form.schema";
 import { logCanonicalLine, type BookingContext } from "./booking.action.types";
+
+const SITE_URL = import.meta.env.SITE_URL;
 
 // TODO: make idempotent
 export const book = {

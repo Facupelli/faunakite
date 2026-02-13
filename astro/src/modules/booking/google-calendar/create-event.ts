@@ -6,11 +6,12 @@ import {
   type CreateBookingData,
 } from "../booking.entity";
 import { GoogleCalendarClient } from "./google-calendar-client";
-import {
-  GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
-  GOOGLE_SERVICE_ACCOUNT_EMAIL,
-  GOOGLE_CALENDAR_ID,
-} from "astro:env/server";
+
+const GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY = import.meta.env
+  .GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
+const GOOGLE_SERVICE_ACCOUNT_EMAIL = import.meta.env
+  .GOOGLE_SERVICE_ACCOUNT_EMAIL;
+const GOOGLE_CALENDAR_ID = import.meta.env.GOOGLE_CALENDAR_ID;
 
 const calendarId = GOOGLE_CALENDAR_ID;
 const clientEmail = GOOGLE_SERVICE_ACCOUNT_EMAIL;

@@ -1,7 +1,9 @@
 import { z } from "astro/zod";
 import { ActionError, defineAction } from "astro:actions";
 import { createSubscriber } from "../modules/newsletter/sender-net/utils";
-import { TURNSTILE_NEWSLETTER_SECRET_KEY } from "astro:env/server";
+
+const TURNSTILE_NEWSLETTER_SECRET_KEY = import.meta.env
+  .TURNSTILE_NEWSLETTER_SECRET_KEY;
 
 export const newsletter = {
   subscribe: defineAction({
@@ -27,7 +29,7 @@ export const newsletter = {
               secret: TURNSTILE_NEWSLETTER_SECRET_KEY,
               response: turnstileToken,
             }),
-          }
+          },
         );
 
         const verification = await verificationResponse.json();
