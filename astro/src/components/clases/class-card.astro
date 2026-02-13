@@ -14,6 +14,7 @@ interface Props {
   mode?: string;
   descriptions: string[];
   courseType: string;
+  mostPopular?: boolean;
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   mode,
   descriptions,
   courseType,
+  mostPopular = false,
 } = Astro.props;
 
 const [visibleDescription, ...expandableDescriptions] = descriptions;
@@ -37,7 +39,7 @@ const t = useTranslations(lang);
 ---
 
 <article
-  class="course-card text-brand-blue flex flex-col xl:flex-row gap-6 bg-white shadow-news-card p-4 rounded-xl"
+  class="course-card text-brand-blue flex flex-col xl:flex-row gap-6 bg-white shadow-news-card p-4 rounded-xl relative overflow-hidden"
   data-course-type={courseType}
 >
   <!-- Image Section -->
@@ -53,7 +55,20 @@ const t = useTranslations(lang);
   <!-- Content Section -->
   <div class="md:basis-[66%] flex flex-col gap-4">
     <div class="space-y-3">
-      <h2 class="font-bold text-2xl uppercase">{title}</h2>
+      <div class="flex items-center justify-between">
+        <h2 class="font-bold text-2xl uppercase">{title}</h2>
+        {
+          mostPopular && (
+            <div
+              class="bg-brand-red text-white font-bold text-xs uppercase py-2 px-4 rounded-full"
+              role="status"
+              aria-label={t("services.common.most-popular")}
+            >
+              {t("services.common.most-popular")}
+            </div>
+          )
+        }
+      </div>
       <!-- Meta Info -->
       <div class="space-y-3">
         {

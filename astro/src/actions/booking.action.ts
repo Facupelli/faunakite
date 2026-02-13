@@ -37,8 +37,8 @@ export const book = {
       const bookingContext: BookingContext = {
         correlation_id: correlationId,
         customer_email: input.customerEmail,
-        arrival_date: input.arrivalDate.toISOString(),
-        departure_date: input.departureDate.toISOString(),
+        arrival_date: input.arrivalDate,
+        departure_date: input.departureDate,
         locale: input.locale,
         started_at: Date.now(),
         result: "success",
@@ -141,8 +141,8 @@ export const book = {
           correlationId,
           {
             customerEmail: input.customerEmail,
-            arrivalDate: input.arrivalDate.toISOString(),
-            departureDate: input.departureDate.toISOString(),
+            arrivalDate: input.arrivalDate,
+            departureDate: input.departureDate,
           },
         );
 

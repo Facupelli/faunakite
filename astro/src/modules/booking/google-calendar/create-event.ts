@@ -1,4 +1,10 @@
-import type { CreateBookingData } from "../booking.entity";
+import {
+  CourseMode,
+  CourseModeDict,
+  CourseTypeDict,
+  type CourseType,
+  type CreateBookingData,
+} from "../booking.entity";
 import { GoogleCalendarClient } from "./google-calendar-client";
 import {
   GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
@@ -19,20 +25,24 @@ const googleCalendarClient = new GoogleCalendarClient({
 });
 
 export async function createCalendarEvent(input: CreateBookingData) {
-  const formatDate = (date: Date) => {
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear();
+  const createLocalDateTimeString = (dateStr: string, timeStr: string) => {
+    return `${dateStr}T${timeStr}:00`;
+  };
+
+  const formatDateDisplay = (dateStr: string) => {
+    const [year, month, day] = dateStr.split("-");
     return `${day}/${month}/${year}`;
   };
 
   const descriptionLines = [
     `Alumno: ${input.customerName}`,
     input.customerPhone && `Teléfono: ${input.customerPhone}`,
-    input.courseType && `Tipo de clase: ${input.courseType}`,
+    input.courseType && `Tipo de clase: ${CourseTypeDict[input.courseType]}`,
+    input.courseMode != undefined &&
+      `Modalidad: ${CourseModeDict[input.courseMode]}`,
     input.hoursReserved && `Horas reservadas: ${input.hoursReserved}`,
     input.arrivalDate &&
-      `Estadía: ${formatDate(input.arrivalDate)} → ${formatDate(input.departureDate)}`,
+      `Estadía: ${formatDateDisplay(input.arrivalDate)} → ${formatDateDisplay(input.departureDate)}`,
     input.arrivalTime && `Hora de llegada: ${input.arrivalTime} hs`,
     input.departureTime && `Hora de partida: ${input.departureTime} hs`,
     input.weightKg && `Peso (kg): ${input.weightKg}`,
@@ -42,14 +52,39 @@ export async function createCalendarEvent(input: CreateBookingData) {
     input.additionalNotes && `Notas: ${input.additionalNotes}`,
   ].filter(Boolean);
 
+  const buildSummary = (
+    customerName: string,
+    courseType: CourseType | null | undefined,
+    courseMode: CourseMode | null | undefined,
+  ) => {
+    let text = `${customerName}`;
+
+    if (courseType != undefined) {
+      text += ` - ${CourseTypeDict[courseType]}`;
+    }
+
+    if (courseMode != undefined) {
+      text += ` - ${CourseModeDict[courseMode]}`;
+    }
+
+    return text;
+  };
+
   const response = await googleCalendarClient.createEvent({
-    summary: `${input.customerName} - ${input.courseType ?? ""} ${input.hoursReserved && `${input.hoursReserved}hs`}`,
+    summary: buildSummary(
+      input.customerName,
+      input.courseType,
+      input.courseMode,
+    ),
     start: {
-      dateTime: input.arrivalDate.toISOString(),
+      dateTime: createLocalDateTimeString(input.arrivalDate, input.arrivalTime),
       timeZone: "America/Argentina/Buenos_Aires",
     },
     end: {
-      dateTime: input.departureDate.toISOString(),
+      dateTime: createLocalDateTimeString(
+        input.departureDate,
+        input.departureTime,
+      ),
       timeZone: "America/Argentina/Buenos_Aires",
     },
     description: descriptionLines.join("\n"),

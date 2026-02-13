@@ -1,4 +1,6 @@
 import {
+  CourseMode,
+  CourseModeDict,
   CourseType,
   CourseTypeDict,
   DetailedSkillLevel,
@@ -69,6 +71,14 @@ function toSpreadsheetRow(booking: Booking): SpreadsheetRow {
       .replace(",", "");
   }
 
+  function formatDateString(dateString: string): string {
+    return new Date(dateString).toLocaleDateString("es-AR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  }
+
   function formatDate(date: Date): string {
     return date.toLocaleDateString("es-AR", {
       day: "2-digit",
@@ -91,6 +101,18 @@ function toSpreadsheetRow(booking: Booking): SpreadsheetRow {
     return source ? ReferralSourceDict[source] : "";
   }
 
+  const formatCourseType = (
+    courseType?: CourseType | null,
+    courseMode?: CourseMode | null,
+  ): string => {
+    if (!courseType) return "";
+
+    const typeLabel = CourseTypeDict[courseType];
+    const modeLabel = courseMode ? CourseModeDict[courseMode] : "";
+
+    return modeLabel ? `${typeLabel} ${modeLabel}` : typeLabel;
+  };
+
   return [
     booking.id || "",
     formatDateTime(booking.createdAt),
@@ -105,11 +127,11 @@ function toSpreadsheetRow(booking: Booking): SpreadsheetRow {
     "", // TODO: instagram
 
     // Section 2: Reservation
-    booking.courseType ? CourseTypeDict[booking.courseType] : "",
+    formatCourseType(booking.courseType, booking.courseMode),
     booking.hoursReserved || "",
-    formatDate(booking.arrivalDate),
+    formatDateString(booking.arrivalDate),
     booking.arrivalTime,
-    formatDate(booking.departureDate),
+    formatDateString(booking.departureDate),
     booking.departureTime || "",
 
     // Section 3: Sports Profile
@@ -141,8 +163,6 @@ const headerIndexMap = BOOKING_SHEET_HEADERS.reduce<Record<string, number>>(
 );
 
 function fromSpreadsheetRow(row: unknown[]): Booking | null {
-  // console.log("MAPPER", { row });
-
   function getCell(row: unknown[], header: BookingHeader): any {
     const idx = headerIndexMap[header];
     return idx != null ? row[idx] : undefined;
@@ -249,9 +269,9 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
   const customerPhone = parseStringCell(getCell(row, "customerPhone"));
   const courseType = parseStringCell(getCell(row, "courseType"));
   const hoursReserved = parseNumberCell(getCell(row, "hoursReserved"));
-  const arrivalDate = parseDateCell(getCell(row, "arrivalDate"));
+  const arrivalDate = parseStringCell(getCell(row, "arrivalDate"));
   const arrivalTime = parseStringCell(getCell(row, "arrivalTime"));
-  const departureDate = parseDateCell(getCell(row, "departureDate"));
+  const departureDate = parseStringCell(getCell(row, "departureDate"));
   const departureTime = parseStringCell(getCell(row, "departureTime"));
   const weightKg = parseNumberCell(getCell(row, "weightKg"));
   const heightCm = parseNumberCell(getCell(row, "heightCm"));
@@ -278,7 +298,8 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
     province === undefined ||
     !arrivalDate ||
     !arrivalTime ||
-    !departureDate
+    !departureDate ||
+    !departureTime
   ) {
     return null;
   }

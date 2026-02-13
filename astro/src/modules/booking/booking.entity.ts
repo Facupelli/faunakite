@@ -76,20 +76,29 @@ export const ReferralSourceDict = {
 };
 
 export enum CourseType {
-  INDIVIDUAL = "curso-individual",
-  DOUBLE = "curso-doble",
+  ZERO_TO_HERO = "curso-cero-a-kitero",
+  INITIAL = "curso-inicial",
   INTENSIVE = "curso-intensivo",
   INDIVIDUAL_CLASS = "clase-individual",
   ADVANCED = "clase-avanzada",
   TEST = "clase-prueba",
-
   GUEST = "invitado",
   EQUIPMENT_RENTAL = "alquiler-equipo",
 }
 
+export enum CourseMode {
+  INDIVIDUAL = "individual",
+  DOUBLE = "double",
+}
+
+export const CourseModeDict = {
+  [CourseMode.INDIVIDUAL]: "Individual",
+  [CourseMode.DOUBLE]: "Doble",
+};
+
 export const CourseTypeDict = {
-  [CourseType.INDIVIDUAL]: "Curso Individual 9hs",
-  [CourseType.DOUBLE]: "Curso Doble 9hs",
+  [CourseType.ZERO_TO_HERO]: "Curso De Cero a Kitero 12hs",
+  [CourseType.INITIAL]: "Curso Inicial 9hs",
   [CourseType.INTENSIVE]: "Curso Intensivo",
   [CourseType.INDIVIDUAL_CLASS]: "Clases Individuales",
   [CourseType.ADVANCED]: "Clases Avanzadas / Big Air",
@@ -117,11 +126,12 @@ export interface Booking {
   // SECTION 2: RESERVATION DETAILS
   // ============================================================================
   courseType?: CourseType | null;
+  courseMode?: CourseMode | null;
   hoursReserved?: number;
-  arrivalDate: Date;
+  arrivalDate: string;
   arrivalTime: string;
-  departureDate: Date;
-  departureTime?: string;
+  departureDate: string;
+  departureTime: string;
 
   // ============================================================================
   // SECTION 3: SPORTS PROFILE

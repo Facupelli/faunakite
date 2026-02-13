@@ -7,6 +7,7 @@ import ClasePruebaPhoto from "../../../assets/what-we-offer/clases/clase-prueba.
 import ClaseWingfoilPhoto from "../../../assets/what-we-offer/clases/clase-wingfoil.webp";
 import CursoInicialPhoto from "../../../assets/what-we-offer/clases/curso-inicial.webp";
 import CursoIntensivoPhoto from "../../../assets/what-we-offer/clases/curso-intensivo.webp";
+import CursoZeroToKiterPhoto from "../../../assets/what-we-offer/clases/curso-zero-to-kiter.webp";
 import ClassCard from "../../../components/clases/class-card.astro";
 
 export async function getStaticPaths() {
@@ -47,6 +48,23 @@ const t = useTranslations(lang);
 
       <div class="grid md:grid-cols-2 gap-10 items-start">
         <ClassCard
+          image={CursoZeroToKiterPhoto}
+          imageAlt="De Cero a Kitero"
+          title={t("services.kite.zeroToKiter.title")}
+          duration={t("services.kite.zeroToKiter.duration")}
+          level={t("services.kite.zeroToKiter.level")}
+          mode={t("services.kite.zeroToKiter.mode")}
+          descriptions={[
+            t("services.kite.zeroToKiter.p1"),
+            t("services.kite.zeroToKiter.p2"),
+            t("services.kite.zeroToKiter.p3"),
+            t("services.kite.zeroToKiter.p4"),
+            t("services.kite.zeroToKiter.p5"),
+          ]}
+          courseType="curso-cero-a-kitero"
+        />
+
+        <ClassCard
           image={CursoInicialPhoto}
           imageAlt="Curso Inicial"
           title={t("services.kite.initial.title")}
@@ -60,6 +78,7 @@ const t = useTranslations(lang);
             t("services.kite.initial.p4"),
             t("services.kite.initial.p5"),
           ]}
+          mostPopular
           courseType="curso-inicial"
         />
 
@@ -164,6 +183,18 @@ const t = useTranslations(lang);
   import { initializeWhatsAppButtons } from "../../../modules/utils/whatsapp";
 
   const courseMessages = {
+    "curso-cero-a-kitero": {
+      es: `¡Hola! Mi nombre es: _____
+Me gustaría tomar el *Curso De Cero a Kitero 12hs* con ustedes en *Cuesta del Viento*
+Voy: Solo/a / con __ personas más
+Fechas: _____
+¿Tienen disponibilidad? ¡Gracias!`,
+      en: `Hello! My name is: _____
+I would like to take the *From Zero to Hero 12-Hour Course* with you at *Cuesta del Viento*
+I'm going: Alone / with __ more people
+Dates: _____
+Do you have availability? Thanks!`,
+    },
     "curso-inicial": {
       es: `¡Hola! Mi nombre es: _____
 Me gustaría tomar el *Curso Inicial de 9hs* con ustedes en *Cuesta del Viento*

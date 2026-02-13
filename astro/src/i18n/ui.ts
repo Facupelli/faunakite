@@ -211,6 +211,46 @@ export const ui = {
   },
 
   // ======================
+  // CERO A KITERO
+  // ======================
+  "services.kite.zeroToKiter.title": {
+    es: "DE CERO A KITERO",
+    en: "FROM ZERO TO HERO",
+  },
+  "services.kite.zeroToKiter.duration": {
+    es: "4 a 6 días – 12 hs de clase",
+    en: "4 to 6 days – 12 hours of lessons",
+  },
+  "services.kite.zeroToKiter.level": {
+    es: "Principiante",
+    en: "Beginner",
+  },
+  "services.kite.zeroToKiter.mode": {
+    es: "Individual o Doble",
+    en: "Single or Double",
+  },
+  "services.kite.zeroToKiter.p1": {
+    es: "El programa más completo para aprender desde cero y convertirte en kiter independiente en una semana.",
+    en: "The most complete program to learn from scratch and become an independent kiter in one week.",
+  },
+  "services.kite.zeroToKiter.p2": {
+    es: "En 12 horas progresivas trabajamos todo el proceso real de aprendizaje: seguridad, control del kite, desplazamiento en el agua, salidas con tabla y navegación en ambas direcciones hasta lograr autonomía.",
+    en: "In 12 progressive hours, we cover the entire real learning process: safety, kite control, movement in the water, board starts, and navigation in both directions until achieving autonomy.",
+  },
+  "services.kite.zeroToKiter.p3": {
+    es: "Dependiendo de tu estadía, podés tomar clases en 4 o 6 días, dedicándole entre 2 y 3 horas diarias, con un objetivo claro: Que vuelvas a casa siendo un kiter independiente.",
+    en: "Depending on your stay, you can take classes over 4 or 6 days, dedicating 2 to 3 hours daily, with a clear objective: To return home as an independent kiter.",
+  },
+  "services.kite.zeroToKiter.p4": {
+    es: "Avanzamos paso a paso, respetando tus tiempos, hasta que puedas entrar, navegar y salir del agua con confianza y seguridad por tu cuenta.",
+    en: "We advance step by step, respecting your pace, until you can enter, navigate, and exit the water with confidence and safety on your own.",
+  },
+  "services.kite.zeroToKiter.p5": {
+    es: "En una semana podés estar navegando solo/a.",
+    en: "In one week you could be sailing alone.",
+  },
+
+  // ======================
   // CURSO INICIAL
   // ======================
   "services.kite.initial.title": { es: "Curso Inicial", en: "Beginner Course" },
@@ -399,6 +439,8 @@ export const ui = {
   "services.common.seeMore": { es: "Ver más", en: "See more" },
   "services.common.seeLess": { es: "Ver menos", en: "See less" },
   "services.common.book": { es: "Reservar", en: "Book now" },
+
+  "services.common.most-popular": { es: "Más popular", en: "Most popular" },
 
   // RENTAL PAGE
   // RENTAL – HEADER
@@ -1195,6 +1237,14 @@ export const ui = {
     en: "Choose your lesson type",
     es: "Seleccioná el tipo de clase",
   },
+  "booked.section2.field.courseMode.label": {
+    en: "Format",
+    es: "Modalidad",
+  },
+  "booked.section2.field.courseMode.placeholder": {
+    en: "Select your lesson format",
+    es: "Seleccioná la modalidad de la clase",
+  },
   "booked.section2.field.hoursReserved.label": {
     en: "Number of hours booked",
     es: "Cantidad de horas reservadas",
@@ -1439,11 +1489,14 @@ export const enumTranslations = {
   "gender.female": { en: "Female", es: "Femenino" },
 
   // Course Types
-  "courseType.individual": {
-    en: "Individual Course 9hs",
-    es: "Curso Individual 9hs",
+  "courseType.zeroToHero": {
+    en: "Zero to Hero 12hs",
+    es: "Curso De Cero a Kitero 12hs",
   },
-  "courseType.double": { en: "Doubles Course 9hs", es: "Curso Doble 9hs" },
+  "courseType.initial": {
+    en: "Initial Course 9hs",
+    es: "Curso Inicial 9hs",
+  },
   "courseType.intensive": { en: "Intensive Course", es: "Curso Intensivo" },
   "courseType.individual_class": {
     en: "Individual Classes",
@@ -1458,6 +1511,15 @@ export const enumTranslations = {
   "courseType.equipmentRental": {
     en: "Equipment Rental",
     es: "Rental/Alquiler de Equipos",
+  },
+
+  "courseMode.individual": {
+    en: "Individual",
+    es: "Individual",
+  },
+  "courseMode.double": {
+    en: "Double",
+    es: "Doble",
   },
 
   // Skill Levels

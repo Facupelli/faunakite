@@ -6,7 +6,13 @@ import {
   SkillLevel,
   ReferralSource,
   MainObjective,
+  CourseMode,
 } from "../../modules/booking/booking.entity";
+
+const parseLocalDate = (dateStr: string) => {
+  const [year, month, day] = dateStr.split("-").map(Number);
+  return new Date(year, month - 1, day);
+};
 
 export const reservationSchema = z
   .object({
@@ -32,11 +38,19 @@ export const reservationSchema = z
         z.nativeEnum(CourseType).optional(),
       )
       .nullish(),
+    courseMode: z
+      .preprocess(
+        (val) => (val === "" ? undefined : val),
+        z.nativeEnum(CourseMode).optional(),
+      )
+      .nullish(),
     hoursReserved: z.coerce.number().optional(),
-    arrivalDate: z.coerce.date().refine(
-      (date) => {
-        const arrival = new Date(date);
-        arrival.setHours(0, 0, 0, 0);
+    arrivalDate: z.string().refine(
+      (val) => {
+        // Validate YYYY-MM-DD format
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(val)) return false;
+
+        const arrival = parseLocalDate(val);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         return arrival > today;
@@ -46,7 +60,7 @@ export const reservationSchema = z
     arrivalTime: z
       .string()
       .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Hora inválida"),
-    departureDate: z.coerce.date(),
+    departureDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Fecha inválida"),
     departureTime: z
       .string()
       .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Hora inválida"),
@@ -90,6 +104,21 @@ export const reservationSchema = z
   .refine((data) => data.departureDate > data.arrivalDate, {
     message: "Departure date must be after arrival date",
     path: ["departureDate"],
-  });
+  })
+  .refine(
+    (data) => {
+      if (
+        data.courseType === CourseType.ZERO_TO_HERO ||
+        data.courseType === CourseType.INITIAL
+      ) {
+        return data.courseMode !== undefined && data.courseMode !== null;
+      }
+      return true;
+    },
+    {
+      message: "Please select a course mode",
+      path: ["courseMode"],
+    },
+  );
 
 export type ReservationFormData = z.infer<typeof reservationSchema>;

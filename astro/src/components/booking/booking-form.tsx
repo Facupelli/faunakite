@@ -1,4 +1,5 @@
 import {
+  CourseMode,
   CourseType,
   DetailedSkillLevel,
   Gender,
@@ -41,6 +42,7 @@ const stepsConfig: StepConfig<ReservationFormData>[] = [
     description: "Dates and course information",
     fields: [
       "courseType",
+      "courseMode",
       "hoursReserved",
       "arrivalDate",
       "arrivalTime",
@@ -89,9 +91,9 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
     },
   });
 
-  const onSubmit = async (data: ReservationFormData) => {
-    console.log("Form submitted:", data);
+  const selectedCourseType = form.watch("courseType");
 
+  const onSubmit = async (data: ReservationFormData) => {
     try {
       const formData = new FormData();
 
@@ -373,11 +375,11 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
                   <option value="">
                     {t("booked.section2.field.courseType.placeholder")}
                   </option>
-                  <option value={CourseType.INDIVIDUAL}>
-                    {enumT("courseType.individual")}
+                  <option value={CourseType.ZERO_TO_HERO}>
+                    {enumT("courseType.zeroToHero")}
                   </option>
-                  <option value={CourseType.DOUBLE}>
-                    {enumT("courseType.double")}
+                  <option value={CourseType.INITIAL}>
+                    {enumT("courseType.initial")}
                   </option>
                   <option value={CourseType.INTENSIVE}>
                     {enumT("courseType.intensive")}
@@ -404,6 +406,37 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
                   </p>
                 )}
               </div>
+
+              {/* Course Mode - Conditionally Rendered */}
+              {(selectedCourseType === CourseType.ZERO_TO_HERO ||
+                selectedCourseType === CourseType.INITIAL) && (
+                <div className="space-y-1">
+                  <label className="block text-sm font-semibold text-white">
+                    {t("booked.section2.field.courseMode.label")}
+                  </label>
+                  <select
+                    {...form.register("courseMode")}
+                    className={`block w-full rounded-2xl border h-10 px-4 bg-white/80 border-gray-30 ${
+                      form.formState.errors.courseMode && "border-red-500"
+                    }`}
+                  >
+                    <option value="">
+                      {t("booked.section2.field.courseMode.placeholder")}
+                    </option>
+                    <option value={CourseMode.INDIVIDUAL}>
+                      {enumT("courseMode.individual")}
+                    </option>
+                    <option value={CourseMode.DOUBLE}>
+                      {enumT("courseMode.double")}
+                    </option>
+                  </select>
+                  {form.formState.errors.courseMode && (
+                    <p className="text-red-600 text-sm pt-1">
+                      {form.formState.errors.courseMode.message}
+                    </p>
+                  )}
+                </div>
+              )}
 
               {/* Hours Reserved */}
               <div className="space-y-1">
