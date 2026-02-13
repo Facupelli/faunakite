@@ -1,4 +1,4 @@
-import QRCode from "qrcode";
+import { generate } from "@juit/qrcode";
 
 export class QrGenerationError extends Error {
   constructor(
@@ -12,16 +12,15 @@ export class QrGenerationError extends Error {
 }
 
 const DEFAULT_QR_OPTIONS = {
-  type: "png" as const,
-  errorCorrectionLevel: "M" as const,
-  width: 300,
+  level: 1, // Medium error correction
   margin: 1,
+  size: 300,
 };
 
-export async function createUrlQr(urlToEncode: string) {
+export async function createUrlQr(urlToEncode: string): Promise<Buffer> {
   try {
-    const buffer = await QRCode.toBuffer(urlToEncode, DEFAULT_QR_OPTIONS);
-    return buffer;
+    const uint8Array = await generate(urlToEncode, "png", DEFAULT_QR_OPTIONS);
+    return Buffer.from(uint8Array);
   } catch (error) {
     console.error("QR generation error:", error);
     throw new QrGenerationError("Failed to generate QR Code", undefined, error);

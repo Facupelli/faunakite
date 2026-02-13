@@ -128,8 +128,6 @@ export const book = {
             { inputData: { ...input, "cf-turnstile-response": "[REDACTED]" } },
           );
 
-          console.error(formatProblemForLog(problem));
-
           throw new ActionError({
             code: "BAD_REQUEST",
             message: error.message,
@@ -181,12 +179,6 @@ export const book = {
           success: false,
           error: problem,
         };
-
-        if (error instanceof GoogleCalendarError) {
-          console.error(
-            `[DEGRADED SERVICE] Google Calendar error: ${error.message}`,
-          );
-        }
       }
 
       // ═══════════════════════════════════════════════════════════════════
