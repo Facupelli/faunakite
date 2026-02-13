@@ -169,9 +169,9 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="size-14 text-brand-blue"
                 >
                   <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
@@ -575,6 +575,9 @@ export function BookingForm({ lang }: { lang: "es" | "en" }) {
                   className="block w-full rounded-2xl border h-10 px-4 bg-white/80 border-gray-30"
                 >
                   <option value="">Seleccionar...</option>
+                  <option value={DetailedSkillLevel.FIRST_TIME}>
+                    {enumT("detailedSkillLevel.firstTime")}
+                  </option>
                   <option value={DetailedSkillLevel.THEORY_AND_SAFETY}>
                     {enumT("detailedSkillLevel.theoryAndSafety")}
                   </option>

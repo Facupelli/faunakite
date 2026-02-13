@@ -163,7 +163,7 @@ const t = useTranslations(lang);
 <script>
   import { initializeWhatsAppButtons } from "../../../modules/utils/whatsapp";
 
-  const courseMessages: { [key: string]: { [key: string]: string } } = {
+  const courseMessages = {
     "curso-inicial": {
       es: `¡Hola! Mi nombre es: _____
 Me gustaría tomar el *Curso Inicial de 9hs* con ustedes en *Cuesta del Viento*
@@ -293,9 +293,7 @@ Do you have availability? Thanks!`,
     const container = document.getElementById("courses-container");
     const lang = (container?.getAttribute("data-lang") || "es") as "en" | "es";
 
-    const messages = courseMessages[lang];
-
-    initializeWhatsAppButtons(messages);
+    initializeWhatsAppButtons(courseMessages, lang);
     initializeExpandable();
   });
 </script>

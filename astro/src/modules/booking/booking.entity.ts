@@ -17,6 +17,7 @@ export const SkillLevelDict = {
 };
 
 export enum DetailedSkillLevel {
+  FIRST_TIME = "primera-vez",
   THEORY_AND_SAFETY = "teoria-y-seguridad",
   BODY_DRAGS = "body-drags",
   WATER_START = "water-start",
@@ -39,22 +40,23 @@ export enum MainObjective {
 }
 
 export const DetailedSkillLevelDict = {
+  [DetailedSkillLevel.FIRST_TIME]: "1) Sería mi primera vez",
   [DetailedSkillLevel.THEORY_AND_SAFETY]:
-    "1) Teoría y seguridad y primeros vuelos",
+    "2) Teoría y seguridad y primeros vuelos",
   [DetailedSkillLevel.BODY_DRAGS]:
-    "2) Body Drags (desplazarme sobre el agua solo con el kite)",
+    "3) Body Drags (desplazarme sobre el agua solo con el kite)",
   [DetailedSkillLevel.WATER_START]:
-    "3) Water Start: Intentando pararme sobre la tabla",
+    "4) Water Start: Intentando pararme sobre la tabla",
   [DetailedSkillLevel.SHORT_RIDES]:
-    "4) Me levanto y navego algunos metros hacia uno o ambos lados",
+    "5) Me levanto y navego algunos metros hacia uno o ambos lados",
   [DetailedSkillLevel.NAVIGATION_WITH_DRIFT]:
-    "5) Navego con facilidad hacia ambos lados pero a veces derivo",
+    "6) Navego con facilidad hacia ambos lados pero a veces derivo",
   [DetailedSkillLevel.UPWIND_LEARNING_TRANSITIONS]:
-    "6) Upwind con facilidad y estoy aprendiendo transiciones",
-  [DetailedSkillLevel.TRANSITIONS]: "7) Hago transiciones",
-  [DetailedSkillLevel.SMALL_JUMPS]: "8) Hago pequeños saltos",
+    "7) Upwind con facilidad y estoy aprendiendo transiciones",
+  [DetailedSkillLevel.TRANSITIONS]: "8) Hago transiciones",
+  [DetailedSkillLevel.SMALL_JUMPS]: "9) Hago pequeños saltos",
   [DetailedSkillLevel.CONTROLLED_JUMPS_AND_MANEUVERS]:
-    "9) Hago saltos controlados y maniobras en el aire",
+    "10) Hago saltos controlados y maniobras en el aire",
 };
 
 export enum ReferralSource {

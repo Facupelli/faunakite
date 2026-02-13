@@ -1475,6 +1475,10 @@ export const enumTranslations = {
   },
 
   // Detailed Skill Levels
+  "detailedSkillLevel.firstTime": {
+    en: "It would be my first time",
+    es: "Sería mi primera vez",
+  },
   "detailedSkillLevel.theoryAndSafety": {
     en: "Theory and safety and first flights",
     es: "Teoría y seguridad y primeros vuelos",
