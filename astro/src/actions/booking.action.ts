@@ -11,7 +11,6 @@ import {
   sendMail,
 } from "../modules/booking/nodemailer/utils";
 import type { CreateBookingResult } from "../modules/booking/use-cases/create-booking.use-case";
-import { TURNSTILE_BOOKED_SECRET_KEY } from "astro:env/server";
 import { SITE_URL } from "astro:env/client";
 import {
   createBookingCreationProblem,
