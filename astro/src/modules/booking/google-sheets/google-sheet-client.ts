@@ -55,14 +55,19 @@ export class GoogleSheetsClient {
         dateTimeRenderOption: "SERIAL_NUMBER", // For proper date handling
       });
 
-      return response.data.values || [];
+      let data = response.data;
+      if (typeof data === "string") {
+        data = JSON.parse(data);
+      }
+
+      return data.values || [];
     } catch (error) {
       this.handleApiError("Failed to read range", error);
     }
   }
 
   async readAllData(): Promise<unknown[][]> {
-    return this.readRange("A2:Z100");
+    return this.readRange("A2:Z");
   }
 
   async readHeaders(): Promise<string[]> {
@@ -84,9 +89,14 @@ export class GoogleSheetsClient {
         },
       });
 
+      let data = response.data;
+      if (typeof data === "string") {
+        data = JSON.parse(data);
+      }
+
       return {
-        updatedRows: response.data.updates?.updatedRows || 0,
-        updatedRange: response.data.updates?.updatedRange || "",
+        updatedRows: data.updates?.updatedRows || 0,
+        updatedRange: data.updates?.updatedRange || "",
       };
     } catch (error) {
       this.handleApiError("Failed to append rows", error);
