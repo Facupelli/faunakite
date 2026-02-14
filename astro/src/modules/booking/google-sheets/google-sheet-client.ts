@@ -13,7 +13,7 @@ export class GoogleSheetsError extends Error {
   constructor(
     message: string,
     public readonly statusCode?: number,
-    public readonly originalError?: unknown
+    public readonly originalError?: unknown,
   ) {
     super(message);
     this.name = "GoogleSheetsError";
@@ -41,7 +41,7 @@ export class GoogleSheetsClient {
       throw new GoogleSheetsError(
         "Failed to initialize Google Sheets client",
         undefined,
-        error
+        error,
       );
     }
   }
@@ -62,7 +62,7 @@ export class GoogleSheetsClient {
   }
 
   async readAllData(): Promise<unknown[][]> {
-    return this.readRange("A2:Z");
+    return this.readRange("A2:Z100");
   }
 
   async readHeaders(): Promise<string[]> {
@@ -71,7 +71,7 @@ export class GoogleSheetsClient {
   }
 
   async appendRows(
-    values: unknown[][]
+    values: unknown[][],
   ): Promise<{ updatedRows: number; updatedRange: string }> {
     try {
       const response = await this.sheets.spreadsheets.values.append({

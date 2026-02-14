@@ -48,37 +48,16 @@ export const GoogleSheetsBookingRepository: BookingRepository = {
 
   async findById(id: string): Promise<Booking | null> {
     try {
-      console.log("[findById] Starting search for ID:", id);
-      console.log("[findById] Environment:", import.meta.env.MODE);
-      console.log("[findById] Client config:", {
-        spreadsheetId,
-        sheetName,
-        hasEmail: !!clientEmail,
-        hasPrivateKey: !!privateKey,
-      });
-
-      const startTime = Date.now();
       const rows = await client.readAllData();
-      const duration = Date.now() - startTime;
-
-      console.log(`[findById] Read ${rows.length} rows in ${duration}ms`);
-      console.log(
-        "[findById] First few row IDs:",
-        rows.slice(0, 3).map((r) => r[0]),
-      );
 
       const ID_COLUMN = 0;
       const rowIndex = rows.findIndex((row) => row[ID_COLUMN] === id);
 
-      console.log("[findById] Row index found:", rowIndex);
-
       if (rowIndex === -1) {
-        console.log("[findById] Booking not found, returning null");
         return null;
       }
 
       const booking = bookingMapper.fromSpreadsheetRow(rows[rowIndex]);
-      console.log("[findById] Booking found:", booking?.id);
       return booking;
     } catch (error) {
       if (error instanceof GoogleSheetsError) {
