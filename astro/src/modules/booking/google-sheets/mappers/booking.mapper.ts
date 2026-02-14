@@ -269,9 +269,9 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
   const customerPhone = parseStringCell(getCell(row, "customerPhone"));
   const courseType = parseStringCell(getCell(row, "courseType"));
   const hoursReserved = parseNumberCell(getCell(row, "hoursReserved"));
-  const arrivalDate = parseStringCell(getCell(row, "arrivalDate"));
+  const arrivalDate = parseDateCell(getCell(row, "arrivalDate"));
   const arrivalTime = parseStringCell(getCell(row, "arrivalTime"));
-  const departureDate = parseStringCell(getCell(row, "departureDate"));
+  const departureDate = parseDateCell(getCell(row, "departureDate"));
   const departureTime = parseStringCell(getCell(row, "departureTime"));
   const weightKg = parseNumberCell(getCell(row, "weightKg"));
   const heightCm = parseNumberCell(getCell(row, "heightCm"));
@@ -304,6 +304,14 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
     return null;
   }
 
+  function formatDate(date: Date): string {
+    return date.toLocaleDateString("es-AR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  }
+
   const booking: Booking = {
     id: cellId,
     createdAt,
@@ -315,9 +323,9 @@ function fromSpreadsheetRow(row: unknown[]): Booking | null {
     customerPhone,
     courseType: courseType as CourseType | undefined,
     hoursReserved,
-    arrivalDate,
+    arrivalDate: formatDate(arrivalDate),
     arrivalTime,
-    departureDate,
+    departureDate: formatDate(departureDate),
     departureTime,
     weightKg,
     heightCm,
