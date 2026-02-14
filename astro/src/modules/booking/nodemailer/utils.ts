@@ -82,7 +82,7 @@ export function getBookingEmailTemplate(locale: "es" | "en") {
 <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f4f4f4;">
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f4;">
         <tr>
-            <td style="padding: 40px 20px;">
+            <td>
                 <!-- Main Container -->
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                     
@@ -95,7 +95,7 @@ export function getBookingEmailTemplate(locale: "es" | "en") {
                     
                     <!-- Main Content -->
                     <tr>
-                        <td style="padding: 40px 40px 20px 40px;">
+                        <td style="padding: 40px 20px 20px 20px;">
                             <h1 style="margin: 0 0 20px 0; color: #051d26; font-size: 28px; font-weight: bold; line-height: 1.3;">
                                ${t("email.booking.title")}
                             </h1>
@@ -106,7 +106,7 @@ export function getBookingEmailTemplate(locale: "es" | "en") {
                     </tr>
 
                     <tr>
-                        <td style="padding: 0px 40px 0px 40px;">
+                        <td style="padding: 0px 20px 0px 20px;">
                             <p style="margin: 0 0 30px 0; color: #3c2005; font-size: 16px; line-height: 1.6;">
                                ${t("email.booking.qr.intro")}
                             </p>
@@ -115,7 +115,7 @@ export function getBookingEmailTemplate(locale: "es" | "en") {
                     
                     <!-- QR Code Section -->
                     <tr>
-                        <td style="padding: 20px 40px 30px 40px;">
+                        <td style="padding: 20px 20px 30px 20px;">
                             <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa; border-radius: 8px; border: 2px solid #051d26;">
                                 <tr>
                                     <td style="padding: 30px; text-align: center;">
@@ -136,7 +136,7 @@ export function getBookingEmailTemplate(locale: "es" | "en") {
                     
                     <!-- CTA Button -->
                     <tr>
-                        <td style="padding: 20px 40px 30px 40px; text-align: center;">
+                        <td style="padding: 20px 20px 30px 20px; text-align: center;">
                             <a href="${SITE_URL}/es/benefits" target="_blank" style="display: inline-block; padding: 16px 40px; background-color: #d7f9f9; color: #051d26; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0, 0.2);">
                                ${t("email.booking.cta.benefits")}
                             </a>
@@ -145,14 +145,14 @@ export function getBookingEmailTemplate(locale: "es" | "en") {
 
                     <!-- Divider -->
                     <tr>
-                        <td style="padding: 0 40px;">
+                        <td style="padding: 0 20px;">
                             <div style="border-top: 2px solid #f0f0f0;"></div>
                         </td>
                     </tr>
 
                     <!-- Prepará tu mochila Section -->
                     <tr>
-                        <td style="padding: 35px 40px 20px 40px;">
+                        <td style="padding: 35px 20px 20px 20px;">
                             <h2 style="margin: 0 0 20px 0; color: #051d26; font-size: 22px; font-weight: bold;">
                                  ${t("email.booking.pack.title")}
                             </h2>
@@ -173,7 +173,7 @@ export function getBookingEmailTemplate(locale: "es" | "en") {
 
                     <!-- Cómo Llegar Section -->
                     <tr>
-                        <td style="padding: 20px 40px 35px 40px;">
+                        <td style="padding: 20px 20px 35px 20px;">
                             <h2 style="margin: 0 0 15px 0; color: #051d26; font-size: 22px; font-weight: bold;">
                               ${t("email.booking.location.title")}
                             </h2>
@@ -188,14 +188,14 @@ export function getBookingEmailTemplate(locale: "es" | "en") {
 
                     <!-- Divider -->
                     <tr>
-                        <td style="padding: 0 40px;">
+                        <td style="padding: 0 20px;">
                             <div style="border-top: 2px solid #f0f0f0;"></div>
                         </td>
                     </tr>
                     
                     <!-- Footer Message -->
                     <tr>
-                        <td style="padding: 35px 40px 40px 40px;">
+                        <td style="padding: 35px 20px 40px 20px;">
                             <p style="margin: 0 0 15px 0; color: #3c2005; font-size: 15px; line-height: 1.6;">
                                ${t("email.booking.footer.greeting")}
                             </p>
@@ -207,7 +207,7 @@ export function getBookingEmailTemplate(locale: "es" | "en") {
                     
                     <!-- Footer -->
                     <tr>
-                        <td style="background-color: #051d26; padding: 25px 40px; text-align: center;">
+                        <td style="background-color: #051d26; padding: 25px 20px; text-align: center;">
                             <p style="margin: 0; color: white; font-size: 14px; line-height: 1.5;">
                                 <strong>Fauna Kite</strong>
                             </p>

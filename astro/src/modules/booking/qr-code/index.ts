@@ -12,9 +12,8 @@ export class QrGenerationError extends Error {
 }
 
 const DEFAULT_QR_OPTIONS = {
-  level: 1, // Medium error correction
-  margin: 1,
-  size: 300,
+  level: 1,
+  scale: 8,
 };
 
 export async function createUrlQr(urlToEncode: string): Promise<Buffer> {
