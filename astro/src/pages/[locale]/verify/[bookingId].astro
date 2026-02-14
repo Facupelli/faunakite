@@ -4,7 +4,6 @@ import type { Booking } from "../../../modules/booking/booking.entity";
 import { getBookingById } from "../../../modules/booking/use-cases/find-booking-by-id";
 import BookingNotFound from "../../../components/verify/booking-not-found.astro";
 import VerificationCard from "../../../components/verify/verification-card.astro";
-import { listAccessibleCalendars } from "../../../modules/booking/google-calendar/create-event";
 
 export const prerender = false;
 
@@ -23,8 +22,8 @@ if (bookingId) {
         booking ? (
           <VerificationCard
             studentName={booking.customerName}
-            startDate={booking.arrivalDate.toISOString()}
-            expiryDate={booking.departureDate.toISOString()}
+            startDate={booking.arrivalDate}
+            expiryDate={booking.departureDate}
           />
         ) : (
           <BookingNotFound bookingId={bookingId} />

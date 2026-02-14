@@ -11,11 +11,17 @@ interface Props {
 
 const { studentName, expiryDate, startDate } = Astro.props;
 
+// Parse dd/mm/yyyy format
+function parseDate(dateString: string): Date {
+  const [day, month, year] = dateString.split("/").map(Number);
+  return new Date(year, month - 1, day); // month is 0-indexed in JavaScript
+}
+
 const now = new Date();
 now.setHours(0, 0, 0, 0);
 
-const start = new Date(startDate);
-const end = new Date(expiryDate);
+const start = parseDate(startDate);
+const end = parseDate(expiryDate);
 
 const validFrom = new Date(start);
 validFrom.setDate(validFrom.getDate() - 1);
