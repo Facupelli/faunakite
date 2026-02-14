@@ -1,4 +1,4 @@
-import { auth, type calendar_v3, calendar } from "@googleapis/calendar";
+import { GoogleAuth, handleFetchError } from "../google-auth";
 
 export interface GoogleCalendarConfig {
   calendarId: string;
@@ -8,7 +8,19 @@ export interface GoogleCalendarConfig {
   };
 }
 
-export type CalendarEvent = calendar_v3.Schema$Event;
+// Basic interface for Event data.
+// Since we removed the heavy library, we define the shape we need.
+export interface CalendarEvent {
+  id?: string;
+  htmlLink?: string;
+  summary?: string;
+  description?: string;
+  location?: string;
+  start?: { dateTime?: string; date?: string; timeZone?: string };
+  end?: { dateTime?: string; date?: string; timeZone?: string };
+  attendees?: Array<{ email: string; responseStatus?: string }>;
+  [key: string]: unknown; // Allow other API properties
+}
 
 export class GoogleCalendarError extends Error {
   constructor(
@@ -27,97 +39,88 @@ const SCOPES = [
   "https://www.googleapis.com/auth/calendar.readonly",
 ];
 
-// export interface CalendarEvent {
-//   summary: string;
-//   description?: string;
-//   location?: string;
-//   start: {
-//     dateTime: string; // ISO 8601 format
-//     timeZone?: string;
-//   };
-//   end: {
-//     dateTime: string; // ISO 8601 format
-//     timeZone?: string;
-//   };
-//   attendees?: Array<{ email: string }>;
-//   reminders?: {
-//     useDefault: boolean;
-//     overrides?: Array<{ method: "email" | "popup"; minutes: number }>;
-//   };
-// }
-
 export class GoogleCalendarClient {
-  private calendar;
   private config: GoogleCalendarConfig;
+  private auth: GoogleAuth;
 
   constructor(config: GoogleCalendarConfig) {
     this.config = config;
-    this.calendar = this.initializeClient();
-  }
-
-  private initializeClient(): calendar_v3.Calendar {
-    try {
-      const authentication = new auth.GoogleAuth({
-        credentials: this.config.credentials,
-        scopes: SCOPES,
-      });
-
-      return calendar({ version: "v3", auth: authentication });
-    } catch (error) {
-      throw new GoogleCalendarError(
-        "Failed to initialize Google Sheets client",
-        undefined,
-        error,
-      );
-    }
+    this.auth = new GoogleAuth(config.credentials, SCOPES);
   }
 
   async listCalendars() {
-    const response = await this.calendar.calendarList.list();
+    try {
+      const token = await this.auth.getAccessToken();
+      const response = await fetch(
+        "https://www.googleapis.com/calendar/v3/users/me/calendarList",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+        },
+      );
 
-    return response.data.items;
+      if (!response.ok) {
+        await handleFetchError("Failed to list calendars", response);
+      }
+
+      const data = (await response.json()) as { items?: unknown[] };
+      return data.items;
+    } catch (error) {
+      this.handleError("Failed to list calendars", error);
+    }
   }
 
   async createEvent(event: CalendarEvent): Promise<{
     success: boolean;
     eventId?: string;
     eventLink?: string;
-    data?: calendar_v3.Schema$Event;
+    data?: CalendarEvent;
     error?: string;
     code?: number;
   }> {
     try {
-      const response = await this.calendar.events.insert({
-        calendarId: this.config.calendarId,
-        requestBody: event,
-        sendUpdates: "all", // Send notifications to attendees
+      const token = await this.auth.getAccessToken();
+      // sendUpdates is a query parameter in the REST API
+      const url = `https://www.googleapis.com/calendar/v3/calendars/${this.config.calendarId}/events?sendUpdates=all`;
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(event),
       });
+
+      if (!response.ok) {
+        await handleFetchError("Failed to create event", response);
+      }
+
+      const createdEvent = (await response.json()) as CalendarEvent;
 
       return {
         success: true,
-        eventId: response.data.id!,
-        eventLink: response.data.htmlLink!,
-        data: response.data,
+        eventId: createdEvent.id,
+        eventLink: createdEvent.htmlLink,
+        data: createdEvent,
       };
-    } catch (error: any) {
-      this.handleApiError("Failed to create event", error);
+    } catch (error) {
+      this.handleError("Failed to create event", error);
     }
   }
 
-  private handleApiError(message: string, error: unknown): never {
-    console.error("Google Calendar API Error:", error);
-
-    let statusCode: number | undefined;
-    let details = "Unknown error";
-
-    if (error && typeof error === "object" && "status" in error) {
-      statusCode = error.status as number;
+  private handleError(message: string, error: unknown): never {
+    console.error("Google Calendar Client Error:", error);
+    if (error instanceof Error) {
+      throw new GoogleCalendarError(
+        `${message}: ${error.message}`,
+        undefined,
+        error,
+      );
     }
-
-    if (error && typeof error === "object" && "message" in error) {
-      details = error.message as string;
-    }
-
-    throw new GoogleCalendarError(`${message}: ${details}`, statusCode, error);
+    throw new GoogleCalendarError(message, undefined, error);
   }
 }

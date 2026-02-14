@@ -1,4 +1,4 @@
-import { auth, type sheets_v4, sheets } from "@googleapis/sheets";
+import { GoogleAuth, handleFetchError } from "../google-auth";
 
 export interface GoogleSheetsConfig {
   spreadsheetId: string;
@@ -20,50 +20,43 @@ export class GoogleSheetsError extends Error {
   }
 }
 
-// TODO: remove @googleapis/sheets dependency and use fetch directly for CL workers optimizations
+const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
+
 export class GoogleSheetsClient {
-  private sheets: sheets_v4.Sheets;
   private config: GoogleSheetsConfig;
+  private auth: GoogleAuth;
 
   constructor(config: GoogleSheetsConfig) {
     this.config = config;
-    this.sheets = this.initializeClient();
-  }
-
-  private initializeClient(): sheets_v4.Sheets {
-    try {
-      const authentication = new auth.GoogleAuth({
-        credentials: this.config.credentials,
-        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-      });
-
-      return sheets({ version: "v4", auth: authentication });
-    } catch (error) {
-      throw new GoogleSheetsError(
-        "Failed to initialize Google Sheets client",
-        undefined,
-        error,
-      );
-    }
+    this.auth = new GoogleAuth(config.credentials, SCOPES);
   }
 
   async readRange(range: string): Promise<unknown[][]> {
+    const token = await this.auth.getAccessToken();
+    const encodedRange = encodeURIComponent(
+      `${this.config.sheetName}!${range}`,
+    );
+
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.config.spreadsheetId}/values/${encodedRange}?valueRenderOption=UNFORMATTED_VALUE&dateTimeRenderOption=SERIAL_NUMBER`;
+
     try {
-      const response = await this.sheets.spreadsheets.values.get({
-        spreadsheetId: this.config.spreadsheetId,
-        range: `${this.config.sheetName}!${range}`,
-        valueRenderOption: "UNFORMATTED_VALUE",
-        dateTimeRenderOption: "SERIAL_NUMBER", // For proper date handling
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
       });
 
-      let data = response.data;
-      if (typeof data === "string") {
-        data = JSON.parse(data);
+      if (!response.ok) {
+        await handleFetchError("Failed to read range", response);
       }
 
+      const data = (await response.json()) as { values?: unknown[][] };
       return data.values || [];
     } catch (error) {
-      this.handleApiError("Failed to read range", error);
+      if (error instanceof GoogleSheetsError) throw error;
+      throw new GoogleSheetsError("Failed to read range", undefined, error);
     }
   }
 
@@ -79,45 +72,66 @@ export class GoogleSheetsClient {
   async appendRows(
     values: unknown[][],
   ): Promise<{ updatedRows: number; updatedRange: string }> {
+    const token = await this.auth.getAccessToken();
+    const encodedRange = encodeURIComponent(`${this.config.sheetName}!A2:Z`);
+
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${this.config.spreadsheetId}/values/${encodedRange}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`;
+
     try {
-      const response = await this.sheets.spreadsheets.values.append({
-        spreadsheetId: this.config.spreadsheetId,
-        range: `${this.config.sheetName}!A2:Z`,
-        valueInputOption: "USER_ENTERED",
-        insertDataOption: "INSERT_ROWS",
-        requestBody: {
-          values,
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({ values }),
       });
 
-      let data = response.data;
-      if (typeof data === "string") {
-        data = JSON.parse(data);
+      if (!response.ok) {
+        await handleFetchError("Failed to append rows", response);
       }
+
+      const data = (await response.json()) as {
+        updates?: {
+          updatedRows?: number;
+          updatedRange?: string;
+        };
+      };
 
       return {
         updatedRows: data.updates?.updatedRows || 0,
         updatedRange: data.updates?.updatedRange || "",
       };
     } catch (error) {
-      this.handleApiError("Failed to append rows", error);
+      if (error instanceof GoogleSheetsError) throw error;
+      throw new GoogleSheetsError("Failed to append rows", undefined, error);
     }
   }
 
-  private handleApiError(message: string, error: unknown): never {
-    console.error("Google Sheets API Error:", error);
+  // --- Utility Helpers ---
 
-    let statusCode: number | undefined;
-    let details = "Unknown error";
+  private base64urlEncode(str: string): string {
+    return btoa(str).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
 
-    if (error && typeof error === "object" && "status" in error) {
-      statusCode = error.status as number;
+  private base64ToArrayBuffer(base64: string): ArrayBuffer {
+    const binaryString = atob(base64);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
     }
+    return bytes.buffer;
+  }
 
-    if (error && typeof error === "object" && "message" in error) {
-      details = error.message as string;
+  private arrayBufferToBase64Url(buffer: ArrayBuffer): string {
+    const bytes = new Uint8Array(buffer);
+    let binary = "";
+    for (let i = 0; i < bytes.byteLength; i++) {
+      binary += String.fromCharCode(bytes[i]);
     }
-
-    throw new GoogleSheetsError(`${message}: ${details}`, statusCode, error);
+    return btoa(binary)
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/, "");
   }
 }
