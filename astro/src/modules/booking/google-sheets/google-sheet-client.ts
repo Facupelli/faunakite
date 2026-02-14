@@ -20,6 +20,7 @@ export class GoogleSheetsError extends Error {
   }
 }
 
+// TODO: remove @googleapis/sheets dependency and use fetch directly for CL workers optimizations
 export class GoogleSheetsClient {
   private sheets: sheets_v4.Sheets;
   private config: GoogleSheetsConfig;
