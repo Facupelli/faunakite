@@ -8,11 +8,13 @@ export interface GoogleCalendarConfig {
   };
 }
 
+export type CalendarEvent = calendar_v3.Schema$Event;
+
 export class GoogleCalendarError extends Error {
   constructor(
     message: string,
     public readonly statusCode?: number,
-    public readonly originalError?: unknown
+    public readonly originalError?: unknown,
   ) {
     super(message);
     this.name = "GoogleCalendarError";
@@ -25,24 +27,24 @@ const SCOPES = [
   "https://www.googleapis.com/auth/calendar.readonly",
 ];
 
-export interface CalendarEvent {
-  summary: string;
-  description?: string;
-  location?: string;
-  start: {
-    dateTime: string; // ISO 8601 format
-    timeZone?: string;
-  };
-  end: {
-    dateTime: string; // ISO 8601 format
-    timeZone?: string;
-  };
-  attendees?: Array<{ email: string }>;
-  reminders?: {
-    useDefault: boolean;
-    overrides?: Array<{ method: "email" | "popup"; minutes: number }>;
-  };
-}
+// export interface CalendarEvent {
+//   summary: string;
+//   description?: string;
+//   location?: string;
+//   start: {
+//     dateTime: string; // ISO 8601 format
+//     timeZone?: string;
+//   };
+//   end: {
+//     dateTime: string; // ISO 8601 format
+//     timeZone?: string;
+//   };
+//   attendees?: Array<{ email: string }>;
+//   reminders?: {
+//     useDefault: boolean;
+//     overrides?: Array<{ method: "email" | "popup"; minutes: number }>;
+//   };
+// }
 
 export class GoogleCalendarClient {
   private calendar;
@@ -65,7 +67,7 @@ export class GoogleCalendarClient {
       throw new GoogleCalendarError(
         "Failed to initialize Google Sheets client",
         undefined,
-        error
+        error,
       );
     }
   }

@@ -25,10 +25,6 @@ const googleCalendarClient = new GoogleCalendarClient({
 });
 
 export async function createCalendarEvent(input: CreateBookingData) {
-  const createLocalDateTimeString = (dateStr: string, timeStr: string) => {
-    return `${dateStr}T${timeStr}:00`;
-  };
-
   const formatDateDisplay = (dateStr: string) => {
     const [year, month, day] = dateStr.split("-");
     return `${day}/${month}/${year}`;
@@ -70,6 +66,18 @@ export async function createCalendarEvent(input: CreateBookingData) {
     return text;
   };
 
+  const calculateExclusiveEndDate = (departureDate: string): string => {
+    const date = new Date(departureDate);
+    date.setDate(date.getDate() + 1);
+
+    // Format as YYYY-MM-DD
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
+
   const response = await googleCalendarClient.createEvent({
     summary: buildSummary(
       input.customerName,
@@ -77,14 +85,11 @@ export async function createCalendarEvent(input: CreateBookingData) {
       input.courseMode,
     ),
     start: {
-      dateTime: createLocalDateTimeString(input.arrivalDate, input.arrivalTime),
+      date: input.arrivalDate,
       timeZone: "America/Argentina/Buenos_Aires",
     },
     end: {
-      dateTime: createLocalDateTimeString(
-        input.departureDate,
-        input.departureTime,
-      ),
+      date: calculateExclusiveEndDate(input.departureDate),
       timeZone: "America/Argentina/Buenos_Aires",
     },
     description: descriptionLines.join("\n"),
