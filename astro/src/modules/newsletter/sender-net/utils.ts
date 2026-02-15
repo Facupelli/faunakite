@@ -1,6 +1,8 @@
 import type { NewSubscriberPayload, NewSubscriberResponse } from "./types";
 
-const SENDER_NET_ACCESS_TOKEN = import.meta.env.SENDER_NET_ACCESS_TOKEN;
+const SENDER_NET_ACCESS_TOKEN =
+  import.meta.env.SENDER_NET_ACCESS_TOKEN ??
+  process.env.SENDER_NET_ACCESS_TOKEN;
 
 const accessToken = SENDER_NET_ACCESS_TOKEN;
 const url = new URL("https://api.sender.net/v2/subscribers");
