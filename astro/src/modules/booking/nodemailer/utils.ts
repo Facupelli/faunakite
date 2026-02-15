@@ -3,8 +3,7 @@ import { useTranslations } from "../../../i18n/utils";
 
 const SITE_URL = import.meta.env.SITE_URL;
 
-const GOOGLE_APP_PASSWORD =
-  import.meta.env.GOOGLE_APP_PASSWORD ?? process.env.GOOGLE_APP_PASSWORD;
+const GOOGLE_APP_PASSWORD = process.env.GOOGLE_APP_PASSWORD;
 
 export class NodemailerError extends Error {
   constructor(

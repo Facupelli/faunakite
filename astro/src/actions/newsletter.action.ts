@@ -3,7 +3,6 @@ import { ActionError, defineAction } from "astro:actions";
 import { createSubscriber } from "../modules/newsletter/sender-net/utils";
 
 const TURNSTILE_NEWSLETTER_SECRET_KEY =
-  import.meta.env.TURNSTILE_NEWSLETTER_SECRET_KEY ??
   process.env.TURNSTILE_NEWSLETTER_SECRET_KEY;
 
 export const newsletter = {

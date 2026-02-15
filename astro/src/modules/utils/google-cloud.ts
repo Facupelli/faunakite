@@ -2,7 +2,7 @@ const isProd = import.meta.env.NODE_ENV === "production";
 
 export function getGoogleServiceAccountPrivateKey(): string {
   if (isProd) {
-    const jsonKey = import.meta.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
+    const jsonKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
 
     if (!jsonKey) {
       throw new Error("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY is not set");
@@ -17,29 +17,22 @@ export function getGoogleServiceAccountPrivateKey(): string {
     }
   }
 
-  return import.meta.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY;
+  return process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY!;
 }
 
 export function getGoogleServiceAccountKeys() {
   const privateKey = getGoogleServiceAccountPrivateKey();
-  const clientEmail =
-    import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ??
-    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL!;
   return { clientEmail, privateKey };
 }
 
 export function getGoogleSheetsConfig() {
-  const spreadsheetId =
-    import.meta.env.GOOGLE_SHEETS_SPREADSHEET_ID ??
-    process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
-  const sheetName =
-    import.meta.env.GOOGLE_SHEETS_SHEET_NAME ??
-    process.env.GOOGLE_SHEETS_SHEET_NAME;
+  const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID!;
+  const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME!;
   return { spreadsheetId, sheetName };
 }
 
 export function getGoogleCalendarConfig() {
-  const calendarId =
-    import.meta.env.GOOGLE_CALENDAR_ID ?? process.env.GOOGLE_CALENDAR_ID;
+  const calendarId = process.env.GOOGLE_CALENDAR_ID!;
   return { calendarId };
 }
