@@ -21,6 +21,15 @@ jobs:
       - name: Build Project
         working-directory: "./astro"
         run: npm run build
+        env:
+          TN_FEATURED_CATEGORY_ID: ${{ secrets.TN_FEATURED_CATEGORY_ID }}
+          SITE_URL: ${{ secrets.SITE_URL }}
+          TIENDANUBE_CLIENT_SECRET: ${{ secrets.TIENDANUBE_CLIENT_SECRET }}
+          TIENDANUBE_APP_ID: ${{ secrets.TIENDANUBE_APP_ID }}
+          TIENDANUBE_USER_ID: ${{ secrets.TIENDANUBE_USER_ID }}
+          TIENDANUBE_ACCESS_TOKEN: ${{ secrets.TIENDANUBE_ACCESS_TOKEN }}
+          SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
+          SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
